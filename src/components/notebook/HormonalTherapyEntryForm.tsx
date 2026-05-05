@@ -3,7 +3,10 @@ import { v4 as uuidv4 } from 'uuid';
 import { db } from '@/lib/db';
 import { Card } from '@/components/shared/Card';
 import { Icon } from '@/components/shared/Icon';
+import { UnknownDrugBubble } from '@/components/shared/UnknownDrugBubble';
 import { useI18n } from '@/lib/i18n';
+import { detectUnknownDrugs } from '@/lib/medical-data/drug-resolver';
+import { buildUnknownDrugIssueUrl } from '@/lib/medical-data/unknown-drug-feedback';
 
 export function HormonalTherapyEntryForm() {
   const [date, setDate] = useState(new Date().toISOString().split('T')[0]);
@@ -15,10 +18,10 @@ export function HormonalTherapyEntryForm() {
   const [fatigue, setFatigue] = useState(3);
   const [notes, setNotes] = useState('');
   const [saved, setSaved] = useState(false);
+  const [pendingUnknowns, setPendingUnknowns] = useState<string[] | null>(null);
   const { t, lang } = useI18n();
 
-  async function handleSave() {
-    if (!date) return;
+  async function persist() {
     await db.treatmentSessions.put({
       id: uuidv4(),
       date,
@@ -37,6 +40,27 @@ export function HormonalTherapyEntryForm() {
     setSaved(true);
     setTimeout(() => setSaved(false), 3000);
     setNotes('');
+  }
+
+  async function handleSave() {
+    if (!date) return;
+    const unknown = detectUnknownDrugs(drug);
+    if (unknown.length > 0) {
+      setPendingUnknowns(unknown);
+      return;
+    }
+    await persist();
+  }
+
+  function handleReport(drugList: string[]) {
+    const url = buildUnknownDrugIssueUrl(drugList, { language: lang, context: 'form', formType: 'hormonal' });
+    window.open(url, '_blank', 'noopener');
+    setPendingUnknowns(null);
+  }
+
+  async function handleContinue() {
+    setPendingUnknowns(null);
+    await persist();
   }
 
   const labels = lang === 'pl' ? {
@@ -168,6 +192,16 @@ export function HormonalTherapyEntryForm() {
           {saved ? labels.savedMsg : labels.save}
         </button>
       </div>
+      {pendingUnknowns && (
+        <UnknownDrugBubble
+          context="form"
+          unknownDrugs={pendingUnknowns}
+          onReport={handleReport}
+          onDismiss={handleContinue}
+          onCancel={() => setPendingUnknowns(null)}
+          onRemove={drug => setPendingUnknowns(prev => prev ? prev.filter(d => d !== drug) : null)}
+        />
+      )}
     </Card>
   );
 }

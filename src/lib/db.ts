@@ -275,6 +275,10 @@ export async function addChatMessage(message: ChatMessage): Promise<void> {
   await db.chat.add(message);
 }
 
+export async function updateChatMessage(message: ChatMessage): Promise<void> {
+  await db.chat.put(message);
+}
+
 export async function getRecentTreatmentSessions(count = 10): Promise<TreatmentSession[]> {
   return db.treatmentSessions.orderBy('date').reverse().limit(count).toArray();
 }

@@ -1,11 +1,14 @@
 import { useState, useCallback, useEffect } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import type { ChatMessage, PatientProfile } from '@/types';
-import { getChatMessages, addChatMessage, getSettings, getPatient, getRecentDailyLogs, getRecentBloodWork, getRecentWearableData, getRecentMeals, getRecentChemo, getRecentImaging, getRecentPredictions, getRecentSupplements } from '@/lib/db';
+import { getChatMessages, addChatMessage, updateChatMessage, getSettings, getPatient, getRecentDailyLogs, getRecentBloodWork, getRecentWearableData, getRecentMeals, getRecentChemo, getRecentImaging, getRecentPredictions, getRecentSupplements } from '@/lib/db';
 import { sendMessage, getWelcomeMessage } from '@/lib/ai';
 import { buildSystemPrompt } from '@/lib/system-prompt';
 import { extractDataFromResponse, extractAIProfileData, saveExtractedData, cleanResponseFromTags } from '@/lib/data-extractor';
 import { generatePatternSummary, savePatternSummary, formatPatternForChat, checkPatternMatch, type PatternResult } from '@/lib/pattern-engine';
+import { detectUnknownDrugs } from '@/lib/medical-data/drug-resolver';
+import { filterNewUnknowns } from '@/lib/medical-data/unknown-drug-feedback';
+import { useI18n } from '@/lib/i18n';
 
 const PATTERN_TRIGGERS = ['wzorzec', 'wzorce', 'wzorcow', 'jak zwykle', 'pokaż wzorzec', 'pokaz wzorzec', 'predykcja', 'prognoza', 'przewiduj', 'jak będę się czuć', 'jak bede sie czuc', 'jak będę', 'co mnie czeka', 'najbliższe dni', 'ten tydzień', 'ten tydzien'];
 
@@ -20,10 +23,32 @@ export function useChat() {
   const [error, setError] = useState<string | null>(null);
   const [lastPrediction, setLastPrediction] = useState<PatternResult | null>(null);
   const [lastProviderInfo, setLastProviderInfo] = useState<{ provider: string; model: string } | null>(null);
+  const [unknownDrugs, setUnknownDrugs] = useState<string[]>([]);
+  const [reportedDrugs, setReportedDrugs] = useState<Set<string>>(new Set());
+  const { lang } = useI18n();
 
   useEffect(() => {
     loadMessages();
   }, []);
+
+  // Refresh stale welcome message when language changes.
+  // Replaces the first message only if it is the auto-welcome in the OTHER language
+  // (matches PL or EN welcome verbatim). Does not touch user messages or real AI replies.
+  useEffect(() => {
+    const plWelcome = getWelcomeMessage('pl');
+    const enWelcome = getWelcomeMessage('en');
+    const currentWelcome = getWelcomeMessage(lang);
+    if (messages.length === 0) return;
+    const first = messages[0];
+    if (first.role !== 'assistant') return;
+    if (typeof first.content !== 'string') return;
+    if (first.content === currentWelcome) return;
+    if (first.content !== plWelcome && first.content !== enWelcome) return;
+    const refreshed = { ...first, content: currentWelcome };
+    updateChatMessage(refreshed).then(() => {
+      setMessages(prev => prev.length > 0 ? [refreshed, ...prev.slice(1)] : prev);
+    });
+  }, [lang, messages]);
 
   async function loadMessages() {
     const msgs = await getChatMessages(50);
@@ -31,7 +56,7 @@ export function useChat() {
       const welcome: ChatMessage = {
         id: uuidv4(),
         role: 'assistant',
-        content: getWelcomeMessage(),
+        content: getWelcomeMessage(lang),
         timestamp: new Date(),
       };
       await addChatMessage(welcome);
@@ -64,6 +89,12 @@ export function useChat() {
     await addChatMessage(userMessage);
     setMessages(prev => [...prev, userMessage]);
     setIsLoading(true);
+
+    const detected = detectUnknownDrugs(typeof content === 'string' ? content : text);
+    if (detected.length > 0) {
+      const fresh = filterNewUnknowns(detected, reportedDrugs);
+      if (fresh.length > 0) setUnknownDrugs(fresh);
+    }
 
     try {
       const userText = typeof content === 'string' ? content : text;
@@ -102,7 +133,9 @@ export function useChat() {
       const settings = await getSettings();
       const patient = await getPatient();
 
-      let systemPrompt = 'Jesteś agentem medycznym AlpacaLive. Pomagasz pacjentowi onkologicznemu. Mów po polsku.';
+      let systemPrompt = lang === 'en'
+        ? 'You are the AlpacaLive medical agent. You help an oncology patient. Always reply in English.'
+        : 'Jesteś agentem medycznym AlpacaLive. Pomagasz pacjentowi onkologicznemu. Mów po polsku.';
 
       if (patient) {
         const [daily, blood, wearable, meals, chemo, imaging, predictions, supplements] = await Promise.all([
@@ -115,7 +148,12 @@ export function useChat() {
           getRecentPredictions(),
           getRecentSupplements(),
         ]);
-        systemPrompt = buildSystemPrompt(patient, { daily, blood, wearable, meals, chemo, imaging, predictions, supplements });
+        // Override patient appLanguage with current UI language so the AI always
+        // replies in the language the user is reading the app in.
+        const patientForPrompt = patient.languages
+          ? { ...patient, languages: { ...patient.languages, appLanguage: lang } }
+          : { ...patient, languages: { appLanguage: lang, documentLanguages: [lang], preferredMedicalTerms: lang } };
+        systemPrompt = buildSystemPrompt(patientForPrompt, { daily, blood, wearable, meals, chemo, imaging, predictions, supplements });
       }
 
       const allMessages = [...messages, userMessage];
@@ -124,6 +162,7 @@ export function useChat() {
         provider: (settings?.aiProvider as any) || 'anthropic',
         systemPrompt,
         piiData: patient?.pii,
+        lang,
       });
 
       // Extract and save structured data from response
@@ -154,7 +193,26 @@ export function useChat() {
     } finally {
       setIsLoading(false);
     }
-  }, [messages]);
+  }, [messages, reportedDrugs, lang]);
 
-  return { messages, isLoading, error, send, reload: loadMessages, lastPrediction, lastProviderInfo };
+  const dismissUnknownDrugs = useCallback(() => {
+    setReportedDrugs(prev => {
+      const next = new Set(prev);
+      for (const d of unknownDrugs) next.add(d.toLowerCase());
+      return next;
+    });
+    setUnknownDrugs([]);
+  }, [unknownDrugs]);
+
+  return {
+    messages,
+    isLoading,
+    error,
+    send,
+    reload: loadMessages,
+    lastPrediction,
+    lastProviderInfo,
+    unknownDrugs,
+    dismissUnknownDrugs,
+  };
 }

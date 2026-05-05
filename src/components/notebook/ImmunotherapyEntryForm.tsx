@@ -3,7 +3,10 @@ import { v4 as uuidv4 } from 'uuid';
 import { db } from '@/lib/db';
 import { Card } from '@/components/shared/Card';
 import { Icon } from '@/components/shared/Icon';
+import { UnknownDrugBubble } from '@/components/shared/UnknownDrugBubble';
 import { useI18n } from '@/lib/i18n';
+import { detectUnknownDrugs } from '@/lib/medical-data/drug-resolver';
+import { buildUnknownDrugIssueUrl } from '@/lib/medical-data/unknown-drug-feedback';
 
 const IRAE_TYPES = [
   { value: 'skin', icon: 'dermatology' },
@@ -43,6 +46,7 @@ export function ImmunotherapyEntryForm() {
   const [iraeGrade, setIraeGrade] = useState(1);
   const [iraeDescription, setIraeDescription] = useState('');
   const [iraeList, setIraeList] = useState<{ type: string; grade: number; description: string }[]>([]);
+  const [pendingUnknowns, setPendingUnknowns] = useState<string[] | null>(null);
 
   function addIrAE() {
     if (!iraeDescription.trim()) return;
@@ -51,8 +55,7 @@ export function ImmunotherapyEntryForm() {
     setIraeGrade(1);
   }
 
-  async function handleSave() {
-    if (!date) return;
+  async function persist() {
     await db.treatmentSessions.put({
       id: uuidv4(),
       date,
@@ -70,6 +73,27 @@ export function ImmunotherapyEntryForm() {
     setInfusionNumber(String((parseInt(infusionNumber) || 1) + 1));
     setNotes('');
     setIraeList([]);
+  }
+
+  async function handleSave() {
+    if (!date) return;
+    const unknown = detectUnknownDrugs(drug);
+    if (unknown.length > 0) {
+      setPendingUnknowns(unknown);
+      return;
+    }
+    await persist();
+  }
+
+  function handleReport(drugList: string[]) {
+    const url = buildUnknownDrugIssueUrl(drugList, { language: lang, context: 'form', formType: 'immunotherapy' });
+    window.open(url, '_blank', 'noopener');
+    setPendingUnknowns(null);
+  }
+
+  async function handleContinue() {
+    setPendingUnknowns(null);
+    await persist();
   }
 
   const labels = lang === 'pl' ? {
@@ -216,6 +240,16 @@ export function ImmunotherapyEntryForm() {
           {saved ? labels.savedMsg : labels.save}
         </button>
       </div>
+      {pendingUnknowns && (
+        <UnknownDrugBubble
+          context="form"
+          unknownDrugs={pendingUnknowns}
+          onReport={handleReport}
+          onDismiss={handleContinue}
+          onCancel={() => setPendingUnknowns(null)}
+          onRemove={removed => setPendingUnknowns(prev => prev ? prev.filter(d => d !== removed) : null)}
+        />
+      )}
     </Card>
   );
 }

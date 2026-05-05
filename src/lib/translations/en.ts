@@ -175,6 +175,26 @@ export const en: typeof pl = {
     photoAttached: 'Photo attached',
   },
 
+  // ==================== UNKNOWN DRUG (chat + form) ====================
+  unknownDrug: {
+    chat: {
+      title: (drug: string) => `Unknown medication: ${drug}`,
+      description: 'This medication is not in our database yet. You can report it so we can add it for other patients.',
+      reportButton: 'Report drug',
+      dismissButton: 'Not now',
+    },
+    form: {
+      title: (count: number) => count === 1
+        ? '1 medication not recognized'
+        : `${count} medications not recognized`,
+      description: 'These items are not in our database yet. You can report them to be added, or save the entry without reporting.',
+      reportButton: 'Report missing',
+      continueButton: 'Save anyway',
+      removeAriaLabel: (drug: string) => `Remove ${drug} from report list`,
+      closeAriaLabel: 'Close',
+    },
+  },
+
   // ==================== QUICK ACTIONS ====================
   quickActions: {
     morningReport: 'Morning report',

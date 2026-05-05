@@ -1,0 +1,1078 @@
+{
+  "_metadata": {
+    "schema_version": "1.0",
+    "last_verified": "2026-04-23",
+    "source_version": "FDA labels + drugs.com international + Wikipedia medical + NCI + oncology news 2026-04",
+    "verified_by": "Dominik Gaweł via Claude web_search batch verification",
+    "languages": ["en", "pl", "de"],
+    "drug_count": 44,
+    "verification_method": "Cross-referenced against FDA approval letters, drugs.com international database, Wikipedia medical articles, NCI drug list, peer-reviewed oncology news (OncLive, TargetedOncology, Pharmacy Times)"
+  },
+  "trade_names": {
+    "trazodone": {
+      "inn": "trazodone",
+      "inn_aliases": ["trazodon", "trazodoni hydrochloridum", "trazodoni"],
+      "trade_names": {
+        "pl": ["Trittico", "Trittico XR", "Trittico CR"],
+        "de": ["Trittico"],
+        "eu": ["Trittico"],
+        "uk": ["Molipaxin"],
+        "us": ["Desyrel", "Oleptro"],
+        "global": ["Trittico"]
+      },
+      "drug_class": "SARI",
+      "route": "oral",
+      "common_dosing_oncology": "75-300 mg/day; XR/CR once daily evening (half-life ~10-13h)",
+      "breast_cancer_indication": "depression, insomnia (oncology: preferred over TCA for anticholinergic concerns)",
+      "key_warnings": [
+        "serotonin syndrome with SSRI/SNRI (incl. venlafaxine)",
+        "orthostatic hypotension",
+        "QTc prolongation",
+        "priapism (men)"
+      ],
+      "ref_urls": [
+        "https://www.drugs.com/international/trazodone.html",
+        "https://en.wikipedia.org/wiki/Trazodone"
+      ]
+    },
+    "venlafaxine": {
+      "inn": "venlafaxine",
+      "inn_aliases": ["wenlafaksyna", "venlafaxin", "venlafaxinum", "venlafaxini hydrochloridum"],
+      "trade_names": {
+        "pl": ["Alventa", "Efectin ER", "Velaxin"],
+        "de": ["Trevilor", "Venlafaxin Hennig", "Venlafaxin Genericon"],
+        "eu": ["Efexor", "Efexor XR", "Trevilor", "Efectin ER"],
+        "uk": ["Alventa XL", "Efexor XL", "Foraven XL", "Politid XL"],
+        "us": ["Effexor", "Effexor XR"],
+        "global": ["Efexor"]
+      },
+      "drug_class": "SNRI",
+      "route": "oral",
+      "common_dosing_oncology": "37.5-225 mg/day XR once daily with food",
+      "breast_cancer_indication": "depression, anxiety, vasomotor symptoms (hot flashes) — first-line with tamoxifen due to minimal CYP2D6 inhibition",
+      "key_warnings": [
+        "serotonin syndrome with trazodone",
+        "dose-dependent hypertension",
+        "discontinuation syndrome",
+        "weight loss"
+      ],
+      "ref_urls": [
+        "https://www.drugs.com/venlafaxine.html",
+        "https://en.wikipedia.org/wiki/Venlafaxine"
+      ]
+    },
+    "paclitaxel": {
+      "inn": "paclitaxel",
+      "inn_aliases": ["paklitaksel"],
+      "trade_names": {
+        "pl": ["Taxol", "Abraxane"],
+        "de": ["Taxol", "Abraxane"],
+        "eu": ["Taxol", "Abraxane", "Onxol"],
+        "us": ["Taxol", "Abraxane", "Onxol"],
+        "global": ["Taxol", "Abraxane"]
+      },
+      "drug_class": "taxane (microtubule stabilizer)",
+      "route": "iv",
+      "common_dosing_oncology": "weekly 80 mg/m² OR 175 mg/m² q3w (breast); nab-paclitaxel 125 mg/m² d1,8,15 q28",
+      "breast_cancer_indication": "all subtypes (neoadjuvant, adjuvant, metastatic)",
+      "key_warnings": [
+        "peripheral neuropathy (CIPN 60-80%)",
+        "hypersensitivity reactions (Cremophor EL)",
+        "neutropenia",
+        "alopecia"
+      ],
+      "ref_urls": [
+        "https://en.wikipedia.org/wiki/Paclitaxel",
+        "https://reference.medscape.com/drug/taxol-paclitaxel-342187"
+      ]
+    },
+    "docetaxel": {
+      "inn": "docetaxel",
+      "inn_aliases": ["docetaksel"],
+      "trade_names": {
+        "pl": ["Taxotere"],
+        "de": ["Taxotere"],
+        "eu": ["Taxotere"],
+        "us": ["Taxotere"],
+        "global": ["Taxotere"]
+      },
+      "drug_class": "taxane",
+      "route": "iv",
+      "common_dosing_oncology": "75-100 mg/m² q3w",
+      "breast_cancer_indication": "TC, TCH regimens (HER2+ adjuvant, neoadjuvant)",
+      "key_warnings": [
+        "neutropenia (more severe than paclitaxel)",
+        "fluid retention",
+        "hypersensitivity",
+        "nail changes"
+      ],
+      "ref_urls": [
+        "https://reference.medscape.com/drug/taxotere-docetaxel-342188"
+      ]
+    },
+    "gemcitabine": {
+      "inn": "gemcitabine",
+      "inn_aliases": ["gemcytabina", "gemcitabine hydrochloride"],
+      "trade_names": {
+        "pl": ["Gemzar"],
+        "de": ["Gemzar"],
+        "eu": ["Gemzar", "Infugem"],
+        "us": ["Gemzar", "Infugem"],
+        "global": ["Gemzar"]
+      },
+      "drug_class": "antimetabolite (pyrimidine analog)",
+      "route": "iv",
+      "common_dosing_oncology": "1000-1250 mg/m² days 1, 8, (15) of cycle",
+      "breast_cancer_indication": "metastatic breast cancer (often with paclitaxel), pancreatic, NSCLC, ovarian, bladder",
+      "key_warnings": [
+        "myelosuppression (especially thrombocytopenia)",
+        "pulmonary toxicity",
+        "hemolytic uremic syndrome / TTP",
+        "flu-like symptoms"
+      ],
+      "ref_urls": [
+        "https://www.cancer.gov/about-cancer/treatment/drugs/gemcitabinehydrochloride",
+        "https://www.breastcancer.org/treatment/medications/gemzar"
+      ]
+    },
+    "doxorubicin": {
+      "inn": "doxorubicin",
+      "inn_aliases": ["doxorubicin hydrochloride", "hydroxydaunorubicin", "adriamycin", "doksorubicyna"],
+      "trade_names": {
+        "pl": ["Adriamycin", "Caelyx", "Myocet"],
+        "de": ["Adriamycin", "Caelyx", "Myocet"],
+        "eu": ["Adriamycin", "Caelyx", "Myocet"],
+        "us": ["Adriamycin", "Adriamycin PFS", "Adriamycin RDF", "Rubex", "Doxil"],
+        "global": ["Adriamycin"]
+      },
+      "drug_class": "anthracycline (topoisomerase II inhibitor)",
+      "route": "iv",
+      "common_dosing_oncology": "60 mg/m² q3w (AC); dose-dense 60 mg/m² q2w; cumulative limit 450-550 mg/m²",
+      "breast_cancer_indication": "AC, AC-T, TAC, FAC regimens (early-stage and metastatic)",
+      "key_warnings": [
+        "cumulative cardiotoxicity (dose-limiting)",
+        "alopecia",
+        "red urine",
+        "tissue necrosis on extravasation",
+        "secondary AML/MDS",
+        "radiation recall"
+      ],
+      "ref_urls": [
+        "https://en.wikipedia.org/wiki/Doxorubicin",
+        "https://www.drugs.com/doxorubicin.html"
+      ]
+    },
+    "epirubicin": {
+      "inn": "epirubicin",
+      "inn_aliases": ["epirubicin hydrochloride", "epirubicyna"],
+      "trade_names": {
+        "pl": ["Pharmorubicin", "Epirubicin Ebewe"],
+        "de": ["Pharmorubicin", "Farmorubicin"],
+        "eu": ["Pharmorubicin", "Farmorubicin"],
+        "us": ["Ellence"],
+        "global": ["Ellence", "Pharmorubicin"]
+      },
+      "drug_class": "anthracycline",
+      "route": "iv",
+      "common_dosing_oncology": "90-100 mg/m² q3w (FEC regimen)",
+      "breast_cancer_indication": "early-stage breast (FEC, FEC-T, EC — primarily EU practice)",
+      "key_warnings": [
+        "cardiotoxicity (less than doxorubicin but cumulative)",
+        "myelosuppression",
+        "alopecia"
+      ],
+      "ref_urls": [
+        "https://en.wikipedia.org/wiki/Epirubicin"
+      ]
+    },
+    "cyclophosphamide": {
+      "inn": "cyclophosphamide",
+      "inn_aliases": ["cyklofosfamid", "CPM", "CTX"],
+      "trade_names": {
+        "pl": ["Endoxan"],
+        "de": ["Endoxan"],
+        "eu": ["Endoxan"],
+        "us": ["Cytoxan", "Neosar"],
+        "global": ["Endoxan", "Cytoxan", "Procytox"]
+      },
+      "drug_class": "alkylating agent (nitrogen mustard)",
+      "route": "iv",
+      "common_dosing_oncology": "600 mg/m² q3w IV (AC); oral 50-200 mg daily in some regimens",
+      "breast_cancer_indication": "AC, TC, TAC, CMF, FEC regimens",
+      "key_warnings": [
+        "hemorrhagic cystitis (MESNA prophylaxis)",
+        "myelosuppression",
+        "severe nausea",
+        "secondary malignancies",
+        "infertility",
+        "SIADH"
+      ],
+      "ref_urls": [
+        "https://en.wikipedia.org/wiki/Cyclophosphamide",
+        "https://www.drugs.com/cyclophosphamide.html"
+      ]
+    },
+    "carboplatin": {
+      "inn": "carboplatin",
+      "inn_aliases": ["karboplatyna"],
+      "trade_names": {
+        "pl": ["Paraplatin"],
+        "de": ["Paraplatin", "Carboplat"],
+        "eu": ["Paraplatin"],
+        "us": ["Paraplatin"],
+        "global": ["Paraplatin"]
+      },
+      "drug_class": "platinum compound",
+      "route": "iv",
+      "common_dosing_oncology": "AUC 5-6 (Calvert formula), q3w",
+      "breast_cancer_indication": "TCH (HER2+), TNBC combinations, neoadjuvant + pembrolizumab (KEYNOTE-522)",
+      "key_warnings": [
+        "thrombocytopenia (dose-limiting)",
+        "neutropenia",
+        "nephrotoxicity (less than cisplatin)",
+        "hypersensitivity on re-exposure"
+      ],
+      "ref_urls": [
+        "https://www.cancer.gov/about-cancer/treatment/drugs/carboplatin"
+      ]
+    },
+    "capecitabine": {
+      "inn": "capecitabine",
+      "inn_aliases": ["kapecytabina"],
+      "trade_names": {
+        "pl": ["Xeloda"],
+        "de": ["Xeloda"],
+        "eu": ["Xeloda"],
+        "us": ["Xeloda"],
+        "global": ["Xeloda"]
+      },
+      "drug_class": "oral antimetabolite (5-FU prodrug)",
+      "route": "oral",
+      "common_dosing_oncology": "1000-1250 mg/m² BID × 14 days q21",
+      "breast_cancer_indication": "metastatic breast (post anthracycline/taxane); with tucatinib + trastuzumab (HER2+); with neratinib",
+      "key_warnings": [
+        "hand-foot syndrome (palmar-plantar erythrodysesthesia)",
+        "diarrhea",
+        "mucositis",
+        "rare cardiotoxicity",
+        "DPD deficiency → severe toxicity"
+      ],
+      "ref_urls": [
+        "https://www.fda.gov/drugs/resources-information-approved-drugs/capecitabine",
+        "https://www.drugs.com/xeloda.html"
+      ]
+    },
+    "trastuzumab": {
+      "inn": "trastuzumab",
+      "inn_aliases": ["trastuzumab-dkst", "trastuzumab-dttb", "trastuzumab-pkrb"],
+      "trade_names": {
+        "pl": ["Herceptin", "Phesgo"],
+        "de": ["Herceptin", "Phesgo"],
+        "eu": ["Herceptin", "Phesgo"],
+        "us": ["Herceptin", "Herceptin Hylecta", "Phesgo"],
+        "global": ["Herceptin"],
+        "biosimilars": ["Kanjinti", "Ogivri", "Herzuma", "Ontruzant", "Trazimera", "Zercepac"]
+      },
+      "drug_class": "anti-HER2 monoclonal antibody",
+      "route": "iv",
+      "common_dosing_oncology": "IV loading 8 mg/kg → 6 mg/kg q3w; OR weekly 4 mg/kg → 2 mg/kg",
+      "breast_cancer_indication": "HER2+ breast (neoadjuvant, adjuvant, metastatic); HER2+ gastric",
+      "key_warnings": [
+        "cardiotoxicity (especially with anthracyclines — sequential, not concurrent)",
+        "infusion reactions",
+        "pulmonary toxicity"
+      ],
+      "ref_urls": [
+        "https://www.fda.gov/drugs/resources-information-approved-drugs/herceptin-trastuzumab",
+        "https://www.cancer.gov/about-cancer/treatment/drugs/trastuzumab"
+      ]
+    },
+    "pertuzumab": {
+      "inn": "pertuzumab",
+      "inn_aliases": [],
+      "trade_names": {
+        "pl": ["Perjeta", "Phesgo"],
+        "de": ["Perjeta", "Phesgo"],
+        "eu": ["Perjeta", "Phesgo"],
+        "us": ["Perjeta", "Phesgo"],
+        "global": ["Perjeta"]
+      },
+      "drug_class": "anti-HER2 dimerization inhibitor",
+      "route": "iv",
+      "common_dosing_oncology": "IV loading 840 mg → 420 mg q3w",
+      "breast_cancer_indication": "HER2+ first-line metastatic (CLEOPATRA: + trastuzumab + taxane); neoadjuvant/adjuvant (APHINITY); + T-DXd first-line (DESTINY-Breast09, FDA Dec 2025)",
+      "key_warnings": [
+        "cardiotoxicity (similar to trastuzumab)",
+        "infusion reactions",
+        "diarrhea"
+      ],
+      "ref_urls": [
+        "https://www.fda.gov/drugs/resources-information-approved-drugs/perjeta-pertuzumab"
+      ]
+    },
+    "trastuzumab_deruxtecan": {
+      "inn": "trastuzumab deruxtecan",
+      "inn_aliases": [
+        "fam-trastuzumab deruxtecan-nxki",
+        "T-DXd",
+        "DS-8201",
+        "trastuzumab derukstekan"
+      ],
+      "trade_names": {
+        "pl": ["Enhertu"],
+        "de": ["Enhertu"],
+        "eu": ["Enhertu"],
+        "us": ["Enhertu"],
+        "global": ["Enhertu"]
+      },
+      "drug_class": "antibody-drug conjugate (trastuzumab + deruxtecan/topo I inhibitor)",
+      "route": "iv",
+      "common_dosing_oncology": "5.4 mg/kg IV q3w (breast); 6.4 mg/kg (gastric)",
+      "breast_cancer_indication": "HER2+ mBC (Dec 2019 FDA accelerated; Dec 2025 first-line + pertuzumab DESTINY-Breast09); HER2-low IHC 1+/2+/ISH- (Aug 2022 DESTINY-Breast04); HER2-ultralow + HR+ IHC 0 with membrane staining (Jan 2025 DESTINY-Breast06); HER2+ gastric; HER2-mutant NSCLC",
+      "key_warnings": [
+        "interstitial lung disease / pneumonitis (boxed — monitor cough, dyspnea)",
+        "neutropenia",
+        "severe nausea"
+      ],
+      "ref_urls": [
+        "https://www.fda.gov/drugs/resources-information-approved-drugs/fda-approves-fam-trastuzumab-deruxtecan-nxki-unresectable-or-metastatic-hr-positive-her2-low-or-her2",
+        "https://www.oncologynewscentral.com/drugs/info/fda-approves-trastuzumab-deruxtecan-combination-for-her2-positive-breast-cancer"
+      ]
+    },
+    "trastuzumab_emtansine": {
+      "inn": "trastuzumab emtansine",
+      "inn_aliases": ["ado-trastuzumab emtansine", "T-DM1"],
+      "trade_names": {
+        "pl": ["Kadcyla"],
+        "de": ["Kadcyla"],
+        "eu": ["Kadcyla"],
+        "us": ["Kadcyla"],
+        "global": ["Kadcyla"]
+      },
+      "drug_class": "antibody-drug conjugate (trastuzumab + DM1 maytansine)",
+      "route": "iv",
+      "common_dosing_oncology": "3.6 mg/kg IV q3w",
+      "breast_cancer_indication": "HER2+ mBC second-line; adjuvant for residual disease after neoadjuvant trastuzumab (KATHERINE)",
+      "key_warnings": [
+        "thrombocytopenia",
+        "hepatotoxicity",
+        "peripheral neuropathy",
+        "pneumonitis"
+      ],
+      "ref_urls": [
+        "https://www.fda.gov/drugs/resources-information-approved-drugs/kadcyla"
+      ]
+    },
+    "sacituzumab_govitecan": {
+      "inn": "sacituzumab govitecan",
+      "inn_aliases": ["sacituzumab govitecan-hziy"],
+      "trade_names": {
+        "pl": ["Trodelvy"],
+        "de": ["Trodelvy"],
+        "eu": ["Trodelvy"],
+        "us": ["Trodelvy"],
+        "global": ["Trodelvy"]
+      },
+      "drug_class": "antibody-drug conjugate (anti-Trop-2 + SN-38 topo I inhibitor)",
+      "route": "iv",
+      "common_dosing_oncology": "10 mg/kg IV days 1 and 8 of 21-day cycles",
+      "breast_cancer_indication": "metastatic TNBC ≥2 prior therapies (Apr 2021 FDA); HR+/HER2- mBC (2023); urothelial",
+      "key_warnings": [
+        "severe neutropenia (boxed)",
+        "severe diarrhea (boxed)",
+        "UGT1A1*28 homozygous → 26% grade 4 neutropenia"
+      ],
+      "ref_urls": [
+        "https://www.fda.gov/drugs/resources-information-approved-drugs/trodelvy"
+      ]
+    },
+    "datopotamab_deruxtecan": {
+      "inn": "datopotamab deruxtecan",
+      "inn_aliases": ["datopotamab deruxtecan-dlnk", "Dato-DXd"],
+      "trade_names": {
+        "pl": ["Datroway"],
+        "de": ["Datroway"],
+        "eu": ["Datroway"],
+        "us": ["Datroway"],
+        "global": ["Datroway"]
+      },
+      "drug_class": "antibody-drug conjugate (anti-Trop-2 + deruxtecan)",
+      "route": "iv",
+      "common_dosing_oncology": "6 mg/kg IV q3w",
+      "breast_cancer_indication": "HR+/HER2- mBC post-endocrine therapy (2025 FDA approval)",
+      "key_warnings": [
+        "stomatitis",
+        "ocular toxicity (dry eye, keratitis)",
+        "interstitial lung disease",
+        "nausea"
+      ],
+      "ref_urls": [
+        "https://www.cancer.gov/about-cancer/treatment/drugs/breast"
+      ]
+    },
+    "tucatinib": {
+      "inn": "tucatinib",
+      "inn_aliases": [],
+      "trade_names": {
+        "pl": ["Tukysa"],
+        "de": ["Tukysa"],
+        "eu": ["Tukysa"],
+        "us": ["Tukysa"],
+        "global": ["Tukysa"]
+      },
+      "drug_class": "oral HER2-selective TKI",
+      "route": "oral",
+      "common_dosing_oncology": "300 mg BID",
+      "breast_cancer_indication": "HER2+ mBC third-line (+ trastuzumab + capecitabine, HER2CLIMB) — including brain metastases efficacy; HER2+ CRC",
+      "key_warnings": [
+        "diarrhea",
+        "hepatotoxicity",
+        "palmar-plantar erythrodysesthesia"
+      ],
+      "ref_urls": [
+        "https://www.fda.gov/drugs/resources-information-approved-drugs/tukysa"
+      ]
+    },
+    "neratinib": {
+      "inn": "neratinib",
+      "inn_aliases": ["neratinib maleate"],
+      "trade_names": {
+        "pl": ["Nerlynx"],
+        "de": ["Nerlynx"],
+        "eu": ["Nerlynx"],
+        "us": ["Nerlynx"],
+        "global": ["Nerlynx"]
+      },
+      "drug_class": "oral pan-HER TKI (irreversible)",
+      "route": "oral",
+      "common_dosing_oncology": "240 mg once daily with food",
+      "breast_cancer_indication": "extended adjuvant HER2+ after trastuzumab (ExteNET, up to 1 year); HER2+ mBC + capecitabine third-line+",
+      "key_warnings": [
+        "severe diarrhea (mandatory prophylactic loperamide)",
+        "hepatotoxicity"
+      ],
+      "ref_urls": [
+        "https://www.fda.gov/drugs/resources-information-approved-drugs/nerlynx"
+      ]
+    },
+    "lapatinib": {
+      "inn": "lapatinib",
+      "inn_aliases": ["lapatinib ditosylate"],
+      "trade_names": {
+        "pl": ["Tykerb", "Tyverb"],
+        "de": ["Tyverb"],
+        "eu": ["Tyverb"],
+        "us": ["Tykerb"],
+        "global": ["Tykerb", "Tyverb"]
+      },
+      "drug_class": "oral dual HER2/EGFR TKI",
+      "route": "oral",
+      "common_dosing_oncology": "1250 mg daily with capecitabine",
+      "breast_cancer_indication": "HER2+ mBC (largely superseded by tucatinib, neratinib, T-DXd; used in resource-limited settings)",
+      "key_warnings": [
+        "diarrhea",
+        "hepatotoxicity",
+        "rash"
+      ],
+      "ref_urls": [
+        "https://www.cancer.gov/about-cancer/treatment/drugs/lapatinibditosylate"
+      ]
+    },
+    "palbociclib": {
+      "inn": "palbociclib",
+      "inn_aliases": [],
+      "trade_names": {
+        "pl": ["Ibrance"],
+        "de": ["Ibrance"],
+        "eu": ["Ibrance"],
+        "us": ["Ibrance"],
+        "global": ["Ibrance"]
+      },
+      "drug_class": "CDK4/6 inhibitor",
+      "route": "oral",
+      "common_dosing_oncology": "125 mg daily × 21 days on / 7 off (28-day cycle)",
+      "breast_cancer_indication": "HR+/HER2- mBC + AI (letrozole/anastrozole) or + fulvestrant; triplet + inavolisib + fulvestrant for PIK3CA+ (2024 FDA)",
+      "key_warnings": [
+        "neutropenia (dose-limiting)",
+        "rare pneumonitis / ILD"
+      ],
+      "ref_urls": [
+        "https://www.fda.gov/drugs/resources-information-approved-drugs/ibrance"
+      ]
+    },
+    "ribociclib": {
+      "inn": "ribociclib",
+      "inn_aliases": [],
+      "trade_names": {
+        "pl": ["Kisqali"],
+        "de": ["Kisqali"],
+        "eu": ["Kisqali", "Kisqali Femara Co-Pack"],
+        "us": ["Kisqali", "Kisqali Femara Co-Pack"],
+        "global": ["Kisqali"]
+      },
+      "drug_class": "CDK4/6 inhibitor",
+      "route": "oral",
+      "common_dosing_oncology": "600 mg daily × 21 on / 7 off",
+      "breast_cancer_indication": "HR+/HER2- advanced/mBC + AI or fulvestrant; premenopausal + tamoxifen + goserelin (MONALEESA-7); OS benefit MONALEESA-2/-3/-7",
+      "key_warnings": [
+        "neutropenia",
+        "QTc prolongation (highest among CDK4/6 — ECG monitoring)",
+        "hepatotoxicity"
+      ],
+      "ref_urls": [
+        "https://www.fda.gov/drugs/resources-information-approved-drugs/kisqali"
+      ]
+    },
+    "abemaciclib": {
+      "inn": "abemaciclib",
+      "inn_aliases": [],
+      "trade_names": {
+        "pl": ["Verzenios"],
+        "de": ["Verzenios"],
+        "eu": ["Verzenios"],
+        "us": ["Verzenio"],
+        "global": ["Verzenio", "Verzenios"]
+      },
+      "drug_class": "CDK4/6 inhibitor (more selective for CDK4)",
+      "route": "oral",
+      "common_dosing_oncology": "150 mg BID continuous (monotherapy 200 mg BID × 14 of 21)",
+      "breast_cancer_indication": "HR+/HER2- advanced/mBC + AI; adjuvant high-risk early BC (MONARCH E)",
+      "key_warnings": [
+        "diarrhea (prophylactic anti-diarrheals)",
+        "less neutropenia vs palbo/ribo",
+        "pneumonitis / ILD"
+      ],
+      "ref_urls": [
+        "https://www.fda.gov/drugs/resources-information-approved-drugs/verzenio"
+      ]
+    },
+    "letrozole": {
+      "inn": "letrozole",
+      "inn_aliases": ["letrozol"],
+      "trade_names": {
+        "pl": ["Femara", "Letrox"],
+        "de": ["Femara"],
+        "eu": ["Femara"],
+        "us": ["Femara"],
+        "global": ["Femara"]
+      },
+      "drug_class": "non-steroidal aromatase inhibitor (3rd gen)",
+      "route": "oral",
+      "common_dosing_oncology": "2.5 mg once daily",
+      "breast_cancer_indication": "HR+ postmenopausal adjuvant/metastatic (often with CDK4/6); neoadjuvant",
+      "key_warnings": [
+        "arthralgia",
+        "hot flashes",
+        "osteoporosis (bone density monitoring)"
+      ],
+      "ref_urls": [
+        "https://www.fda.gov/drugs/resources-information-approved-drugs/femara"
+      ]
+    },
+    "anastrozole": {
+      "inn": "anastrozole",
+      "inn_aliases": ["anastrozol"],
+      "trade_names": {
+        "pl": ["Arimidex", "Anastrol"],
+        "de": ["Arimidex"],
+        "eu": ["Arimidex"],
+        "us": ["Arimidex"],
+        "global": ["Arimidex"]
+      },
+      "drug_class": "non-steroidal aromatase inhibitor (3rd gen)",
+      "route": "oral",
+      "common_dosing_oncology": "1 mg once daily",
+      "breast_cancer_indication": "HR+ postmenopausal adjuvant/metastatic (ATAC trial)",
+      "key_warnings": [
+        "arthralgia",
+        "hot flashes",
+        "osteoporosis"
+      ],
+      "ref_urls": [
+        "https://www.fda.gov/drugs/resources-information-approved-drugs/arimidex"
+      ]
+    },
+    "exemestane": {
+      "inn": "exemestane",
+      "inn_aliases": [],
+      "trade_names": {
+        "pl": ["Aromasin"],
+        "de": ["Aromasin"],
+        "eu": ["Aromasin"],
+        "us": ["Aromasin"],
+        "global": ["Aromasin"]
+      },
+      "drug_class": "steroidal aromatase inhibitor (irreversible)",
+      "route": "oral",
+      "common_dosing_oncology": "25 mg once daily after meal",
+      "breast_cancer_indication": "HR+ postmenopausal (switch after tamoxifen); + everolimus (BOLERO-2)",
+      "key_warnings": [
+        "arthralgia",
+        "hot flashes",
+        "androgenic effects possible"
+      ],
+      "ref_urls": [
+        "https://www.fda.gov/drugs/resources-information-approved-drugs/aromasin"
+      ]
+    },
+    "tamoxifen": {
+      "inn": "tamoxifen",
+      "inn_aliases": ["tamoxifeni citrate", "tamoksyfen"],
+      "trade_names": {
+        "pl": ["Tamoxifen-EGIS", "Nolvadex"],
+        "de": ["Nolvadex", "Tamoxifen Hexal"],
+        "eu": ["Nolvadex"],
+        "us": ["Nolvadex", "Soltamox"],
+        "global": ["Nolvadex"]
+      },
+      "drug_class": "SERM",
+      "route": "oral",
+      "common_dosing_oncology": "20 mg once daily, 5-10 years",
+      "breast_cancer_indication": "HR+ breast all menopausal states (unlike AI postmenopausal only); chemoprevention",
+      "key_warnings": [
+        "uterine cancer risk",
+        "VTE / thromboembolism",
+        "hot flashes",
+        "avoid strong CYP2D6 inhibitors (paroxetine, fluoxetine) — use venlafaxine or escitalopram for hot flashes"
+      ],
+      "ref_urls": [
+        "https://www.fda.gov/drugs/resources-information-approved-drugs/nolvadex",
+        "https://www.cancer.gov/about-cancer/treatment/drugs/tamoxifen"
+      ]
+    },
+    "fulvestrant": {
+      "inn": "fulvestrant",
+      "inn_aliases": [],
+      "trade_names": {
+        "pl": ["Faslodex"],
+        "de": ["Faslodex"],
+        "eu": ["Faslodex"],
+        "us": ["Faslodex"],
+        "global": ["Faslodex"]
+      },
+      "drug_class": "SERD (intramuscular)",
+      "route": "im",
+      "common_dosing_oncology": "500 mg IM days 1, 15, 29 then monthly (two 250 mg injections, buttock)",
+      "breast_cancer_indication": "HR+ mBC; backbone for PIK3CA/AKT inhibitor combinations",
+      "key_warnings": [
+        "injection site reactions",
+        "hot flashes",
+        "elevated transaminases"
+      ],
+      "ref_urls": [
+        "https://www.fda.gov/drugs/resources-information-approved-drugs/faslodex"
+      ]
+    },
+    "goserelin": {
+      "inn": "goserelin",
+      "inn_aliases": [],
+      "trade_names": {
+        "pl": ["Zoladex"],
+        "de": ["Zoladex"],
+        "eu": ["Zoladex"],
+        "us": ["Zoladex"],
+        "global": ["Zoladex"]
+      },
+      "drug_class": "LHRH/GnRH agonist",
+      "route": "sc",
+      "common_dosing_oncology": "3.6 mg monthly or 10.8 mg q3mo",
+      "breast_cancer_indication": "premenopausal HR+ breast cancer (enables AI use); prostate",
+      "key_warnings": [
+        "tumor flare on initiation",
+        "hot flashes",
+        "bone density loss",
+        "vaginal dryness"
+      ],
+      "ref_urls": [
+        "https://www.fda.gov/drugs/resources-information-approved-drugs/zoladex"
+      ]
+    },
+    "olaparib": {
+      "inn": "olaparib",
+      "inn_aliases": [],
+      "trade_names": {
+        "pl": ["Lynparza"],
+        "de": ["Lynparza"],
+        "eu": ["Lynparza"],
+        "us": ["Lynparza"],
+        "global": ["Lynparza"]
+      },
+      "drug_class": "PARP1/2/3 inhibitor",
+      "route": "oral",
+      "common_dosing_oncology": "300 mg BID",
+      "breast_cancer_indication": "gBRCA+ HER2- mBC (2018 FDA); adjuvant high-risk early BC gBRCA+ HER2- (Mar 2022 FDA, OlympiA); ovarian, pancreatic, prostate",
+      "key_warnings": [
+        "anemia",
+        "fatigue",
+        "MDS / AML risk (boxed)",
+        "pneumonitis"
+      ],
+      "ref_urls": [
+        "https://www.fda.gov/drugs/resources-information-approved-drugs/lynparza"
+      ]
+    },
+    "talazoparib": {
+      "inn": "talazoparib",
+      "inn_aliases": [],
+      "trade_names": {
+        "pl": ["Talzenna"],
+        "de": ["Talzenna"],
+        "eu": ["Talzenna"],
+        "us": ["Talzenna"],
+        "global": ["Talzenna"]
+      },
+      "drug_class": "PARP inhibitor (strongest PARP trapping)",
+      "route": "oral",
+      "common_dosing_oncology": "0.75 mg once daily",
+      "breast_cancer_indication": "gBRCA+ HER2- mBC (Oct 2018 FDA, EMBRACA); mCRPC + enzalutamide",
+      "key_warnings": [
+        "fatigue",
+        "anemia",
+        "thrombocytopenia",
+        "MDS / AML risk (boxed)",
+        "alopecia"
+      ],
+      "ref_urls": [
+        "https://www.fda.gov/drugs/resources-information-approved-drugs/talzenna"
+      ]
+    },
+    "elacestrant": {
+      "inn": "elacestrant",
+      "inn_aliases": [],
+      "trade_names": {
+        "pl": ["Orserdu"],
+        "de": ["Orserdu"],
+        "eu": ["Orserdu"],
+        "us": ["Orserdu"],
+        "global": ["Orserdu"]
+      },
+      "drug_class": "oral SERD",
+      "route": "oral",
+      "common_dosing_oncology": "345 mg once daily with food",
+      "breast_cancer_indication": "ER+/HER2-/ESR1-mutated mBC after ≥1 endocrine therapy (Jan 2023 FDA, EMERALD)",
+      "key_warnings": [
+        "nausea",
+        "fatigue",
+        "elevated cholesterol/triglycerides"
+      ],
+      "ref_urls": [
+        "https://www.fda.gov/drugs/resources-information-approved-drugs/orserdu"
+      ]
+    },
+    "imlunestrant": {
+      "inn": "imlunestrant",
+      "inn_aliases": [],
+      "trade_names": {
+        "pl": ["Inluriyo"],
+        "de": ["Inluriyo"],
+        "eu": ["Inluriyo"],
+        "us": ["Inluriyo"],
+        "global": ["Inluriyo"]
+      },
+      "drug_class": "oral SERD",
+      "route": "oral",
+      "common_dosing_oncology": "400 mg once daily",
+      "breast_cancer_indication": "ER+/HER2-/ESR1-mutated mBC (2025 FDA, EMBER-3)",
+      "key_warnings": [
+        "fatigue",
+        "diarrhea",
+        "nausea"
+      ],
+      "ref_urls": [
+        "https://www.onclive.com/clinical/breast-cancer"
+      ]
+    },
+    "alpelisib": {
+      "inn": "alpelisib",
+      "inn_aliases": [],
+      "trade_names": {
+        "pl": ["Piqray"],
+        "de": ["Piqray"],
+        "eu": ["Piqray"],
+        "us": ["Piqray"],
+        "global": ["Piqray"]
+      },
+      "drug_class": "PI3Kα inhibitor",
+      "route": "oral",
+      "common_dosing_oncology": "300 mg once daily with food",
+      "breast_cancer_indication": "HR+/HER2-/PIK3CA-mutated mBC + fulvestrant (May 2019 FDA, SOLAR-1)",
+      "key_warnings": [
+        "hyperglycemia (~60%)",
+        "rash",
+        "diarrhea"
+      ],
+      "ref_urls": [
+        "https://www.fda.gov/drugs/resources-information-approved-drugs/piqray"
+      ]
+    },
+    "inavolisib": {
+      "inn": "inavolisib",
+      "inn_aliases": [],
+      "trade_names": {
+        "pl": ["Itovebi"],
+        "de": ["Itovebi"],
+        "eu": ["Itovebi"],
+        "us": ["Itovebi"],
+        "global": ["Itovebi"]
+      },
+      "drug_class": "PI3Kα inhibitor (more selective than alpelisib)",
+      "route": "oral",
+      "common_dosing_oncology": "9 mg once daily",
+      "breast_cancer_indication": "HR+/HER2-/PIK3CA-mutated, endocrine-resistant mBC, triplet + palbociclib + fulvestrant (Oct 2024 FDA, INAVO120)",
+      "key_warnings": [
+        "hyperglycemia (less than alpelisib)",
+        "stomatitis",
+        "diarrhea",
+        "rash"
+      ],
+      "ref_urls": [
+        "https://www.fda.gov/drugs/resources-information-approved-drugs/itovebi"
+      ]
+    },
+    "capivasertib": {
+      "inn": "capivasertib",
+      "inn_aliases": [],
+      "trade_names": {
+        "pl": ["Truqap"],
+        "de": ["Truqap"],
+        "eu": ["Truqap"],
+        "us": ["Truqap"],
+        "global": ["Truqap"]
+      },
+      "drug_class": "pan-AKT inhibitor",
+      "route": "oral",
+      "common_dosing_oncology": "400 mg BID, 4 days on / 3 off",
+      "breast_cancer_indication": "HR+/HER2- mBC with PIK3CA, AKT1, or PTEN alterations + fulvestrant (2023 FDA, CAPItello-291)",
+      "key_warnings": [
+        "diarrhea",
+        "rash",
+        "hyperglycemia"
+      ],
+      "ref_urls": [
+        "https://www.fda.gov/drugs/resources-information-approved-drugs/truqap"
+      ]
+    },
+    "everolimus": {
+      "inn": "everolimus",
+      "inn_aliases": [],
+      "trade_names": {
+        "pl": ["Afinitor"],
+        "de": ["Afinitor"],
+        "eu": ["Afinitor"],
+        "us": ["Afinitor", "Afinitor Disperz"],
+        "global": ["Afinitor"]
+      },
+      "drug_class": "mTOR inhibitor",
+      "route": "oral",
+      "common_dosing_oncology": "10 mg once daily",
+      "breast_cancer_indication": "HR+ postmenopausal mBC + exemestane (BOLERO-2); RCC, NET, subependymal giant cell astrocytoma (TSC)",
+      "key_warnings": [
+        "stomatitis (prophylactic mouthwash)",
+        "rash",
+        "hyperglycemia",
+        "pneumonitis / interstitial lung disease"
+      ],
+      "ref_urls": [
+        "https://www.fda.gov/drugs/resources-information-approved-drugs/afinitor"
+      ]
+    },
+    "pembrolizumab": {
+      "inn": "pembrolizumab",
+      "inn_aliases": [],
+      "trade_names": {
+        "pl": ["Keytruda"],
+        "de": ["Keytruda"],
+        "eu": ["Keytruda"],
+        "us": ["Keytruda"],
+        "global": ["Keytruda"]
+      },
+      "drug_class": "anti-PD-1 monoclonal antibody",
+      "route": "iv",
+      "common_dosing_oncology": "200 mg q3w or 400 mg q6w",
+      "breast_cancer_indication": "neoadjuvant/adjuvant TNBC + chemo (KEYNOTE-522); metastatic PD-L1+ TNBC CPS≥10 + chemo (KEYNOTE-355); MSI-H/dMMR, TMB-H pan-tumor",
+      "key_warnings": [
+        "immune-related adverse events (thyroid, colitis, pneumonitis, hepatitis, endocrine)",
+        "hypersensitivity"
+      ],
+      "ref_urls": [
+        "https://www.fda.gov/drugs/resources-information-approved-drugs/keytruda"
+      ]
+    },
+    "atezolizumab": {
+      "inn": "atezolizumab",
+      "inn_aliases": [],
+      "trade_names": {
+        "pl": ["Tecentriq"],
+        "de": ["Tecentriq"],
+        "eu": ["Tecentriq"],
+        "us": ["Tecentriq"],
+        "global": ["Tecentriq"]
+      },
+      "drug_class": "anti-PD-L1 monoclonal antibody",
+      "route": "iv",
+      "common_dosing_oncology": "840 mg q2w, 1200 mg q3w, or 1680 mg q4w",
+      "breast_cancer_indication": "metastatic TNBC PD-L1+ (SP142) + nab-paclitaxel (IMpassion130) — note: FDA breast indication withdrawn/modified, pembrolizumab now preferred",
+      "key_warnings": [
+        "immune-related adverse events (similar to pembrolizumab)"
+      ],
+      "ref_urls": [
+        "https://www.fda.gov/drugs/resources-information-approved-drugs/tecentriq"
+      ]
+    },
+    "denosumab": {
+      "inn": "denosumab",
+      "inn_aliases": [],
+      "trade_names": {
+        "pl": ["Xgeva", "Prolia"],
+        "de": ["Xgeva", "Prolia"],
+        "eu": ["Xgeva", "Prolia"],
+        "us": ["Xgeva", "Prolia"],
+        "global": ["Xgeva", "Prolia"],
+        "biosimilars": ["Jubbonti", "Conexxence", "Ospomyv", "Stoboclo", "Wyost"]
+      },
+      "drug_class": "human monoclonal antibody anti-RANKL",
+      "route": "sc",
+      "common_dosing_oncology": "Xgeva (oncology): 120 mg SC q4w — bone mets in solid tumors, multiple myeloma, giant cell tumor; Prolia (osteoporosis): 60 mg SC q6mo — postmenopausal/AI-induced bone loss",
+      "breast_cancer_indication": "Xgeva for bone metastases SRE prevention; Prolia for AI-induced bone loss prophylaxis",
+      "key_warnings": [
+        "hypocalcemia (calcium + vitamin D supplementation required)",
+        "osteonecrosis of jaw (ONJ) — dental exam pre-treatment",
+        "atypical femur fractures",
+        "rebound vertebral fractures on discontinuation",
+        "NEVER both Xgeva and Prolia (same drug)"
+      ],
+      "ref_urls": [
+        "https://www.fda.gov/drugs/resources-information-approved-drugs/xgeva",
+        "https://www.fda.gov/drugs/resources-information-approved-drugs/prolia"
+      ]
+    },
+    "zoledronic_acid": {
+      "inn": "zoledronic acid",
+      "inn_aliases": ["zoledronate", "kwas zoledronowy"],
+      "trade_names": {
+        "pl": ["Zometa", "Aclasta"],
+        "de": ["Zometa", "Aclasta"],
+        "eu": ["Zometa", "Aclasta"],
+        "us": ["Zometa", "Reclast"],
+        "global": ["Zometa"]
+      },
+      "drug_class": "third-generation bisphosphonate (nitrogen-containing)",
+      "route": "iv",
+      "common_dosing_oncology": "Zometa (oncology): 4 mg IV q3-4w or q12w — bone mets, hypercalcemia of malignancy; Reclast/Aclasta (osteoporosis): 5 mg IV yearly",
+      "breast_cancer_indication": "Zometa for bone metastases (breast/prostate/myeloma); Reclast/Aclasta for postmenopausal osteoporosis (incl. AI-induced)",
+      "key_warnings": [
+        "acute phase reaction (flu-like first infusion ~30%)",
+        "hypocalcemia",
+        "renal impairment (dose adjustment)",
+        "osteonecrosis of jaw (ONJ)",
+        "atypical femur fractures"
+      ],
+      "ref_urls": [
+        "https://www.fda.gov/drugs/resources-information-approved-drugs/zometa",
+        "https://www.fda.gov/drugs/resources-information-approved-drugs/reclast"
+      ]
+    },
+    "ondansetron": {
+      "inn": "ondansetron",
+      "inn_aliases": ["ondansetron hydrochloride", "ondansetron HCl"],
+      "trade_names": {
+        "pl": ["Zofran", "Atossa"],
+        "de": ["Zofran"],
+        "eu": ["Zofran"],
+        "us": ["Zofran", "Zofran ODT", "Zuplenz"],
+        "global": ["Zofran"]
+      },
+      "drug_class": "5-HT3 receptor antagonist (antiemetic)",
+      "route": "iv",
+      "common_dosing_oncology": "8 mg IV pre-chemo, then 8 mg PO q8-12h × 1-5 days for CINV",
+      "breast_cancer_indication": "chemo-induced nausea and vomiting (CINV) prophylaxis; postoperative N/V",
+      "key_warnings": [
+        "QTc prolongation (dose-dependent, max 16 mg IV/dose)",
+        "headache",
+        "constipation",
+        "rare serotonin syndrome with SSRI/SNRI"
+      ],
+      "ref_urls": [
+        "https://www.fda.gov/drugs/resources-information-approved-drugs/zofran"
+      ]
+    },
+    "dexamethasone": {
+      "inn": "dexamethasone",
+      "inn_aliases": ["dexamethasone sodium phosphate", "deksametazon"],
+      "trade_names": {
+        "pl": ["Dexaven", "Dexamethason Krka"],
+        "de": ["Fortecortin", "Dexa"],
+        "eu": ["Decadron", "Neofordex"],
+        "us": ["Decadron", "Hemady"],
+        "global": ["Decadron"]
+      },
+      "drug_class": "glucocorticoid (long-acting)",
+      "route": "iv",
+      "common_dosing_oncology": "CINV prophylaxis 8-12 mg IV pre-chemo (highly emetogenic); paclitaxel hypersensitivity prophylaxis 20 mg PO 12h+6h pre-dose; brain edema 4-10 mg IV q6h",
+      "breast_cancer_indication": "antiemetic prophylaxis; premedication before paclitaxel (hypersensitivity prevention); brain metastasis edema",
+      "key_warnings": [
+        "hyperglycemia",
+        "insomnia / mood changes",
+        "adrenal suppression (taper after long courses)",
+        "immunosuppression",
+        "long-term bone loss",
+        "cataracts",
+        "Cushingoid features"
+      ],
+      "ref_urls": [
+        "https://www.drugs.com/dexamethasone.html"
+      ]
+    },
+    "fluorouracil": {
+      "inn": "fluorouracil",
+      "inn_aliases": ["5-FU", "5-fluorouracil"],
+      "trade_names": {
+        "pl": ["Fluorouracil-Ebewe"],
+        "de": ["Fluorouracil-Ebewe"],
+        "eu": ["Fluorouracil-Ebewe"],
+        "us": ["Adrucil"],
+        "global": ["Adrucil"]
+      },
+      "drug_class": "antimetabolite (pyrimidine analog)",
+      "route": "iv",
+      "common_dosing_oncology": "500-600 mg/m² IV bolus or continuous infusion (varies by regimen)",
+      "breast_cancer_indication": "FEC, FAC, CMF regimens (legacy, still used in EU)",
+      "key_warnings": [
+        "myelosuppression",
+        "mucositis",
+        "hand-foot syndrome (continuous infusion)",
+        "DPD deficiency → severe toxicity",
+        "rare cardiotoxicity"
+      ],
+      "ref_urls": [
+        "https://www.cancer.gov/about-cancer/treatment/drugs/fluorouracil"
+      ]
+    },
+    "methotrexate": {
+      "inn": "methotrexate",
+      "inn_aliases": ["MTX", "metotreksat"],
+      "trade_names": {
+        "pl": ["Methotrexat-Ebewe", "Metex"],
+        "de": ["Lantarel", "Metex", "Methotrexat Lederle"],
+        "eu": ["Metex", "Methofill"],
+        "us": ["Trexall", "Xatmep", "Otrexup", "Rasuvo"],
+        "global": ["Trexall"]
+      },
+      "drug_class": "antimetabolite (folate antagonist)",
+      "route": "oral",
+      "common_dosing_oncology": "40 mg/m² IV days 1, 8 (CMF regimen); high-dose protocols vary",
+      "breast_cancer_indication": "CMF regimen (cyclophosphamide + methotrexate + fluorouracil) — historic early-stage",
+      "key_warnings": [
+        "myelosuppression",
+        "mucositis",
+        "hepatotoxicity",
+        "pulmonary toxicity",
+        "nephrotoxicity (high-dose)",
+        "leucovorin rescue for high-dose"
+      ],
+      "ref_urls": [
+        "https://www.cancer.gov/about-cancer/treatment/drugs/methotrexate"
+      ]
+    }
+  }
+}

@@ -5,16 +5,27 @@ import { QuickActions } from './QuickActions';
 import { PatternCards } from './PatternCards';
 import { DisclaimerBanner } from '@/components/shared/DisclaimerBanner';
 import { Icon } from '@/components/shared/Icon';
+import { UnknownDrugBubble } from '@/components/shared/UnknownDrugBubble';
 import { useI18n } from '@/lib/i18n';
 import { guardMessage, guardFile, checkRateLimit, MAX_MESSAGE_LENGTH } from '@/lib/input-guard';
+import { buildUnknownDrugIssueUrl } from '@/lib/medical-data/unknown-drug-feedback';
 
 export function ChatView() {
-  const { messages, isLoading, error, send, lastPrediction, lastProviderInfo } = useChat();
+  const { messages, isLoading, error, send, lastPrediction, lastProviderInfo, unknownDrugs, dismissUnknownDrugs } = useChat();
   const [input, setInput] = useState('');
   const [guardError, setGuardError] = useState<string | null>(null);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
-  const { t } = useI18n();
+  const { t, lang } = useI18n();
+
+  function handleReportUnknown(drugs: string[]) {
+    const provider = (() => {
+      try { return localStorage.getItem('alpacalive-ai-provider') || 'unknown'; } catch { return 'unknown'; }
+    })();
+    const url = buildUnknownDrugIssueUrl(drugs, { language: lang, context: 'chat', aiProvider: provider });
+    window.open(url, '_blank', 'noopener');
+    dismissUnknownDrugs();
+  }
 
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -137,6 +148,14 @@ export function ChatView() {
       <DisclaimerBanner variant="chat" />
 
       <div className="border-t border-lavender-100 bg-bg-card px-3 py-2 safe-bottom">
+        {unknownDrugs.length > 0 && (
+          <UnknownDrugBubble
+            context="chat"
+            unknownDrugs={unknownDrugs}
+            onReport={handleReportUnknown}
+            onDismiss={dismissUnknownDrugs}
+          />
+        )}
         <div className="flex items-end gap-2">
           <button
             onClick={() => fileInputRef.current?.click()}

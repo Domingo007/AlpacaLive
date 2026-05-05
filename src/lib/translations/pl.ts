@@ -173,6 +173,26 @@ export const pl = {
     photoAttached: 'Zdjęcie dołączone',
   },
 
+  // ==================== UNKNOWN DRUG (chat + form) ====================
+  unknownDrug: {
+    chat: {
+      title: (drug: string) => `Nie rozpoznaliśmy leku: ${drug}`,
+      description: 'Ten lek nie jest jeszcze w naszej bazie. Możesz go zgłosić — dodamy go, aby inni pacjenci mogli z niego korzystać.',
+      reportButton: 'Zgłoś lek',
+      dismissButton: 'Nie teraz',
+    },
+    form: {
+      title: (count: number) => count === 1
+        ? 'Nie rozpoznaliśmy 1 leku'
+        : `Nie rozpoznaliśmy ${count} leków`,
+      description: 'Te pozycje nie są jeszcze w naszej bazie. Możesz je zgłosić, aby je dodać, lub zapisać wpis bez zgłaszania.',
+      reportButton: 'Zgłoś brakujące',
+      continueButton: 'Zapisz i tak',
+      removeAriaLabel: (drug: string) => `Usuń ${drug} z listy zgłoszenia`,
+      closeAriaLabel: 'Zamknij',
+    },
+  },
+
   // ==================== QUICK ACTIONS ====================
   quickActions: {
     morningReport: 'Raport poranny',

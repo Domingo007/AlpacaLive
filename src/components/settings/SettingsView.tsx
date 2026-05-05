@@ -509,6 +509,7 @@ function DrugRow({ drug }: { drug: DrugEntry }) {
 // ==================== FEEDBACK SECTION ====================
 
 const GITHUB_REPO = 'Domingo007/AlpacaLive';
+const APP_VERSION = '1.0.0';
 
 type FeedbackType = 'bug' | 'feature' | 'improvement' | 'medical';
 
@@ -564,12 +565,31 @@ function FeedbackSection() {
     viewIssues: 'View community submissions',
   };
 
-  const typeOptions: { id: FeedbackType; icon: string; label: string; desc: string; ghLabel: string }[] = [
-    { id: 'bug', icon: 'bug_report', label: labels.bug, desc: labels.bugDesc, ghLabel: 'bug' },
-    { id: 'feature', icon: 'lightbulb', label: labels.feature, desc: labels.featureDesc, ghLabel: 'enhancement' },
-    { id: 'improvement', icon: 'tune', label: labels.improvement, desc: labels.improvementDesc, ghLabel: 'improvement' },
-    { id: 'medical', icon: 'medical_information', label: labels.medical, desc: labels.medicalDesc, ghLabel: 'medical-data' },
+  const typeOptions: { id: FeedbackType; icon: string; label: string; desc: string; ghLabel: string; template: string }[] = [
+    { id: 'bug', icon: 'bug_report', label: labels.bug, desc: labels.bugDesc, ghLabel: 'bug', template: 'bug_report.md' },
+    { id: 'feature', icon: 'lightbulb', label: labels.feature, desc: labels.featureDesc, ghLabel: 'enhancement', template: 'feature_request.md' },
+    { id: 'improvement', icon: 'tune', label: labels.improvement, desc: labels.improvementDesc, ghLabel: 'improvement', template: 'feature_request.md' },
+    { id: 'medical', icon: 'medical_information', label: labels.medical, desc: labels.medicalDesc, ghLabel: 'medical-knowledge', template: 'medical_data.md' },
   ];
+
+  function buildTechnicalMetadata(): string {
+    const provider = (() => {
+      try {
+        return localStorage.getItem('alpacalive-ai-provider') || 'unknown';
+      } catch {
+        return 'unknown';
+      }
+    })();
+    const ua = typeof navigator !== 'undefined' ? navigator.userAgent.split(') ')[0] + ')' : 'unknown';
+    return [
+      `**App version:** ${APP_VERSION}`,
+      `**AI Provider:** ${provider}`,
+      `**Section:** Settings → Feedback`,
+      `**Language:** ${lang.toUpperCase()}`,
+      `**Timestamp:** ${new Date().toISOString()}`,
+      `**User-Agent:** ${ua}`,
+    ].join('\n');
+  }
 
   function buildGitHubUrl(): string {
     const typeInfo = typeOptions.find(t => t.id === feedbackType);
@@ -577,13 +597,17 @@ function FeedbackSection() {
     const body = [
       `## ${typeInfo?.label || feedbackType}`,
       '',
+      '**User description:**',
+      '',
       description || '_(no details provided)_',
       '',
       '---',
-      `_Submitted from AlpacaLive app (${lang.toUpperCase()})_`,
+      '',
+      buildTechnicalMetadata(),
     ].join('\n');
 
     const params = new URLSearchParams({
+      template: typeInfo?.template || 'bug_report.md',
       title: `[${ghLabel}] ${title}`,
       body,
       labels: ghLabel,

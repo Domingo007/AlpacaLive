@@ -133,7 +133,9 @@ export function useChat() {
       const settings = await getSettings();
       const patient = await getPatient();
 
-      let systemPrompt = 'Jesteś agentem medycznym AlpacaLive. Pomagasz pacjentowi onkologicznemu. Mów po polsku.';
+      let systemPrompt = lang === 'en'
+        ? 'You are the AlpacaLive medical agent. You help an oncology patient. Always reply in English.'
+        : 'Jesteś agentem medycznym AlpacaLive. Pomagasz pacjentowi onkologicznemu. Mów po polsku.';
 
       if (patient) {
         const [daily, blood, wearable, meals, chemo, imaging, predictions, supplements] = await Promise.all([
@@ -146,7 +148,12 @@ export function useChat() {
           getRecentPredictions(),
           getRecentSupplements(),
         ]);
-        systemPrompt = buildSystemPrompt(patient, { daily, blood, wearable, meals, chemo, imaging, predictions, supplements });
+        // Override patient appLanguage with current UI language so the AI always
+        // replies in the language the user is reading the app in.
+        const patientForPrompt = patient.languages
+          ? { ...patient, languages: { ...patient.languages, appLanguage: lang } }
+          : { ...patient, languages: { appLanguage: lang, documentLanguages: [lang], preferredMedicalTerms: lang } };
+        systemPrompt = buildSystemPrompt(patientForPrompt, { daily, blood, wearable, meals, chemo, imaging, predictions, supplements });
       }
 
       const allMessages = [...messages, userMessage];

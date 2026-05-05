@@ -81,7 +81,10 @@ export async function sendMessage(
   if (!config.apiKey) {
     const lastMsg = messages[messages.length - 1];
     const userText = typeof lastMsg?.content === 'string' ? lastMsg.content : '';
-    return { content: getMockResponse(userText, config.lang ?? 'pl'), provider, model: 'demo', piiRemoved: 0 };
+    const resolvedLang = config.lang ?? 'pl';
+    // Temporary diagnostic — remove after lang routing verified
+    console.log('[AlpacaLive demo chat]', { configLang: config.lang, resolvedLang, userText: userText.slice(0, 60) });
+    return { content: getMockResponse(userText, resolvedLang), provider, model: 'demo', piiRemoved: 0 };
   }
 
   const sanitizer = config.piiData ? new PIISanitizer(config.piiData) : null;

@@ -8,6 +8,7 @@ import { extractDataFromResponse, extractAIProfileData, saveExtractedData, clean
 import { generatePatternSummary, savePatternSummary, formatPatternForChat, checkPatternMatch, type PatternResult } from '@/lib/pattern-engine';
 import { detectUnknownDrugs } from '@/lib/medical-data/drug-resolver';
 import { filterNewUnknowns } from '@/lib/medical-data/unknown-drug-feedback';
+import { useI18n } from '@/lib/i18n';
 
 const PATTERN_TRIGGERS = ['wzorzec', 'wzorce', 'wzorcow', 'jak zwykle', 'pokaż wzorzec', 'pokaz wzorzec', 'predykcja', 'prognoza', 'przewiduj', 'jak będę się czuć', 'jak bede sie czuc', 'jak będę', 'co mnie czeka', 'najbliższe dni', 'ten tydzień', 'ten tydzien'];
 
@@ -24,6 +25,7 @@ export function useChat() {
   const [lastProviderInfo, setLastProviderInfo] = useState<{ provider: string; model: string } | null>(null);
   const [unknownDrugs, setUnknownDrugs] = useState<string[]>([]);
   const [reportedDrugs, setReportedDrugs] = useState<Set<string>>(new Set());
+  const { lang } = useI18n();
 
   useEffect(() => {
     loadMessages();
@@ -35,7 +37,7 @@ export function useChat() {
       const welcome: ChatMessage = {
         id: uuidv4(),
         role: 'assistant',
-        content: getWelcomeMessage(),
+        content: getWelcomeMessage(lang),
         timestamp: new Date(),
       };
       await addChatMessage(welcome);
@@ -134,6 +136,7 @@ export function useChat() {
         provider: (settings?.aiProvider as any) || 'anthropic',
         systemPrompt,
         piiData: patient?.pii,
+        lang,
       });
 
       // Extract and save structured data from response
@@ -164,7 +167,7 @@ export function useChat() {
     } finally {
       setIsLoading(false);
     }
-  }, [messages, reportedDrugs]);
+  }, [messages, reportedDrugs, lang]);
 
   const dismissUnknownDrugs = useCallback(() => {
     setReportedDrugs(prev => {

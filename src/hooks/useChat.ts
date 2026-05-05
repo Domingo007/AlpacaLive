@@ -1,7 +1,7 @@
 import { useState, useCallback, useEffect } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import type { ChatMessage, PatientProfile } from '@/types';
-import { getChatMessages, addChatMessage, getSettings, getPatient, getRecentDailyLogs, getRecentBloodWork, getRecentWearableData, getRecentMeals, getRecentChemo, getRecentImaging, getRecentPredictions, getRecentSupplements } from '@/lib/db';
+import { getChatMessages, addChatMessage, updateChatMessage, getSettings, getPatient, getRecentDailyLogs, getRecentBloodWork, getRecentWearableData, getRecentMeals, getRecentChemo, getRecentImaging, getRecentPredictions, getRecentSupplements } from '@/lib/db';
 import { sendMessage, getWelcomeMessage } from '@/lib/ai';
 import { buildSystemPrompt } from '@/lib/system-prompt';
 import { extractDataFromResponse, extractAIProfileData, saveExtractedData, cleanResponseFromTags } from '@/lib/data-extractor';
@@ -30,6 +30,25 @@ export function useChat() {
   useEffect(() => {
     loadMessages();
   }, []);
+
+  // Refresh stale welcome message when language changes.
+  // Replaces the first message only if it is the auto-welcome in the OTHER language
+  // (matches PL or EN welcome verbatim). Does not touch user messages or real AI replies.
+  useEffect(() => {
+    const plWelcome = getWelcomeMessage('pl');
+    const enWelcome = getWelcomeMessage('en');
+    const currentWelcome = getWelcomeMessage(lang);
+    if (messages.length === 0) return;
+    const first = messages[0];
+    if (first.role !== 'assistant') return;
+    if (typeof first.content !== 'string') return;
+    if (first.content === currentWelcome) return;
+    if (first.content !== plWelcome && first.content !== enWelcome) return;
+    const refreshed = { ...first, content: currentWelcome };
+    updateChatMessage(refreshed).then(() => {
+      setMessages(prev => prev.length > 0 ? [refreshed, ...prev.slice(1)] : prev);
+    });
+  }, [lang, messages]);
 
   async function loadMessages() {
     const msgs = await getChatMessages(50);

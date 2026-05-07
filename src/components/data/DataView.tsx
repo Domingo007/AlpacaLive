@@ -5,6 +5,7 @@ import { StatCard } from '@/components/shared/StatCard';
 import { Icon } from '@/components/shared/Icon';
 import { DailyProfileView } from './DailyProfileView';
 import { HydrationTile } from '@/components/dashboard/HydrationTile';
+import { OpenWearablesStatus } from '@/components/dashboard/OpenWearablesStatus';
 import { EnergyChart } from './EnergyChart';
 import { BloodChart } from './BloodChart';
 import { generateReportPDF } from '@/lib/report-generator';
@@ -51,6 +52,9 @@ export function DataView() {
 
       {/* Hydration Trend — pattern-based, graceful degradation */}
       <HydrationTile />
+
+      {/* Open Wearables connection status — only renders when configured */}
+      <OpenWearablesStatus />
 
       <div className="flex items-center justify-between">
         <h2 className="font-display text-lg font-semibold text-accent-dark">{t.dataView.title}</h2>

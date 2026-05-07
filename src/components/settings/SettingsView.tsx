@@ -4,6 +4,7 @@ import { Card } from '@/components/shared/Card';
 import { Icon } from '@/components/shared/Icon';
 import { HistoricalImport } from './HistoricalImport';
 import { ConnectedDevices } from './ConnectedDevices';
+import { OpenWearablesSettings } from './OpenWearablesSettings';
 import { NotificationSettings } from './NotificationSettings';
 import { AIProviderSettings } from './AIProviderSettings';
 import { EducationView } from '@/components/education/EducationView';
@@ -266,6 +267,9 @@ export function SettingsView() {
           </div>
         </Card>
       )}
+
+      {/* Open Wearables (self-hosted) */}
+      <OpenWearablesSettings />
 
       {/* Connected Devices */}
       <ConnectedDevices />

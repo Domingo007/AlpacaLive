@@ -54,6 +54,19 @@ export default function App() {
       // Clear URL params
       window.history.replaceState({}, '', window.location.pathname);
     }
+
+    // Handle Open Wearables OAuth callback (?ow_callback=success&provider=whoop)
+    if (params.has('ow_callback')) {
+      const result = params.get('ow_callback');
+      const provider = params.get('provider') ?? '';
+      if (result === 'success') {
+        setImportToast(`Open Wearables: connected ${provider}`);
+      } else {
+        setImportToast(`Open Wearables: connection failed${provider ? ` (${provider})` : ''}`);
+      }
+      setTimeout(() => setImportToast(null), 5000);
+      window.history.replaceState({}, '', window.location.pathname);
+    }
   }, [setLang]);
 
   // Re-check mode when returning to app (e.g. after changing in settings)

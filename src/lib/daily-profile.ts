@@ -5,7 +5,8 @@
  */
 import { db } from './db';
 import { calculateChemoPhase, calculateTreatmentPhases, type TreatmentPhaseInfo } from './treatment-cycle';
-import type { PatientProfile, DailyLog, WearableData, BloodWork, ChemoSession, SupplementLog } from '@/types';
+import { getMergedDailyData, type MergedDailyData } from './openwearables-adapter';
+import type { PatientProfile, DailyLog, BloodWork, ChemoSession, SupplementLog } from '@/types';
 
 // ==================== TYPES ====================
 
@@ -145,17 +146,17 @@ function getAIExtraction(date: string): AIExtractedData | null {
 // ==================== BUILDER ====================
 
 export async function buildDailyProfile(date: string, patient: PatientProfile): Promise<DailyProfile> {
-  const [allChemo, allDaily, todayWearable, todayLog, recentBlood, todaySupplements] = await Promise.all([
+  const [allChemo, allDaily, mergedToday, todayLog, recentBlood, todaySupplements] = await Promise.all([
     db.chemo.filter(c => c.status === 'completed' || c.status === 'modified').toArray(),
     db.daily.orderBy('date').toArray(),
-    db.wearable.where('date').equals(date).first(),
+    getMergedDailyData(date),
     db.daily.where('date').equals(date).first(),
     db.blood.orderBy('date').reverse().limit(3).toArray(),
     db.supplements.where('date').equals(date).first(),
   ]);
 
   const treatmentContext = buildTreatmentContext(allChemo, patient);
-  const deviceData = buildDeviceData(todayWearable ?? null, todayLog ?? null);
+  const deviceData = buildDeviceData(mergedToday, todayLog ?? null);
   const patientReported = todayLog ? buildPatientReported(todayLog) : null;
   const baseline = buildBaseline(allDaily, allChemo, db);
   const historicalContext = buildHistoricalContext(allDaily, allChemo, treatmentContext.cycleDay);
@@ -213,28 +214,36 @@ function buildTreatmentContext(chemoSessions: ChemoSession[], patient: PatientPr
   };
 }
 
-function buildDeviceData(wearable: WearableData | null, dailyLog: DailyLog | null): DeviceDataSummary {
+function buildDeviceData(merged: MergedDailyData, dailyLog: DailyLog | null): DeviceDataSummary {
+  // Merged source attribution for UI: 'oura', 'whoop', 'withings', 'manual', etc.
+  let attribution: string | null = null;
+  if (merged.source !== 'none') {
+    attribution = merged.attribution ?? merged.source;
+  } else if (dailyLog) {
+    attribution = 'manual';
+  }
+
   return {
-    sleep: wearable?.sleepHours ? {
-      hours: wearable.sleepHours,
-      deep: wearable.deepSleep || undefined,
-      rem: wearable.remSleep || undefined,
-      light: wearable.lightSleep || undefined,
+    sleep: merged.sleepHours ? {
+      hours: merged.sleepHours,
+      deep: merged.deepSleep || undefined,
+      rem: merged.remSleep || undefined,
+      light: merged.lightSleep || undefined,
     } : dailyLog?.sleep ? {
       hours: dailyLog.sleep.hours,
       deep: dailyLog.sleep.deepSleep,
       rem: dailyLog.sleep.remSleep,
       quality: dailyLog.sleep.quality,
     } : null,
-    rhr: wearable?.rhr || null,
-    hrv: wearable?.hrv || null,
-    spo2: wearable?.spo2 || null,
-    temperature: dailyLog?.temperature || wearable?.skinTemperature || null,
+    rhr: merged.rhr ?? null,
+    hrv: merged.hrv ?? null,
+    spo2: merged.spo2 ?? null,
+    temperature: dailyLog?.temperature || merged.skinTemperature || null,
     bloodPressure: dailyLog?.bpSystolic ? { systolic: dailyLog.bpSystolic, diastolic: dailyLog.bpDiastolic || 0 } : null,
     weight: dailyLog?.weight || null,
-    steps: wearable?.steps || null,
-    activeMinutes: wearable?.activeMinutes || null,
-    source: wearable?.source || (dailyLog ? 'manual' : null),
+    steps: merged.steps ?? null,
+    activeMinutes: merged.activeMinutes ?? null,
+    source: attribution,
   };
 }
 

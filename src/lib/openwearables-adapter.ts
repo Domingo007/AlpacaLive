@@ -196,6 +196,9 @@ export interface MergedDailyData {
   sleepHours?: number;
   deepSleep?: number;
   remSleep?: number;
+  lightSleep?: number;
+  steps?: number;
+  activeMinutes?: number;
   bodyWaterMass?: number;
   weight?: number;
   electrochemicalSkinConductance?: WearableData['electrochemicalSkinConductance'];
@@ -272,6 +275,9 @@ export async function getMergedDailyData(date: string): Promise<MergedDailyData>
       dailyLog?.sleep?.hours,
     deepSleep: pickFirst(allOrdered, (r) => (NON_ZERO(r.deepSleep) ? r.deepSleep : undefined)),
     remSleep: pickFirst(allOrdered, (r) => (NON_ZERO(r.remSleep) ? r.remSleep : undefined)),
+    lightSleep: pickFirst(allOrdered, (r) => (NON_ZERO(r.lightSleep) ? r.lightSleep : undefined)),
+    steps: pickFirst(allOrdered, (r) => (NON_ZERO(r.steps) ? r.steps : undefined)),
+    activeMinutes: pickFirst(allOrdered, (r) => (NON_ZERO(r.activeMinutes) ? r.activeMinutes : undefined)),
     weight: dailyLog?.weight,
     electrochemicalSkinConductance: pickFirst(
       allOrdered,

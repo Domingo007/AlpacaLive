@@ -3,7 +3,7 @@
  * Shared types for all device data sources.
  */
 
-export type DeviceSource = 'apple_health' | 'health_connect' | 'withings' | 'garmin' | 'csv_import';
+export type DeviceSource = 'apple_health' | 'health_connect' | 'withings' | 'garmin' | 'csv_import' | 'open_wearables';
 
 export interface DeviceConnection {
   id: DeviceSource;

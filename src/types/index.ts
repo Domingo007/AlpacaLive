@@ -368,7 +368,15 @@ export interface TreatmentSession {
 export interface WearableData {
   id: string;
   date: string;
-  source: 'amazfit_helio' | 'apple_health' | 'health_connect' | 'withings' | 'garmin' | 'csv_import' | 'manual';
+  source: 'amazfit_helio' | 'apple_health' | 'health_connect' | 'withings' | 'garmin' | 'csv_import' | 'manual' | 'open_wearables';
+  /** Cloud provider name when source='open_wearables' (e.g. 'oura', 'whoop') — for source-attribution UI */
+  provider?: string;
+  /** Withings/OW unique signals (medical-grade) */
+  electrochemicalSkinConductance?: { hand?: number; foot?: number; date: string };
+  visceralFat?: number;
+  segmentalBodyComposition?: Record<string, number>;
+  pulseWaveVelocity?: number;
+  vo2max?: number;
   rhr: number;
   hrv: number;
   spo2: number;
@@ -676,4 +684,10 @@ export interface AppSettings {
     acceptedAt: string;
     provider: string;
   };
+  openWearablesBaseUrl?: string;
+  openWearablesApiKey?: string;
+  openWearablesUserId?: string;
+  withingsClientId?: string;
+  withingsClientSecret?: string;
+  withingsRedirectUri?: string;
 }

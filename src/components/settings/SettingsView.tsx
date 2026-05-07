@@ -5,6 +5,7 @@ import { Icon } from '@/components/shared/Icon';
 import { HistoricalImport } from './HistoricalImport';
 import { ConnectedDevices } from './ConnectedDevices';
 import { OpenWearablesSettings } from './OpenWearablesSettings';
+import { WithingsSettings } from './WithingsSettings';
 import { NotificationSettings } from './NotificationSettings';
 import { AIProviderSettings } from './AIProviderSettings';
 import { EducationView } from '@/components/education/EducationView';
@@ -270,6 +271,9 @@ export function SettingsView() {
 
       {/* Open Wearables (self-hosted) */}
       <OpenWearablesSettings />
+
+      {/* Withings direct integration */}
+      <WithingsSettings />
 
       {/* Connected Devices */}
       <ConnectedDevices />

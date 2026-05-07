@@ -88,6 +88,36 @@ AlpacaLive (100% local — no cloud)
 └── No backend / no analytics / no ads
 ```
 
+### Wearables Architecture
+
+AlpacaLive supports two ingestion paths for wearable health data:
+
+1. **Open Wearables** (primary, 7 cloud OAuth providers) — Whoop, Garmin,
+   Oura, Polar, Suunto, Strava, Ultrahuman. Routes through the
+   open-source unified API at [openwearables.io](https://openwearables.io)
+   (MIT license, self-hostable via `docker compose up`). The user pastes
+   their server URL + API key + a stable user ID into Settings; nothing
+   is hard-coded. Apple Health, Samsung Health and Google Health Connect
+   require a native mobile app and are NOT reachable from a PWA — they
+   are surfaced in the UI as a "use mobile app" notice.
+
+2. **Withings direct** (medical-grade signals) — ScanWatch 2 (ECG, HR,
+   HRV, SpO₂), Body Comp / Body Scan (body composition, ESC for CIPN
+   monitoring), BPM Connect (BP), Sleep Analyzer, BeamO. OAuth credentials
+   (Client ID + Secret + redirect URI) are configured per-instance from
+   [developer.withings.com](https://developer.withings.com). Tokens
+   rotate on each refresh and are persisted into the local Dexie
+   `deviceConnections` table.
+
+When the same metric is reported by both paths, priority is:
+**Withings direct → Open Wearables (Oura > Whoop > Ultrahuman > Garmin
+> Polar > Suunto > Strava) → CSV import → manual DailyLog**. ESC,
+visceral fat and segmental body composition are exposed only when
+Withings provides them. AlpacaLive does NOT consume Open Wearables
+Health Scores or Coaching Profiles — own `daily-profile.ts` and
+`pattern-engine.ts` remain authoritative (regulatory: deliberately
+under the MDR threshold).
+
 ## Tech Stack
 
 | Layer | Technology |

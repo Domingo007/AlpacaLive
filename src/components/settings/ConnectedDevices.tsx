@@ -39,8 +39,6 @@ export function ConnectedDevices() {
     preview: 'Podgląd danych',
     confirmImport: 'Potwierdź import',
     rows: 'wierszy',
-    withingsTitle: 'Withings (wkrótce)',
-    withingsDesc: 'Automatyczna synchronizacja z wagą, ciśnieniomierzem i opaskami Withings. W przygotowaniu.',
   } : {
     title: 'Connected Devices',
     appleTitle: 'Apple Health (iPhone)',
@@ -65,8 +63,6 @@ export function ConnectedDevices() {
     preview: 'Data preview',
     confirmImport: 'Confirm import',
     rows: 'rows',
-    withingsTitle: 'Withings (coming soon)',
-    withingsDesc: 'Automatic sync with Withings scale, blood pressure monitor, and bands. Coming soon.',
   };
 
   async function handlePasteImport() {
@@ -224,16 +220,6 @@ export function ConnectedDevices() {
           </div>
         )}
 
-        {/* Withings (coming soon) */}
-        <div className="bg-bg-primary rounded-xl border border-border p-3 opacity-60">
-          <div className="flex items-center gap-2">
-            <Icon name="watch" size={20} className="text-text-tertiary" />
-            <div>
-              <div className="text-xs font-medium text-text-secondary">{l.withingsTitle}</div>
-              <div className="text-[10px] text-text-tertiary">{l.withingsDesc}</div>
-            </div>
-          </div>
-        </div>
       </div>
     </Card>
   );

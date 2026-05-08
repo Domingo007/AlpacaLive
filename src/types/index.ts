@@ -690,4 +690,10 @@ export interface AppSettings {
   withingsClientId?: string;
   withingsClientSecret?: string;
   withingsRedirectUri?: string;
+  /** Oura Personal Access Token — pasted from cloud.ouraring.com/personal-access-tokens */
+  ouraPersonalAccessToken?: string;
+  /** Strava OAuth credentials — registered at strava.com/settings/api */
+  stravaClientId?: string;
+  stravaClientSecret?: string;
+  stravaRedirectUri?: string;
 }

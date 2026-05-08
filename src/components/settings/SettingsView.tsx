@@ -6,7 +6,10 @@ import { HistoricalImport } from './HistoricalImport';
 import { ConnectedDevices } from './ConnectedDevices';
 import { OpenWearablesSettings } from './OpenWearablesSettings';
 import { WithingsSettings } from './WithingsSettings';
+import { OuraSettings } from './OuraSettings';
+import { StravaSettings } from './StravaSettings';
 import { IntegrationsOptionalBanner } from './IntegrationsOptionalBanner';
+import { AdvancedSection } from './AdvancedSection';
 import { NotificationSettings } from './NotificationSettings';
 import { AIProviderSettings } from './AIProviderSettings';
 import { EducationView } from '@/components/education/EducationView';
@@ -273,14 +276,23 @@ export function SettingsView() {
       {/* Banner: integrations are optional */}
       <IntegrationsOptionalBanner />
 
-      {/* Open Wearables (self-hosted) */}
-      <OpenWearablesSettings />
-
-      {/* Withings direct integration */}
+      {/* Direct integrations — zero-friction, paste-and-go or one-click OAuth */}
+      <OuraSettings />
       <WithingsSettings />
+      <StravaSettings />
 
-      {/* Connected Devices */}
+      {/* Connected Devices — CSV / Apple Health Shortcut / Android Automate */}
       <ConnectedDevices />
+
+      {/* Advanced — self-hosted Open Wearables for users who want full control */}
+      <AdvancedSection
+        title={lang === 'pl' ? 'Zaawansowane — self-hosted' : 'Advanced — self-hosted'}
+        subtitle={lang === 'pl'
+          ? 'Open Wearables (własny serwer Docker). Większość użytkowników tego nie potrzebuje.'
+          : 'Open Wearables (own Docker server). Most users won\'t need this.'}
+      >
+        <OpenWearablesSettings />
+      </AdvancedSection>
 
       {/* Historical Data Import */}
       <HistoricalImport />

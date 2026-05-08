@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>AlpacaLive — Your Companion Through Cancer Treatment</title>
-<meta name="description" content="Open-source health tracking for cancer patients during treatment. Track symptoms, measurements, labs and treatment timeline. Integrates with Open Wearables for 7+ wearable brands plus direct Withings integration for oncology-specific signals. Privacy-first.">
+<meta name="description" content="Open-source health tracking for cancer patients during treatment. Track symptoms, measurements, labs and treatment timeline. Direct integrations with Oura, Withings (medical-grade signals incl. ESC for CIPN) and Strava — paste a token, no servers needed. Privacy-first.">
 <meta name="theme-color" content="#7c5cc9">
 <link rel="icon" type="image/png" href="/logo.png">
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -368,44 +368,48 @@ footer a { color:var(--lav-600);text-decoration:none; }
 <div class="devices-section reveal" id="devices">
   <div style="text-align:center">
     <div class="section-label"><span class="material-symbols-rounded">devices</span> <span class="lang-en">Compatible devices</span><span class="lang-pl">Kompatybilne urządzenia</span></div>
-    <div class="section-title lang-en">Powered by Open Wearables + direct integrations</div>
-    <div class="section-title lang-pl">Napędzane przez Open Wearables + integracje bezpośrednie</div>
-    <p style="color:var(--text-2);max-width:560px;margin:8px auto 0;font-size:14px" class="lang-en">AlpacaLive integrates with the <strong>Open Wearables</strong> unified API for broad device compatibility, plus a <strong>direct Withings integration</strong> for oncology-specific signals.</p>
-    <p style="color:var(--text-2);max-width:560px;margin:8px auto 0;font-size:14px" class="lang-pl">AlpacaLive korzysta z unifikowanego API <strong>Open Wearables</strong> dla szerokiej kompatybilności urządzeń oraz <strong>bezpośredniej integracji z Withings</strong> dla sygnałów specyficznych dla onkologii.</p>
+    <div class="section-title lang-en">Direct integrations — paste a token, done</div>
+    <div class="section-title lang-pl">Bezpośrednie integracje — wklej token i gotowe</div>
+    <p style="color:var(--text-2);max-width:600px;margin:8px auto 0;font-size:14px" class="lang-en">No Docker, no servers. AlpacaLive talks to each provider directly from your browser. Most users only need to paste a single token from their wearable's web dashboard.</p>
+    <p style="color:var(--text-2);max-width:600px;margin:8px auto 0;font-size:14px" class="lang-pl">Bez Dockera, bez serwerów. AlpacaLive łączy się z każdym dostawcą bezpośrednio z Twojej przeglądarki. Najczęściej wystarczy wkleić jeden token z webowego panelu producenta.</p>
   </div>
   <div class="device-categories">
     <div class="device-cat">
-      <div class="device-cat-head"><span class="material-symbols-rounded">hub</span><h3 class="lang-en">Through Open Wearables</h3><h3 class="lang-pl">Przez Open Wearables</h3></div>
+      <div class="device-cat-head"><span class="material-symbols-rounded">bolt</span><h3 class="lang-en">Easiest — paste a token</h3><h3 class="lang-pl">Najprościej — wklej token</h3></div>
       <ul>
-        <li><strong>Whoop</strong> · Garmin · Oura</li>
-        <li><strong>Polar</strong> · Suunto · Strava</li>
-        <li><strong>Ultrahuman</strong></li>
-        <li class="lang-en">Fitbit, Coros, Xiaomi <em>(coming soon)</em></li>
-        <li class="lang-pl">Fitbit, Coros, Xiaomi <em>(wkrótce)</em></li>
+        <li class="lang-en"><strong>Oura Ring</strong> — Personal Access Token from cloud.ouraring.com. Sleep, readiness, HRV, SpO₂, activity.</li>
+        <li class="lang-pl"><strong>Oura Ring</strong> — Personal Access Token z cloud.ouraring.com. Sen, gotowość, HRV, SpO₂, aktywność.</li>
       </ul>
-      <p class="cat-note lang-en">Apple Health · Samsung Health · Google Health Connect — via mobile app.</p>
-      <p class="cat-note lang-pl">Apple Health · Samsung Health · Google Health Connect — przez aplikację mobilną.</p>
+      <p class="cat-note lang-en">No app registration. ~30 seconds to set up.</p>
+      <p class="cat-note lang-pl">Bez rejestracji aplikacji. ~30 sekund konfiguracji.</p>
     </div>
     <div class="device-cat">
-      <div class="device-cat-head"><span class="material-symbols-rounded">monitor_heart</span><h3 class="lang-en">Direct Withings integration</h3><h3 class="lang-pl">Bezpośrednia integracja Withings</h3></div>
+      <div class="device-cat-head"><span class="material-symbols-rounded">login</span><h3 class="lang-en">One-click OAuth</h3><h3 class="lang-pl">OAuth jednym kliknięciem</h3></div>
       <ul>
-        <li class="lang-en"><strong>ScanWatch 2</strong> — ECG, HR, HRV, SpO₂, temperature</li>
-        <li class="lang-pl"><strong>ScanWatch 2</strong> — EKG, HR, HRV, SpO₂, temperatura</li>
-        <li class="lang-en"><strong>Body Comp / Body Scan</strong> — body composition, ESC*</li>
-        <li class="lang-pl"><strong>Body Comp / Body Scan</strong> — skład ciała, ESC*</li>
-        <li class="lang-en"><strong>BPM Connect</strong> — blood pressure</li>
-        <li class="lang-pl"><strong>BPM Connect</strong> — ciśnienie krwi</li>
-        <li class="lang-en"><strong>Sleep Analyzer</strong> — sleep architecture</li>
-        <li class="lang-pl"><strong>Sleep Analyzer</strong> — architektura snu</li>
-        <li class="lang-en"><strong>BeamO</strong> — multi-vital screening</li>
-        <li class="lang-pl"><strong>BeamO</strong> — wieloparametrowy screening</li>
+        <li class="lang-en"><strong>Withings</strong> — ScanWatch 2 (ECG), Body Comp (ESC*), BPM Connect, Sleep Analyzer, BeamO. Medical-grade signals.</li>
+        <li class="lang-pl"><strong>Withings</strong> — ScanWatch 2 (EKG), Body Comp (ESC*), BPM Connect, Sleep Analyzer, BeamO. Sygnały medycznej klasy.</li>
+        <li class="lang-en"><strong>Strava</strong> — workouts, distance, average heart rate.</li>
+        <li class="lang-pl"><strong>Strava</strong> — treningi, dystans, średnie tętno.</li>
       </ul>
-      <p class="cat-note lang-en">*ESC (electrochemical skin conductance) availability varies by region.</p>
-      <p class="cat-note lang-pl">*Dostępność ESC (przewodnictwa elektrochemicznego skóry) zależy od regionu.</p>
+      <p class="cat-note lang-en">One-time app registration at the provider's dev portal, then OAuth login. *ESC availability varies by region.</p>
+      <p class="cat-note lang-pl">Jednorazowa rejestracja aplikacji w panelu dewelopera dostawcy, potem login OAuth. *Dostępność ESC zależy od regionu.</p>
+    </div>
+    <div class="device-cat">
+      <div class="device-cat-head"><span class="material-symbols-rounded">upload_file</span><h3 class="lang-en">CSV / mobile shortcut</h3><h3 class="lang-pl">CSV / skrót mobilny</h3></div>
+      <ul>
+        <li class="lang-en"><strong>Apple Health</strong> — iOS Shortcut (one tap).</li>
+        <li class="lang-pl"><strong>Apple Health</strong> — Skrót iOS (jedno tapnięcie).</li>
+        <li class="lang-en"><strong>Garmin Connect</strong>, <strong>Samsung Health</strong>, <strong>Google Health Connect</strong> — CSV export.</li>
+        <li class="lang-pl"><strong>Garmin Connect</strong>, <strong>Samsung Health</strong>, <strong>Google Health Connect</strong> — eksport CSV.</li>
+        <li class="lang-en">Any spreadsheet — generic CSV import.</li>
+        <li class="lang-pl">Dowolny arkusz — uniwersalny import CSV.</li>
+      </ul>
+      <p class="cat-note lang-en">For wearables without a public API or where direct integration isn't possible from a PWA.</p>
+      <p class="cat-note lang-pl">Dla urządzeń bez publicznego API lub gdzie integracja bezpośrednia z PWA nie jest możliwa.</p>
     </div>
   </div>
-  <p class="devices-footnote lang-en">All wearable data is normalized through one privacy-first pipeline and stays on your device. AlpacaLive integrates with <a href="https://openwearables.io" target="_blank" rel="noopener">Open Wearables</a> — the open-source health intelligence platform built by Momentum.</p>
-  <p class="devices-footnote lang-pl">Wszystkie dane z urządzeń są normalizowane w jednym pipeline'ie szanującym prywatność i zostają na Twoim urządzeniu. AlpacaLive integruje się z <a href="https://openwearables.io" target="_blank" rel="noopener">Open Wearables</a> — platformą open-source zbudowaną przez Momentum.</p>
+  <p class="devices-footnote lang-en">All data flows directly from the provider to your browser and stays on your device — AlpacaLive has no servers. For users who want fuller control there's an <em>advanced self-hosted path</em> via <a href="https://openwearables.io" target="_blank" rel="noopener">Open Wearables</a> (Docker), hidden under "Advanced" in Settings.</p>
+  <p class="devices-footnote lang-pl">Wszystkie dane idą bezpośrednio od dostawcy do Twojej przeglądarki i zostają na Twoim urządzeniu — AlpacaLive nie ma serwerów. Dla użytkowników, którzy chcą pełniejszej kontroli, dostępna jest <em>zaawansowana ścieżka self-hosted</em> przez <a href="https://openwearables.io" target="_blank" rel="noopener">Open Wearables</a> (Docker), schowana pod „Zaawansowane" w Ustawieniach.</p>
 </div>
 
 <!-- FAQ -->
@@ -451,84 +455,64 @@ footer a { color:var(--lav-600);text-decoration:none; }
     </details>
 
     <details class="faq-item">
-      <summary><span class="lang-en">What is Open Wearables and why do I need to host it myself?</span><span class="lang-pl">Czym jest Open Wearables i dlaczego trzeba uruchomić to u siebie?</span></summary>
+      <summary><span class="lang-en">I have an Oura Ring — what's the fastest way to connect it?</span><span class="lang-pl">Mam Oura Ring — jak najszybciej go podłączyć?</span></summary>
       <div class="faq-body lang-en">
-        <p><a href="https://openwearables.io" target="_blank" rel="noopener">Open Wearables</a> is an open-source unified API built by <a href="https://www.themomentum.ai" target="_blank" rel="noopener">Momentum</a> that connects 7+ wearable brands (Whoop, Garmin, Oura, Polar, Suunto, Strava, Ultrahuman) through one consistent interface. MIT licensed, runs locally on your computer (Docker).</p>
-        <p>Self-hosting is a <strong>privacy choice</strong>: your wearable data goes from the device → your local server → AlpacaLive on your phone. It never touches a third-party cloud. AlpacaLive itself has no server, so this is the only way to keep the data flow fully under your control.</p>
-        <p>If you don't want to run a local server, skip this and use CSV import or manual entry instead.</p>
+        <p>Oura is the easiest device to connect — about 30 seconds, no app registration, no OAuth dance.</p>
+        <ol>
+          <li>Open <a href="https://cloud.ouraring.com/personal-access-tokens" target="_blank" rel="noopener">cloud.ouraring.com/personal-access-tokens</a> in your browser and sign in with the same account you use in the Oura app.</li>
+          <li>Click <strong>Create New Personal Access Token</strong>, give it any name (e.g. AlpacaLive), and copy the token shown.</li>
+          <li>In AlpacaLive go to <strong>Settings → Oura Ring</strong>, paste the token, click <strong>Save and connect</strong>.</li>
+          <li>Click <strong>Sync 7 days</strong> — the last week of sleep, readiness, HRV, SpO₂ and activity lands in the Data tab.</li>
+        </ol>
+        <p>Personal Access Tokens are exactly the same approach as the Anthropic API key — paste once, done.</p>
       </div>
       <div class="faq-body lang-pl">
-        <p><a href="https://openwearables.io" target="_blank" rel="noopener">Open Wearables</a> to open-source unifikowane API zbudowane przez <a href="https://www.themomentum.ai" target="_blank" rel="noopener">Momentum</a>, które łączy 7+ marek wearables (Whoop, Garmin, Oura, Polar, Suunto, Strava, Ultrahuman) przez jeden spójny interfejs. Licencja MIT, działa lokalnie u Ciebie na komputerze (Docker).</p>
-        <p>Self-hosting to <strong>wybór prywatności</strong>: dane z urządzenia idą do Twojego lokalnego serwera, a stamtąd do AlpacaLive na telefonie. Nie dotykają żadnej chmury osób trzecich. Sama aplikacja AlpacaLive nie ma serwera, więc to jedyny sposób, żeby cały przepływ danych pozostał pod Twoją kontrolą.</p>
-        <p>Jeśli nie chcesz uruchamiać lokalnego serwera, pomiń to i użyj importu CSV lub wpisów ręcznych.</p>
+        <p>Oura to najłatwiejsze do podłączenia urządzenie — około 30 sekund, bez rejestracji aplikacji, bez OAuth.</p>
+        <ol>
+          <li>Otwórz <a href="https://cloud.ouraring.com/personal-access-tokens" target="_blank" rel="noopener">cloud.ouraring.com/personal-access-tokens</a> i zaloguj się tym samym kontem co w aplikacji Oura.</li>
+          <li>Kliknij <strong>Create New Personal Access Token</strong>, nadaj dowolną nazwę (np. AlpacaLive) i skopiuj wyświetlony token.</li>
+          <li>W AlpacaLive wejdź w <strong>Ustawienia → Oura Ring</strong>, wklej token, kliknij <strong>Zapisz i połącz</strong>.</li>
+          <li>Kliknij <strong>Synchronizuj 7 dni</strong> — ostatni tydzień snu, gotowości, HRV, SpO₂ i aktywności pojawi się w zakładce Dane.</li>
+        </ol>
+        <p>Personal Access Tokens to dokładnie ten sam mechanizm co klucz API Anthropic — wkleić raz, gotowe.</p>
       </div>
     </details>
 
     <details class="faq-item">
-      <summary><span class="lang-en">How do I install Open Wearables step by step?</span><span class="lang-pl">Jak krok po kroku zainstalować Open Wearables?</span></summary>
+      <summary><span class="lang-en">What about Whoop, Garmin, Fitbit?</span><span class="lang-pl">A co z Whoop, Garmin, Fitbit?</span></summary>
       <div class="faq-body lang-en">
-        <ol>
-          <li>Install <a href="https://www.docker.com/products/docker-desktop/" target="_blank" rel="noopener">Docker Desktop</a> (free, available on macOS / Windows / Linux).</li>
-          <li>Open a terminal and run:<br><code>git clone https://github.com/the-momentum/open-wearables.git</code><br><code>cd open-wearables</code><br><code>docker compose up -d</code><span class="faq-screenshot">[screenshot: terminal after docker compose up]</span></li>
-          <li>Wait ~30 seconds for the containers to start, then open <a href="http://localhost:3000" target="_blank" rel="noopener">http://localhost:3000</a> in your browser.</li>
-          <li>Log in with the default admin account: <code>admin@admin.com</code> / <code>your-secure-password</code>. Change the password in Settings before any real use.<span class="faq-screenshot">[screenshot: Open Wearables login screen]</span></li>
-          <li>Go to <strong>Settings → API Keys → Generate</strong>. Copy the generated key.<span class="faq-screenshot">[screenshot: API Keys panel]</span></li>
-          <li>In AlpacaLive go to <strong>Settings → Open Wearables (self-hosted)</strong>. Paste:
-            <ul>
-              <li><strong>Server URL:</strong> <code>http://localhost:8000</code></li>
-              <li><strong>API Key:</strong> the key you just copied</li>
-              <li><strong>User ID:</strong> click <em>Generate</em> (or paste any stable string)</li>
-            </ul>
-            Click <strong>Save</strong>.</li>
-          <li>Open the <strong>Data</strong> tab in AlpacaLive. The Open Wearables tile appears — click <strong>Manage</strong>, pick a device (Oura, Whoop, etc.) and sign in at the provider.</li>
-        </ol>
-        <p>Full official walkthrough: <a href="https://openwearables.io/docs/quickstart" target="_blank" rel="noopener">openwearables.io/docs/quickstart</a></p>
+        <p><strong>Whoop:</strong> the API exists, but Whoop's token endpoint blocks browser-based requests via CORS — connecting directly from a PWA is currently not possible without a backend proxy. We're tracking the constraint and will revisit if Whoop relaxes it.</p>
+        <p><strong>Garmin:</strong> the Garmin Connect API is gated behind partner approval that they don't extend to indie projects. Workaround: export your data from Garmin Connect as CSV and use AlpacaLive's Connected Devices import.</p>
+        <p><strong>Fitbit:</strong> not yet wired up directly. Fitbit data is also exposed via Open Wearables (advanced self-hosted path) when their support lands there. CSV export from the Fitbit web dashboard works today.</p>
       </div>
       <div class="faq-body lang-pl">
-        <ol>
-          <li>Zainstaluj <a href="https://www.docker.com/products/docker-desktop/" target="_blank" rel="noopener">Docker Desktop</a> (darmowy, dostępny na macOS / Windows / Linux).</li>
-          <li>Otwórz terminal i uruchom:<br><code>git clone https://github.com/the-momentum/open-wearables.git</code><br><code>cd open-wearables</code><br><code>docker compose up -d</code><span class="faq-screenshot">[screenshot: terminal po docker compose up]</span></li>
-          <li>Poczekaj ~30 sekund aż kontenery wstaną, potem otwórz <a href="http://localhost:3000" target="_blank" rel="noopener">http://localhost:3000</a> w przeglądarce.</li>
-          <li>Zaloguj się domyślnym kontem admin: <code>admin@admin.com</code> / <code>your-secure-password</code>. Zmień hasło w Settings przed prawdziwym użyciem.<span class="faq-screenshot">[screenshot: ekran logowania Open Wearables]</span></li>
-          <li>Wejdź w <strong>Settings → API Keys → Generate</strong>. Skopiuj wygenerowany klucz.<span class="faq-screenshot">[screenshot: panel API Keys]</span></li>
-          <li>W AlpacaLive otwórz <strong>Ustawienia → Open Wearables (self-hosted)</strong>. Wpisz:
-            <ul>
-              <li><strong>Adres serwera:</strong> <code>http://localhost:8000</code></li>
-              <li><strong>Klucz API:</strong> ten, który właśnie skopiowałeś/aś</li>
-              <li><strong>User ID:</strong> kliknij <em>Wygeneruj</em> (lub wklej dowolny stały tekst)</li>
-            </ul>
-            Kliknij <strong>Zapisz</strong>.</li>
-          <li>Otwórz zakładkę <strong>Dane</strong> w AlpacaLive. Pojawi się kafelek Open Wearables — kliknij <strong>Zarządzaj</strong>, wybierz urządzenie (Oura, Whoop itp.) i zaloguj się u dostawcy.</li>
-        </ol>
-        <p>Oficjalny pełny przewodnik: <a href="https://openwearables.io/docs/quickstart" target="_blank" rel="noopener">openwearables.io/docs/quickstart</a></p>
+        <p><strong>Whoop:</strong> API istnieje, ale endpoint tokenowy Whoop blokuje zapytania przeglądarkowe przez CORS — bezpośrednie połączenie z PWA obecnie nie jest możliwe bez backendu proxy. Śledzimy ograniczenie i wrócimy, jeśli Whoop je rozluźni.</p>
+        <p><strong>Garmin:</strong> Garmin Connect API wymaga zatwierdzenia partnerskiego, którego nie udzielają indie projektom. Obejście: wyeksportuj dane z Garmin Connect jako CSV i użyj importu w sekcji „Połączone urządzenia" AlpacaLive.</p>
+        <p><strong>Fitbit:</strong> nie wpięty jeszcze bezpośrednio. Dane Fitbit są też dostępne przez Open Wearables (zaawansowana ścieżka self-hosted), gdy ich wsparcie tam się pojawi. Eksport CSV z webowego panelu Fitbit działa dziś.</p>
       </div>
     </details>
 
     <details class="faq-item">
-      <summary><span class="lang-en">What's the difference between Open Wearables and Withings direct?</span><span class="lang-pl">Czym różni się Open Wearables od Withings direct?</span></summary>
+      <summary><span class="lang-en">What's "Advanced — self-hosted Open Wearables" in Settings?</span><span class="lang-pl">Co to „Zaawansowane — self-hosted Open Wearables" w ustawieniach?</span></summary>
       <div class="faq-body lang-en">
-        <p><strong>Open Wearables</strong> covers consumer cloud wearables: HR, HRV, sleep, steps from Whoop / Garmin / Oura / Polar / Suunto / Strava / Ultrahuman. Good for general activity and recovery patterns.</p>
-        <p><strong>Withings direct</strong> connects to your Withings devices directly via the Withings API. It exposes <em>medical-grade signals</em> Open Wearables doesn't have:</p>
+        <p><a href="https://openwearables.io" target="_blank" rel="noopener">Open Wearables</a> is an open-source unified API by <a href="https://www.themomentum.ai" target="_blank" rel="noopener">Momentum</a> (MIT) that connects 7+ wearables through one consistent interface. It runs as a Docker container on your own computer.</p>
+        <p>You don't need this for normal use — Oura, Withings and Strava are wired up directly. Open Wearables makes sense if:</p>
         <ul>
-          <li>ECG (ScanWatch 2)</li>
-          <li>Body composition (fat ratio, muscle mass, bone mass, hydration)</li>
-          <li><strong>ESC</strong> — electrochemical skin conductance, used for chemo-induced peripheral neuropathy (CIPN) monitoring (Body Scan / Body Pro 2 ESC, regional availability varies)</li>
-          <li>Pulse wave velocity, vascular age</li>
-          <li>Blood pressure (BPM Connect)</li>
+          <li>You want all wearable data to flow through infrastructure you fully control (privacy maximalists)</li>
+          <li>You want one place to add future integrations (Fitbit, Coros, Xiaomi when they land)</li>
+          <li>You're a clinician or researcher running AlpacaLive in a controlled environment</li>
         </ul>
-        <p>You can connect both — when both report the same metric, Withings direct takes priority because it's medical-grade.</p>
+        <p>Setup requires Docker Desktop, cloning the repo, generating an API key from the admin panel — it's a 15-minute process for someone comfortable with a terminal. Documentation: <a href="https://openwearables.io/docs/quickstart" target="_blank" rel="noopener">openwearables.io/docs/quickstart</a>.</p>
       </div>
       <div class="faq-body lang-pl">
-        <p><strong>Open Wearables</strong> obsługuje konsumenckie urządzenia chmurowe: HR, HRV, sen, kroki z Whoop / Garmin / Oura / Polar / Suunto / Strava / Ultrahuman. Dobre dla ogólnej aktywności i wzorców regeneracji.</p>
-        <p><strong>Withings direct</strong> łączy się bezpośrednio z urządzeniami Withings przez ich API. Daje dostęp do <em>sygnałów medycznej klasy</em>, których Open Wearables nie ma:</p>
+        <p><a href="https://openwearables.io" target="_blank" rel="noopener">Open Wearables</a> to open-source unifikowane API od <a href="https://www.themomentum.ai" target="_blank" rel="noopener">Momentum</a> (MIT), które łączy 7+ urządzeń przez jeden spójny interfejs. Działa jako kontener Docker na Twoim komputerze.</p>
+        <p>Dla normalnego użytkowania nie jest potrzebne — Oura, Withings i Strava są podpięte bezpośrednio. Open Wearables ma sens jeśli:</p>
         <ul>
-          <li>EKG (ScanWatch 2)</li>
-          <li>Skład ciała (% tłuszczu, masa mięśni, kości, nawodnienie)</li>
-          <li><strong>ESC</strong> — przewodnictwo elektrochemiczne skóry, do monitorowania neuropatii po chemioterapii (CIPN) (Body Scan / Body Pro 2 ESC, dostępność zależy od regionu)</li>
-          <li>Prędkość fali tętna, wiek naczyniowy</li>
-          <li>Ciśnienie krwi (BPM Connect)</li>
+          <li>Chcesz, żeby wszystkie dane z wearables szły przez infrastrukturę, którą w pełni kontrolujesz (maksymaliści prywatności)</li>
+          <li>Chcesz jedno miejsce na przyszłe integracje (Fitbit, Coros, Xiaomi gdy tam wpadną)</li>
+          <li>Jesteś klinicystą lub badaczem uruchamiającym AlpacaLive w kontrolowanym środowisku</li>
         </ul>
-        <p>Możesz podłączyć oba — gdy obydwa raportują tę samą metrykę, Withings direct ma pierwszeństwo, bo jest medycznej klasy.</p>
+        <p>Setup wymaga Docker Desktop, sklonowania repo, wygenerowania API key w panelu admin — to 15-minutowy proces dla kogoś, kto czuje się swobodnie z terminalem. Dokumentacja: <a href="https://openwearables.io/docs/quickstart" target="_blank" rel="noopener">openwearables.io/docs/quickstart</a>.</p>
       </div>
     </details>
 

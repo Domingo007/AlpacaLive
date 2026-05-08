@@ -11,11 +11,11 @@ import { useI18n } from '@/lib/i18n';
 export function IntegrationsOptionalBanner() {
   const { lang } = useI18n();
   const l = lang === 'pl' ? {
-    title: 'Integracje są opcjonalne',
-    body: 'AlpacaLive działa w pełni bez podłączonych urządzeń. Możesz wpisywać dane ręcznie w dzienniku, importować CSV (Garmin, Withings, Apple Health) lub zostawić te sekcje puste — wszystkie funkcje analizy wzorców i podsumowania działają na podstawie tego, co sam(a) wprowadzisz.',
+    title: 'Wszystko poniżej jest opcjonalne',
+    body: 'AlpacaLive działa w pełni bez podłączonych urządzeń. Najprostsza ścieżka jeśli masz wearable: Oura (wklej token, gotowe). Withings i Strava wymagają jednorazowej rejestracji aplikacji u dostawcy. Brak urządzenia? Wpisuj dane ręcznie w dzienniku albo importuj CSV.',
   } : {
-    title: 'These integrations are optional',
-    body: 'AlpacaLive works fully without any device connected. You can enter data manually via the journal, import CSV files (Garmin, Withings, Apple Health), or leave these sections empty — pattern analysis and summaries work entirely on what you log by hand.',
+    title: 'Everything below is optional',
+    body: 'AlpacaLive works fully without any device connected. Simplest path if you own a wearable: Oura (paste a token, done). Withings and Strava need a one-time app registration at the provider. No wearable? Enter data manually in the journal or import a CSV.',
   };
   return (
     <div className="bg-lavender-50 border border-lavender-200 rounded-2xl p-4 flex gap-3 items-start">

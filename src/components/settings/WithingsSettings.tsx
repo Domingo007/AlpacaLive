@@ -16,6 +16,7 @@ import {
   saveTokens,
 } from '@/lib/withings-client';
 import { syncWithings } from '@/lib/withings-adapter';
+import { SetupGuide } from './SetupGuide';
 
 type Connection = 'disconnected' | 'connecting' | 'connected' | 'error';
 
@@ -48,6 +49,7 @@ export function WithingsSettings() {
     statusConnected: 'Połączono',
     statusError: 'Błąd',
     escNote: 'ESC (przewodnictwo elektrochemiczne skóry, monitoring CIPN) wymaga Body Scan lub Body Pro 2 ESC. Dostępność może być ograniczona w niektórych regionach.',
+    guideTitle: 'Krok po kroku — jak uzyskać Client ID i Secret?',
   } : {
     title: 'Withings (direct integration)',
     desc: 'Withings provides medical-grade signals: ESC for CIPN monitoring, ScanWatch ECG, body composition, BP. Register an app at developer.withings.com, paste the Client ID, Client Secret and callback URL, then click "Connect".',
@@ -66,6 +68,7 @@ export function WithingsSettings() {
     statusConnected: 'Connected',
     statusError: 'Error',
     escNote: 'ESC (electrochemical skin conductance, for CIPN monitoring) requires Body Scan or Body Pro 2 ESC. Availability may be limited in some regions.',
+    guideTitle: 'Step-by-step — how do I get a Client ID and Secret?',
   };
 
   useEffect(() => {
@@ -162,10 +165,32 @@ export function WithingsSettings() {
     error: l.statusError,
   };
 
+  const guideSteps = lang === 'pl' ? [
+    <>Wejdź na <a href="https://developer.withings.com/dashboard/" target="_blank" rel="noopener" className="text-lavender-700 underline">developer.withings.com/dashboard</a> i zaloguj się swoim kontem Withings (tym samym, którego używasz w aplikacji Withings Health Mate).<br /><span className="text-text-tertiary">[screenshot: strona logowania Withings developer]</span></>,
+    <>Po zalogowaniu kliknij <strong>Create an application</strong>. Wybierz typ <strong>Public API integration</strong>.<br /><span className="text-text-tertiary">[screenshot: lista aplikacji + przycisk Create]</span></>,
+    <>Wypełnij formularz: <strong>Application name</strong> = AlpacaLive (lub dowolnie), <strong>Description</strong> = krótki opis, <strong>Logo</strong> = opcjonalne. Najważniejsze: <strong>Callback URI</strong> wpisz <em>dokładnie ten sam adres</em> co poniżej w polu „Adres callback".<br /><span className="text-text-tertiary">[screenshot: formularz nowej aplikacji]</span></>,
+    <>Po utworzeniu aplikacji Withings pokaże <strong>Client ID</strong> i <strong>Client Secret</strong>. <em>Skopiuj oba</em> — Client Secret zobaczysz tylko raz!<br /><span className="text-text-tertiary">[screenshot: ekran z credentials]</span></>,
+    <>Wróć tutaj. Wklej <strong>Client ID</strong> i <strong>Client Secret</strong>. W pole „Adres callback" wpisz dokładnie to samo co w panelu Withings (zwykle <code className="text-[10px] bg-bg-card px-1.5 py-0.5 rounded">http://localhost:5173/withings/callback</code> dla testów).</>,
+    <>Kliknij <strong>Zapisz dane</strong>, potem <strong>Połącz z Withings</strong>. Otworzy się ekran logowania Withings — zatwierdź dostęp i wrócisz do aplikacji.</>,
+    <>Po połączeniu kliknij <strong>Synchronizuj teraz</strong> — pobiera ostatnie 7 dni danych. Token jest automatycznie odświeżany (Withings rotuje refresh token).</>,
+    <>Pełna dokumentacja Withings API: <a href="https://developer.withings.com/api-reference/" target="_blank" rel="noopener" className="text-lavender-700 underline">developer.withings.com/api-reference</a></>,
+  ] : [
+    <>Go to <a href="https://developer.withings.com/dashboard/" target="_blank" rel="noopener" className="text-lavender-700 underline">developer.withings.com/dashboard</a> and sign in with your Withings account (the same one used in Withings Health Mate).<br /><span className="text-text-tertiary">[screenshot: Withings developer login]</span></>,
+    <>Once signed in, click <strong>Create an application</strong>. Pick the <strong>Public API integration</strong> type.<br /><span className="text-text-tertiary">[screenshot: app list + Create button]</span></>,
+    <>Fill in the form: <strong>Application name</strong> = AlpacaLive (or anything), <strong>Description</strong> = a short blurb, <strong>Logo</strong> = optional. Critical field: <strong>Callback URI</strong> must match <em>exactly</em> what you enter in the "Callback URL" field below.<br /><span className="text-text-tertiary">[screenshot: new application form]</span></>,
+    <>Once created, Withings shows the <strong>Client ID</strong> and <strong>Client Secret</strong>. <em>Copy both</em> — the Client Secret is shown only once!<br /><span className="text-text-tertiary">[screenshot: credentials screen]</span></>,
+    <>Come back here. Paste <strong>Client ID</strong> and <strong>Client Secret</strong>. In "Callback URL" enter the exact same value you entered in the Withings dashboard (usually <code className="text-[10px] bg-bg-card px-1.5 py-0.5 rounded">http://localhost:5173/withings/callback</code> for local testing).</>,
+    <>Click <strong>Save credentials</strong>, then <strong>Connect Withings</strong>. The Withings login screen opens — approve access and you return to the app.</>,
+    <>Once connected, click <strong>Sync now</strong> — pulls the last 7 days of data. Tokens auto-refresh (Withings rotates the refresh token).</>,
+    <>Full Withings API docs: <a href="https://developer.withings.com/api-reference/" target="_blank" rel="noopener" className="text-lavender-700 underline">developer.withings.com/api-reference</a></>,
+  ];
+
   return (
     <Card title={l.title}>
       <div className="space-y-3">
         <p className="text-[11px] text-text-secondary leading-relaxed">{l.desc}</p>
+
+        <SetupGuide title={l.guideTitle} steps={guideSteps} />
 
         <div className="space-y-2">
           <Field label={l.clientId} value={clientId} onChange={setClientId} placeholder="abcdef…" />

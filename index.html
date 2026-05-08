@@ -126,6 +126,30 @@ section { padding:90px 24px;max-width:1100px;margin:0 auto; }
 .devices-footnote a { color:var(--lav-700);text-decoration:none;font-weight:600;border-bottom:1px solid var(--lav-300); }
 .devices-footnote a:hover { color:var(--lav-800);border-bottom-color:var(--lav-500); }
 
+/* FAQ */
+.faq-intro { max-width:640px;margin:14px auto 0;font-size:14px;color:var(--text-2);line-height:1.6;text-align:center; }
+.faq-banner { max-width:720px;margin:24px auto 0;background:#ecfdf5;border:1px solid #a7f3d0;border-radius:14px;padding:14px 18px;display:flex;gap:12px;align-items:flex-start; }
+.faq-banner .material-symbols-rounded { font-size:22px;color:var(--green);flex-shrink:0;margin-top:2px; }
+.faq-banner-text { font-size:13px;color:var(--text);line-height:1.5; }
+.faq-banner-text strong { color:#047857; }
+.faq-list { max-width:760px;margin:36px auto 0;display:flex;flex-direction:column;gap:10px; }
+.faq-item { background:#fff;border:1px solid var(--lav-100);border-radius:14px;overflow:hidden;transition:border-color .15s; }
+.faq-item[open] { border-color:var(--lav-300);box-shadow:0 4px 16px rgba(45,31,84,.06); }
+.faq-item summary { padding:18px 22px;font-size:14px;font-weight:600;color:var(--text);cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:12px; }
+.faq-item summary::-webkit-details-marker { display:none; }
+.faq-item summary::after { content:"+";font-size:22px;color:var(--lav-500);font-weight:300;flex-shrink:0;transition:transform .2s; }
+.faq-item[open] summary::after { content:"−"; }
+.faq-item summary:hover { color:var(--lav-700); }
+.faq-body { padding:0 22px 18px;font-size:13px;color:var(--text-2);line-height:1.65; }
+.faq-body p { margin-bottom:10px; }
+.faq-body p:last-child { margin-bottom:0; }
+.faq-body ol, .faq-body ul { padding-left:20px;margin:8px 0; }
+.faq-body li { margin-bottom:5px; }
+.faq-body code { background:var(--lav-100);color:var(--lav-800);padding:1px 6px;border-radius:4px;font-size:12px;font-family:'SF Mono', Menlo, monospace; }
+.faq-body a { color:var(--lav-700);text-decoration:none;font-weight:600;border-bottom:1px solid var(--lav-300); }
+.faq-body a:hover { color:var(--lav-800);border-bottom-color:var(--lav-500); }
+.faq-screenshot { display:block;margin:10px 0;padding:10px;background:var(--lav-50);border:1px dashed var(--lav-300);border-radius:8px;font-size:11px;color:var(--text-3);font-style:italic; }
+
 /* PRIVACY */
 .privacy-split { display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:44px; }
 @media(max-width:768px) { .privacy-split{grid-template-columns:1fr;} .problem{padding:36px 20px;margin:0 16px;border-radius:18px;} section{padding:60px 16px;} .stat-number{font-size:32px;} .hero{padding:100px 20px 60px;} .hero-logo{width:100px;height:100px;border-radius:22px;} }
@@ -188,6 +212,7 @@ footer a { color:var(--lav-600);text-decoration:none; }
     <div class="nav-links">
       <a href="#features"><span class="material-symbols-rounded">widgets</span> <span class="lang-en">Features</span><span class="lang-pl">Funkcje</span></a>
       <a href="#how-it-works"><span class="material-symbols-rounded">route</span> <span class="lang-en">How it works</span><span class="lang-pl">Jak działa</span></a>
+      <a href="#faq"><span class="material-symbols-rounded">help</span> <span class="lang-en">FAQ</span><span class="lang-pl">FAQ</span></a>
       <a href="#privacy"><span class="material-symbols-rounded">shield</span> <span class="lang-en">Privacy</span><span class="lang-pl">Prywatność</span></a>
       <a href="#open-source"><span class="material-symbols-rounded">code</span> <span class="lang-en">Open source</span><span class="lang-pl">Open source</span></a>
     </div>
@@ -382,6 +407,215 @@ footer a { color:var(--lav-600);text-decoration:none; }
   <p class="devices-footnote lang-en">All wearable data is normalized through one privacy-first pipeline and stays on your device. AlpacaLive integrates with <a href="https://openwearables.io" target="_blank" rel="noopener">Open Wearables</a> — the open-source health intelligence platform built by Momentum.</p>
   <p class="devices-footnote lang-pl">Wszystkie dane z urządzeń są normalizowane w jednym pipeline'ie szanującym prywatność i zostają na Twoim urządzeniu. AlpacaLive integruje się z <a href="https://openwearables.io" target="_blank" rel="noopener">Open Wearables</a> — platformą open-source zbudowaną przez Momentum.</p>
 </div>
+
+<!-- FAQ -->
+<section id="faq">
+  <div style="text-align:center">
+    <div class="section-label reveal"><span class="material-symbols-rounded">help</span> <span class="lang-en">Setup guide</span><span class="lang-pl">Pierwsze kroki</span></div>
+    <div class="section-title reveal lang-en">Frequently asked questions</div>
+    <div class="section-title reveal lang-pl">Najczęstsze pytania</div>
+    <p class="faq-intro reveal lang-en">Setting up wearable integrations is optional. Here's everything you need to decide whether — and how — to connect them.</p>
+    <p class="faq-intro reveal lang-pl">Konfiguracja urządzeń jest opcjonalna. Tu znajdziesz wszystko, czego potrzebujesz żeby zdecydować — i jak je podłączyć.</p>
+  </div>
+
+  <div class="faq-banner reveal">
+    <span class="material-symbols-rounded">check_circle</span>
+    <div class="faq-banner-text lang-en"><strong>You don't need to connect anything.</strong> AlpacaLive runs fully in notebook mode with manual entries, CSV import (Garmin Connect, Withings export, Apple Health Shortcut) and pattern engines that work on whatever you log. Wearable integrations enrich the picture, but nothing is blocked without them.</div>
+    <div class="faq-banner-text lang-pl"><strong>Nie musisz nic łączyć.</strong> AlpacaLive działa w pełni w trybie notatnika — wpisy ręczne, import CSV (Garmin Connect, eksport Withings, Skrót Apple Health) i analizy wzorców działają na tym, co sam(a) zapiszesz. Integracje z urządzeniami tylko wzbogacają obraz, ale nic nie jest zablokowane bez nich.</div>
+  </div>
+
+  <div class="faq-list reveal">
+
+    <details class="faq-item">
+      <summary class="lang-en">Do I have to connect any wearable to use AlpacaLive?</summary>
+      <summary class="lang-pl">Czy muszę podłączać jakiekolwiek urządzenie żeby korzystać z AlpacaLive?</summary>
+      <div class="faq-body lang-en">
+        <p><strong>No.</strong> AlpacaLive works fully without any device. You can:</p>
+        <ul>
+          <li>Enter symptoms, weight, blood pressure and lab results manually in the journal</li>
+          <li>Import CSV files exported from Garmin Connect, Withings or any spreadsheet</li>
+          <li>Use Apple Health via an iOS Shortcut (no Open Wearables needed)</li>
+          <li>Get pattern-based summaries on whatever data you log</li>
+        </ul>
+        <p>Wearable integrations are an <em>optional enhancement</em> — they remove some manual typing.</p>
+      </div>
+      <div class="faq-body lang-pl">
+        <p><strong>Nie.</strong> AlpacaLive działa w pełni bez żadnego urządzenia. Możesz:</p>
+        <ul>
+          <li>Ręcznie wpisywać objawy, wagę, ciśnienie i wyniki badań w dzienniku</li>
+          <li>Importować pliki CSV z Garmin Connect, Withings lub dowolnego arkusza</li>
+          <li>Używać Apple Health przez Skrót iOS (bez Open Wearables)</li>
+          <li>Otrzymywać podsumowania oparte o wzorce dla danych, które wpiszesz</li>
+        </ul>
+        <p>Integracje z urządzeniami są <em>opcjonalnym rozszerzeniem</em> — eliminują część ręcznego wpisywania.</p>
+      </div>
+    </details>
+
+    <details class="faq-item">
+      <summary class="lang-en">What is Open Wearables and why do I need to host it myself?</summary>
+      <summary class="lang-pl">Czym jest Open Wearables i dlaczego trzeba uruchomić to u siebie?</summary>
+      <div class="faq-body lang-en">
+        <p><a href="https://openwearables.io" target="_blank" rel="noopener">Open Wearables</a> is an open-source unified API built by <a href="https://www.themomentum.ai" target="_blank" rel="noopener">Momentum</a> that connects 7+ wearable brands (Whoop, Garmin, Oura, Polar, Suunto, Strava, Ultrahuman) through one consistent interface. MIT licensed, runs locally on your computer (Docker).</p>
+        <p>Self-hosting is a <strong>privacy choice</strong>: your wearable data goes from the device → your local server → AlpacaLive on your phone. It never touches a third-party cloud. AlpacaLive itself has no server, so this is the only way to keep the data flow fully under your control.</p>
+        <p>If you don't want to run a local server, skip this and use CSV import or manual entry instead.</p>
+      </div>
+      <div class="faq-body lang-pl">
+        <p><a href="https://openwearables.io" target="_blank" rel="noopener">Open Wearables</a> to open-source unifikowane API zbudowane przez <a href="https://www.themomentum.ai" target="_blank" rel="noopener">Momentum</a>, które łączy 7+ marek wearables (Whoop, Garmin, Oura, Polar, Suunto, Strava, Ultrahuman) przez jeden spójny interfejs. Licencja MIT, działa lokalnie u Ciebie na komputerze (Docker).</p>
+        <p>Self-hosting to <strong>wybór prywatności</strong>: dane z urządzenia idą do Twojego lokalnego serwera, a stamtąd do AlpacaLive na telefonie. Nie dotykają żadnej chmury osób trzecich. Sama aplikacja AlpacaLive nie ma serwera, więc to jedyny sposób, żeby cały przepływ danych pozostał pod Twoją kontrolą.</p>
+        <p>Jeśli nie chcesz uruchamiać lokalnego serwera, pomiń to i użyj importu CSV lub wpisów ręcznych.</p>
+      </div>
+    </details>
+
+    <details class="faq-item">
+      <summary class="lang-en">How do I install Open Wearables step by step?</summary>
+      <summary class="lang-pl">Jak krok po kroku zainstalować Open Wearables?</summary>
+      <div class="faq-body lang-en">
+        <ol>
+          <li>Install <a href="https://www.docker.com/products/docker-desktop/" target="_blank" rel="noopener">Docker Desktop</a> (free, available on macOS / Windows / Linux).</li>
+          <li>Open a terminal and run:<br><code>git clone https://github.com/the-momentum/open-wearables.git</code><br><code>cd open-wearables</code><br><code>docker compose up -d</code><span class="faq-screenshot">[screenshot: terminal after docker compose up]</span></li>
+          <li>Wait ~30 seconds for the containers to start, then open <a href="http://localhost:3000" target="_blank" rel="noopener">http://localhost:3000</a> in your browser.</li>
+          <li>Log in with the default admin account: <code>admin@admin.com</code> / <code>your-secure-password</code>. Change the password in Settings before any real use.<span class="faq-screenshot">[screenshot: Open Wearables login screen]</span></li>
+          <li>Go to <strong>Settings → API Keys → Generate</strong>. Copy the generated key.<span class="faq-screenshot">[screenshot: API Keys panel]</span></li>
+          <li>In AlpacaLive go to <strong>Settings → Open Wearables (self-hosted)</strong>. Paste:
+            <ul>
+              <li><strong>Server URL:</strong> <code>http://localhost:8000</code></li>
+              <li><strong>API Key:</strong> the key you just copied</li>
+              <li><strong>User ID:</strong> click <em>Generate</em> (or paste any stable string)</li>
+            </ul>
+            Click <strong>Save</strong>.</li>
+          <li>Open the <strong>Data</strong> tab in AlpacaLive. The Open Wearables tile appears — click <strong>Manage</strong>, pick a device (Oura, Whoop, etc.) and sign in at the provider.</li>
+        </ol>
+        <p>Full official walkthrough: <a href="https://openwearables.io/docs/quickstart" target="_blank" rel="noopener">openwearables.io/docs/quickstart</a></p>
+      </div>
+      <div class="faq-body lang-pl">
+        <ol>
+          <li>Zainstaluj <a href="https://www.docker.com/products/docker-desktop/" target="_blank" rel="noopener">Docker Desktop</a> (darmowy, dostępny na macOS / Windows / Linux).</li>
+          <li>Otwórz terminal i uruchom:<br><code>git clone https://github.com/the-momentum/open-wearables.git</code><br><code>cd open-wearables</code><br><code>docker compose up -d</code><span class="faq-screenshot">[screenshot: terminal po docker compose up]</span></li>
+          <li>Poczekaj ~30 sekund aż kontenery wstaną, potem otwórz <a href="http://localhost:3000" target="_blank" rel="noopener">http://localhost:3000</a> w przeglądarce.</li>
+          <li>Zaloguj się domyślnym kontem admin: <code>admin@admin.com</code> / <code>your-secure-password</code>. Zmień hasło w Settings przed prawdziwym użyciem.<span class="faq-screenshot">[screenshot: ekran logowania Open Wearables]</span></li>
+          <li>Wejdź w <strong>Settings → API Keys → Generate</strong>. Skopiuj wygenerowany klucz.<span class="faq-screenshot">[screenshot: panel API Keys]</span></li>
+          <li>W AlpacaLive otwórz <strong>Ustawienia → Open Wearables (self-hosted)</strong>. Wpisz:
+            <ul>
+              <li><strong>Adres serwera:</strong> <code>http://localhost:8000</code></li>
+              <li><strong>Klucz API:</strong> ten, który właśnie skopiowałeś/aś</li>
+              <li><strong>User ID:</strong> kliknij <em>Wygeneruj</em> (lub wklej dowolny stały tekst)</li>
+            </ul>
+            Kliknij <strong>Zapisz</strong>.</li>
+          <li>Otwórz zakładkę <strong>Dane</strong> w AlpacaLive. Pojawi się kafelek Open Wearables — kliknij <strong>Zarządzaj</strong>, wybierz urządzenie (Oura, Whoop itp.) i zaloguj się u dostawcy.</li>
+        </ol>
+        <p>Oficjalny pełny przewodnik: <a href="https://openwearables.io/docs/quickstart" target="_blank" rel="noopener">openwearables.io/docs/quickstart</a></p>
+      </div>
+    </details>
+
+    <details class="faq-item">
+      <summary class="lang-en">What's the difference between Open Wearables and Withings direct?</summary>
+      <summary class="lang-pl">Czym różni się Open Wearables od Withings direct?</summary>
+      <div class="faq-body lang-en">
+        <p><strong>Open Wearables</strong> covers consumer cloud wearables: HR, HRV, sleep, steps from Whoop / Garmin / Oura / Polar / Suunto / Strava / Ultrahuman. Good for general activity and recovery patterns.</p>
+        <p><strong>Withings direct</strong> connects to your Withings devices directly via the Withings API. It exposes <em>medical-grade signals</em> Open Wearables doesn't have:</p>
+        <ul>
+          <li>ECG (ScanWatch 2)</li>
+          <li>Body composition (fat ratio, muscle mass, bone mass, hydration)</li>
+          <li><strong>ESC</strong> — electrochemical skin conductance, used for chemo-induced peripheral neuropathy (CIPN) monitoring (Body Scan / Body Pro 2 ESC, regional availability varies)</li>
+          <li>Pulse wave velocity, vascular age</li>
+          <li>Blood pressure (BPM Connect)</li>
+        </ul>
+        <p>You can connect both — when both report the same metric, Withings direct takes priority because it's medical-grade.</p>
+      </div>
+      <div class="faq-body lang-pl">
+        <p><strong>Open Wearables</strong> obsługuje konsumenckie urządzenia chmurowe: HR, HRV, sen, kroki z Whoop / Garmin / Oura / Polar / Suunto / Strava / Ultrahuman. Dobre dla ogólnej aktywności i wzorców regeneracji.</p>
+        <p><strong>Withings direct</strong> łączy się bezpośrednio z urządzeniami Withings przez ich API. Daje dostęp do <em>sygnałów medycznej klasy</em>, których Open Wearables nie ma:</p>
+        <ul>
+          <li>EKG (ScanWatch 2)</li>
+          <li>Skład ciała (% tłuszczu, masa mięśni, kości, nawodnienie)</li>
+          <li><strong>ESC</strong> — przewodnictwo elektrochemiczne skóry, do monitorowania neuropatii po chemioterapii (CIPN) (Body Scan / Body Pro 2 ESC, dostępność zależy od regionu)</li>
+          <li>Prędkość fali tętna, wiek naczyniowy</li>
+          <li>Ciśnienie krwi (BPM Connect)</li>
+        </ul>
+        <p>Możesz podłączyć oba — gdy obydwa raportują tę samą metrykę, Withings direct ma pierwszeństwo, bo jest medycznej klasy.</p>
+      </div>
+    </details>
+
+    <details class="faq-item">
+      <summary class="lang-en">How do I get a Withings Client ID and Secret?</summary>
+      <summary class="lang-pl">Jak uzyskać Client ID i Secret od Withings?</summary>
+      <div class="faq-body lang-en">
+        <ol>
+          <li>Go to <a href="https://developer.withings.com/dashboard/" target="_blank" rel="noopener">developer.withings.com/dashboard</a> and sign in with your Withings account (the same one used in Withings Health Mate).<span class="faq-screenshot">[screenshot: Withings developer login]</span></li>
+          <li>Click <strong>Create an application</strong> and pick <strong>Public API integration</strong>.<span class="faq-screenshot">[screenshot: app type selection]</span></li>
+          <li>Fill in the form. The most important field is <strong>Callback URI</strong> — it must <em>exactly</em> match what you'll enter later in AlpacaLive. For local testing use <code>http://localhost:5173/withings/callback</code>; for production use your real domain.<span class="faq-screenshot">[screenshot: new application form]</span></li>
+          <li>Once submitted, Withings shows your <strong>Client ID</strong> and <strong>Client Secret</strong>. <em>Copy both immediately</em> — the Client Secret is shown only once.<span class="faq-screenshot">[screenshot: credentials display]</span></li>
+          <li>In AlpacaLive go to <strong>Settings → Withings (direct integration)</strong>. Paste Client ID, Client Secret and the same Callback URL. Click <strong>Save credentials</strong>, then <strong>Connect Withings</strong>.</li>
+          <li>You'll be redirected to the Withings login screen. Approve access — you return to AlpacaLive automatically.</li>
+        </ol>
+      </div>
+      <div class="faq-body lang-pl">
+        <ol>
+          <li>Wejdź na <a href="https://developer.withings.com/dashboard/" target="_blank" rel="noopener">developer.withings.com/dashboard</a> i zaloguj się swoim kontem Withings (tym samym, którego używasz w Withings Health Mate).<span class="faq-screenshot">[screenshot: logowanie Withings developer]</span></li>
+          <li>Kliknij <strong>Create an application</strong> i wybierz <strong>Public API integration</strong>.<span class="faq-screenshot">[screenshot: wybór typu aplikacji]</span></li>
+          <li>Wypełnij formularz. Najważniejsze pole to <strong>Callback URI</strong> — musi <em>dokładnie</em> zgadzać się z tym, co później wpiszesz w AlpacaLive. Dla testów lokalnych użyj <code>http://localhost:5173/withings/callback</code>; produkcyjnie podaj swoją domenę.<span class="faq-screenshot">[screenshot: formularz nowej aplikacji]</span></li>
+          <li>Po wysłaniu Withings pokaże <strong>Client ID</strong> i <strong>Client Secret</strong>. <em>Skopiuj oba natychmiast</em> — Client Secret zobaczysz tylko raz.<span class="faq-screenshot">[screenshot: ekran z credentials]</span></li>
+          <li>W AlpacaLive wejdź w <strong>Ustawienia → Withings (bezpośrednia integracja)</strong>. Wklej Client ID, Client Secret i ten sam Callback URL. Kliknij <strong>Zapisz dane</strong>, potem <strong>Połącz z Withings</strong>.</li>
+          <li>Przekierujemy Cię do ekranu logowania Withings. Zatwierdź dostęp — wrócisz do AlpacaLive automatycznie.</li>
+        </ol>
+      </div>
+    </details>
+
+    <details class="faq-item">
+      <summary class="lang-en">What if I don't own any wearable at all?</summary>
+      <summary class="lang-pl">Co jeśli nie mam żadnego wearable?</summary>
+      <div class="faq-body lang-en">
+        <p>You're set. Use the <strong>journal</strong> tab to log how you feel each day (energy, pain, nausea, mood, weight, sleep hours). The pattern engine compares your current values to your own history and to published reference ranges — that's where most of the clinical value comes from. Wearables just save typing.</p>
+        <p>If you want to add basic numbers without a wearable, a digital scale and a finger pulse oximeter from a pharmacy already cover weight, SpO₂ and heart rate.</p>
+      </div>
+      <div class="faq-body lang-pl">
+        <p>Wszystko jest gotowe. Korzystaj z zakładki <strong>dziennika</strong> żeby codziennie zapisywać samopoczucie (energia, ból, nudności, nastrój, waga, długość snu). Silnik analizy wzorców porównuje Twoje obecne wartości z Twoją historią i z opublikowanymi zakresami referencyjnymi — stąd bierze się większość wartości klinicznej. Wearables po prostu oszczędzają pisania.</p>
+        <p>Jeśli chcesz dodać podstawowe liczby bez wearable, cyfrowa waga i pulsoksymetr napalcowy z apteki już pokryją wagę, SpO₂ i tętno.</p>
+      </div>
+    </details>
+
+    <details class="faq-item">
+      <summary class="lang-en">Where does my health data go? Is anything sent to AlpacaLive servers?</summary>
+      <summary class="lang-pl">Gdzie trafiają moje dane zdrowotne? Czy coś jest wysyłane na serwery AlpacaLive?</summary>
+      <div class="faq-body lang-en">
+        <p><strong>AlpacaLive has no servers.</strong> The app runs entirely as a PWA in your browser. Health data lives in IndexedDB on your device.</p>
+        <p>Data flow:</p>
+        <ul>
+          <li><strong>Manual entries / CSV import:</strong> stays 100% on your device, never leaves.</li>
+          <li><strong>Open Wearables (self-hosted):</strong> data goes from the wearable provider's cloud → your local Open Wearables server (running on your machine) → AlpacaLive PWA. Stays in your local network.</li>
+          <li><strong>Withings direct:</strong> data goes from Withings cloud → AlpacaLive PWA directly via OAuth. Stops on your device.</li>
+          <li><strong>AI mode (optional):</strong> only when you enter a Claude API key. Personal data is sanitized before sending — names, IDs, addresses are stripped by a PII filter.</li>
+        </ul>
+      </div>
+      <div class="faq-body lang-pl">
+        <p><strong>AlpacaLive nie ma serwerów.</strong> Aplikacja działa wyłącznie jako PWA w przeglądarce. Dane zdrowotne żyją w IndexedDB na Twoim urządzeniu.</p>
+        <p>Przepływ danych:</p>
+        <ul>
+          <li><strong>Wpisy ręczne / import CSV:</strong> w 100% pozostają na Twoim urządzeniu, nigdy go nie opuszczają.</li>
+          <li><strong>Open Wearables (self-hosted):</strong> dane idą z chmury producenta wearable → Twój lokalny serwer Open Wearables (działający u Ciebie na komputerze) → PWA AlpacaLive. Zostają w Twojej sieci lokalnej.</li>
+          <li><strong>Withings direct:</strong> dane idą z chmury Withings → PWA AlpacaLive bezpośrednio przez OAuth. Kończą na Twoim urządzeniu.</li>
+          <li><strong>Tryb AI (opcjonalny):</strong> tylko gdy wpiszesz klucz Claude API. Dane osobowe są filtrowane przed wysłaniem — imiona, identyfikatory i adresy usuwa filtr PII.</li>
+        </ul>
+      </div>
+    </details>
+
+    <details class="faq-item">
+      <summary class="lang-en">Will any of this work on my phone (iPhone / Android)?</summary>
+      <summary class="lang-pl">Czy to wszystko działa na telefonie (iPhone / Android)?</summary>
+      <div class="faq-body lang-en">
+        <p>Yes — install AlpacaLive as a PWA (Add to Home Screen on iOS Safari, Install app on Android Chrome) and the journal, manual entries, CSV import and pattern engine all work natively.</p>
+        <p>For wearable cloud integrations there's a nuance: <strong>Apple Health</strong>, <strong>Samsung Health</strong> and <strong>Google Health Connect</strong> require a native iOS/Android app to read directly — they aren't reachable from a web PWA. Workaround: use the iOS Shortcut for Apple Health (one-tap export), or import a CSV.</p>
+        <p>Open Wearables and Withings work the same on phone and desktop because they use the cloud OAuth flow.</p>
+      </div>
+      <div class="faq-body lang-pl">
+        <p>Tak — zainstaluj AlpacaLive jako PWA (Dodaj do ekranu głównego w Safari na iOS, Zainstaluj aplikację w Chrome na Androidzie) i dziennik, wpisy ręczne, import CSV oraz silnik wzorców działają natywnie.</p>
+        <p>Przy integracjach chmurowych jest jeden niuans: <strong>Apple Health</strong>, <strong>Samsung Health</strong> i <strong>Google Health Connect</strong> wymagają natywnej aplikacji iOS/Android, żeby je czytać — z PWA web nie da się tego osiągnąć. Obejście: Skrót iOS dla Apple Health (eksport jednym tapnięciem) albo import CSV.</p>
+        <p>Open Wearables i Withings działają identycznie na telefonie i komputerze, bo korzystają z chmurowego flow OAuth.</p>
+      </div>
+    </details>
+
+  </div>
+</section>
 
 <!-- PRIVACY -->
 <section id="privacy">

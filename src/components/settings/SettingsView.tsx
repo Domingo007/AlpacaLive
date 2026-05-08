@@ -6,6 +6,7 @@ import { HistoricalImport } from './HistoricalImport';
 import { ConnectedDevices } from './ConnectedDevices';
 import { OpenWearablesSettings } from './OpenWearablesSettings';
 import { WithingsSettings } from './WithingsSettings';
+import { IntegrationsOptionalBanner } from './IntegrationsOptionalBanner';
 import { NotificationSettings } from './NotificationSettings';
 import { AIProviderSettings } from './AIProviderSettings';
 import { EducationView } from '@/components/education/EducationView';
@@ -268,6 +269,9 @@ export function SettingsView() {
           </div>
         </Card>
       )}
+
+      {/* Banner: integrations are optional */}
+      <IntegrationsOptionalBanner />
 
       {/* Open Wearables (self-hosted) */}
       <OpenWearablesSettings />

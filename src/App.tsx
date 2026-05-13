@@ -13,11 +13,15 @@ import { CalendarView } from '@/components/calendar/CalendarView';
 import { ImagingView } from '@/components/imaging/ImagingView';
 import { SettingsView } from '@/components/settings/SettingsView';
 import { OnboardingFlow } from '@/components/onboarding/OnboardingFlow';
+import { UpdateToast } from '@/components/ui/UpdateToast';
+import { MigrationOverlay } from '@/components/ui/MigrationOverlay';
 import { getSettings } from '@/lib/db';
 import { startNotificationScheduler } from '@/lib/notification-scheduler';
 import { parseHealthDataFromUrl } from '@/lib/devices/apple-health-import';
 import { saveNormalizedData } from '@/lib/devices/data-mapper';
 import { useI18n } from '@/lib/i18n';
+import { useServiceWorkerUpdate } from '@/hooks/useServiceWorkerUpdate';
+import { useDbMigration } from '@/hooks/useDbMigration';
 import type { TabId, NotebookTab, AppMode } from '@/types';
 
 export default function App() {
@@ -28,6 +32,9 @@ export default function App() {
   const { t, setLang } = useI18n();
 
   const [importToast, setImportToast] = useState<string | null>(null);
+  const { status: swStatus, applyUpdate } = useServiceWorkerUpdate();
+  const { status: migStatus } = useDbMigration();
+  const [toastDismissed, setToastDismissed] = useState(false);
 
   useEffect(() => {
     getSettings().then(s => {
@@ -117,6 +124,15 @@ export default function App() {
         {activeTab === 'settings' && <SettingsView />}
       </main>
       <TabBar activeTab={activeTab} onTabChange={setActiveTab} />
+
+      {swStatus === 'available' && !toastDismissed && (
+        <UpdateToast
+          onUpdate={applyUpdate}
+          onDismiss={() => setToastDismissed(true)}
+        />
+      )}
+
+      <MigrationOverlay status={migStatus} />
     </div>
   );
 }

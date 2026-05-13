@@ -10,6 +10,8 @@ import { generatePatternSummary, savePatternSummary, formatPatternForChat, check
 import { detectUnknownDrugs } from '@/lib/medical-data/drug-resolver';
 import { filterNewUnknowns } from '@/lib/medical-data/unknown-drug-feedback';
 import { useI18n } from '@/lib/i18n';
+import { logAICall } from '@/lib/audit-logger';
+import type { AIAuditLogEntry } from '@/types/audit-log';
 
 const PATTERN_TRIGGERS = ['wzorzec', 'wzorce', 'wzorcow', 'jak zwykle', 'pokaż wzorzec', 'pokaz wzorzec', 'predykcja', 'prognoza', 'przewiduj', 'jak będę się czuć', 'jak bede sie czuc', 'jak będę', 'co mnie czeka', 'najbliższe dni', 'ten tydzień', 'ten tydzien'];
 
@@ -97,6 +99,15 @@ export function useChat() {
       if (fresh.length > 0) setUnknownDrugs(fresh);
     }
 
+    // Declare variables used in logging outside try-catch
+    let settings: Awaited<ReturnType<typeof getSettings>> | undefined;
+    let patient: PatientProfile | undefined;
+    let systemPrompt = lang === 'en'
+      ? 'You are the AlpacaLive medical agent. You help an oncology patient. Always reply in English.'
+      : 'Jesteś agentem medycznym AlpacaLive. Pomagasz pacjentowi onkologicznemu. Mów po polsku.';
+    let sanitizedProfile: ReturnType<typeof sanitizePatientForAI> | null = null;
+    let chemoCount = 0;
+
     try {
       const userText = typeof content === 'string' ? content : text;
 
@@ -131,12 +142,8 @@ export function useChat() {
       }
 
       // Regular AI flow
-      const settings = await getSettings();
-      const patient = await getPatient();
-
-      let systemPrompt = lang === 'en'
-        ? 'You are the AlpacaLive medical agent. You help an oncology patient. Always reply in English.'
-        : 'Jesteś agentem medycznym AlpacaLive. Pomagasz pacjentowi onkologicznemu. Mów po polsku.';
+      settings = await getSettings();
+      patient = await getPatient();
 
       if (patient) {
         const [daily, blood, wearable, meals, chemo, imaging, predictions, supplements] = await Promise.all([
@@ -156,7 +163,8 @@ export function useChat() {
           : { ...patient, languages: { appLanguage: lang, documentLanguages: [lang], preferredMedicalTerms: lang } };
 
         // Sanitize patient profile for AI payload (removes identifiers, abstracts PII)
-        const sanitizedProfile = sanitizePatientForAI(patientForPrompt);
+        sanitizedProfile = sanitizePatientForAI(patientForPrompt);
+        chemoCount = chemo.length;
 
         // Format chemo drugs: convert trade names to INN
         const chemoWithFormattedDrugs = chemo.map(session => ({
@@ -202,9 +210,45 @@ export function useChat() {
 
       await addChatMessage(assistantMessage);
       setMessages(prev => [...prev, assistantMessage]);
+
+      // Log successful AI call
+      if (patient && sanitizedProfile) {
+        void logAICall({
+          timestamp: new Date(),
+          provider: response.provider as 'anthropic' | 'openai' | 'gemini',
+          model: response.model,
+          inputTokensEstimate: Math.round(systemPrompt.length / 4),
+          outputTokensEstimate: Math.round(cleanContent.length / 4),
+          piiFieldsRemoved: ['displayName', 'treatmentFacility'],
+          psychiatricAbstracted: (patient.psychiatricMeds?.length ?? 0) > 0,
+          drugNamesResolved: chemoCount,
+          guidelineRegion: sanitizedProfile.guidelineRegion,
+          ageDecadeUsed: sanitizedProfile.ageDecade,
+          success: true,
+        });
+      }
     } catch (err) {
       const errorMsg = err instanceof Error ? err.message : 'Nieznany błąd';
       setError(errorMsg);
+
+      // Log failed AI call
+      if (patient && sanitizedProfile) {
+        const errorStatus = err instanceof Error ? err.message : 'unknown_error';
+        void logAICall({
+          timestamp: new Date(),
+          provider: (settings?.aiProvider as any) || 'anthropic',
+          model: '',
+          inputTokensEstimate: Math.round(systemPrompt.length / 4),
+          outputTokensEstimate: 0,
+          piiFieldsRemoved: ['displayName', 'treatmentFacility'],
+          psychiatricAbstracted: (patient.psychiatricMeds?.length ?? 0) > 0,
+          drugNamesResolved: chemoCount,
+          guidelineRegion: sanitizedProfile.guidelineRegion,
+          ageDecadeUsed: sanitizedProfile.ageDecade,
+          success: false,
+          errorCode: errorStatus,
+        });
+      }
     } finally {
       setIsLoading(false);
     }

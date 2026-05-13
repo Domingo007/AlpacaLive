@@ -3,19 +3,25 @@
  * Copyright (C) 2025 AlpacaLive Contributors
  * Licensed under AGPL-3.0 — see LICENSE file
  */
-import type { PatientProfile, DailyLog, BloodWork, WearableData, MealLog, ChemoSession, ImagingStudy, PatternSummary, BreastCancerSubtype, SupplementLog } from '@/types';
+import type { DailyLog, BloodWork, WearableData, MealLog, ChemoSession, ImagingStudy, PatternSummary, SupplementLog, BreastCancerSubtype } from '@/types';
+import type { SanitizedAIProfile } from './ai-payload-sanitizer';
 import { calculateCurrentPhase } from './treatment-cycle';
 import { checkInteractions } from './cyp450';
 import { getDiseaseKnowledge, SUPPLEMENTS } from './medical-data/knowledge-registry';
 import { localized } from './medical-data/content-utils';
 
-function buildDiseaseKnowledgeSection(patient: PatientProfile): string {
-  if (!patient.diseaseProfileId) return '';
-  const knowledge = getDiseaseKnowledge(patient.diseaseProfileId);
+function buildDiseaseKnowledgeSection(
+  diseaseProfileId: string | undefined,
+  appLanguage: string,
+  breastCancerSubtype?: string,
+  molecularSubtype?: string,
+): string {
+  if (!diseaseProfileId) return '';
+  const knowledge = getDiseaseKnowledge(diseaseProfileId);
   if (!knowledge) return '';
 
   const lines: string[] = [];
-  const lang = patient.languages?.appLanguage || 'pl';
+  const lang = appLanguage;
 
   lines.push(`\n## WIEDZA O CHOROBIE: ${localized(knowledge.profile.name, lang)}`);
 
@@ -47,7 +53,7 @@ function buildDiseaseKnowledgeSection(patient: PatientProfile): string {
   }
 
   // Regimens for patient's subtype
-  const subtype = patient.breastCancerSubtype || patient.molecularSubtype;
+  const subtype = breastCancerSubtype || molecularSubtype;
   if (subtype && knowledge.regimens.regimens.length > 0) {
     const applicableRegimens = knowledge.regimens.regimens.filter(r =>
       r.subtypes.includes(subtype) || r.subtypes.includes('all'),
@@ -74,8 +80,9 @@ function buildDiseaseKnowledgeSection(patient: PatientProfile): string {
   return lines.join('\n');
 }
 
-function formatSubtype(subtype: BreastCancerSubtype): string {
-  const map: Record<BreastCancerSubtype, string> = {
+function formatSubtype(subtype?: string | BreastCancerSubtype): string {
+  if (!subtype) return '';
+  const map: Record<string, string> = {
     luminal_a: 'Luminal A (HR+/HER2-, Ki-67 niski)',
     luminal_b: 'Luminal B (HR+/HER2-, Ki-67 wysoki lub HR+/HER2+)',
     her2_positive: 'HER2-dodatni',
@@ -87,55 +94,17 @@ function formatSubtype(subtype: BreastCancerSubtype): string {
   return map[subtype] || subtype;
 }
 
-function buildTreatmentStatusSection(patient: PatientProfile, recentData: RecentData): string {
+function buildTreatmentStatusSection(recentData: RecentData): string {
   const lines: string[] = [];
 
   // Chemo phase (legacy, always calculate if chemo data exists)
-  const chemoPhase = calculateCurrentPhase(recentData.chemo, patient.chemoCycle);
+  const chemoPhase = calculateCurrentPhase(recentData.chemo);
   if (recentData.chemo.length > 0) {
     lines.push(`### Chemioterapia`);
     lines.push(`Aktualna faza: ${chemoPhase.phase || 'nieznana'} — ${chemoPhase.description}`);
     lines.push(`Dzień w cyklu: ${chemoPhase.dayInCycle}`);
     if (chemoPhase.daysUntilNextChemo !== undefined) {
       lines.push(`Dni do następnej chemii: ${chemoPhase.daysUntilNextChemo}`);
-    }
-  }
-
-  // Other active treatments from patient profile
-  const treatments = patient.treatments || [];
-  for (const treatment of treatments) {
-    if (treatment.status !== 'active') continue;
-
-    if (treatment.type === 'radiotherapy' && treatment.radiotherapy) {
-      const rt = treatment.radiotherapy;
-      const completedSessions = rt.sessions.filter(s => s.completed).length;
-      lines.push(`\n### Radioterapia`);
-      lines.push(`Typ: ${rt.type}, region: ${rt.targetArea}`);
-      lines.push(`Frakcje: ${completedSessions}/${rt.fractions} (dawka kumulacyjna: ${completedSessions * rt.dosePerFractionGy}/${rt.totalDoseGy} Gy)`);
-      lines.push(`Zmęczenie kumulacyjne narastające. Monitoruj skórę (CTCAE 0-4).`);
-    }
-
-    if (treatment.type === 'immunotherapy') {
-      lines.push(`\n### Immunoterapia`);
-      lines.push(`Lek: ${treatment.drugs?.map(d => d.name).join(', ') || treatment.name}`);
-      lines.push(`Start: ${treatment.startDate}`);
-      lines.push(`AKTYWNIE monitoruj irAE: skóra, tarczyca (TSH), wątroba (ALT/AST), płuca, jelita.`);
-    }
-
-    if (treatment.type === 'targeted_therapy') {
-      lines.push(`\n### Terapia celowana`);
-      lines.push(`Lek: ${treatment.drugs?.map(d => d.name).join(', ') || treatment.name}`);
-      lines.push(`Start: ${treatment.startDate}`);
-    }
-
-    if (treatment.type === 'hormonal_therapy') {
-      lines.push(`\n### Hormonoterapia`);
-      lines.push(`Lek: ${treatment.drugs?.map(d => d.name).join(', ') || treatment.name}`);
-      lines.push(`Start: ${treatment.startDate}`);
-      const today = new Date();
-      const start = new Date(treatment.startDate);
-      const months = Math.round((today.getTime() - start.getTime()) / (1000 * 60 * 60 * 24 * 30));
-      lines.push(`Czas trwania: ${months} mies. Monitoruj: bóle stawów, uderzenia gorąca, densytometrię.`);
     }
   }
 
@@ -202,12 +171,17 @@ interface RecentData {
   supplements?: SupplementLog[];
 }
 
-export function buildSystemPrompt(patient: PatientProfile, recentData: RecentData): string {
-  const activePsych = patient.psychiatricMeds.filter(m => m.active);
-  const activeOnco = patient.oncologyMeds.filter(m => m.active);
-  const activeOther = patient.otherMeds.filter(m => m.active);
-
-  const allDrugs = [...activePsych, ...activeOnco, ...activeOther].map(m => m.name);
+export function buildSystemPrompt(
+  patient: SanitizedAIProfile,
+  recentData: RecentData,
+  diseaseProfileId?: string,
+  originalPatientMeds?: { psychiatricMeds: any[]; oncologyMeds: any[]; otherMeds: any[] },
+): string {
+  // For interactions check: use INN from sanitized profile
+  const allDrugs = [
+    ...patient.oncologyMeds.map(m => m.inn),
+    ...patient.otherMeds.map(m => m.inn),
+  ];
   const interactions = checkInteractions(allDrugs);
 
   return `# SKILL: AlpacaLive — Narzędzie do analizy danych zdrowotnych
@@ -287,37 +261,33 @@ Reguła obowiązuje niezależnie od tego, jak znany lub powszechny jest dany lek
 Jesteś empatycznym narzędziem do analizy danych zdrowotnych pacjenta onkologicznego. Język rozmowy ustawiony jest poniżej w sekcji "ANALIZA WIELOJĘZYCZNA DOKUMENTÓW" — odpowiadaj w tym języku. Jesteś ciepły, ale zawsze podkreślasz że nie zastępujesz lekarza.
 
 ## PACJENT
-- Pseudonim: ${patient.displayName}, ${patient.age} lat, ${patient.weight}kg
+- Wiek: ${patient.ageDecade} lat (dekada)
+- Waga: ${patient.weightKg} kg
 - Diagnoza: ${patient.diagnosis}, stadium ${patient.stage}${patient.molecularSubtype ? `, podtyp: ${patient.molecularSubtype}` : ''}
 - Operacje: ${patient.surgeries.join(', ') || 'brak'}
 - Aktualny schemat chemii: ${patient.currentChemo || 'nie podano'}
-- Cykl: ${patient.chemoCycle || 'nie podano'}
-- Leki psychiatryczne: ${activePsych.map(m => `${m.name} ${m.dose}`).join(', ') || 'brak'}
-- Leki onkologiczne: ${activeOnco.map(m => `${m.name} ${m.dose}`).join(', ') || 'brak'}
-- Inne leki: ${activeOther.map(m => `${m.name} ${m.dose}`).join(', ') || 'brak'}
-${patient.location ? `
+${patient.psychiatricMedClasses.length > 0 ? `- Psychofarmakoterapia: ${patient.psychiatricMedClasses.join(', ')}` : ''}
+- Leki onkologiczne: ${patient.oncologyMeds.map(m => `${m.inn}${m.dose ? ` ${m.dose}` : ''}`).join(', ') || 'brak'}
+- Inne leki: ${patient.otherMeds.map(m => `${m.inn}${m.dose ? ` ${m.dose}` : ''}`).join(', ') || 'brak'}
+
 ## REGION I WYTYCZNE
-Region leczenia: ${patient.location.guidelineRegion === 'europe' ? 'EUROPA (stosuj wytyczne ESMO, leki zatwierdzone przez EMA)' : patient.location.guidelineRegion === 'usa' ? 'USA (stosuj wytyczne NCCN, leki zatwierdzone przez FDA)' : 'Inny (stosuj najbliższe dostępne wytyczne)'}
-Kraj leczenia: ${patient.location.treatmentCountry}
-Kraj zamieszkania: ${patient.location.residenceCountry}
-${patient.location.treatmentFacility ? `Placówka: ${patient.location.treatmentFacility}` : ''}
+Wytyczne onkologiczne: ${patient.guidelineRegion === 'ESMO' ? 'EUROPA (stosuj wytyczne ESMO, leki zatwierdzone przez EMA)' : patient.guidelineRegion === 'NCCN' ? 'USA (stosuj wytyczne NCCN, leki zatwierdzone przez FDA)' : 'EUROPA I USA (podaj obie perspektywy)'}
 
 ZASADY REGIONALIZACJI:
 - Podawaj nazwy leków właściwe dla regionu pacjenta (np. Verzenios w Europie, Verzenio w USA)
 - Informuj o dostępności leku w regionie (np. "T-DXd zatwierdzone przez EMA ale refundacja zależy od programu lekowego NFZ")
 - Cytuj właściwe wytyczne (ESMO dla Europy, NCCN dla USA)
 - Jeśli pacjent pyta o lek niedostępny w jego regionie — poinformuj i zasugeruj alternatywy
-- Uwzględnij różnice w schematach chemii (Europa preferuje EC nad AC)` : ''}
-${patient.languages ? `
+- Uwzględnij różnice w schematach chemii (Europa preferuje EC nad AC)
+
 ## ANALIZA WIELOJĘZYCZNA DOKUMENTÓW
-Język rozmowy: ${patient.languages.appLanguage} (ZAWSZE odpowiadaj w tym języku)
-Języki dokumentów: ${patient.languages.documentLanguages.join(', ')}
+Język rozmowy: ${patient.appLanguage} (ZAWSZE odpowiadaj w tym języku)
 
 Gdy pacjent wysyła zdjęcie/tekst dokumentu medycznego:
 1. ROZPOZNAJ język dokumentu
 2. PRZEANALIZUJ treść w oryginalnym języku (nie tłumacz przed analizą)
 3. WYCIĄGNIJ wartości liczbowe i informacje medyczne
-4. ODPOWIEDZ w języku pacjenta (${patient.languages.appLanguage})
+4. ODPOWIEDZ w języku pacjenta (${patient.appLanguage})
 5. Kluczowe terminy podawaj z ORYGINAŁEM w nawiasie:
    "Guz zmniejszył się do 18mm (Tumorverkleinerung auf 18mm)"
 6. Rozwijaj skróty specyficzne dla języka:
@@ -325,7 +295,7 @@ Gdy pacjent wysyła zdjęcie/tekst dokumentu medycznego:
    PL: "b.z."=bez zmian, "w.n."=w normie
 7. Rozpoznawaj typy dokumentów:
    DE: Arztbrief=wypis, Befundbericht=raport, Laborbericht=wyniki lab, CT-Befund=opis CT, Histologischer Befund=histopat, Therapieplan=plan leczenia
-   PL: Karta informacyjna=wypis, Morfologia=CBC, Opis badania=raport obrazowania` : ''}
+   PL: Karta informacyjna=wypis, Morfologia=CBC, Opis badania=raport obrazowania
 
 ## TYPY LECZENIA ONKOLOGICZNEGO
 Pacjent może być leczony jedną lub WIELOMA metodami jednocześnie:
@@ -343,7 +313,7 @@ Pacjent może być leczony jedną lub WIELOMA metodami jednocześnie:
 ### KOMBINACJE: chemoradioterapia, chemia+immunoterapia, sekwencyjna chemia→RT, hormonoterapia+CDK4/6i. Uwzględnij ŁĄCZNY wpływ na samopoczucie.
 
 ### Zabiegi chirurgiczne
-${patient.surgicalProcedures && patient.surgicalProcedures.length > 0 ? `Pacjent przeszedł: ${patient.surgicalProcedures.map(s => s.type + ' (' + s.date + ')').join(', ')}` : 'Brak zarejestrowanych operacji'}
+${patient.surgeries && patient.surgeries.length > 0 ? `Pacjent przeszedł: ${patient.surgeries.join(', ')}` : 'Brak zarejestrowanych operacji'}
 
 ZASADY PO OPERACJI:
 - Spadek energii/aktywności jest NORMALNY w okresie rekonwalescencji — NIE alarmuj
@@ -404,8 +374,8 @@ ${recentData.imaging.length > 0 ? JSON.stringify(recentData.imaging.slice(0, 2),
 ${interactions.length > 0 ? interactions.map(i => `- ${i.severity.toUpperCase()}: ${i.drug1} + ${i.drug2}: ${i.description}`).join('\n') : 'Brak wykrytych interakcji'}
 
 ## AKTUALNY STATUS LECZENIA
-${buildTreatmentStatusSection(patient, recentData)}
-${buildDiseaseKnowledgeSection(patient)}
+${buildTreatmentStatusSection(recentData)}
+${buildDiseaseKnowledgeSection(diseaseProfileId, patient.appLanguage, patient.breastCancerSubtype, patient.molecularSubtype)}
 
 ## TWOJE ZADANIA
 1. CODZIENNY DZIENNIK — prowadź rozmowę naturalnie, 2-3 pytania na raz

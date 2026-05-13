@@ -139,13 +139,17 @@ export async function sendToAI(
   const model = config.model || (hasImages ? spec.visionModel : spec.defaultModel);
 
   let endpoint = spec.endpoint;
+  let headers = spec.headers(config.apiKey);
+
   if (config.provider === 'gemini') {
-    endpoint = endpoint.replace('{model}', model) + `?key=${config.apiKey}`;
+    // Gemini: put API key in header instead of URL to avoid logging in browser history
+    endpoint = endpoint.replace('{model}', model);
+    headers = { ...headers, 'x-goog-api-key': config.apiKey };
   }
 
   const response = await fetch(endpoint, {
     method: 'POST',
-    headers: spec.headers(config.apiKey),
+    headers,
     body: JSON.stringify(spec.buildBody(systemPrompt, messages, model)),
   });
 

@@ -1,5 +1,6 @@
 import { describe, it, expect } from 'vitest';
 import { buildSystemPrompt } from '../lib/system-prompt';
+import { sanitizePatientForAI } from '../lib/ai-payload-sanitizer';
 import type { PatientProfile } from '@/types';
 
 const testPatient: PatientProfile = {
@@ -21,12 +22,14 @@ const testPatient: PatientProfile = {
   pii: { firstName: 'Anna', lastName: 'Test', pesel: '', address: '', phone: '', email: '', hospitalIds: [] },
   createdAt: new Date(),
   updatedAt: new Date(),
+  languages: { appLanguage: 'pl', documentLanguages: ['pl'], preferredMedicalTerms: 'pl' },
 };
 
 const testData = { daily: [], blood: [], wearable: [], meals: [], chemo: [], imaging: [], predictions: [] };
 
 describe('System Prompt — Unknown Drug Handling', () => {
-  const prompt = buildSystemPrompt(testPatient, testData);
+  const sanitized = sanitizePatientForAI(testPatient);
+  const prompt = buildSystemPrompt(sanitized, testData);
 
   it('includes explicit instruction for unknown medications', () => {
     expect(prompt).toMatch(/NOT present.*knowledge base/i);

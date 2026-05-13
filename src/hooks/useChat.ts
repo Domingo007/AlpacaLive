@@ -4,6 +4,7 @@ import type { ChatMessage, PatientProfile } from '@/types';
 import { getChatMessages, addChatMessage, updateChatMessage, getSettings, getPatient, getRecentDailyLogs, getRecentBloodWork, getRecentWearableData, getRecentMeals, getRecentChemo, getRecentImaging, getRecentPredictions, getRecentSupplements } from '@/lib/db';
 import { sendMessage, getWelcomeMessage } from '@/lib/ai';
 import { buildSystemPrompt } from '@/lib/system-prompt';
+import { sanitizePatientForAI, formatChemoDrugForAI } from '@/lib/ai-payload-sanitizer';
 import { extractDataFromResponse, extractAIProfileData, saveExtractedData, cleanResponseFromTags } from '@/lib/data-extractor';
 import { generatePatternSummary, savePatternSummary, formatPatternForChat, checkPatternMatch, type PatternResult } from '@/lib/pattern-engine';
 import { detectUnknownDrugs } from '@/lib/medical-data/drug-resolver';
@@ -153,7 +154,21 @@ export function useChat() {
         const patientForPrompt = patient.languages
           ? { ...patient, languages: { ...patient.languages, appLanguage: lang } }
           : { ...patient, languages: { appLanguage: lang, documentLanguages: [lang], preferredMedicalTerms: lang } };
-        systemPrompt = buildSystemPrompt(patientForPrompt, { daily, blood, wearable, meals, chemo, imaging, predictions, supplements });
+
+        // Sanitize patient profile for AI payload (removes identifiers, abstracts PII)
+        const sanitizedProfile = sanitizePatientForAI(patientForPrompt);
+
+        // Format chemo drugs: convert trade names to INN
+        const chemoWithFormattedDrugs = chemo.map(session => ({
+          ...session,
+          drugs: session.drugs.map(formatChemoDrugForAI),
+        }));
+
+        systemPrompt = buildSystemPrompt(
+          sanitizedProfile,
+          { daily, blood, wearable, meals, chemo: chemoWithFormattedDrugs, imaging, predictions, supplements },
+          patient.diseaseProfileId,
+        );
       }
 
       const allMessages = [...messages, userMessage];

@@ -594,4 +594,21 @@ export const en: typeof pl = {
         'This is not medical advice. AlpacaLive does not diagnose dehydration, does not recommend fluid amounts, and does not replace medical evaluation. The indicator only compares your data against your own baseline.',
     },
   },
+
+  // ==================== UPDATES & MIGRATION ====================
+  update: {
+    available: 'New version of AlpacaLive',
+    dataPreserved: 'Your data will be preserved',
+    updateNow: 'Update now',
+    later: 'Later',
+  },
+
+  migration: {
+    updating: 'Updating local data...',
+    dontClose: 'Please don\'t close the app',
+    done: 'Data preserved',
+    allGood: 'App updated, nothing was lost',
+    error: 'Problem updating data',
+    errorHint: 'Refresh the page or contact support',
+  },
 };

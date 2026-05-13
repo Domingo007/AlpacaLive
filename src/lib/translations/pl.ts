@@ -592,4 +592,21 @@ export const pl = {
         'To nie jest porada medyczna. AlpacaLive nie diagnozuje odwodnienia, nie zaleca ilości płynów i nie zastępuje oceny lekarskiej. Wskaźnik pokazuje jedynie porównanie Twoich danych z Twoim własnym baseline\'em.',
     },
   },
+
+  // ==================== UPDATES & MIGRATION ====================
+  update: {
+    available: 'Nowa wersja AlpacaLive',
+    dataPreserved: 'Twoje dane zostaną zachowane',
+    updateNow: 'Zaktualizuj teraz',
+    later: 'Później',
+  },
+
+  migration: {
+    updating: 'Aktualizujemy dane lokalne...',
+    dontClose: 'Nie zamykaj aplikacji',
+    done: 'Dane zachowane',
+    allGood: 'Aplikacja zaktualizowana, nic nie zostało utracone',
+    error: 'Problem z aktualizacją danych',
+    errorHint: 'Odśwież stronę lub skontaktuj się z pomocą',
+  },
 };

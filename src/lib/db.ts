@@ -67,6 +67,20 @@ class AlpacaLiveDB extends Dexie {
       chat: 'id, timestamp',
       settings: 'id',
       calendarNotes: 'id, date, type',
+    }).upgrade(async () => {
+      window.dispatchEvent(new CustomEvent('alpaca:db:migrating', {
+        detail: { from: 0, to: 1 }
+      }));
+      try {
+        window.dispatchEvent(new CustomEvent('alpaca:db:migrated', {
+          detail: { from: 0, to: 1 }
+        }));
+      } catch (err) {
+        window.dispatchEvent(new CustomEvent('alpaca:db:migration-error', {
+          detail: { from: 0, to: 1, error: String(err) }
+        }));
+        throw err;
+      }
     });
 
     // Version 2: add treatmentSessions and referenceData tables
@@ -85,6 +99,20 @@ class AlpacaLiveDB extends Dexie {
       calendarNotes: 'id, date, type',
       treatmentSessions: 'id, date, treatmentType, status',
       referenceData: 'id, type, version',
+    }).upgrade(async () => {
+      window.dispatchEvent(new CustomEvent('alpaca:db:migrating', {
+        detail: { from: 1, to: 2 }
+      }));
+      try {
+        window.dispatchEvent(new CustomEvent('alpaca:db:migrated', {
+          detail: { from: 1, to: 2 }
+        }));
+      } catch (err) {
+        window.dispatchEvent(new CustomEvent('alpaca:db:migration-error', {
+          detail: { from: 1, to: 2, error: String(err) }
+        }));
+        throw err;
+      }
     });
 
     // Version 3: add deviceConnections table
@@ -104,6 +132,20 @@ class AlpacaLiveDB extends Dexie {
       treatmentSessions: 'id, date, treatmentType, status',
       referenceData: 'id, type, version',
       deviceConnections: 'id',
+    }).upgrade(async () => {
+      window.dispatchEvent(new CustomEvent('alpaca:db:migrating', {
+        detail: { from: 2, to: 3 }
+      }));
+      try {
+        window.dispatchEvent(new CustomEvent('alpaca:db:migrated', {
+          detail: { from: 2, to: 3 }
+        }));
+      } catch (err) {
+        window.dispatchEvent(new CustomEvent('alpaca:db:migration-error', {
+          detail: { from: 2, to: 3, error: String(err) }
+        }));
+        throw err;
+      }
     });
 
     // Version 4: rename table 'predictions' → 'patternSummaries'
@@ -111,9 +153,22 @@ class AlpacaLiveDB extends Dexie {
       predictions: null,
       patternSummaries: 'id, date, targetDate, type',
     }).upgrade(async tx => {
-      const oldRecords = await tx.table('predictions').toArray();
-      if (oldRecords.length > 0) {
-        await tx.table('patternSummaries').bulkAdd(oldRecords);
+      window.dispatchEvent(new CustomEvent('alpaca:db:migrating', {
+        detail: { from: 3, to: 4 }
+      }));
+      try {
+        const oldRecords = await tx.table('predictions').toArray();
+        if (oldRecords.length > 0) {
+          await tx.table('patternSummaries').bulkAdd(oldRecords);
+        }
+        window.dispatchEvent(new CustomEvent('alpaca:db:migrated', {
+          detail: { from: 3, to: 4 }
+        }));
+      } catch (err) {
+        window.dispatchEvent(new CustomEvent('alpaca:db:migration-error', {
+          detail: { from: 3, to: 4, error: String(err) }
+        }));
+        throw err;
       }
     });
 
@@ -136,6 +191,20 @@ class AlpacaLiveDB extends Dexie {
       referenceData: 'id, type, version',
       deviceConnections: 'id',
       aiAuditLog: '++id, timestamp, provider, success',
+    }).upgrade(async () => {
+      window.dispatchEvent(new CustomEvent('alpaca:db:migrating', {
+        detail: { from: 4, to: 5 }
+      }));
+      try {
+        window.dispatchEvent(new CustomEvent('alpaca:db:migrated', {
+          detail: { from: 4, to: 5 }
+        }));
+      } catch (err) {
+        window.dispatchEvent(new CustomEvent('alpaca:db:migration-error', {
+          detail: { from: 4, to: 5, error: String(err) }
+        }));
+        throw err;
+      }
     });
   }
 }
@@ -185,6 +254,20 @@ class AlpacaLiveDemoDB extends Dexie {
       treatmentSessions: 'id, date, treatmentType, status',
       referenceData: 'id, type, version',
       deviceConnections: 'id',
+    }).upgrade(async () => {
+      window.dispatchEvent(new CustomEvent('alpaca:db:migrating', {
+        detail: { from: 0, to: 1 }
+      }));
+      try {
+        window.dispatchEvent(new CustomEvent('alpaca:db:migrated', {
+          detail: { from: 0, to: 1 }
+        }));
+      } catch (err) {
+        window.dispatchEvent(new CustomEvent('alpaca:db:migration-error', {
+          detail: { from: 0, to: 1, error: String(err) }
+        }));
+        throw err;
+      }
     });
 
     // Version 4: rename table 'predictions' → 'patternSummaries' (matches AlpacaLiveDB)
@@ -192,9 +275,22 @@ class AlpacaLiveDemoDB extends Dexie {
       predictions: null,
       patternSummaries: 'id, date, targetDate, type',
     }).upgrade(async tx => {
-      const oldRecords = await tx.table('predictions').toArray();
-      if (oldRecords.length > 0) {
-        await tx.table('patternSummaries').bulkAdd(oldRecords);
+      window.dispatchEvent(new CustomEvent('alpaca:db:migrating', {
+        detail: { from: 3, to: 4 }
+      }));
+      try {
+        const oldRecords = await tx.table('predictions').toArray();
+        if (oldRecords.length > 0) {
+          await tx.table('patternSummaries').bulkAdd(oldRecords);
+        }
+        window.dispatchEvent(new CustomEvent('alpaca:db:migrated', {
+          detail: { from: 3, to: 4 }
+        }));
+      } catch (err) {
+        window.dispatchEvent(new CustomEvent('alpaca:db:migration-error', {
+          detail: { from: 3, to: 4, error: String(err) }
+        }));
+        throw err;
       }
     });
 
@@ -217,6 +313,20 @@ class AlpacaLiveDemoDB extends Dexie {
       referenceData: 'id, type, version',
       deviceConnections: 'id',
       aiAuditLog: '++id, timestamp, provider, success',
+    }).upgrade(async () => {
+      window.dispatchEvent(new CustomEvent('alpaca:db:migrating', {
+        detail: { from: 4, to: 5 }
+      }));
+      try {
+        window.dispatchEvent(new CustomEvent('alpaca:db:migrated', {
+          detail: { from: 4, to: 5 }
+        }));
+      } catch (err) {
+        window.dispatchEvent(new CustomEvent('alpaca:db:migration-error', {
+          detail: { from: 4, to: 5, error: String(err) }
+        }));
+        throw err;
+      }
     });
   }
 }

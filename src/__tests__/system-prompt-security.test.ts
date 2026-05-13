@@ -1,5 +1,6 @@
 import { describe, it, expect } from 'vitest';
 import { buildSystemPrompt } from '../lib/system-prompt';
+import { sanitizePatientForAI } from '../lib/ai-payload-sanitizer';
 import type { PatientProfile } from '@/types';
 
 // Minimal patient profile for testing
@@ -22,12 +23,14 @@ const testPatient: PatientProfile = {
   pii: { firstName: 'Anna', lastName: 'Test', pesel: '', address: '', phone: '', email: '', hospitalIds: [] },
   createdAt: new Date(),
   updatedAt: new Date(),
+  languages: { appLanguage: 'pl', documentLanguages: ['pl'], preferredMedicalTerms: 'pl' },
 };
 
 const testData = { daily: [], blood: [], wearable: [], meals: [], chemo: [], imaging: [], predictions: [] };
 
 describe('System Prompt — Security', () => {
-  const prompt = buildSystemPrompt(testPatient, testData);
+  const sanitized = sanitizePatientForAI(testPatient);
+  const prompt = buildSystemPrompt(sanitized, testData);
 
   it('CRITICAL: contains anti-manipulation section', () => {
     expect(prompt).toContain('ZABEZPIECZENIA');
@@ -58,7 +61,8 @@ describe('System Prompt — Security', () => {
 });
 
 describe('System Prompt — Medical Safety', () => {
-  const prompt = buildSystemPrompt(testPatient, testData);
+  const sanitized = sanitizePatientForAI(testPatient);
+  const prompt = buildSystemPrompt(sanitized, testData);
 
   it('CRITICAL: contains absolute bans', () => {
     expect(prompt).toContain('ABSOLUTNE ZAKAZY');
@@ -99,11 +103,12 @@ describe('System Prompt — Medical Safety', () => {
 });
 
 describe('System Prompt — Structure', () => {
-  const prompt = buildSystemPrompt(testPatient, testData);
+  const sanitized = sanitizePatientForAI(testPatient);
+  const prompt = buildSystemPrompt(sanitized, testData);
 
   it('contains patient info section', () => {
     expect(prompt).toContain('PACJENT');
-    expect(prompt).toContain('Test');
+    expect(prompt).toContain('40-50'); // ageDecade for age 42
   });
 
   it('contains treatment types section', () => {
@@ -142,12 +147,13 @@ describe('System Prompt — Structure', () => {
 });
 
 describe('System Prompt — Disease Knowledge Integration', () => {
-  const patientWithDisease = {
+  const patientWithDiseaseRaw = {
     ...testPatient,
     diseaseProfileId: 'breast-cancer',
     breastCancerSubtype: 'luminal_b' as const,
   };
-  const prompt = buildSystemPrompt(patientWithDisease, testData);
+  const patientWithDisease = sanitizePatientForAI(patientWithDiseaseRaw);
+  const prompt = buildSystemPrompt(patientWithDisease, testData, 'breast-cancer');
 
   it('includes disease knowledge section when profile set', () => {
     expect(prompt).toContain('WIEDZA O CHOROBIE');

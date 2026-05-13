@@ -1,0 +1,31 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm run *)",
+      "Bash(echo \"PID: $!\")",
+      "Edit(/.claude/skills/verify/**)",
+      "Bash(cat .github/ISSUE_TEMPLATE/config.yml)",
+      "Bash(rm .github/ISSUE_TEMPLATE/medical_knowledge.md)",
+      "Bash(node -e \"const d = require\\('./medical-knowledge/drugs/trade-names/index.json'\\); const drugs = Object.keys\\(d.trade_names\\); console.log\\('Drug count:', drugs.length\\); console.log\\('Drugs:', drugs.join\\(', '\\)\\);\")",
+      "Bash(node -e ' *)",
+      "WebFetch(domain:openwearables.io)",
+      "WebFetch(domain:docs.openwearables.io)",
+      "WebFetch(domain:developer.withings.com)",
+      "Bash(git reset *)",
+      "Bash(curl -sS -X OPTIONS \"https://wbsapi.withings.net/v2/oauth2\" -H \"Origin: http://localhost:5173\" -H \"Access-Control-Request-Method: POST\" -H \"Access-Control-Request-Headers: content-type\" -i)",
+      "Bash(curl -sS -X POST \"https://wbsapi.withings.net/v2/oauth2\" -H \"Origin: http://localhost:5173\" -H \"Content-Type: application/x-www-form-urlencoded\" -d \"action=requesttoken&grant_type=authorization_code&client_id=spike&client_secret=spike&code=spike&redirect_uri=http://localhost:5173/withings/callback\" -i)",
+      "Bash(tee /tmp/alpacalive-dev.log)",
+      "WebFetch(domain:cloud.ouraring.com)",
+      "WebFetch(domain:developer.whoop.com)",
+      "WebFetch(domain:developers.strava.com)",
+      "Bash(curl -sS -X OPTIONS \"https://api.ouraring.com/v2/usercollection/personal_info\" -H \"Origin: http://localhost:5173\" -H \"Access-Control-Request-Method: GET\" -H \"Access-Control-Request-Headers: authorization\" -i)",
+      "Bash(curl -sS \"https://api.ouraring.com/v2/usercollection/personal_info\" -H \"Origin: http://localhost:5173\" -H \"Authorization: Bearer fake-token-spike\" -i)",
+      "Bash(curl -sS -X OPTIONS \"https://api.prod.whoop.com/oauth/oauth2/token\" -H \"Origin: http://localhost:5173\" -H \"Access-Control-Request-Method: POST\" -H \"Access-Control-Request-Headers: content-type\" -i)",
+      "Bash(curl -sS -X OPTIONS \"https://www.strava.com/oauth/token\" -H \"Origin: http://localhost:5173\" -H \"Access-Control-Request-Method: POST\" -H \"Access-Control-Request-Headers: content-type\" -i)",
+      "Bash(curl -sS -X POST \"https://api.prod.whoop.com/oauth/oauth2/token\" -H \"Origin: http://localhost:5173\" -H \"Content-Type: application/x-www-form-urlencoded\" -d \"grant_type=authorization_code&client_id=spike&client_secret=spike&code=spike&redirect_uri=http://localhost:5173/whoop/callback\" -i)",
+      "Bash(curl -sS -X POST \"https://www.strava.com/oauth/token\" -H \"Origin: http://localhost:5173\" -H \"Content-Type: application/x-www-form-urlencoded\" -d \"client_id=spike&client_secret=spike&code=spike&grant_type=authorization_code\" -i)",
+      "Skill(verify)",
+      "Skill(verify:*)"
+    ]
+  }
+}

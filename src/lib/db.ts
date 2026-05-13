@@ -23,6 +23,7 @@ import type {
   TreatmentSession,
 } from '@/types';
 import type { DeviceConnection } from './devices/types';
+import type { AIAuditLogEntry } from '@/types/audit-log';
 
 export interface ReferenceDataRecord {
   id: string;
@@ -49,6 +50,7 @@ class AlpacaLiveDB extends Dexie {
   treatmentSessions!: Table<TreatmentSession>;
   referenceData!: Table<ReferenceDataRecord>;
   deviceConnections!: Table<DeviceConnection>;
+  aiAuditLog!: Table<AIAuditLogEntry>;
 
   constructor() {
     super('AlpacaLiveDB');
@@ -114,6 +116,27 @@ class AlpacaLiveDB extends Dexie {
         await tx.table('patternSummaries').bulkAdd(oldRecords);
       }
     });
+
+    // Version 5: add aiAuditLog table
+    this.version(5).stores({
+      patient: 'id',
+      chemo: 'id, date, plannedDate, status',
+      blood: 'id, date',
+      daily: 'id, date',
+      wearable: 'id, date',
+      meals: 'id, date',
+      supplements: 'id, date',
+      imaging: 'id, date, type',
+      predictions: null,
+      patternSummaries: 'id, date, targetDate, type',
+      chat: 'id, timestamp',
+      settings: 'id',
+      calendarNotes: 'id, date, type',
+      treatmentSessions: 'id, date, treatmentType, status',
+      referenceData: 'id, type, version',
+      deviceConnections: 'id',
+      aiAuditLog: '++id, timestamp, provider, success',
+    });
   }
 }
 
@@ -142,6 +165,7 @@ class AlpacaLiveDemoDB extends Dexie {
   treatmentSessions!: Table<TreatmentSession>;
   referenceData!: Table<ReferenceDataRecord>;
   deviceConnections!: Table<DeviceConnection>;
+  aiAuditLog!: Table<AIAuditLogEntry>;
 
   constructor() {
     super(DEMO_DB_NAME);
@@ -172,6 +196,27 @@ class AlpacaLiveDemoDB extends Dexie {
       if (oldRecords.length > 0) {
         await tx.table('patternSummaries').bulkAdd(oldRecords);
       }
+    });
+
+    // Version 5: add aiAuditLog table
+    this.version(5).stores({
+      patient: 'id',
+      chemo: 'id, date, plannedDate, status',
+      blood: 'id, date',
+      daily: 'id, date',
+      wearable: 'id, date',
+      meals: 'id, date',
+      supplements: 'id, date',
+      imaging: 'id, date, type',
+      predictions: null,
+      patternSummaries: 'id, date, targetDate, type',
+      chat: 'id, timestamp',
+      settings: 'id',
+      calendarNotes: 'id, date, type',
+      treatmentSessions: 'id, date, treatmentType, status',
+      referenceData: 'id, type, version',
+      deviceConnections: 'id',
+      aiAuditLog: '++id, timestamp, provider, success',
     });
   }
 }
@@ -344,4 +389,10 @@ export async function importData(jsonString: string): Promise<void> {
   if (data.settings) await db.settings.bulkPut(data.settings);
   if (data.treatmentSessions) await db.treatmentSessions.bulkPut(data.treatmentSessions);
   if (data.calendarNotes) await db.calendarNotes.bulkPut(data.calendarNotes);
+}
+
+export async function pruneAuditLog(keepDays = 90): Promise<void> {
+  const cutoff = new Date();
+  cutoff.setDate(cutoff.getDate() - keepDays);
+  await db.aiAuditLog.where('timestamp').below(cutoff).delete();
 }

@@ -12,6 +12,7 @@ import { IntegrationsOptionalBanner } from './IntegrationsOptionalBanner';
 import { AdvancedSection } from './AdvancedSection';
 import { NotificationSettings } from './NotificationSettings';
 import { AIProviderSettings } from './AIProviderSettings';
+import { AuditLogPanel } from './AuditLogPanel';
 import { EducationView } from '@/components/education/EducationView';
 import { LanguageSelector } from '@/components/shared/LanguageSelector';
 import { exportAllData, importData, clearAllData, saveSettings } from '@/lib/db';
@@ -501,6 +502,9 @@ export function SettingsView() {
 
       {/* Feedback & Bug Reports */}
       <FeedbackSection />
+
+      {/* AI Communication Audit Log */}
+      <AuditLogPanel />
 
       {/* PWA install hint */}
       <Card title={t.settings.pwaInstall}>

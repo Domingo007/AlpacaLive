@@ -3,7 +3,7 @@ import { PIISanitizer, IMAGE_PII_INSTRUCTION } from './pii-sanitizer';
 import type { PIIData } from '@/types';
 import { sendToAI, getProviderLabel, type AIProvider, type AIMessage, type AIMessageContent } from './ai-provider';
 
-export type ChatLang = 'pl' | 'en';
+export type ChatLang = 'pl' | 'en' | 'de';
 
 export interface AIConfig {
   apiKey: string;
@@ -42,6 +42,16 @@ const MOCK_RESPONSES: Record<ChatLang, Record<string, string>> = {
     imaging: 'Imaging analysis requires an API key.\n\nOnce you add an API key, I will be able to:\n- Analyze X-ray, CT, PET, MRI images\n- Compare with previous studies\n- Track tumor size changes (RECIST)',
     fallback: 'Thanks for the information! In demo mode I can\'t fully analyze the data. Add an API key in settings to unlock full functionality.\n\nFor now I can help you navigate the app — check the Calendar, Data, Imaging and Settings tabs.',
   },
+  de: {
+    default: 'Hallo! Ich bin das AlpacaLive-Datenanalysesystem. Wie fühlst du dich heute? Erzähl mir von deinem Wohlbefinden — Energie, Schmerz, Übelkeit, Stimmung.',
+    morning: 'Guten Morgen! Wie fühlst du dich nach dem Aufwachen?\n\nErzähl mir von:\n- Energie (1-10)\n- Schmerz (0-10)\n- Übelkeit (0-10)\n- Wie hast du geschlafen?',
+    evening: 'Zeit für eine Abendübersicht. Wie war dein Tag?\n\nErzähl mir von:\n- Energie am Ende des Tages\n- Was hast du gegessen?\n- Hast du deine Ergänzungen genommen?\n- Gesamtstimmung?',
+    chemo: 'Ich verstehe, dass du heute Chemotherapie hattest. Es ist wichtig, dein Wohlbefinden zu überwachen.\n\nErzähl mir:\n- Welche Medikamente wurden gegeben?\n- Wie fühlst du dich jetzt? (Übelkeit, Müdigkeit)\n- Bist du gut hydratisiert?',
+    report: '## Bericht für den Arzt\n\n**Zeitraum:** letzte 7 Tage\n\n**Trends:**\n- Energie: keine Daten (Demo-Modus)\n- Schmerz: keine Daten\n- Gewicht: keine Daten\n\n**Warnungen:** Keine Daten zur Analyse\n\n*Um einen vollständigen Bericht zu erhalten, fügen Sie einen API-Schlüssel in den Einstellungen hinzu und geben Sie Daten über das Tagebuch ein.*',
+    prediction: '**Musteranalyse** erfordert mindestens 7 Tage Tagebuchdaten und 2 Chemotherapiezyklen.\n\nBeginnen Sie mit täglichen Wohlbefindensberichten — sobald genug Daten gesammelt sind, zeige ich dir, wie ein bestimmter Zyklustag normalerweise auf der Grundlage deiner vorherigen Einträge aussieht.',
+    imaging: 'Die Bildgebungsanalyse erfordert einen API-Schlüssel.\n\nSobald Sie einen API-Schlüssel hinzufügen, kann ich:\n- Röntgen-, CT-, PET-, MRT-Bilder analysieren\n- Mit vorherigen Studien vergleichen\n- Tumorgrößenveränderungen nachverfolgen (RECIST)',
+    fallback: 'Danke für die Informationen! Im Demo-Modus kann ich die Daten nicht vollständig analysieren. Fügen Sie einen API-Schlüssel in den Einstellungen hinzu, um die volle Funktionalität freizuschalten.\n\nVorerst kann ich dir bei der Navigation durch die App helfen — schau dir die Registerkarten Kalender, Daten, Bildgebung und Einstellungen an.',
+  },
 };
 
 const MOCK_TRIGGERS: Record<ChatLang, Array<{ keys: string[]; response: string }>> = {
@@ -60,6 +70,14 @@ const MOCK_TRIGGERS: Record<ChatLang, Array<{ keys: string[]; response: string }
     { keys: ['chemo', 'chemotherapy'], response: 'chemo' },
     { keys: ['morning', 'good morning', 'wake up'], response: 'morning' },
     { keys: ['evening', 'end of day', 'good night', 'goodnight'], response: 'evening' },
+  ],
+  de: [
+    { keys: ['bericht', 'arzt', 'doktor'], response: 'report' },
+    { keys: ['muster', 'analyse', 'prognose', 'vorhersage'], response: 'prediction' },
+    { keys: ['bildgebung', 'röntgen', 'ct', 'scan', 'mri', 'pet'], response: 'imaging' },
+    { keys: ['chemo', 'chemotherapie'], response: 'chemo' },
+    { keys: ['morgen', 'guten morgen', 'aufwachen'], response: 'morning' },
+    { keys: ['abend', 'tagesende', 'gute nacht'], response: 'evening' },
   ],
 };
 

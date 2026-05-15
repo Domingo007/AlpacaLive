@@ -668,7 +668,7 @@ export type AppMode = 'ai' | 'notebook';
 
 export type ThemeMode = 'light' | 'dark';
 
-export type AppLanguage = 'pl' | 'en';
+export type AppLanguage = 'pl' | 'en' | 'de';
 
 export interface AppSettings {
   apiKey: string;

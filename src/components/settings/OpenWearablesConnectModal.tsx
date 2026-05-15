@@ -59,6 +59,18 @@ export function OpenWearablesConnectModal({
     close: 'Zamknij',
     error: 'Błąd',
     errorPrefix: 'Nie udało się połączyć',
+  } : lang === 'de' ? {
+    title: 'Geräte verbinden',
+    subtitle: 'Open Wearables unterstützt 7 OAuth-Geräte. Beim Klicken auf „Verbinden" wird die Anmeldeseite des Anbieters in einem neuen Tab geöffnet.',
+    connect: 'Verbinden',
+    connecting: 'Verbindung…',
+    connected: 'Verbunden',
+    disconnect: 'Trennen',
+    notConfigured: 'Open Wearables ist nicht konfiguriert. Geben Sie URL + API-Schlüssel im Abschnitt "Open Wearables (selbst gehostet)" oben ein.',
+    nativeNote: 'Apple Health, Samsung Health und Google Health Connect erfordern eine mobile App und sind von einer PWA aus nicht erreichbar.',
+    close: 'Schließen',
+    error: 'Fehler',
+    errorPrefix: 'Verbindung fehlgeschlagen',
   } : {
     title: 'Connect devices',
     subtitle: 'Open Wearables supports 7 OAuth devices. Clicking "Connect" opens the provider login in a new tab.',

@@ -118,6 +118,8 @@ export function SupplementTracker() {
 
   const evidenceLabel = lang === 'pl'
     ? { strong: 'Silne dowody', moderate: 'Umiarkowane', preclinical: 'Przedkliniczne', CONTRAINDICATED: 'PRZECIWWSKAZANE', unknown: 'Brak danych' }
+    : lang === 'de'
+    ? { strong: 'Starke Evidenz', moderate: 'Mäßig', preclinical: 'Präklinisch', CONTRAINDICATED: 'KONTRAINDIZIERT', unknown: 'Keine Daten' }
     : { strong: 'Strong evidence', moderate: 'Moderate', preclinical: 'Preclinical', CONTRAINDICATED: 'CONTRAINDICATED', unknown: 'No data' };
 
   return (
@@ -150,7 +152,7 @@ export function SupplementTracker() {
                   <button
                     onClick={() => setExpandedEvidence(isExpanded ? null : i)}
                     className={`flex items-center gap-0.5 px-1.5 py-0.5 rounded text-[9px] font-medium shrink-0 ${evStyle?.bg} ${evStyle?.text}`}
-                    title={lang === 'pl' ? 'Pokaż dowody' : 'Show evidence'}
+                    title={lang === 'pl' ? 'Pokaż dowody' : lang === 'de' ? 'Evidenz anzeigen' : 'Show evidence'}
                   >
                     <Icon name={evStyle?.icon || 'info'} size={12} />
                     {evidence.evidenceLevel === 'CONTRAINDICATED' ? '!' : ''}
@@ -177,12 +179,14 @@ export function SupplementTracker() {
                   )}
                   {evidence.sources && evidence.sources.length > 0 && (
                     <div className="mt-1.5 text-text-tertiary text-[9px]">
-                      {lang === 'pl' ? 'Źródła' : 'Sources'}: {evidence.sources.join(', ')}
+                      {lang === 'pl' ? 'Źródła' : lang === 'de' ? 'Quellen' : 'Sources'}: {evidence.sources.join(', ')}
                     </div>
                   )}
                   <div className="mt-2 pt-1.5 border-t border-black/5 text-[9px] text-text-tertiary italic">
                     {lang === 'pl'
                       ? 'Informacje z opublikowanych badań. NIE stanowią porady medycznej ani rekomendacji. Decyzję o stosowaniu podejmij z lekarzem.'
+                      : lang === 'de'
+                      ? 'Informationen aus veröffentlichten Studien. KEINE medizinische Beratung oder Empfehlung. Besprechen Sie die Verwendung mit Ihrem Arzt.'
                       : 'Information from published studies. NOT medical advice or a recommendation. Discuss use with your doctor.'}
                   </div>
                 </div>
@@ -224,7 +228,7 @@ export function SupplementTracker() {
             </div>
             <input type="number" inputMode="decimal" value={newDoseValue}
               onChange={e => setNewDoseValue(e.target.value)}
-              placeholder={lang === 'pl' ? 'Dawka' : 'Dose'}
+              placeholder={lang === 'pl' ? 'Dawka' : lang === 'de' ? 'Dosis' : 'Dose'}
               className="w-20 rounded-l border border-border px-2 py-1.5 text-[11px] bg-bg-primary" />
             <select value={newDoseUnit} onChange={e => setNewDoseUnit(e.target.value)}
               className="w-16 rounded-r border border-l-0 border-border px-1 py-1.5 text-[11px] bg-bg-primary text-text-secondary">

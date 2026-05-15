@@ -16,7 +16,7 @@ export function MessageBubble({ message, providerInfo }: MessageBubbleProps) {
   const hasImages = Array.isArray(message.content) &&
     message.content.some(c => c.type === 'image');
 
-  const locale = lang === 'pl' ? 'pl-PL' : 'en-US';
+  const locale = lang === 'pl' ? 'pl-PL' : lang === 'de' ? 'de-DE' : 'en-US';
 
   return (
     <div className={`flex ${isUser ? 'justify-end' : 'justify-start'}`} style={{ animation: 'bubble-enter 0.2s ease-out' }}>

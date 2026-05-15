@@ -21,15 +21,15 @@ const IRAE_TYPES = [
 ];
 
 const IRAE_LABELS: Record<string, Record<string, string>> = {
-  skin: { pl: 'Skóra', en: 'Skin' },
-  gi: { pl: 'Jelita', en: 'GI' },
-  hepatic: { pl: 'Wątroba', en: 'Liver' },
-  endocrine: { pl: 'Endokrynne', en: 'Endocrine' },
-  pulmonary: { pl: 'Płuca', en: 'Lungs' },
-  renal: { pl: 'Nerki', en: 'Renal' },
-  neurologic: { pl: 'Neurolog.', en: 'Neuro' },
-  cardiac: { pl: 'Serce', en: 'Cardiac' },
-  other: { pl: 'Inne', en: 'Other' },
+  skin: { pl: 'Skóra', en: 'Skin', de: 'Haut' },
+  gi: { pl: 'Jelita', en: 'GI', de: 'GI' },
+  hepatic: { pl: 'Wątroba', en: 'Liver', de: 'Leber' },
+  endocrine: { pl: 'Endokrynne', en: 'Endocrine', de: 'Endokrin' },
+  pulmonary: { pl: 'Płuca', en: 'Lungs', de: 'Lunge' },
+  renal: { pl: 'Nerki', en: 'Renal', de: 'Niere' },
+  neurologic: { pl: 'Neurolog.', en: 'Neuro', de: 'Neuro' },
+  cardiac: { pl: 'Serce', en: 'Cardiac', de: 'Herz' },
+  other: { pl: 'Inne', en: 'Other', de: 'Sonstige' },
 };
 
 export function ImmunotherapyEntryForm() {
@@ -112,6 +112,22 @@ export function ImmunotherapyEntryForm() {
     save: 'Zapisz infuzję',
     savedMsg: 'Zapisano!',
     preLabsNote: 'Pamiętaj o kontroli TSH, ALT/AST przed infuzją',
+  } : lang === 'de' ? {
+    title: 'Immuntherapie-Infusion',
+    drug: 'Medikament',
+    drugPlaceholder: 'z. B. Pembrolizumab',
+    infusionNumber: 'Infusionsnummer',
+    iraeSection: 'Immunbedingte unerwünschte Ereignisse (irAE)',
+    iraeAdd: 'irAE hinzufügen',
+    iraeType: 'Organsystem',
+    iraeGrade: 'Grad',
+    iraeDescription: 'Symptombeschreibung',
+    iraeDescPlaceholder: 'z. B. Ausschlag an der Brust',
+    addIrAE: 'Hinzufügen',
+    noIrAE: 'Keine irAE in diesem Zyklus',
+    save: 'Infusion speichern',
+    savedMsg: 'Gespeichert!',
+    preLabsNote: 'Denken Sie an die Kontrolle von TSH, ALT/AST vor der Infusion',
   } : {
     title: 'Immunotherapy infusion',
     drug: 'Drug',

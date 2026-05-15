@@ -344,7 +344,7 @@ function ChemoDateImport() {
 
   const year = viewMonth.getFullYear();
   const month = viewMonth.getMonth();
-  const locale = lang === 'pl' ? 'pl-PL' : 'en-US';
+  const locale = lang === 'pl' ? 'pl-PL' : lang === 'de' ? 'de-DE' : 'en-US';
   const monthName = viewMonth.toLocaleDateString(locale, { month: 'long', year: 'numeric' });
 
   const firstDay = new Date(year, month, 1);

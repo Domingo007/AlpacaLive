@@ -54,6 +54,26 @@ export function DailyProfileView() {
     day: 'Dzień',
     phase: 'Faza',
     active: 'Aktywne minuty',
+  } : lang === 'de' ? {
+    title: 'Ihr Tagesprofil',
+    devices: 'Gerätedaten',
+    feelings: 'Ihre Empfindungen',
+    history: 'Ihre vorherigen Zyklen',
+    noData: 'Keine Daten für diesen Tag',
+    sleep: 'Schlaf', rhr: 'Ruhe-HF', hrv: 'HRV', spo2: 'SpO2',
+    bp: 'Blutdruck', weight: 'Gewicht', steps: 'Schritte', temp: 'Temperatur',
+    energy: 'Energie', pain: 'Schmerz', nausea: 'Übelkeit', mood: 'Stimmung', appetite: 'Appetit',
+    yourAvg: 'Ihr Durchschnitt', basedOn: 'basierend auf',
+    howAreYou: 'Wie fühlen Sie sich heute?', save: 'Speichern und Profil anzeigen',
+    connectDevice: 'Verbinden Sie ein Gerät (Uhr, Waage), um das vollständige Profil zu sehen.',
+    disclaimer: 'Profil basierend auf Ihren Daten. Keine Gesundheitsbewertung. Vergleich nur mit Ihren eigenen Daten. Konsultieren Sie Ihren Arzt.',
+    dataSources: 'Datenquellen',
+    alerts: 'Hinweise, die ärztlichen Kontakt erfordern',
+    neuropathy: 'Neuropathie',
+    cycle: 'Zyklus',
+    day: 'Tag',
+    phase: 'Phase',
+    active: 'Aktive Minuten',
   } : {
     title: 'Your daily profile',
     devices: 'Device data',
@@ -96,13 +116,13 @@ export function DailyProfileView() {
   }
 
   if (loading || !profile) {
-    return <div className="text-center py-12 text-text-secondary text-sm">{lang === 'pl' ? 'Ładowanie...' : 'Loading...'}</div>;
+    return <div className="text-center py-12 text-text-secondary text-sm">{lang === 'pl' ? 'Ładowanie...' : lang === 'de' ? 'Wird geladen...' : 'Loading...'}</div>;
   }
 
   const today = new Date().toISOString().split('T')[0];
   const isToday = date === today;
   const ctx = profile.treatmentContext;
-  const locale = lang === 'pl' ? 'pl-PL' : 'en-US';
+  const locale = lang === 'pl' ? 'pl-PL' : lang === 'de' ? 'de-DE' : 'en-US';
   const dateLabel = new Date(date + 'T12:00').toLocaleDateString(locale, { weekday: 'long', day: 'numeric', month: 'long' });
 
   return (
@@ -179,7 +199,7 @@ export function DailyProfileView() {
           <div className="space-y-3">
             {profile.deviceData.sleep && (
               <MetricBar label={l.sleep} icon="bedtime" value={`${profile.deviceData.sleep.hours.toFixed(1)}h`}
-                detail={[profile.deviceData.sleep.deep ? `${lang === 'pl' ? 'Głęboki' : 'Deep'}: ${profile.deviceData.sleep.deep.toFixed(1)}h` : null, profile.deviceData.sleep.rem ? `REM: ${profile.deviceData.sleep.rem.toFixed(1)}h` : null].filter(Boolean).join(' · ')}
+                detail={[profile.deviceData.sleep.deep ? `${lang === 'pl' ? 'Głęboki' : lang === 'de' ? 'Tief' : 'Deep'}: ${profile.deviceData.sleep.deep.toFixed(1)}h` : null, profile.deviceData.sleep.rem ? `REM: ${profile.deviceData.sleep.rem.toFixed(1)}h` : null].filter(Boolean).join(' · ')}
                 current={profile.deviceData.sleep.hours} baseline={profile.baseline.sleepHours} max={10} baselineLabel={l.yourAvg} />
             )}
             {profile.deviceData.rhr && (
@@ -231,7 +251,7 @@ export function DailyProfileView() {
 
       {/* AI Clinical Findings */}
       {profile.aiExtracted && profile.aiExtracted.clinicalFindings.length > 0 && (
-        <Card title={lang === 'pl' ? 'Objawy wyciągnięte z rozmowy' : 'Symptoms extracted from conversation'}>
+        <Card title={lang === 'pl' ? 'Objawy wyciągnięte z rozmowy' : lang === 'de' ? 'Symptome aus dem Gespräch' : 'Symptoms extracted from conversation'}>
           <div className="space-y-2">
             {profile.aiExtracted.clinicalFindings.map((f, i) => (
               <div key={i} className="bg-lavender-50 rounded-lg p-2.5 space-y-1">
@@ -239,12 +259,12 @@ export function DailyProfileView() {
                   <span className="text-alert-warning mt-0.5">◆</span>
                   <div className="flex-1">
                     <div className="text-xs font-semibold text-text-primary">
-                      {f.finding.replace(/_/g, ' ')}{f.grade ? ` — ${lang === 'pl' ? 'stopień' : 'grade'} ${f.grade}` : ''}
+                      {f.finding.replace(/_/g, ' ')}{f.grade ? ` — ${lang === 'pl' ? 'stopień' : lang === 'de' ? 'Grad' : 'grade'} ${f.grade}` : ''}
                       {f.grading ? ` (${f.grading})` : ''}
                     </div>
                     <div className="text-[11px] text-text-secondary">{f.details}</div>
                     {f.relatedDrug && (
-                      <div className="text-[10px] text-text-tertiary">{lang === 'pl' ? 'Powiązane z' : 'Related to'}: {f.relatedDrug}</div>
+                      <div className="text-[10px] text-text-tertiary">{lang === 'pl' ? 'Powiązane z' : lang === 'de' ? 'Verbunden mit' : 'Related to'}: {f.relatedDrug}</div>
                     )}
                     <div className="text-[10px] text-lavender-600 italic mt-0.5">"{f.basis}"</div>
                     {f.actionSuggested && (
@@ -266,6 +286,8 @@ export function DailyProfileView() {
             <p className="text-[9px] text-text-tertiary italic">
               {lang === 'pl'
                 ? 'Objawy wyciągnięte przez AI z rozmowy. Nie stanowią diagnozy. Omów z lekarzem.'
+                : lang === 'de'
+                ? 'Symptome, die von der KI aus dem Gespräch extrahiert wurden. Keine Diagnose. Mit Ihrem Arzt besprechen.'
                 : 'Symptoms extracted by AI from conversation. Not a diagnosis. Discuss with your doctor.'}
             </p>
           </div>
@@ -279,6 +301,8 @@ export function DailyProfileView() {
           <p className="text-[11px] text-text-secondary leading-relaxed">
             {lang === 'pl'
               ? 'Porozmawiaj z agentem AI aby uzyskać pełniejszy profil dnia. AI wyciąga z rozmowy informacje których slidery nie łapią — rodzaj bólu, objawy uboczne, stan emocjonalny.'
+              : lang === 'de'
+              ? 'Sprechen Sie mit dem KI-Agenten für ein reicheres Tagesprofil. Die KI extrahiert aus dem Gespräch Informationen, die Schieberegler verpassen — Schmerzart, Nebenwirkungen, emotionalen Zustand.'
               : 'Talk to the AI agent for a richer daily profile. AI extracts information from conversation that sliders miss — pain type, side effects, emotional state.'}
           </p>
         </div>
@@ -298,7 +322,7 @@ export function DailyProfileView() {
                       {profile.historicalContext.sameDayEntries.map(e => (
                         <th key={e.cycleNumber} className="text-center py-1 px-2">{l.cycle} {e.cycleNumber}</th>
                       ))}
-                      {profile.patientReported && <th className="text-center py-1 px-2 text-accent-dark font-bold">{isToday ? (lang === 'pl' ? 'Dziś' : 'Today') : date.slice(5)}</th>}
+                      {profile.patientReported && <th className="text-center py-1 px-2 text-accent-dark font-bold">{isToday ? (lang === 'pl' ? 'Dziś' : lang === 'de' ? 'Heute' : 'Today') : date.slice(5)}</th>}
                     </tr>
                   </thead>
                   <tbody>

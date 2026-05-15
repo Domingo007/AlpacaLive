@@ -40,13 +40,13 @@ export function NotebookView({ activeTab: tab, onTabChange: setTab }: NotebookVi
       result.push({ id: 'chemo', icon: 'vaccines', label: t.notebook.chemo });
     }
     if (activeTreatments.has('radiotherapy')) {
-      result.push({ id: 'radiotherapy', icon: 'radiology', label: lang === 'pl' ? 'RT' : 'RT' });
+      result.push({ id: 'radiotherapy', icon: 'radiology', label: lang === 'pl' ? 'RT' : lang === 'de' ? 'RT' : 'RT' });
     }
     if (activeTreatments.has('immunotherapy')) {
-      result.push({ id: 'immunotherapy', icon: 'shield', label: lang === 'pl' ? 'Immuno' : 'Immuno' });
+      result.push({ id: 'immunotherapy', icon: 'shield', label: lang === 'pl' ? 'Immuno' : lang === 'de' ? 'Immun' : 'Immuno' });
     }
     if (activeTreatments.has('hormonal_therapy')) {
-      result.push({ id: 'hormonal', icon: 'medication', label: lang === 'pl' ? 'Hormono' : 'Hormonal' });
+      result.push({ id: 'hormonal', icon: 'medication', label: lang === 'pl' ? 'Hormono' : lang === 'de' ? 'Hormon' : 'Hormonal' });
     }
 
     // Always show at end

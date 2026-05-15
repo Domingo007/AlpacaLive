@@ -23,6 +23,15 @@ export function OpenWearablesStatus() {
     manage: 'Zarządzaj',
     syncedDays: (n: number) => `Zsynchronizowano ${n} dni`,
     syncError: 'Błąd synchronizacji',
+  } : lang === 'de' ? {
+    title: 'Open Wearables',
+    devicesConnected: (n: number) => n === 1 ? '1 Gerät verbunden' : `${n} Geräte verbunden`,
+    emptyState: 'Verbinden Sie ein Wearable, um Ihr Tagesprofil zu bereichern. Open Wearables unterstützt 7 Marken.',
+    sync: 'Synchronisieren',
+    syncing: 'Synchronisierung…',
+    manage: 'Verwalten',
+    syncedDays: (n: number) => `${n} Tage synchronisiert`,
+    syncError: 'Synchronisierung fehlgeschlagen',
   } : {
     title: 'Open Wearables',
     devicesConnected: (n: number) => n === 1 ? '1 device connected' : `${n} devices connected`,

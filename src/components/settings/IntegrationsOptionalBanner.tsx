@@ -13,6 +13,9 @@ export function IntegrationsOptionalBanner() {
   const l = lang === 'pl' ? {
     title: 'Wszystko poniżej jest opcjonalne',
     body: 'AlpacaLive działa w pełni bez podłączonych urządzeń. Najprostsza ścieżka jeśli masz wearable: Oura (wklej token, gotowe). Withings i Strava wymagają jednorazowej rejestracji aplikacji u dostawcy. Brak urządzenia? Wpisuj dane ręcznie w dzienniku albo importuj CSV.',
+  } : lang === 'de' ? {
+    title: 'Alles unten ist optional',
+    body: 'AlpacaLive funktioniert vollständig ohne angeschlossene Geräte. Einfachster Weg, wenn Sie ein Wearable haben: Oura (Token einfügen, fertig). Withings und Strava benötigen eine einmalige App-Registrierung beim Anbieter. Kein Wearable? Daten manuell im Tagebuch eingeben oder eine CSV importieren.',
   } : {
     title: 'Everything below is optional',
     body: 'AlpacaLive works fully without any device connected. Simplest path if you own a wearable: Oura (paste a token, done). Withings and Strava need a one-time app registration at the provider. No wearable? Enter data manually in the journal or import a CSV.',

@@ -57,6 +57,16 @@ export function RadiotherapyEntryForm() {
     save: 'Zapisz sesję RT',
     savedMsg: 'Zapisano!',
     cumulativeDose: 'Dawka kumulacyjna',
+  } : lang === 'de' ? {
+    title: 'Strahlentherapie-Sitzung',
+    fraction: 'Fraktionsnummer',
+    dose: 'Dosis (Gy)',
+    skinToxicity: 'Hauttoxizität (CTCAE)',
+    fatigue: 'Müdigkeit',
+    pain: 'Schmerz im RT-Feld',
+    save: 'RT-Sitzung speichern',
+    savedMsg: 'Gespeichert!',
+    cumulativeDose: 'Kumulative Dosis',
   } : {
     title: 'Radiotherapy session',
     fraction: 'Fraction number',

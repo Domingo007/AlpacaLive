@@ -660,10 +660,37 @@ export const en: typeof pl = {
     educationDesc: 'Glossary, phase guides, FAQ',
     educationFullDesc: 'Educational materials tailored to your condition',
     advanced: 'Advanced — self-hosted',
+    advancedSubtitle: 'Open Wearables (own Docker server). Most users won\'t need this.',
+    dataAndBackup: 'Your data & backup',
+    dataLocalInfo: 'Data stored in this phone\'s browser. Not sent to any server. Clearing browser data = data loss.',
+    confirmRestore: 'Restore from last backup? Current data will be replaced.',
+    chooseFolder: 'Choose backup folder',
+    chooseFolderDesc: 'Choose a folder on your phone (e.g., in Documents) where the app will save backups. Files will be safe even after clearing browser data.',
+    iphoneBackupDesc: 'Your browser doesn\'t support auto-backup to folder. Use the button below to download a data copy. The file will be saved to Files → Downloads.',
   },
 
   settingsReset: {
     confirm1: 'Are you sure you want to delete ALL your data?',
     confirm2: 'This is PERMANENT and cannot be undone. Please confirm again.',
+  },
+
+  // ==================== EDUCATION VIEW ====================
+  education: {
+    title: 'Patient Education',
+    back: 'Back',
+    close: 'Close',
+    noDisease: 'No disease profile. Complete your diagnosis in settings.',
+    glossary: 'Medical Glossary',
+    glossaryDesc: 'Explanations of medical terms',
+    phases: 'Treatment Phase Guide',
+    phasesDesc: 'What to do in each phase',
+    whenToCall: 'When to Call Your Doctor',
+    whenToCallDesc: 'Symptoms requiring attention',
+    faq: 'Frequently Asked Questions',
+    faqDesc: 'Answers to common questions',
+    sideEffects: 'Managing Side Effects',
+    sideEffectsDesc: 'Practical daily tips',
+    disclaimer: 'Educational materials based on published guidelines. Do not replace medical advice.',
+    diseaseProfile: 'Disease profile',
   },
 };

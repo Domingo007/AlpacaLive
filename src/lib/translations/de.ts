@@ -660,10 +660,37 @@ export const de: typeof pl = {
     educationDesc: 'Glossar, Phasenführer, FAQ',
     educationFullDesc: 'Bildungsmaterialien, die auf Ihre Krankheit zugeschnitten sind',
     advanced: 'Erweitert — selbst gehostet',
+    advancedSubtitle: 'Open Wearables (eigener Docker-Server). Die meisten Nutzer benötigen dies nicht.',
+    dataAndBackup: 'Ihre Daten & Backup',
+    dataLocalInfo: 'Daten werden im Browser dieses Telefons gespeichert. Sie werden nicht an einen Server gesendet. Browserdaten löschen = Datenverlust.',
+    confirmRestore: 'Aus dem letzten Backup wiederherstellen? Aktuelle Daten werden ersetzt.',
+    chooseFolder: 'Backup-Ordner wählen',
+    chooseFolderDesc: 'Wählen Sie einen Ordner auf Ihrem Telefon (z. B. in Dokumenten), in dem die App Backups speichern wird. Dateien sind auch nach dem Löschen der Browserdaten sicher.',
+    iphoneBackupDesc: 'Ihr Browser unterstützt kein Auto-Backup in einen Ordner. Verwenden Sie die Schaltfläche unten, um eine Datenkopie herunterzuladen. Die Datei wird in Dateien → Downloads gespeichert.',
   },
 
   settingsReset: {
     confirm1: 'Sind Sie sicher, dass Sie ALLE Ihre Daten löschen möchten?',
     confirm2: 'Dies ist PERMANENT und kann nicht rückgängig gemacht werden. Bitte bestätigen Sie erneut.',
+  },
+
+  // ==================== EDUCATION VIEW ====================
+  education: {
+    title: 'Patientenedukation',
+    back: 'Zurück',
+    close: 'Schließen',
+    noDisease: 'Kein Krankheitsprofil. Vervollständigen Sie Ihre Diagnose in den Einstellungen.',
+    glossary: 'Medizinisches Glossar',
+    glossaryDesc: 'Erklärungen medizinischer Begriffe',
+    phases: 'Behandlungsphasen-Leitfaden',
+    phasesDesc: 'Was in jeder Phase zu tun ist',
+    whenToCall: 'Wann den Arzt anrufen',
+    whenToCallDesc: 'Symptome, die Aufmerksamkeit erfordern',
+    faq: 'Häufig gestellte Fragen',
+    faqDesc: 'Antworten auf häufige Fragen',
+    sideEffects: 'Umgang mit Nebenwirkungen',
+    sideEffectsDesc: 'Praktische tägliche Tipps',
+    disclaimer: 'Bildungsmaterialien basieren auf veröffentlichten Richtlinien. Sie ersetzen keine ärztliche Beratung.',
+    diseaseProfile: 'Krankheitsprofil',
   },
 };

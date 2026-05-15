@@ -658,10 +658,37 @@ export const pl = {
     educationDesc: 'Słownik, poradniki faz, FAQ',
     educationFullDesc: 'Materiały edukacyjne dopasowane do Twojej choroby',
     advanced: 'Zaawansowane — self-hosted',
+    advancedSubtitle: 'Open Wearables (własny serwer Docker). Większość użytkowników tego nie potrzebuje.',
+    dataAndBackup: 'Twoje dane i kopia zapasowa',
+    dataLocalInfo: 'Dane zapisane w przeglądarce tego telefonu. Nie są wysyłane na serwer. Czyszczenie danych przeglądarki = utrata danych.',
+    confirmRestore: 'Przywrócić dane z ostatniego backupu? Obecne dane zostaną zastąpione.',
+    chooseFolder: 'Wybierz folder backupu',
+    chooseFolderDesc: 'Wybierz folder na telefonie (np. w Dokumentach), gdzie aplikacja będzie zapisywać kopie zapasowe. Pliki będą bezpieczne nawet po czyszczeniu przeglądarki.',
+    iphoneBackupDesc: 'Twoja przeglądarka nie obsługuje auto-backupu do folderu. Użyj przycisku poniżej, aby pobrać kopię danych. Plik zostanie zapisany w Plikach → Pobrane.',
   },
 
   settingsReset: {
     confirm1: 'Czy na pewno chcesz usunąć WSZYSTKIE swoje dane?',
     confirm2: 'To jest TRWAŁE i nie można tego cofnąć. Proszę potwierdź jeszcze raz.',
+  },
+
+  // ==================== EDUCATION VIEW ====================
+  education: {
+    title: 'Wiedza pacjenta',
+    back: 'Wróć',
+    close: 'Zamknij',
+    noDisease: 'Brak profilu choroby. Uzupełnij diagnozę w ustawieniach.',
+    glossary: 'Słownik terminów',
+    glossaryDesc: 'Wyjaśnienia medycznych pojęć',
+    phases: 'Poradnik faz leczenia',
+    phasesDesc: 'Co robić w każdej fazie',
+    whenToCall: 'Kiedy dzwonić do lekarza',
+    whenToCallDesc: 'Objawy wymagające kontaktu',
+    faq: 'Najczęstsze pytania',
+    faqDesc: 'Odpowiedzi na popularne pytania',
+    sideEffects: 'Radzenie z efektami ubocznymi',
+    sideEffectsDesc: 'Praktyczne porady na co dzień',
+    disclaimer: 'Materiały edukacyjne oparte na opublikowanych wytycznych. Nie zastępują porady lekarza.',
+    diseaseProfile: 'Profil choroby',
   },
 };

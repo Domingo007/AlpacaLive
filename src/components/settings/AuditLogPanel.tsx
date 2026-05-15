@@ -21,6 +21,59 @@ export function AuditLogPanel() {
   const [showAll, setShowAll] = useState(false);
   const [loading, setLoading] = useState(true);
 
+  const labels = lang === 'pl' ? {
+    title: '🔒 Historia komunikacji z AI',
+    noData: 'Brak zapisanych interakcji',
+    confirm: 'Wyczyścić historię komunikacji z AI? Tej operacji nie można cofnąć.',
+    total: 'Łącznie:',
+    queries: 'zapytań',
+    last30Days: 'Ostatnie 30 dni:',
+    avgTokens: 'Średnio tokenów:',
+    loading: 'Ładowanie...',
+    tokens: 'Tokeny:',
+    removed: 'Usunięto:',
+    psychMeds: 'leki psych.',
+    drugs: 'leków',
+    showLess: 'Pokaż mniej',
+    showMore: 'Pokaż więcej',
+    clear: 'Wyczyść',
+    locale: 'pl-PL',
+  } : lang === 'de' ? {
+    title: '🔒 KI-Kommunikationsverlauf',
+    noData: 'Keine gespeicherten Interaktionen',
+    confirm: 'KI-Kommunikationsverlauf löschen? Diese Aktion kann nicht rückgängig gemacht werden.',
+    total: 'Insgesamt:',
+    queries: 'Anfragen',
+    last30Days: 'Letzte 30 Tage:',
+    avgTokens: 'Durchschn. Tokens:',
+    loading: 'Wird geladen...',
+    tokens: 'Tokens:',
+    removed: 'Entfernt:',
+    psychMeds: 'Psych. Medikamente',
+    drugs: 'Medikamente',
+    showLess: 'Weniger anzeigen',
+    showMore: 'Mehr anzeigen',
+    clear: 'Löschen',
+    locale: 'de-DE',
+  } : {
+    title: '🔒 AI Communication History',
+    noData: 'No saved interactions',
+    confirm: 'Clear AI communication history? This action cannot be undone.',
+    total: 'Total:',
+    queries: 'queries',
+    last30Days: 'Last 30 days:',
+    avgTokens: 'Avg tokens:',
+    loading: 'Loading...',
+    tokens: 'Tokens:',
+    removed: 'Removed:',
+    psychMeds: 'psych meds',
+    drugs: 'drugs',
+    showLess: 'Show less',
+    showMore: 'Show more',
+    clear: 'Clear',
+    locale: 'en-US',
+  };
+
   useEffect(() => {
     setLoading(true);
     Promise.all([getAuditLog(showAll ? 200 : 10), getAuditStats()])
@@ -32,36 +85,29 @@ export function AuditLogPanel() {
   }, [showAll]);
 
   const handleClear = async () => {
-    const confirmMsg = lang === 'pl'
-      ? 'Wyczyścić historię komunikacji z AI? Tej operacji nie można cofnąć.'
-      : 'Clear AI communication history? This action cannot be undone.';
-
-    if (!window.confirm(confirmMsg)) return;
+    if (!window.confirm(labels.confirm)) return;
 
     await db.aiAuditLog.clear();
     setEntries([]);
     setStats(prev => prev ? { ...prev, totalCalls: 0, last30Days: 0, byProvider: {} } : null);
   };
 
-  const title = lang === 'pl' ? '🔒 Historia komunikacji z AI' : '🔒 AI Communication History';
-  const noDataMsg = lang === 'pl' ? 'Brak zapisanych interakcji' : 'No saved interactions';
-
   return (
-    <Card title={title}>
+    <Card title={labels.title}>
       <div className="space-y-3 text-xs">
         {/* Stats summary */}
         {stats && (
           <div className="bg-white/5 rounded-lg px-3 py-2 space-y-1">
             <div className="flex justify-between">
-              <span className="text-text-secondary">{lang === 'pl' ? 'Łącznie:' : 'Total:'}</span>
-              <span className="font-medium">{stats.totalCalls} {lang === 'pl' ? 'zapytań' : 'queries'}</span>
+              <span className="text-text-secondary">{labels.total}</span>
+              <span className="font-medium">{stats.totalCalls} {labels.queries}</span>
             </div>
             <div className="flex justify-between">
-              <span className="text-text-secondary">{lang === 'pl' ? 'Ostatnie 30 dni:' : 'Last 30 days:'}</span>
+              <span className="text-text-secondary">{labels.last30Days}</span>
               <span className="font-medium">{stats.last30Days}</span>
             </div>
             <div className="flex justify-between">
-              <span className="text-text-secondary">{lang === 'pl' ? 'Średnio tokenów:' : 'Avg tokens:'}</span>
+              <span className="text-text-secondary">{labels.avgTokens}</span>
               <span className="font-medium">~{stats.avgInputTokens}</span>
             </div>
 
@@ -80,9 +126,9 @@ export function AuditLogPanel() {
 
         {/* Entries list */}
         {loading ? (
-          <div className="text-text-tertiary text-center py-4">{lang === 'pl' ? 'Ładowanie...' : 'Loading...'}</div>
+          <div className="text-text-tertiary text-center py-4">{labels.loading}</div>
         ) : entries.length === 0 ? (
-          <div className="text-text-tertiary text-center py-4">{noDataMsg}</div>
+          <div className="text-text-tertiary text-center py-4">{labels.noData}</div>
         ) : (
           <div className="space-y-2 max-h-96 overflow-y-auto">
             {entries.map(entry => (
@@ -91,7 +137,7 @@ export function AuditLogPanel() {
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-2">
                     <span className="text-text-secondary">
-                      {new Date(entry.timestamp).toLocaleString(lang === 'pl' ? 'pl-PL' : 'en-US', {
+                      {new Date(entry.timestamp).toLocaleString(labels.locale, {
                         dateStyle: 'short',
                         timeStyle: 'short',
                       })}
@@ -107,13 +153,13 @@ export function AuditLogPanel() {
                 <div className="text-[10px] text-text-secondary space-y-0.5">
                   <div>{entry.model}</div>
                   <div>
-                    {lang === 'pl' ? 'Tokeny:' : 'Tokens:'} ~{entry.inputTokensEstimate} (in) / ~{entry.outputTokensEstimate} (out)
+                    {labels.tokens} ~{entry.inputTokensEstimate} (in) / ~{entry.outputTokensEstimate} (out)
                   </div>
 
                   {/* PII removed */}
                   {entry.piiFieldsRemoved.length > 0 && (
                     <div>
-                      {lang === 'pl' ? 'Usunięto:' : 'Removed:'}{' '}
+                      {labels.removed}{' '}
                       {entry.piiFieldsRemoved
                         .map(f => PII_FIELD_LABELS[f] ?? f)
                         .join(', ')}
@@ -124,12 +170,12 @@ export function AuditLogPanel() {
                   <div className="flex gap-2 flex-wrap text-[9px]">
                     {entry.psychiatricAbstracted && (
                       <span className="bg-white/10 px-1 py-0.5 rounded">
-                        {lang === 'pl' ? 'leki psych.' : 'psych meds'}
+                        {labels.psychMeds}
                       </span>
                     )}
                     {entry.drugNamesResolved > 0 && (
                       <span className="bg-white/10 px-1 py-0.5 rounded">
-                        {entry.drugNamesResolved} {lang === 'pl' ? 'leków' : 'drugs'}
+                        {entry.drugNamesResolved} {labels.drugs}
                       </span>
                     )}
                     <span className="bg-white/10 px-1 py-0.5 rounded">
@@ -149,9 +195,7 @@ export function AuditLogPanel() {
               onClick={() => setShowAll(!showAll)}
               className="flex-1 text-[11px] px-2 py-1.5 rounded-lg border border-border hover:bg-white/5 transition-colors"
             >
-              {lang === 'pl'
-                ? (showAll ? 'Pokaż mniej' : 'Pokaż więcej')
-                : (showAll ? 'Show less' : 'Show more')}
+              {showAll ? labels.showLess : labels.showMore}
             </button>
           )}
           <button
@@ -163,7 +207,7 @@ export function AuditLogPanel() {
                 : 'border border-alert-critical text-alert-critical hover:bg-alert-critical/10'
             }`}
           >
-            {lang === 'pl' ? 'Wyczyść' : 'Clear'}
+            {labels.clear}
           </button>
         </div>
       </div>

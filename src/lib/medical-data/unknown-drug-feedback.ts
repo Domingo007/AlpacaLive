@@ -5,14 +5,17 @@ export type FeedbackContext = 'chat' | 'form';
 export type FormType = 'chemo' | 'hormonal' | 'immunotherapy';
 
 export interface IssueMetadata {
-  language: 'pl' | 'en';
+  language: 'pl' | 'en' | 'de';
   context: FeedbackContext;
   formType?: FormType;
   aiProvider?: string;
 }
 
 export function buildUnknownDrugIssueUrl(drugs: string[], metadata: IssueMetadata): string {
-  const titlePrefix = metadata.language === 'pl' ? 'Brakujący lek' : 'Missing drug';
+  const titlePrefix =
+    metadata.language === 'pl' ? 'Brakujący lek'
+    : metadata.language === 'de' ? 'Fehlendes Medikament'
+    : 'Missing drug';
   const title = `[${titlePrefix}] ${drugs.join(', ')}`;
 
   const drugList = drugs.map(d => `- ${d}`).join('\n');
@@ -21,7 +24,9 @@ export function buildUnknownDrugIssueUrl(drugs: string[], metadata: IssueMetadat
     : `User entered this drug in form (${metadata.formType ?? 'unknown'}) but it was not recognized.`;
 
   const bodyLines = [
-    metadata.language === 'pl' ? '## Brakujące leki' : '## Missing drugs',
+    metadata.language === 'pl' ? '## Brakujące leki'
+      : metadata.language === 'de' ? '## Fehlende Medikamente'
+      : '## Missing drugs',
     '',
     drugList,
     '',

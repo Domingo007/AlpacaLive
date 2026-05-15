@@ -5,11 +5,11 @@ import { Card } from '@/components/shared/Card';
 import { useI18n } from '@/lib/i18n';
 
 const CTCAE_GRADES = [
-  { value: 0, label: { pl: '0 — Brak zmian', en: '0 — No changes' } },
-  { value: 1, label: { pl: '1 — Lekkie zaczerwienienie', en: '1 — Faint erythema' } },
-  { value: 2, label: { pl: '2 — Umiarkowane zaczerwienienie, obrzęk', en: '2 — Moderate erythema, edema' } },
-  { value: 3, label: { pl: '3 — Wilgotne złuszczanie, krwawienie', en: '3 — Moist desquamation, bleeding' } },
-  { value: 4, label: { pl: '4 — Martwica skóry, owrzodzenie', en: '4 — Skin necrosis, ulceration' } },
+  { value: 0, label: { pl: '0 — Brak zmian', en: '0 — No changes', de: '0 — Keine Veränderungen' } },
+  { value: 1, label: { pl: '1 — Lekkie zaczerwienienie', en: '1 — Faint erythema', de: '1 — Leichtes Erythem' } },
+  { value: 2, label: { pl: '2 — Umiarkowane zaczerwienienie, obrzęk', en: '2 — Moderate erythema, edema', de: '2 — Mäßiges Erythem, Ödem' } },
+  { value: 3, label: { pl: '3 — Wilgotne złuszczanie, krwawienie', en: '3 — Moist desquamation, bleeding', de: '3 — Feuchte Desquamation, Blutung' } },
+  { value: 4, label: { pl: '4 — Martwica skóry, owrzodzenie', en: '4 — Skin necrosis, ulceration', de: '4 — Hautnekrose, Ulzeration' } },
 ];
 
 export function RadiotherapyEntryForm() {

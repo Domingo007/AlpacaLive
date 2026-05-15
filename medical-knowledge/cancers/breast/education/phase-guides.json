@@ -11,92 +11,112 @@
       "crisis": {
         "title": {
           "pl": "Faza A — Kryzys (dni 0-3 po chemii)",
-          "en": "Phase A — Crisis (days 0-3 post-chemo)"
+          "en": "Phase A — Crisis (days 0-3 post-chemo)",
+          "de": "Phase A — Crisis (days 0-3 post-chemo)"
         },
         "whatToExpect": {
           "pl": "Najgorsze samopoczucie cyklu. Nudności, zmęczenie, brak apetytu. To normalne i mija.",
-          "en": "Worst feeling of the cycle. Nausea, fatigue, no appetite. This is normal and passes."
+          "en": "Worst feeling of the cycle. Nausea, fatigue, no appetite. This is normal and passes.",
+          "de": "Worst feeling of the cycle. Nausea, fatigue, no appetite. This is normal and passes."
         },
         "tips": [
           {
             "pl": "Pij dużo — min. 2l dziennie (woda, herbata, rosół)",
-            "en": "Drink plenty — min. 2L daily (water, tea, broth)"
+            "en": "Drink plenty — min. 2L daily (water, tea, broth)",
+            "de": "Drink plenty — min. 2L daily (water, tea, broth)"
           },
           {
             "pl": "Jedz małe posiłki co 2-3h (krakersy, banan, ryż)",
-            "en": "Eat small meals every 2-3h (crackers, banana, rice)"
+            "en": "Eat small meals every 2-3h (crackers, banana, rice)",
+            "de": "Eat small meals every 2-3h (crackers, banana, rice)"
           },
           {
             "pl": "Śpij ile potrzebujesz — odpoczynek to leczenie",
-            "en": "Sleep as much as you need — rest IS treatment"
+            "en": "Sleep as much as you need — rest IS treatment",
+            "de": "Sleep as much as you need — rest IS treatment"
           },
           {
             "pl": "Zero wysiłku fizycznego",
-            "en": "No physical exercise"
+            "en": "No physical exercise",
+            "de": "No physical exercise"
           },
           {
             "pl": "Bierz leki przeciwwymiotne REGULARNIE (nie czekaj na nudności)",
-            "en": "Take anti-nausea meds REGULARLY (don't wait for nausea)"
+            "en": "Take anti-nausea meds REGULARLY (don't wait for nausea)",
+            "de": "Take anti-nausea meds REGULARLY (don't wait for nausea)"
           },
           {
             "pl": "Mierz temperaturę 2x dziennie",
-            "en": "Check temperature twice daily"
+            "en": "Check temperature twice daily",
+            "de": "Check temperature twice daily"
           }
         ]
       },
       "recovery": {
         "title": {
           "pl": "Faza B — Regeneracja (dni 4-7)",
-          "en": "Phase B — Recovery (days 4-7)"
+          "en": "Phase B — Recovery (days 4-7)",
+          "de": "Phase B — Recovery (days 4-7)"
         },
         "whatToExpect": {
           "pl": "Powolna poprawa. Nudności ustępują. Energia wraca. Nadir (najniższe wartości krwi) ok. dzień 10.",
-          "en": "Gradual improvement. Nausea subsides. Energy returns. Nadir (lowest blood values) around day 10."
+          "en": "Gradual improvement. Nausea subsides. Energy returns. Nadir (lowest blood values) around day 10.",
+          "de": "Gradual improvement. Nausea subsides. Energy returns. Nadir (lowest blood values) around day 10."
         },
         "tips": [
           {
             "pl": "Delikatny spacer 15-30 min jeśli czujesz się na siłach",
-            "en": "Gentle 15-30 min walk if you feel up to it"
+            "en": "Gentle 15-30 min walk if you feel up to it",
+            "de": "Gentle 15-30 min walk if you feel up to it"
           },
           {
             "pl": "Wprowadzaj pełniejsze posiłki — białko to priorytet",
-            "en": "Add fuller meals — protein is priority"
+            "en": "Add fuller meals — protein is priority",
+            "de": "Add fuller meals — protein is priority"
           },
           {
             "pl": "Nadal monitoruj temperaturę (nadir zbliża się)",
-            "en": "Still monitor temperature (nadir approaching)"
+            "en": "Still monitor temperature (nadir approaching)",
+            "de": "Still monitor temperature (nadir approaching)"
           },
           {
             "pl": "Unikaj tłumów (ryzyko infekcji przy niskich leukocytach)",
-            "en": "Avoid crowds (infection risk with low WBC)"
+            "en": "Avoid crowds (infection risk with low WBC)",
+            "de": "Avoid crowds (infection risk with low WBC)"
           }
         ]
       },
       "rebuild": {
         "title": {
           "pl": "Faza C — Odbudowa (dzień 8+)",
-          "en": "Phase C — Rebuild (day 8+)"
+          "en": "Phase C — Rebuild (day 8+)",
+          "de": "Phase C — Rebuild (day 8+)"
         },
         "whatToExpect": {
           "pl": "Najlepsze okno w cyklu. Energia wraca. Dobry czas na badania kontrolne i aktywność.",
-          "en": "Best window in the cycle. Energy returns. Good time for check-ups and activity."
+          "en": "Best window in the cycle. Energy returns. Good time for check-ups and activity.",
+          "de": "Best window in the cycle. Energy returns. Good time for check-ups and activity."
         },
         "tips": [
           {
             "pl": "Aktywność fizyczna — idź na spacer, basen, jogę",
-            "en": "Physical activity — walk, swim, yoga"
+            "en": "Physical activity — walk, swim, yoga",
+            "de": "Physical activity — walk, swim, yoga"
           },
           {
             "pl": "Maksymalne odżywienie — białko, warzywa, owoce",
-            "en": "Maximum nutrition — protein, vegetables, fruits"
+            "en": "Maximum nutrition — protein, vegetables, fruits",
+            "de": "Maximum nutrition — protein, vegetables, fruits"
           },
           {
             "pl": "Dobry moment na badania krwi kontrolne",
-            "en": "Good time for control blood tests"
+            "en": "Good time for control blood tests",
+            "de": "Good time for control blood tests"
           },
           {
             "pl": "Zaplanuj przyjemności — spotkania, wyjścia",
-            "en": "Plan enjoyable activities — meetings, outings"
+            "en": "Plan enjoyable activities — meetings, outings",
+            "de": "Plan enjoyable activities — meetings, outings"
           }
         ]
       }
@@ -105,56 +125,68 @@
       "active_treatment": {
         "title": {
           "pl": "W trakcie radioterapii",
-          "en": "During radiotherapy"
+          "en": "During radiotherapy",
+          "de": "During radiotherapy"
         },
         "whatToExpect": {
           "pl": "Codzienne sesje (pon-pią) trwające 10-20 min. Zmęczenie narasta z tygodniami. Skóra może się zaczerwienić.",
-          "en": "Daily sessions (Mon-Fri) lasting 10-20 min. Fatigue builds over weeks. Skin may redden."
+          "en": "Daily sessions (Mon-Fri) lasting 10-20 min. Fatigue builds over weeks. Skin may redden.",
+          "de": "Daily sessions (Mon-Fri) lasting 10-20 min. Fatigue builds over weeks. Skin may redden."
         },
         "tips": [
           {
             "pl": "Nie nakładaj kremów/dezodorantów w polu napromieniania PRZED sesją",
-            "en": "Don't apply creams/deodorants to treatment area BEFORE session"
+            "en": "Don't apply creams/deodorants to treatment area BEFORE session",
+            "de": "Don't apply creams/deodorants to treatment area BEFORE session"
           },
           {
             "pl": "Po sesji: delikatny krem nawilżający (aloe vera, Aquaphor)",
-            "en": "After session: gentle moisturizer (aloe vera, Aquaphor)"
+            "en": "After session: gentle moisturizer (aloe vera, Aquaphor)",
+            "de": "After session: gentle moisturizer (aloe vera, Aquaphor)"
           },
           {
             "pl": "Noś luźne, bawełniane ubrania",
-            "en": "Wear loose, cotton clothing"
+            "en": "Wear loose, cotton clothing",
+            "de": "Wear loose, cotton clothing"
           },
           {
             "pl": "Zmęczenie jest kumulacyjne — planuj odpoczynek po południu",
-            "en": "Fatigue is cumulative — plan afternoon rest"
+            "en": "Fatigue is cumulative — plan afternoon rest",
+            "de": "Fatigue is cumulative — plan afternoon rest"
           },
           {
             "pl": "Nie przegrzewaj pola RT (bez sauny, gorących kąpieli)",
-            "en": "Don't overheat RT field (no sauna, hot baths)"
+            "en": "Don't overheat RT field (no sauna, hot baths)",
+            "de": "Don't overheat RT field (no sauna, hot baths)"
           }
         ]
       },
       "post_treatment": {
         "title": {
           "pl": "Po zakończeniu radioterapii (2-4 tyg.)",
-          "en": "After radiotherapy ends (2-4 weeks)"
+          "en": "After radiotherapy ends (2-4 weeks)",
+          "de": "After radiotherapy ends (2-4 weeks)"
         },
         "whatToExpect": {
           "pl": "Zmęczenie może nasilić się jeszcze przez 2 tyg. po ostatniej sesji. Skóra goi się 2-4 tyg.",
-          "en": "Fatigue may worsen for 2 more weeks after last session. Skin heals in 2-4 weeks."
+          "en": "Fatigue may worsen for 2 more weeks after last session. Skin heals in 2-4 weeks.",
+          "de": "Fatigue may worsen for 2 more weeks after last session. Skin heals in 2-4 weeks."
         },
         "tips": [
           {
             "pl": "Kontynuuj pielęgnację skóry jeszcze 2-4 tygodnie",
-            "en": "Continue skin care for 2-4 more weeks"
+            "en": "Continue skin care for 2-4 more weeks",
+            "de": "Continue skin care for 2-4 more weeks"
           },
           {
             "pl": "Stopniowo wracaj do aktywności",
-            "en": "Gradually return to activity"
+            "en": "Gradually return to activity",
+            "de": "Gradually return to activity"
           },
           {
             "pl": "Mammografia kontrolna za 6 miesięcy po RT",
-            "en": "Follow-up mammography 6 months after RT"
+            "en": "Follow-up mammography 6 months after RT",
+            "de": "Follow-up mammography 6 months after RT"
           }
         ]
       }
@@ -163,56 +195,68 @@
       "first_months": {
         "title": {
           "pl": "Pierwsze miesiące hormonoterapii",
-          "en": "First months of hormonal therapy"
+          "en": "First months of hormonal therapy",
+          "de": "First months of hormonal therapy"
         },
         "whatToExpect": {
           "pl": "Uderzenia gorąca, bóle stawów, zmiany nastroju. Objawy mogą być najsilniejsze w pierwszych 3 mies.",
-          "en": "Hot flashes, joint pain, mood changes. Symptoms may be strongest in first 3 months."
+          "en": "Hot flashes, joint pain, mood changes. Symptoms may be strongest in first 3 months.",
+          "de": "Hot flashes, joint pain, mood changes. Symptoms may be strongest in first 3 months."
         },
         "tips": [
           {
             "pl": "Bierz lek codziennie O TEJ SAMEJ PORZE",
-            "en": "Take medication daily AT THE SAME TIME"
+            "en": "Take medication daily AT THE SAME TIME",
+            "de": "Take medication daily AT THE SAME TIME"
           },
           {
             "pl": "Na uderzenia gorąca: warstwowe ubrania, zimna woda, wachlarz",
-            "en": "For hot flashes: layered clothing, cold water, fan"
+            "en": "For hot flashes: layered clothing, cold water, fan",
+            "de": "For hot flashes: layered clothing, cold water, fan"
           },
           {
             "pl": "Na bóle stawów: ruch! Spacer, stretching, joga",
-            "en": "For joint pain: exercise! Walking, stretching, yoga"
+            "en": "For joint pain: exercise! Walking, stretching, yoga",
+            "de": "For joint pain: exercise! Walking, stretching, yoga"
           },
           {
             "pl": "Daj sobie 3-6 mies. na adaptację — objawy często się zmniejszają",
-            "en": "Give yourself 3-6 months to adapt — symptoms often decrease"
+            "en": "Give yourself 3-6 months to adapt — symptoms often decrease",
+            "de": "Give yourself 3-6 months to adapt — symptoms often decrease"
           }
         ]
       },
       "long_term": {
         "title": {
           "pl": "Hormonoterapia długoterminowa (lata 1-10)",
-          "en": "Long-term hormonal therapy (years 1-10)"
+          "en": "Long-term hormonal therapy (years 1-10)",
+          "de": "Long-term hormonal therapy (years 1-10)"
         },
         "whatToExpect": {
           "pl": "Objawy stabilizują się. Densytometria co 1-2 lata (ryzyko osteoporozy). Regularne kontrole.",
-          "en": "Symptoms stabilize. Bone density every 1-2 years (osteoporosis risk). Regular check-ups."
+          "en": "Symptoms stabilize. Bone density every 1-2 years (osteoporosis risk). Regular check-ups.",
+          "de": "Symptoms stabilize. Bone density every 1-2 years (osteoporosis risk). Regular check-ups."
         },
         "tips": [
           {
             "pl": "NIE przerywaj leczenia bez konsultacji z onkologiem!",
-            "en": "Do NOT stop treatment without consulting your oncologist!"
+            "en": "Do NOT stop treatment without consulting your oncologist!",
+            "de": "Do NOT stop treatment without consulting your oncologist!"
           },
           {
             "pl": "Wapń + witamina D3 codziennie",
-            "en": "Calcium + vitamin D3 daily"
+            "en": "Calcium + vitamin D3 daily",
+            "de": "Calcium + vitamin D3 daily"
           },
           {
             "pl": "Regularna aktywność fizyczna chroni kości",
-            "en": "Regular physical activity protects bones"
+            "en": "Regular physical activity protects bones",
+            "de": "Regular physical activity protects bones"
           },
           {
             "pl": "Kontrolna mammografia co rok",
-            "en": "Annual mammography"
+            "en": "Annual mammography",
+            "de": "Annual mammography"
           }
         ]
       }

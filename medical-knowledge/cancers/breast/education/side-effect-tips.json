@@ -10,179 +10,215 @@
     {
       "effect": {
         "pl": "Nudności i wymioty",
-        "en": "Nausea and vomiting"
+        "en": "Nausea and vomiting",
+        "de": "Nausea and vomiting"
       },
       "icon": "sick",
       "tips": [
         {
           "pl": "Bierz leki przeciwwymiotne PROFILAKTYCZNIE — nie czekaj na nudności",
-          "en": "Take anti-nausea meds PROPHYLACTICALLY — don't wait for nausea"
+          "en": "Take anti-nausea meds PROPHYLACTICALLY — don't wait for nausea",
+          "de": "Take anti-nausea meds PROPHYLACTICALLY — don't wait for nausea"
         },
         {
           "pl": "Małe posiłki co 2-3h zamiast 3 dużych",
-          "en": "Small meals every 2-3h instead of 3 large ones"
+          "en": "Small meals every 2-3h instead of 3 large ones",
+          "de": "Small meals every 2-3h instead of 3 large ones"
         },
         {
           "pl": "Unikaj tłustych, pikantnych, intensywnie pachnących potraw",
-          "en": "Avoid fatty, spicy, strong-smelling foods"
+          "en": "Avoid fatty, spicy, strong-smelling foods",
+          "de": "Avoid fatty, spicy, strong-smelling foods"
         },
         {
           "pl": "Imbir (herbata, cukierki) — opisywany w literaturze jako pomocny",
-          "en": "Ginger (tea, candy) — described in literature as helpful"
+          "en": "Ginger (tea, candy) — described in literature as helpful",
+          "de": "Ginger (tea, candy) — described in literature as helpful"
         },
         {
           "pl": "Zimne potrawy mniej pachną = lepiej tolerowane",
-          "en": "Cold food smells less = better tolerated"
+          "en": "Cold food smells less = better tolerated",
+          "de": "Cold food smells less = better tolerated"
         }
       ]
     },
     {
       "effect": {
         "pl": "Zmęczenie",
-        "en": "Fatigue"
+        "en": "Fatigue",
+        "de": "Fatigue"
       },
       "icon": "battery_low",
       "tips": [
         {
           "pl": "Planuj ważne rzeczy na dni z wyższą energią (faza C)",
-          "en": "Plan important things for higher energy days (phase C)"
+          "en": "Plan important things for higher energy days (phase C)",
+          "de": "Plan important things for higher energy days (phase C)"
         },
         {
           "pl": "Krótkie drzemki (20-30 min) są OK, ale unikaj długiego spania w ciągu dnia",
-          "en": "Short naps (20-30 min) are OK, but avoid long daytime sleeping"
+          "en": "Short naps (20-30 min) are OK, but avoid long daytime sleeping",
+          "de": "Short naps (20-30 min) are OK, but avoid long daytime sleeping"
         },
         {
           "pl": "Paradoksalnie: RUCH pomaga na zmęczenie. Nawet 10 min spacer.",
-          "en": "Paradoxically: EXERCISE helps fatigue. Even a 10 min walk."
+          "en": "Paradoxically: EXERCISE helps fatigue. Even a 10 min walk.",
+          "de": "Paradoxically: EXERCISE helps fatigue. Even a 10 min walk."
         },
         {
           "pl": "Proś o pomoc — deleguj zakupy, gotowanie, sprzątanie",
-          "en": "Ask for help — delegate shopping, cooking, cleaning"
+          "en": "Ask for help — delegate shopping, cooking, cleaning",
+          "de": "Ask for help — delegate shopping, cooking, cleaning"
         }
       ]
     },
     {
       "effect": {
         "pl": "Neuropatia (mrowienie dłoni/stóp)",
-        "en": "Neuropathy (tingling hands/feet)"
+        "en": "Neuropathy (tingling hands/feet)",
+        "de": "Neuropathy (tingling hands/feet)"
       },
       "icon": "back_hand",
       "tips": [
         {
           "pl": "Zgłaszaj nasilenie onkologowi — może zmniejszyć dawkę taksanu",
-          "en": "Report worsening to oncologist — may reduce taxane dose"
+          "en": "Report worsening to oncologist — may reduce taxane dose",
+          "de": "Report worsening to oncologist — may reduce taxane dose"
         },
         {
           "pl": "Unikaj zimna na dłonie/stopy (rękawiczki przy docetaxelu)",
-          "en": "Avoid cold on hands/feet (gloves with docetaxel)"
+          "en": "Avoid cold on hands/feet (gloves with docetaxel)",
+          "de": "Avoid cold on hands/feet (gloves with docetaxel)"
         },
         {
           "pl": "L-glutamina — badana w kontekście neuroprotekcji (konsultuj z lekarzem)",
-          "en": "L-glutamine — studied for neuroprotection (consult your doctor)"
+          "en": "L-glutamine — studied for neuroprotection (consult your doctor)",
+          "de": "L-glutamine — studied for neuroprotection (consult your doctor)"
         },
         {
           "pl": "Ćwiczenia dłoni: piłeczka do ściskania, gumki",
-          "en": "Hand exercises: squeeze ball, resistance bands"
+          "en": "Hand exercises: squeeze ball, resistance bands",
+          "de": "Hand exercises: squeeze ball, resistance bands"
         }
       ]
     },
     {
       "effect": {
         "pl": "Łysienie",
-        "en": "Hair loss"
+        "en": "Hair loss",
+        "de": "Hair loss"
       },
       "icon": "face",
       "tips": [
         {
           "pl": "Kup perukę PRZED utratą włosów (łatwiej dopasować kolor)",
-          "en": "Buy a wig BEFORE hair loss (easier to match color)"
+          "en": "Buy a wig BEFORE hair loss (easier to match color)",
+          "de": "Buy a wig BEFORE hair loss (easier to match color)"
         },
         {
           "pl": "Obetnij włosy krótko — mniej traumatyczne wypadanie",
-          "en": "Cut hair short — less traumatic shedding"
+          "en": "Cut hair short — less traumatic shedding",
+          "de": "Cut hair short — less traumatic shedding"
         },
         {
           "pl": "Satynowa poszewka na poduszkę — mniej podrażnień",
-          "en": "Satin pillowcase — less irritation"
+          "en": "Satin pillowcase — less irritation",
+          "de": "Satin pillowcase — less irritation"
         },
         {
           "pl": "Włosy odrastają 3-6 mies. po zakończeniu chemii",
-          "en": "Hair regrows 3-6 months after chemo ends"
+          "en": "Hair regrows 3-6 months after chemo ends",
+          "de": "Hair regrows 3-6 months after chemo ends"
         }
       ]
     },
     {
       "effect": {
         "pl": "Bóle stawów (hormonoterapia)",
-        "en": "Joint pain (hormonal therapy)"
+        "en": "Joint pain (hormonal therapy)",
+        "de": "Joint pain (hormonal therapy)"
       },
       "icon": "accessibility_new",
       "tips": [
         {
           "pl": "Codzienny RUCH to najlepsza terapia — 30 min spacer, joga, stretching",
-          "en": "Daily EXERCISE is the best therapy — 30 min walk, yoga, stretching"
+          "en": "Daily EXERCISE is the best therapy — 30 min walk, yoga, stretching",
+          "de": "Daily EXERCISE is the best therapy — 30 min walk, yoga, stretching"
         },
         {
           "pl": "Ciepła kąpiel rano pomaga na sztywność",
-          "en": "Warm bath in the morning helps with stiffness"
+          "en": "Warm bath in the morning helps with stiffness",
+          "de": "Warm bath in the morning helps with stiffness"
         },
         {
           "pl": "Omega-3 (olej rybny) — badane pod kątem bólów stawów",
-          "en": "Omega-3 (fish oil) — studied for joint pain relief"
+          "en": "Omega-3 (fish oil) — studied for joint pain relief",
+          "de": "Omega-3 (fish oil) — studied for joint pain relief"
         },
         {
           "pl": "Jeśli ból jest nieznośny — porozmawiaj o zmianie leku (np. z letrozolu na tamoksifen)",
-          "en": "If pain is unbearable — discuss switching drugs (e.g., letrozole to tamoxifen)"
+          "en": "If pain is unbearable — discuss switching drugs (e.g., letrozole to tamoxifen)",
+          "de": "If pain is unbearable — discuss switching drugs (e.g., letrozole to tamoxifen)"
         }
       ]
     },
     {
       "effect": {
         "pl": "Uderzenia gorąca",
-        "en": "Hot flashes"
+        "en": "Hot flashes",
+        "de": "Hot flashes"
       },
       "icon": "thermostat",
       "tips": [
         {
           "pl": "Ubieraj się warstwowo — szybko zdejmij gdy nadejdzie fala",
-          "en": "Dress in layers — quickly remove when a wave comes"
+          "en": "Dress in layers — quickly remove when a wave comes",
+          "de": "Dress in layers — quickly remove when a wave comes"
         },
         {
           "pl": "Zimna woda, wentylator, chłodna poduszka",
-          "en": "Cold water, fan, cool pillow"
+          "en": "Cold water, fan, cool pillow",
+          "de": "Cold water, fan, cool pillow"
         },
         {
           "pl": "Unikaj: alkohol, kawa, pikantne jedzenie, gorące napoje",
-          "en": "Avoid: alcohol, coffee, spicy food, hot drinks"
+          "en": "Avoid: alcohol, coffee, spicy food, hot drinks",
+          "de": "Avoid: alcohol, coffee, spicy food, hot drinks"
         },
         {
           "pl": "Techniki oddechowe — wolne, głębokie oddechy (4-7-8)",
-          "en": "Breathing techniques — slow, deep breaths (4-7-8)"
+          "en": "Breathing techniques — slow, deep breaths (4-7-8)",
+          "de": "Breathing techniques — slow, deep breaths (4-7-8)"
         }
       ]
     },
     {
       "effect": {
         "pl": "Skóra podczas radioterapii",
-        "en": "Skin during radiotherapy"
+        "en": "Skin during radiotherapy",
+        "de": "Skin during radiotherapy"
       },
       "icon": "dermatology",
       "tips": [
         {
           "pl": "Myj pole RT łagodnym mydłem, osuszaj ręcznikiem (nie trzyj)",
-          "en": "Wash RT field with gentle soap, pat dry (don't rub)"
+          "en": "Wash RT field with gentle soap, pat dry (don't rub)",
+          "de": "Wash RT field with gentle soap, pat dry (don't rub)"
         },
         {
           "pl": "Stosuj krem nawilżający 2-3x dziennie (Aquaphor, aloe vera, Bepanthen)",
-          "en": "Apply moisturizer 2-3x daily (Aquaphor, aloe vera, Bepanthen)"
+          "en": "Apply moisturizer 2-3x daily (Aquaphor, aloe vera, Bepanthen)",
+          "de": "Apply moisturizer 2-3x daily (Aquaphor, aloe vera, Bepanthen)"
         },
         {
           "pl": "NIE nakładaj kremów 2h PRZED sesją RT",
-          "en": "Do NOT apply creams 2h BEFORE RT session"
+          "en": "Do NOT apply creams 2h BEFORE RT session",
+          "de": "Do NOT apply creams 2h BEFORE RT session"
         },
         {
           "pl": "Przy złuszczaniu skóry (CTCAE 2+) — poinformuj radioterapeutę",
-          "en": "If skin peeling (CTCAE 2+) — inform your radiation therapist"
+          "en": "If skin peeling (CTCAE 2+) — inform your radiation therapist",
+          "de": "If skin peeling (CTCAE 2+) — inform your radiation therapist"
         }
       ]
     }

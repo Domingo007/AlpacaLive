@@ -490,6 +490,16 @@ footer a { color:var(--lav-600);text-decoration:none; }
         </ul>
         <p>Integracje z urządzeniami są <em>opcjonalnym rozszerzeniem</em> — eliminują część ręcznego wpisywania.</p>
       </div>
+      <div class="faq-body lang-de">
+        <p><strong>Nein.</strong> AlpacaLive funktioniert vollständig ohne jedes Gerät. Sie können:</p>
+        <ul>
+          <li>Symptome, Gewicht, Blutdruck und Laborergebnisse manuell im Tagebuch eintragen</li>
+          <li>CSV-Dateien aus Garmin Connect, Withings oder jeder Tabelle importieren</li>
+          <li>Apple Health über einen iOS-Kurzbefehl nutzen (kein Open Wearables nötig)</li>
+          <li>Musterbasierte Zusammenfassungen für alle Daten erhalten, die Sie protokollieren</li>
+        </ul>
+        <p>Wearable-Integrationen sind eine <em>optionale Erweiterung</em> — sie sparen manuelles Tippen.</p>
+      </div>
     </details>
 
     <details class="faq-item">
@@ -514,6 +524,16 @@ footer a { color:var(--lav-600);text-decoration:none; }
         </ol>
         <p>Personal Access Tokens to dokładnie ten sam mechanizm co klucz API Anthropic — wkleić raz, gotowe.</p>
       </div>
+      <div class="faq-body lang-de">
+        <p>Oura ist das am einfachsten zu verbindende Gerät — etwa 30 Sekunden, keine App-Registrierung, kein OAuth-Tanz.</p>
+        <ol>
+          <li>Öffnen Sie <a href="https://cloud.ouraring.com/personal-access-tokens" target="_blank" rel="noopener">cloud.ouraring.com/personal-access-tokens</a> in Ihrem Browser und melden Sie sich mit demselben Konto an, das Sie in der Oura-App verwenden.</li>
+          <li>Klicken Sie auf <strong>Create New Personal Access Token</strong>, geben Sie einen beliebigen Namen ein (z. B. AlpacaLive) und kopieren Sie den angezeigten Token.</li>
+          <li>In AlpacaLive gehen Sie zu <strong>Einstellungen → Oura Ring</strong>, fügen Sie den Token ein, klicken Sie auf <strong>Speichern und verbinden</strong>.</li>
+          <li>Klicken Sie auf <strong>7 Tage synchronisieren</strong> — die letzte Woche mit Schlaf, Bereitschaft, HRV, SpO₂ und Aktivität landet im Daten-Tab.</li>
+        </ol>
+        <p>Personal Access Tokens sind genau derselbe Ansatz wie der Anthropic-API-Schlüssel — einmal einfügen, fertig.</p>
+      </div>
     </details>
 
     <details class="faq-item">
@@ -527,6 +547,11 @@ footer a { color:var(--lav-600);text-decoration:none; }
         <p><strong>Whoop:</strong> API istnieje, ale endpoint tokenowy Whoop blokuje zapytania przeglądarkowe przez CORS — bezpośrednie połączenie z PWA obecnie nie jest możliwe bez backendu proxy. Śledzimy ograniczenie i wrócimy, jeśli Whoop je rozluźni.</p>
         <p><strong>Garmin:</strong> Garmin Connect API wymaga zatwierdzenia partnerskiego, którego nie udzielają indie projektom. Obejście: wyeksportuj dane z Garmin Connect jako CSV i użyj importu w sekcji „Połączone urządzenia" AlpacaLive.</p>
         <p><strong>Fitbit:</strong> nie wpięty jeszcze bezpośrednio. Dane Fitbit są też dostępne przez Open Wearables (zaawansowana ścieżka self-hosted), gdy ich wsparcie tam się pojawi. Eksport CSV z webowego panelu Fitbit działa dziś.</p>
+      </div>
+      <div class="faq-body lang-de">
+        <p><strong>Whoop:</strong> Die API existiert, aber der Token-Endpunkt von Whoop blockiert Browser-basierte Anfragen über CORS — eine direkte Verbindung aus einer PWA ist derzeit ohne Backend-Proxy nicht möglich. Wir verfolgen die Einschränkung und werden zurückkommen, falls Whoop sie lockert.</p>
+        <p><strong>Garmin:</strong> Die Garmin Connect API ist hinter einer Partner-Freigabe versperrt, die nicht an Indie-Projekte vergeben wird. Workaround: Exportieren Sie Ihre Daten aus Garmin Connect als CSV und verwenden Sie den AlpacaLive-Import unter „Verbundene Geräte".</p>
+        <p><strong>Fitbit:</strong> Noch nicht direkt angebunden. Fitbit-Daten sind auch über Open Wearables verfügbar (erweiterter selbst gehosteter Pfad), sobald deren Unterstützung dort landet. CSV-Export aus dem Fitbit-Web-Dashboard funktioniert heute.</p>
       </div>
     </details>
 
@@ -552,6 +577,16 @@ footer a { color:var(--lav-600);text-decoration:none; }
         </ul>
         <p>Setup wymaga Docker Desktop, sklonowania repo, wygenerowania API key w panelu admin — to 15-minutowy proces dla kogoś, kto czuje się swobodnie z terminalem. Dokumentacja: <a href="https://openwearables.io/docs/quickstart" target="_blank" rel="noopener">openwearables.io/docs/quickstart</a>.</p>
       </div>
+      <div class="faq-body lang-de">
+        <p><a href="https://openwearables.io" target="_blank" rel="noopener">Open Wearables</a> ist eine Open-Source vereinheitlichte API von <a href="https://www.themomentum.ai" target="_blank" rel="noopener">Momentum</a> (MIT), die 7+ Wearables über eine einheitliche Schnittstelle verbindet. Sie läuft als Docker-Container auf Ihrem eigenen Computer.</p>
+        <p>Für die normale Nutzung ist dies nicht erforderlich — Oura, Withings und Strava sind direkt angebunden. Open Wearables ist sinnvoll, wenn:</p>
+        <ul>
+          <li>Sie möchten, dass alle Wearable-Daten durch eine Infrastruktur fließen, die Sie vollständig kontrollieren (Datenschutz-Maximalisten)</li>
+          <li>Sie einen einzigen Ort für künftige Integrationen wollen (Fitbit, Coros, Xiaomi wenn sie hinzukommen)</li>
+          <li>Sie als Kliniker oder Forscher AlpacaLive in einer kontrollierten Umgebung betreiben</li>
+        </ul>
+        <p>Die Einrichtung erfordert Docker Desktop, das Klonen des Repos und die Generierung eines API-Schlüssels aus dem Admin-Panel — ein 15-minütiger Prozess für jemanden, der mit einem Terminal vertraut ist. Dokumentation: <a href="https://openwearables.io/docs/quickstart" target="_blank" rel="noopener">openwearables.io/docs/quickstart</a>.</p>
+      </div>
     </details>
 
     <details class="faq-item">
@@ -576,6 +611,16 @@ footer a { color:var(--lav-600);text-decoration:none; }
           <li>Przekierujemy Cię do ekranu logowania Withings. Zatwierdź dostęp — wrócisz do AlpacaLive automatycznie.</li>
         </ol>
       </div>
+      <div class="faq-body lang-de">
+        <ol>
+          <li>Gehen Sie zu <a href="https://developer.withings.com/dashboard/" target="_blank" rel="noopener">developer.withings.com/dashboard</a> und melden Sie sich mit Ihrem Withings-Konto an (dem gleichen, das in Withings Health Mate verwendet wird).<span class="faq-screenshot">[Screenshot: Withings Developer Login]</span></li>
+          <li>Klicken Sie auf <strong>Create an application</strong> und wählen Sie <strong>Public API integration</strong>.<span class="faq-screenshot">[Screenshot: App-Typ-Auswahl]</span></li>
+          <li>Füllen Sie das Formular aus. Das wichtigste Feld ist <strong>Callback URI</strong> — es muss <em>genau</em> mit dem übereinstimmen, was Sie später in AlpacaLive eingeben. Für lokale Tests verwenden Sie <code>http://localhost:5173/withings/callback</code>; in Produktion verwenden Sie Ihre echte Domain.<span class="faq-screenshot">[Screenshot: Neues App-Formular]</span></li>
+          <li>Nach dem Absenden zeigt Withings Ihre <strong>Client ID</strong> und Ihr <strong>Client Secret</strong>. <em>Kopieren Sie beide sofort</em> — das Client Secret wird nur einmal angezeigt.<span class="faq-screenshot">[Screenshot: Anmeldedaten-Anzeige]</span></li>
+          <li>In AlpacaLive gehen Sie zu <strong>Einstellungen → Withings (direkte Integration)</strong>. Fügen Sie Client ID, Client Secret und dieselbe Callback-URL ein. Klicken Sie auf <strong>Anmeldedaten speichern</strong>, dann auf <strong>Withings verbinden</strong>.</li>
+          <li>Sie werden zum Withings-Login-Bildschirm umgeleitet. Genehmigen Sie den Zugriff — Sie kehren automatisch zu AlpacaLive zurück.</li>
+        </ol>
+      </div>
     </details>
 
     <details class="faq-item">
@@ -587,6 +632,10 @@ footer a { color:var(--lav-600);text-decoration:none; }
       <div class="faq-body lang-pl">
         <p>Wszystko jest gotowe. Korzystaj z zakładki <strong>dziennika</strong> żeby codziennie zapisywać samopoczucie (energia, ból, nudności, nastrój, waga, długość snu). Silnik analizy wzorców porównuje Twoje obecne wartości z Twoją historią i z opublikowanymi zakresami referencyjnymi — stąd bierze się większość wartości klinicznej. Wearables po prostu oszczędzają pisania.</p>
         <p>Jeśli chcesz dodać podstawowe liczby bez wearable, cyfrowa waga i pulsoksymetr napalcowy z apteki już pokryją wagę, SpO₂ i tętno.</p>
+      </div>
+      <div class="faq-body lang-de">
+        <p>Sie sind startklar. Verwenden Sie den <strong>Tagebuch</strong>-Tab, um täglich aufzuzeichnen, wie Sie sich fühlen (Energie, Schmerz, Übelkeit, Stimmung, Gewicht, Schlafstunden). Die Mustermaschine vergleicht Ihre aktuellen Werte mit Ihrer eigenen Historie und mit veröffentlichten Referenzbereichen — daher kommt der größte klinische Wert. Wearables sparen einfach nur Tipparbeit.</p>
+        <p>Wenn Sie grundlegende Zahlen ohne Wearable hinzufügen möchten, decken eine digitale Waage und ein Finger-Pulsoximeter aus der Apotheke bereits Gewicht, SpO₂ und Herzfrequenz ab.</p>
       </div>
     </details>
 
@@ -612,6 +661,16 @@ footer a { color:var(--lav-600);text-decoration:none; }
           <li><strong>Tryb AI (opcjonalny):</strong> tylko gdy wpiszesz klucz Claude API. Dane osobowe są filtrowane przed wysłaniem — imiona, identyfikatory i adresy usuwa filtr PII.</li>
         </ul>
       </div>
+      <div class="faq-body lang-de">
+        <p><strong>AlpacaLive hat keine Server.</strong> Die App läuft vollständig als PWA in Ihrem Browser. Gesundheitsdaten leben in IndexedDB auf Ihrem Gerät.</p>
+        <p>Datenfluss:</p>
+        <ul>
+          <li><strong>Manuelle Einträge / CSV-Import:</strong> bleiben zu 100 % auf Ihrem Gerät und verlassen es nie.</li>
+          <li><strong>Open Wearables (selbst gehostet):</strong> Daten fließen von der Cloud des Wearable-Anbieters → Ihr lokaler Open-Wearables-Server (auf Ihrem Computer) → AlpacaLive PWA. Sie bleiben in Ihrem lokalen Netzwerk.</li>
+          <li><strong>Withings direkt:</strong> Daten fließen von der Withings-Cloud → AlpacaLive PWA direkt über OAuth. Stoppen auf Ihrem Gerät.</li>
+          <li><strong>KI-Modus (optional):</strong> nur wenn Sie einen Claude-API-Schlüssel eingeben. Persönliche Daten werden vor dem Senden bereinigt — Namen, Ausweisnummern und Adressen werden durch einen PII-Filter entfernt.</li>
+        </ul>
+      </div>
     </details>
 
     <details class="faq-item">
@@ -625,6 +684,11 @@ footer a { color:var(--lav-600);text-decoration:none; }
         <p>Tak — zainstaluj AlpacaLive jako PWA (Dodaj do ekranu głównego w Safari na iOS, Zainstaluj aplikację w Chrome na Androidzie) i dziennik, wpisy ręczne, import CSV oraz silnik wzorców działają natywnie.</p>
         <p>Przy integracjach chmurowych jest jeden niuans: <strong>Apple Health</strong>, <strong>Samsung Health</strong> i <strong>Google Health Connect</strong> wymagają natywnej aplikacji iOS/Android, żeby je czytać — z PWA web nie da się tego osiągnąć. Obejście: Skrót iOS dla Apple Health (eksport jednym tapnięciem) albo import CSV.</p>
         <p>Open Wearables i Withings działają identycznie na telefonie i komputerze, bo korzystają z chmurowego flow OAuth.</p>
+      </div>
+      <div class="faq-body lang-de">
+        <p>Ja — installieren Sie AlpacaLive als PWA (Zum Startbildschirm hinzufügen in iOS Safari, App installieren in Android Chrome), und das Tagebuch, manuelle Einträge, CSV-Import und die Mustermaschine funktionieren alle nativ.</p>
+        <p>Bei Cloud-Integrationen für Wearables gibt es eine Nuance: <strong>Apple Health</strong>, <strong>Samsung Health</strong> und <strong>Google Health Connect</strong> erfordern eine native iOS/Android-App, um direkt gelesen zu werden — sie sind aus einer Web-PWA nicht erreichbar. Workaround: Verwenden Sie den iOS-Kurzbefehl für Apple Health (Ein-Tipp-Export) oder importieren Sie eine CSV.</p>
+        <p>Open Wearables und Withings funktionieren auf Telefon und Desktop gleich, da sie den Cloud-OAuth-Flow verwenden.</p>
       </div>
     </details>
 

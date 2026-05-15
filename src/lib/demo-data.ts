@@ -34,9 +34,120 @@ function clamp(val: number, min: number, max: number): number {
   return Math.max(min, Math.min(max, val));
 }
 
+// ==================== LOCALIZED DEMO STRINGS ====================
+// The demo patient is "Anna", a stage IIA breast cancer patient.
+// Key user-facing strings (diagnosis, facility, notes) are localized.
+type DemoLang = 'pl' | 'en' | 'de';
+
+function getDemoLang(): DemoLang {
+  try {
+    const stored = localStorage.getItem('alpacalive-lang');
+    if (stored === 'pl' || stored === 'en' || stored === 'de') return stored;
+  } catch { /* noop */ }
+  return 'en';
+}
+
+function getDemoStrings(lang: DemoLang) {
+  if (lang === 'pl') return {
+    diagnosis: 'Rak piersi lewej inwazyjny',
+    facility: 'Centrum Onkologii — Instytut Marii Skłodowskiej-Curie',
+    city: 'Warszawa',
+    country: 'Polska',
+    radioTherapyName: 'RT pierś lewa',
+    radioTargetArea: 'Pierś lewa + okolica nadobojczykowa',
+    surgery1: 'Tumorektomia z biopsją węzła wartowniczego (2 mies. temu)',
+    chemoSchedule: '21 dni (EC) / co tydzień (Paclitaxel)',
+    tamoxifenFreq: '1x dziennie',
+    escitalopramFreq: '1x rano',
+    ondansetronFreq: 'w razie nudności',
+    allergyPenicillin: 'Penicylina',
+    hotFlashes: 'uderzenia gorąca',
+    jointPain: 'bóle stawów',
+    notes: {
+      chemo1: 'Pierwsza chemia EC. Tolerancja dobra.',
+      chemo2: 'Neutropenia G2, nadir dzień 10.',
+      chemo3: 'Tolerance ok. Neuropatia obwodowa stopień 1.',
+      chemo4: 'Ostatni cykl EC. Przejście na Paclitaxel weekly.',
+      paclitaxel1: 'Pierwszy Paclitaxel. Mrowienie w dłoniach.',
+      paclitaxel2: 'Paclitaxel #2. Neuropatia stabilna.',
+      bloodBaseline: 'Przed rozpoczęciem leczenia — baseline',
+      bloodNadir: 'Nadir po 2. EC — neutropenia G2',
+      bloodPreEC4: 'Przed 4. EC — kwalifikacja OK',
+      bloodPrePaclitaxel: 'Przed Paclitaxel #1 — hemoglobina w trendzie spadkowym',
+      bloodWeekly: 'Kontrola tygodniowa — CA 15-3 trend spadkowy (dobra odpowiedź)',
+      painNeuropathy: 'dłonie, stopy (neuropatia)',
+      painJoint: 'stawowe',
+    },
+  };
+  if (lang === 'de') return {
+    diagnosis: 'Invasives linksseitiges Mammakarzinom',
+    facility: 'Onkologisches Zentrum — Charité Berlin',
+    city: 'Berlin',
+    country: 'Deutschland',
+    radioTherapyName: 'RT linke Brust',
+    radioTargetArea: 'Linke Brust + supraklavikulärer Bereich',
+    surgery1: 'Tumorektomie mit Sentinel-Lymphknoten-Biopsie (vor 2 Monaten)',
+    chemoSchedule: '21 Tage (EC) / wöchentlich (Paclitaxel)',
+    tamoxifenFreq: '1x täglich',
+    escitalopramFreq: '1x morgens',
+    ondansetronFreq: 'bei Übelkeit',
+    allergyPenicillin: 'Penicillin',
+    hotFlashes: 'Hitzewallungen',
+    jointPain: 'Gelenkschmerzen',
+    notes: {
+      chemo1: 'Erste EC-Chemotherapie. Verträglichkeit gut.',
+      chemo2: 'Neutropenie G2, Tiefpunkt Tag 10.',
+      chemo3: 'Verträglichkeit OK. Periphere Neuropathie Grad 1.',
+      chemo4: 'Letzter EC-Zyklus. Übergang zu Paclitaxel wöchentlich.',
+      paclitaxel1: 'Erstes Paclitaxel. Kribbeln in den Händen.',
+      paclitaxel2: 'Paclitaxel #2. Neuropathie stabil.',
+      bloodBaseline: 'Vor Behandlungsbeginn — Baseline',
+      bloodNadir: 'Tiefpunkt nach 2. EC — Neutropenie G2',
+      bloodPreEC4: 'Vor 4. EC — Qualifikation OK',
+      bloodPrePaclitaxel: 'Vor Paclitaxel #1 — Hämoglobin im abnehmenden Trend',
+      bloodWeekly: 'Wöchentliche Kontrolle — CA 15-3 fallender Trend (gute Antwort)',
+      painNeuropathy: 'Hände, Füße (Neuropathie)',
+      painJoint: 'Gelenke',
+    },
+  };
+  return {
+    diagnosis: 'Invasive left breast cancer',
+    facility: 'Memorial Cancer Center',
+    city: 'New York',
+    country: 'USA',
+    radioTherapyName: 'RT left breast',
+    radioTargetArea: 'Left breast + supraclavicular region',
+    surgery1: 'Lumpectomy with sentinel node biopsy (2 months ago)',
+    chemoSchedule: '21 days (EC) / weekly (Paclitaxel)',
+    tamoxifenFreq: '1x daily',
+    escitalopramFreq: '1x morning',
+    ondansetronFreq: 'as needed for nausea',
+    allergyPenicillin: 'Penicillin',
+    hotFlashes: 'hot flashes',
+    jointPain: 'joint pain',
+    notes: {
+      chemo1: 'First EC chemo. Good tolerance.',
+      chemo2: 'Neutropenia G2, nadir day 10.',
+      chemo3: 'Tolerance OK. Peripheral neuropathy grade 1.',
+      chemo4: 'Last EC cycle. Transition to Paclitaxel weekly.',
+      paclitaxel1: 'First Paclitaxel. Tingling in hands.',
+      paclitaxel2: 'Paclitaxel #2. Neuropathy stable.',
+      bloodBaseline: 'Before treatment start — baseline',
+      bloodNadir: 'Nadir after 2nd EC — neutropenia G2',
+      bloodPreEC4: 'Before 4th EC — qualification OK',
+      bloodPrePaclitaxel: 'Before Paclitaxel #1 — hemoglobin in declining trend',
+      bloodWeekly: 'Weekly check — CA 15-3 declining trend (good response)',
+      painNeuropathy: 'hands, feet (neuropathy)',
+      painJoint: 'joints',
+    },
+  };
+}
+
 // ==================== PATIENT ====================
 
 function createDemoPatient(): PatientProfile {
+  const lang = getDemoLang();
+  const s = getDemoStrings(lang);
   const treatments: TreatmentProtocol[] = [
     {
       id: uuidv4(),
@@ -48,12 +159,12 @@ function createDemoPatient(): PatientProfile {
     {
       id: uuidv4(),
       type: 'radiotherapy',
-      name: 'RT pierś lewa',
+      name: s.radioTherapyName,
       startDate: daysAgo(20),
       status: 'active',
       radiotherapy: {
         type: 'external_beam',
-        targetArea: 'Pierś lewa + okolica nadobojczykowa',
+        targetArea: s.radioTargetArea,
         totalDoseGy: 50,
         fractions: 25,
         dosePerFractionGy: 2,
@@ -80,8 +191,8 @@ function createDemoPatient(): PatientProfile {
       startDate: daysAgo(60),
       status: 'active',
       drugs: [{
-        name: 'Tamoxifen', genericName: 'tamoxifen', dose: '20mg', frequency: '1x dziennie',
-        startDate: daysAgo(60), cyp450: ['CYP2D6', 'CYP3A4'], interactions: [], sideEffects: ['uderzenia gorąca', 'bóle stawów'], active: true,
+        name: 'Tamoxifen', genericName: 'tamoxifen', dose: '20mg', frequency: s.tamoxifenFreq,
+        startDate: daysAgo(60), cyp450: ['CYP2D6', 'CYP3A4'], interactions: [], sideEffects: [s.hotFlashes, s.jointPain], active: true,
       }],
     },
   ];
@@ -92,39 +203,40 @@ function createDemoPatient(): PatientProfile {
     displayName: 'Anna',
     age: 42,
     weight: 65,
-    diagnosis: 'Rak piersi lewej inwazyjny',
+    diagnosis: s.diagnosis,
     stage: 'IIA',
     molecularSubtype: 'Luminal B',
-    surgeries: ['Tumorektomia z biopsją węzła wartowniczego (2 mies. temu)'],
+    surgeries: [s.surgery1],
     currentChemo: 'EC × 4 → Paclitaxel weekly × 12',
-    chemoCycle: '21 dni (EC) / co tydzień (Paclitaxel)',
+    chemoCycle: s.chemoSchedule,
     psychiatricMeds: [{
-      name: 'Escitalopram', genericName: 'escitalopram', dose: '10mg', frequency: '1x rano',
+      name: 'Escitalopram', genericName: 'escitalopram', dose: '10mg', frequency: s.escitalopramFreq,
       startDate: daysAgo(90), cyp450: ['CYP2C19', 'CYP3A4'], interactions: [], sideEffects: [], active: true,
     }],
     oncologyMeds: [{
-      name: 'Tamoxifen', genericName: 'tamoxifen', dose: '20mg', frequency: '1x dziennie',
+      name: 'Tamoxifen', genericName: 'tamoxifen', dose: '20mg', frequency: s.tamoxifenFreq,
       startDate: daysAgo(60), cyp450: ['CYP2D6', 'CYP3A4'], interactions: [], sideEffects: [], active: true,
     }],
     otherMeds: [{
-      name: 'Ondansetron', genericName: 'ondansetron', dose: '8mg', frequency: 'w razie nudności',
+      name: 'Ondansetron', genericName: 'ondansetron', dose: '8mg', frequency: s.ondansetronFreq,
       startDate: daysAgo(84), cyp450: ['CYP3A4'], interactions: [], sideEffects: [], active: true,
     }],
-    allergies: ['Penicylina'],
+    allergies: [s.allergyPenicillin],
     preferences: [],
     pii: {
       firstName: 'Anna', lastName: 'Demo', pesel: '82010112345',
-      address: 'ul. Przykładowa 1, Warszawa', phone: '+48 500 000 000',
-      email: 'anna.demo@example.com', hospitalIds: ['WCO-2024-1234'],
+      address: lang === 'pl' ? 'ul. Przykładowa 1, Warszawa' : lang === 'de' ? 'Beispielstr. 1, Berlin' : '1 Example St, New York',
+      phone: lang === 'pl' ? '+48 500 000 000' : lang === 'de' ? '+49 30 0000 0000' : '+1 555 000 0000',
+      email: 'anna.demo@example.com', hospitalIds: ['DEMO-2024-1234'],
     },
     location: {
-      residenceCountry: 'Polska', residenceCity: 'Warszawa',
-      treatmentCountry: 'Polska', treatmentCity: 'Warszawa',
-      treatmentFacility: 'Centrum Onkologii — Instytut Marii Skłodowskiej-Curie',
-      guidelineRegion: 'europe',
+      residenceCountry: s.country, residenceCity: s.city,
+      treatmentCountry: s.country, treatmentCity: s.city,
+      treatmentFacility: s.facility,
+      guidelineRegion: lang === 'en' ? 'usa' : 'europe',
     },
     languages: {
-      appLanguage: 'pl', documentLanguages: ['pl'], preferredMedicalTerms: 'pl',
+      appLanguage: lang, documentLanguages: [lang], preferredMedicalTerms: lang,
     },
     treatments,
     breastCancerSubtype: 'luminal_b',
@@ -144,36 +256,39 @@ function createDemoPatient(): PatientProfile {
 // ==================== CHEMO SESSIONS ====================
 
 function createDemoChemo(): ChemoSession[] {
+  const lang = getDemoLang();
+  const s = getDemoStrings(lang);
+  const ecDose = lang === 'pl' ? 'EC pełna dawka' : lang === 'de' ? 'EC volle Dosis' : 'EC full dose';
   return [
     {
       id: uuidv4(), date: daysAgo(84), plannedDate: daysAgo(84), actualDate: daysAgo(84),
-      status: 'completed', drugs: ['Epirubicin', 'Cyclophosphamide'], dose: 'EC pełna dawka',
-      cycle: 1, notes: 'Pierwsza chemia EC. Tolerancja dobra.', sideEffects: ['nudności G1', 'zmęczenie'],
+      status: 'completed', drugs: ['Epirubicin', 'Cyclophosphamide'], dose: ecDose,
+      cycle: 1, notes: s.notes.chemo1, sideEffects: ['nausea G1', 'fatigue'],
     },
     {
       id: uuidv4(), date: daysAgo(63), plannedDate: daysAgo(63), actualDate: daysAgo(63),
-      status: 'completed', drugs: ['Epirubicin', 'Cyclophosphamide'], dose: 'EC pełna dawka',
-      cycle: 2, notes: 'Neutropenia G2, nadir dzień 10.', sideEffects: ['neutropenia G2', 'nudności G2', 'łysienie'],
+      status: 'completed', drugs: ['Epirubicin', 'Cyclophosphamide'], dose: ecDose,
+      cycle: 2, notes: s.notes.chemo2, sideEffects: ['neutropenia G2', 'nausea G2', 'alopecia'],
     },
     {
       id: uuidv4(), date: daysAgo(42), plannedDate: daysAgo(42), actualDate: daysAgo(42),
-      status: 'completed', drugs: ['Epirubicin', 'Cyclophosphamide'], dose: 'EC pełna dawka',
-      cycle: 3, notes: 'Tolerance ok. Neuropatia obwodowa stopień 1.', sideEffects: ['neuropatia G1', 'zmęczenie', 'bóle mięśni'],
+      status: 'completed', drugs: ['Epirubicin', 'Cyclophosphamide'], dose: ecDose,
+      cycle: 3, notes: s.notes.chemo3, sideEffects: ['neuropathy G1', 'fatigue', 'myalgia'],
     },
     {
       id: uuidv4(), date: daysAgo(21), plannedDate: daysAgo(21), actualDate: daysAgo(21),
-      status: 'completed', drugs: ['Epirubicin', 'Cyclophosphamide'], dose: 'EC pełna dawka',
-      cycle: 4, notes: 'Ostatni cykl EC. Przejście na Paclitaxel weekly.', sideEffects: ['zmęczenie G2', 'nudności G1'],
+      status: 'completed', drugs: ['Epirubicin', 'Cyclophosphamide'], dose: ecDose,
+      cycle: 4, notes: s.notes.chemo4, sideEffects: ['fatigue G2', 'nausea G1'],
     },
     {
       id: uuidv4(), date: daysAgo(14), plannedDate: daysAgo(14), actualDate: daysAgo(14),
       status: 'completed', drugs: ['Paclitaxel'], dose: '80mg/m² weekly',
-      cycle: 5, notes: 'Pierwszy Paclitaxel. Mrowienie w dłoniach.', sideEffects: ['neuropatia G1'],
+      cycle: 5, notes: s.notes.paclitaxel1, sideEffects: ['neuropathy G1'],
     },
     {
       id: uuidv4(), date: daysAgo(7), plannedDate: daysAgo(7), actualDate: daysAgo(7),
       status: 'completed', drugs: ['Paclitaxel'], dose: '80mg/m² weekly',
-      cycle: 6, notes: 'Paclitaxel #2. Neuropatia stabilna.', sideEffects: ['neuropatia G1', 'bóle stawów'],
+      cycle: 6, notes: s.notes.paclitaxel2, sideEffects: ['neuropathy G1', 'arthralgia'],
     },
     {
       id: uuidv4(), date: daysAgo(0), plannedDate: daysAgo(0),
@@ -186,31 +301,32 @@ function createDemoChemo(): ChemoSession[] {
 // ==================== BLOOD WORK ====================
 
 function createDemoBlood(): BloodWork[] {
+  const s = getDemoStrings(getDemoLang());
   return [
     {
       id: uuidv4(), date: daysAgo(85), source: 'manual',
       markers: { wbc: 6.8, neutrophils: 4.2, hgb: 13.1, plt: 245, rbc: 4.4, alt: 22, ast: 19, creatinine: 0.8, crp: 2, ca153: 18 },
-      notes: 'Przed rozpoczęciem leczenia — baseline',
+      notes: s.notes.bloodBaseline,
     },
     {
       id: uuidv4(), date: daysAgo(53), source: 'manual',
       markers: { wbc: 3.2, neutrophils: 1.4, hgb: 11.8, plt: 180, rbc: 3.9, alt: 28, ast: 25, creatinine: 0.9, crp: 8, ca153: 15 },
-      notes: 'Nadir po 2. EC — neutropenia G2',
+      notes: s.notes.bloodNadir,
     },
     {
       id: uuidv4(), date: daysAgo(32), source: 'manual',
       markers: { wbc: 4.1, neutrophils: 2.1, hgb: 11.2, plt: 165, rbc: 3.8, alt: 32, ast: 30, creatinine: 0.8, crp: 5, ca153: 12 },
-      notes: 'Przed 4. EC — kwalifikacja OK',
+      notes: s.notes.bloodPreEC4,
     },
     {
       id: uuidv4(), date: daysAgo(15), source: 'photo_extraction',
       markers: { wbc: 5.0, neutrophils: 2.8, hgb: 10.9, plt: 195, rbc: 3.7, alt: 24, ast: 21, creatinine: 0.7, crp: 3, tsh: 2.8, ca153: 11 },
-      notes: 'Przed Paclitaxel #1 — hemoglobina w trendzie spadkowym',
+      notes: s.notes.bloodPrePaclitaxel,
     },
     {
       id: uuidv4(), date: daysAgo(3), source: 'photo_extraction',
       markers: { wbc: 4.5, neutrophils: 2.3, hgb: 10.5, plt: 188, rbc: 3.6, alt: 20, ast: 18, creatinine: 0.7, crp: 4, ca153: 10 },
-      notes: 'Kontrola tygodniowa — CA 15-3 trend spadkowy (dobra odpowiedź)',
+      notes: s.notes.bloodWeekly,
     },
   ];
 }
@@ -218,6 +334,7 @@ function createDemoBlood(): BloodWork[] {
 // ==================== DAILY LOGS ====================
 
 function createDemoDailyLogs(): DailyLog[] {
+  const s = getDemoStrings(getDemoLang());
   const logs: DailyLog[] = [];
 
   // Generate 30 days of logs with realistic patterns
@@ -267,7 +384,7 @@ function createDemoDailyLogs(): DailyLog[] {
       time: `${7 + Math.floor(Math.random() * 3)}:${Math.floor(Math.random() * 60).toString().padStart(2, '0')}`,
       energy,
       pain,
-      painLocation: pain > 2 ? (pain > 4 ? 'dłonie, stopy (neuropatia)' : 'stawowe') : undefined,
+      painLocation: pain > 2 ? (pain > 4 ? s.notes.painNeuropathy : s.notes.painJoint) : undefined,
       nausea,
       mood,
       neuropathy: i < 14 ? clamp(Math.round(2 + Math.random() * 2), 0, 5) : 0,
@@ -473,18 +590,32 @@ function createDemoTreatmentSessions(): TreatmentSession[] {
 // ==================== CALENDAR NOTES ====================
 
 function createDemoCalendarNotes(): CalendarNote[] {
+  const lang = getDemoLang();
+  const cal = lang === 'pl' ? {
+    docTitle: 'Wizyta u onkologa', docDesc: 'Kontrola po 4x EC, ocena odpowiedzi',
+    bloodTitle: 'Morfologia + biochemia', bloodDesc: 'Przed Paclitaxel #4',
+    imgTitle: 'USG kontrolne', imgDesc: 'Ocena odpowiedzi po chemii',
+  } : lang === 'de' ? {
+    docTitle: 'Termin beim Onkologen', docDesc: 'Kontrolle nach 4x EC, Ansprechbewertung',
+    bloodTitle: 'Blutbild + Biochemie', bloodDesc: 'Vor Paclitaxel #4',
+    imgTitle: 'Kontroll-Ultraschall', imgDesc: 'Ansprechbewertung nach Chemo',
+  } : {
+    docTitle: 'Oncologist visit', docDesc: 'Follow-up after 4x EC, response assessment',
+    bloodTitle: 'Blood count + biochemistry', bloodDesc: 'Before Paclitaxel #4',
+    imgTitle: 'Follow-up ultrasound', imgDesc: 'Response assessment after chemo',
+  };
   return [
     {
       id: uuidv4(), date: daysAgo(-3), type: 'doctor_visit',
-      title: 'Wizyta u onkologa', description: 'Kontrola po 4x EC, ocena odpowiedzi', time: '10:30',
+      title: cal.docTitle, description: cal.docDesc, time: '10:30',
     },
     {
       id: uuidv4(), date: daysAgo(-7), type: 'blood_test',
-      title: 'Morfologia + biochemia', description: 'Przed Paclitaxel #4', time: '07:00',
+      title: cal.bloodTitle, description: cal.bloodDesc, time: '07:00',
     },
     {
       id: uuidv4(), date: daysAgo(-14), type: 'imaging',
-      title: 'USG kontrolne', description: 'Ocena odpowiedzi po chemii', time: '09:00',
+      title: cal.imgTitle, description: cal.imgDesc, time: '09:00',
     },
   ];
 }

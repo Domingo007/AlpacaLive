@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Card } from '@/components/shared/Card';
 import { useSettings } from '@/hooks/useDatabase';
-import { PROVIDER_INFO, testConnection, type AIProvider } from '@/lib/ai-provider';
+import { getProviderInfo, testConnection, type AIProvider } from '@/lib/ai-provider';
 import { useI18n } from '@/lib/i18n';
 
 const PROVIDERS: AIProvider[] = ['anthropic', 'openai', 'gemini'];
@@ -13,14 +13,15 @@ export function AIProviderSettings() {
   const [showKey, setShowKey] = useState(false);
   const [testing, setTesting] = useState(false);
   const [testResult, setTestResult] = useState<{ success: boolean; message: string } | null>(null);
-  const { t } = useI18n();
+  const { t, lang } = useI18n();
+  const PROVIDER_INFO = getProviderInfo(lang);
 
   async function handleSave() {
     setTesting(true);
     setTestResult(null);
 
     if (apiKeyInput.trim()) {
-      const result = await testConnection({ provider, apiKey: apiKeyInput.trim() });
+      const result = await testConnection({ provider, apiKey: apiKeyInput.trim() }, lang);
       setTestResult(result);
 
       if (result.success) {

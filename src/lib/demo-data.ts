@@ -55,6 +55,7 @@ function getDemoStrings(lang: DemoLang) {
     country: 'Polska',
     radioTherapyName: 'RT pierś lewa',
     radioTargetArea: 'Pierś lewa + okolica nadobojczykowa',
+    radioFrequency: 'pon-pią',
     surgery1: 'Tumorektomia z biopsją węzła wartowniczego (2 mies. temu)',
     chemoSchedule: '21 dni (EC) / co tydzień (Paclitaxel)',
     tamoxifenFreq: '1x dziennie',
@@ -77,6 +78,23 @@ function getDemoStrings(lang: DemoLang) {
       bloodWeekly: 'Kontrola tygodniowa — CA 15-3 trend spadkowy (dobra odpowiedź)',
       painNeuropathy: 'dłonie, stopy (neuropatia)',
       painJoint: 'stawowe',
+      rtFirstSession: 'Pierwsza sesja RT',
+      rtTenthSession: 'Sesja #10 — skóra CTCAE 1',
+    },
+    imaging: {
+      breastLeft: 'Pierś lewa',
+      breastLeftAxillae: 'Pierś lewa + pachy',
+      tumorLocation: 'Pierś lewa, kwadrant górny zewnętrzny',
+      tumorLocShort: 'KGZ piersi lewej',
+      axillaLeft: 'Pacha lewa',
+      mammoNotes: 'Mammografia diagnostyczna — guz 28mm w kwadrancie górnym zewnętrznym.',
+      usgNotes: 'Kontrola po 3 cyklach EC — zmniejszenie guza.',
+      mammoOriginalText: 'W KGZ piersi lewej guz lity, nieregularny, o wymiarach 28x22mm. BIRADS 5.',
+      mammoConclusion: 'BIRADS 5 — wysoce podejrzane. Zalecana biopsja.',
+      usgOriginalText: 'Guz w KGZ piersi lewej zmniejszony do 18x14mm (poprzednio 28x22mm). Partial response. Węzły chłonne pachowe w normie.',
+      usgConclusion: 'Partial response (RECIST PR). Dobra odpowiedź na chemioterapię.',
+      partialResponseDesc: 'Partial response — zmniejszenie o 36%',
+      lymphNodeChange: 'Regresja z 15mm do 8mm',
     },
   };
   if (lang === 'de') return {
@@ -86,6 +104,7 @@ function getDemoStrings(lang: DemoLang) {
     country: 'Deutschland',
     radioTherapyName: 'RT linke Brust',
     radioTargetArea: 'Linke Brust + supraklavikulärer Bereich',
+    radioFrequency: 'Mo-Fr',
     surgery1: 'Tumorektomie mit Sentinel-Lymphknoten-Biopsie (vor 2 Monaten)',
     chemoSchedule: '21 Tage (EC) / wöchentlich (Paclitaxel)',
     tamoxifenFreq: '1x täglich',
@@ -108,6 +127,23 @@ function getDemoStrings(lang: DemoLang) {
       bloodWeekly: 'Wöchentliche Kontrolle — CA 15-3 fallender Trend (gute Antwort)',
       painNeuropathy: 'Hände, Füße (Neuropathie)',
       painJoint: 'Gelenke',
+      rtFirstSession: 'Erste RT-Sitzung',
+      rtTenthSession: 'Sitzung #10 — Haut CTCAE 1',
+    },
+    imaging: {
+      breastLeft: 'Linke Brust',
+      breastLeftAxillae: 'Linke Brust + Achseln',
+      tumorLocation: 'Linke Brust, oberer äußerer Quadrant',
+      tumorLocShort: 'oberer äußerer Quadrant linke Brust',
+      axillaLeft: 'Linke Achsel',
+      mammoNotes: 'Diagnostische Mammographie — Tumor 28mm im oberen äußeren Quadranten.',
+      usgNotes: 'Kontrolle nach 3 EC-Zyklen — Tumorverkleinerung.',
+      mammoOriginalText: 'Im oberen äußeren Quadranten der linken Brust solider, irregulärer Tumor von 28x22mm. BIRADS 5.',
+      mammoConclusion: 'BIRADS 5 — hochverdächtig. Biopsie empfohlen.',
+      usgOriginalText: 'Tumor im oberen äußeren Quadranten der linken Brust auf 18x14mm verkleinert (vorher 28x22mm). Partial Response. Axilläre Lymphknoten unauffällig.',
+      usgConclusion: 'Partial Response (RECIST PR). Gutes Ansprechen auf Chemotherapie.',
+      partialResponseDesc: 'Partial Response — Reduktion um 36%',
+      lymphNodeChange: 'Regression von 15mm auf 8mm',
     },
   };
   return {
@@ -117,6 +153,7 @@ function getDemoStrings(lang: DemoLang) {
     country: 'USA',
     radioTherapyName: 'RT left breast',
     radioTargetArea: 'Left breast + supraclavicular region',
+    radioFrequency: 'Mon-Fri',
     surgery1: 'Lumpectomy with sentinel node biopsy (2 months ago)',
     chemoSchedule: '21 days (EC) / weekly (Paclitaxel)',
     tamoxifenFreq: '1x daily',
@@ -139,6 +176,23 @@ function getDemoStrings(lang: DemoLang) {
       bloodWeekly: 'Weekly check — CA 15-3 declining trend (good response)',
       painNeuropathy: 'hands, feet (neuropathy)',
       painJoint: 'joints',
+      rtFirstSession: 'First RT session',
+      rtTenthSession: 'Session #10 — skin CTCAE 1',
+    },
+    imaging: {
+      breastLeft: 'Left breast',
+      breastLeftAxillae: 'Left breast + axillae',
+      tumorLocation: 'Left breast, upper outer quadrant',
+      tumorLocShort: 'Upper outer quadrant, left breast',
+      axillaLeft: 'Left axilla',
+      mammoNotes: 'Diagnostic mammography — 28mm tumor in upper outer quadrant.',
+      usgNotes: 'Follow-up after 3 EC cycles — tumor shrinkage.',
+      mammoOriginalText: 'Solid, irregular tumor in upper outer quadrant of left breast, 28x22mm. BIRADS 5.',
+      mammoConclusion: 'BIRADS 5 — highly suspicious. Biopsy recommended.',
+      usgOriginalText: 'Tumor in upper outer quadrant of left breast reduced to 18x14mm (previously 28x22mm). Partial response. Axillary lymph nodes normal.',
+      usgConclusion: 'Partial response (RECIST PR). Good response to chemotherapy.',
+      partialResponseDesc: 'Partial response — 36% reduction',
+      lymphNodeChange: 'Regression from 15mm to 8mm',
     },
   };
 }
@@ -168,7 +222,7 @@ function createDemoPatient(): PatientProfile {
         totalDoseGy: 50,
         fractions: 25,
         dosePerFractionGy: 2,
-        frequency: 'pon-pią',
+        frequency: s.radioFrequency,
         startDate: daysAgo(20),
         sessions: Array.from({ length: 14 }, (_, i) => ({
           id: uuidv4(),
@@ -416,14 +470,40 @@ function createDemoDailyLogs(): DailyLog[] {
       } : {}),
     };
 
-    // Add notes to some days
-    if (i === 21) log.notes = 'Dzień chemii EC #4. Zmęczenie od wieczora, nudności kontrolowane ondansetronem.';
-    if (i === 19) log.notes = 'Trzeci dzień po chemii, najgorzej. Cały dzień w łóżku.';
-    if (i === 14) log.notes = 'Pierwszy Paclitaxel — mrowienie w palcach po 2h. Poza tym ok.';
-    if (i === 10) log.notes = 'RT sesja #10. Skóra lekko różowa w polu napromieniania.';
-    if (i === 7) log.notes = 'Paclitaxel #2 + RT #14. Skumulowane zmęczenie. Dzwoniłam do onkologa.';
-    if (i === 3) log.notes = 'Lepszy dzień. Spacer 30 min. Apetyt wraca.';
-    if (i === 1) log.notes = 'RT skóra CTCAE 2, dostałam krem. Energia ok.';
+    // Add notes to some days — localized
+    const lang = getDemoLang();
+    const dailyNotes = lang === 'pl' ? {
+      d21: 'Dzień chemii EC #4. Zmęczenie od wieczora, nudności kontrolowane ondansetronem.',
+      d19: 'Trzeci dzień po chemii, najgorzej. Cały dzień w łóżku.',
+      d14: 'Pierwszy Paclitaxel — mrowienie w palcach po 2h. Poza tym ok.',
+      d10: 'RT sesja #10. Skóra lekko różowa w polu napromieniania.',
+      d7: 'Paclitaxel #2 + RT #14. Skumulowane zmęczenie. Dzwoniłam do onkologa.',
+      d3: 'Lepszy dzień. Spacer 30 min. Apetyt wraca.',
+      d1: 'RT skóra CTCAE 2, dostałam krem. Energia ok.',
+    } : lang === 'de' ? {
+      d21: 'Chemo-Tag EC #4. Müdigkeit ab dem Abend, Übelkeit mit Ondansetron kontrolliert.',
+      d19: 'Dritter Tag nach der Chemo, am schlimmsten. Den ganzen Tag im Bett.',
+      d14: 'Erstes Paclitaxel — Kribbeln in den Fingern nach 2 h. Sonst OK.',
+      d10: 'RT-Sitzung #10. Haut leicht rosa im Bestrahlungsfeld.',
+      d7: 'Paclitaxel #2 + RT #14. Kumulierte Müdigkeit. Habe den Onkologen angerufen.',
+      d3: 'Besserer Tag. 30 min Spaziergang. Appetit kehrt zurück.',
+      d1: 'RT-Haut CTCAE 2, habe eine Creme bekommen. Energie OK.',
+    } : {
+      d21: 'EC chemo day #4. Fatigue from the evening, nausea controlled with ondansetron.',
+      d19: 'Third day after chemo, the worst. In bed all day.',
+      d14: 'First Paclitaxel — tingling in fingers after 2h. Otherwise OK.',
+      d10: 'RT session #10. Skin slightly pink in radiation field.',
+      d7: 'Paclitaxel #2 + RT #14. Accumulated fatigue. Called the oncologist.',
+      d3: 'Better day. 30 min walk. Appetite returning.',
+      d1: 'RT skin CTCAE 2, got a cream. Energy OK.',
+    };
+    if (i === 21) log.notes = dailyNotes.d21;
+    if (i === 19) log.notes = dailyNotes.d19;
+    if (i === 14) log.notes = dailyNotes.d14;
+    if (i === 10) log.notes = dailyNotes.d10;
+    if (i === 7) log.notes = dailyNotes.d7;
+    if (i === 3) log.notes = dailyNotes.d3;
+    if (i === 1) log.notes = dailyNotes.d1;
 
     logs.push(log);
   }
@@ -484,24 +564,41 @@ function createDemoSupplements(): SupplementLog[] {
 // ==================== MEALS ====================
 
 function createDemoMeals(): MealLog[] {
+  const lang = getDemoLang();
   const meals: MealLog[] = [];
+
+  const breakfast = lang === 'pl'
+    ? ['Owsianka z bananem i orzechami', 'Jajecznica z tostami', 'Jogurt grecki z granolą', 'Kanapki z avocado']
+    : lang === 'de'
+    ? ['Haferflocken mit Banane und Nüssen', 'Rührei mit Toast', 'Griechischer Joghurt mit Granola', 'Avocado-Sandwiches']
+    : ['Oatmeal with banana and nuts', 'Scrambled eggs with toast', 'Greek yogurt with granola', 'Avocado sandwiches'];
+  const lunch = lang === 'pl'
+    ? ['Zupa krem z brokułów + kurczak', 'Ryż z łososiem i warzywami', 'Makaron z sosem bolognese', 'Sałatka z grillowaną piersią kurczaka']
+    : lang === 'de'
+    ? ['Brokkoli-Cremesuppe + Hähnchen', 'Reis mit Lachs und Gemüse', 'Pasta mit Bolognese-Sauce', 'Salat mit gegrillter Hähnchenbrust']
+    : ['Broccoli cream soup + chicken', 'Rice with salmon and vegetables', 'Pasta with bolognese sauce', 'Salad with grilled chicken breast'];
+  const dinner = lang === 'pl'
+    ? ['Omlet z warzywami', 'Twarożek z oliwą i pomidorami', 'Zupa jarzynowa z grzankami', 'Kasza gryczana z kotletem']
+    : lang === 'de'
+    ? ['Omelett mit Gemüse', 'Quark mit Olivenöl und Tomaten', 'Gemüsesuppe mit Croutons', 'Buchweizen mit Frikadelle']
+    : ['Vegetable omelet', 'Cottage cheese with olive oil and tomatoes', 'Vegetable soup with croutons', 'Buckwheat with cutlet'];
 
   for (let i = 6; i >= 0; i--) {
     meals.push({
       id: uuidv4(), date: daysAgo(i), mealType: 'breakfast',
-      description: ['Owsianka z bananem i orzechami', 'Jajecznica z tostami', 'Jogurt grecki z granolą', 'Kanapki z avocado'][Math.floor(Math.random() * 4)],
+      description: breakfast[Math.floor(Math.random() * 4)],
       protein: Math.round(15 + randomBetween(-5, 10)), calories: Math.round(350 + randomBetween(-50, 100)),
       toleratedWell: Math.random() > 0.2,
     });
     meals.push({
       id: uuidv4(), date: daysAgo(i), mealType: 'lunch',
-      description: ['Zupa krem z brokułów + kurczak', 'Ryż z łososiem i warzywami', 'Makaron z sosem bolognese', 'Sałatka z grillowaną piersią kurczaka'][Math.floor(Math.random() * 4)],
+      description: lunch[Math.floor(Math.random() * 4)],
       protein: Math.round(30 + randomBetween(-5, 15)), calories: Math.round(550 + randomBetween(-100, 150)),
       toleratedWell: Math.random() > 0.15,
     });
     meals.push({
       id: uuidv4(), date: daysAgo(i), mealType: 'dinner',
-      description: ['Omlet z warzywami', 'Twarożek z oliwą i pomidorami', 'Zupa jarzynowa z grzankami', 'Kasza gryczana z kotletem'][Math.floor(Math.random() * 4)],
+      description: dinner[Math.floor(Math.random() * 4)],
       protein: Math.round(20 + randomBetween(-5, 10)), calories: Math.round(400 + randomBetween(-80, 120)),
       toleratedWell: Math.random() > 0.1,
     });
@@ -513,54 +610,57 @@ function createDemoMeals(): MealLog[] {
 // ==================== IMAGING ====================
 
 function createDemoImaging(): ImagingStudy[] {
+  const lang = getDemoLang();
+  const s = getDemoStrings(lang);
+  const img = s.imaging;
   return [
     {
-      id: uuidv4(), date: daysAgo(90), type: 'mammography', bodyRegion: 'Pierś lewa',
+      id: uuidv4(), date: daysAgo(90), type: 'mammography', bodyRegion: img.breastLeft,
       images: [], findings: '',
-      notes: 'Mammografia diagnostyczna — guz 28mm w kwadrancie górnym zewnętrznym.',
-      tumors: [{ location: 'Pierś lewa, kwadrant górny zewnętrzny', sizeMm: [28, 22], recistResponse: undefined }],
+      notes: img.mammoNotes,
+      tumors: [{ location: img.tumorLocation, sizeMm: [28, 22], recistResponse: undefined }],
       radiologistReport: {
-        originalText: 'W KGZ piersi lewej guz lity, nieregularny, o wymiarach 28x22mm. BIRADS 5.',
-        originalLanguage: 'pl',
+        originalText: img.mammoOriginalText,
+        originalLanguage: lang,
         extractedData: {
           tumors: [{
-            id: uuidv4(), location: 'KGZ piersi lewej', locationTranslated: 'Upper outer quadrant, left breast',
+            id: uuidv4(), location: img.tumorLocShort, locationTranslated: 'Upper outer quadrant, left breast',
             currentSize: { dimensions: [28, 22], description: '28x22mm' },
           }],
           metastases: [], lymphNodes: [{
-            id: uuidv4(), location: 'Pacha lewa', locationTranslated: 'Left axilla',
+            id: uuidv4(), location: img.axillaLeft, locationTranslated: 'Left axilla',
             size: 15, status: 'suspicious',
           }],
-          otherFindings: [], conclusion: 'BIRADS 5 — wysoce podejrzane. Zalecana biopsja.',
+          otherFindings: [], conclusion: img.mammoConclusion,
         },
       },
     },
     {
-      id: uuidv4(), date: daysAgo(30), type: 'USG', bodyRegion: 'Pierś lewa + pachy',
+      id: uuidv4(), date: daysAgo(30), type: 'USG', bodyRegion: img.breastLeftAxillae,
       images: [], findings: '',
-      notes: 'Kontrola po 3 cyklach EC — zmniejszenie guza.',
+      notes: img.usgNotes,
       tumors: [{
-        location: 'Pierś lewa, kwadrant górny zewnętrzny', sizeMm: [18, 14],
+        location: img.tumorLocation, sizeMm: [18, 14],
         recistResponse: 'PR', previousSize: [28, 22], changePercent: -36,
       }],
       radiologistReport: {
-        originalText: 'Guz w KGZ piersi lewej zmniejszony do 18x14mm (poprzednio 28x22mm). Partial response. Węzły chłonne pachowe w normie.',
-        originalLanguage: 'pl',
+        originalText: img.usgOriginalText,
+        originalLanguage: lang,
         extractedData: {
           tumors: [{
-            id: uuidv4(), location: 'KGZ piersi lewej', locationTranslated: 'Upper outer quadrant, left breast',
+            id: uuidv4(), location: img.tumorLocShort, locationTranslated: 'Upper outer quadrant, left breast',
             currentSize: { dimensions: [18, 14], description: '18x14mm' },
             previousSize: { dimensions: [28, 22], studyDate: daysAgo(90), studyId: '' },
             change: {
               type: 'shrinking', percentChange: -36, recist: 'PR',
-              description: 'Partial response — zmniejszenie o 36%',
+              description: img.partialResponseDesc,
             },
           }],
           metastases: [], lymphNodes: [{
-            id: uuidv4(), location: 'Pacha lewa', locationTranslated: 'Left axilla',
-            size: 8, status: 'normal', previousSize: 15, change: 'Regresja z 15mm do 8mm',
+            id: uuidv4(), location: img.axillaLeft, locationTranslated: 'Left axilla',
+            size: 8, status: 'normal', previousSize: 15, change: img.lymphNodeChange,
           }],
-          otherFindings: [], conclusion: 'Partial response (RECIST PR). Dobra odpowiedź na chemioterapię.',
+          otherFindings: [], conclusion: img.usgConclusion,
         },
       },
     },
@@ -570,6 +670,7 @@ function createDemoImaging(): ImagingStudy[] {
 // ==================== TREATMENT SESSIONS ====================
 
 function createDemoTreatmentSessions(): TreatmentSession[] {
+  const s = getDemoStrings(getDemoLang());
   const sessions: TreatmentSession[] = [];
 
   // RT sessions
@@ -580,7 +681,7 @@ function createDemoTreatmentSessions(): TreatmentSession[] {
       treatmentType: 'radiotherapy',
       status: 'completed',
       details: { fractionNumber: i + 1, doseGy: 2, cumulativeDoseGy: (i + 1) * 2 },
-      notes: i === 0 ? 'Pierwsza sesja RT' : i === 9 ? 'Sesja #10 — skóra CTCAE 1' : undefined,
+      notes: i === 0 ? s.notes.rtFirstSession : i === 9 ? s.notes.rtTenthSession : undefined,
     });
   }
 

@@ -73,8 +73,8 @@ const MOCK_TRIGGERS: Record<ChatLang, Array<{ keys: string[]; response: string }
   ],
   de: [
     { keys: ['bericht', 'arzt', 'doktor'], response: 'report' },
-    { keys: ['muster', 'analyse', 'prognose', 'vorhersage'], response: 'prediction' },
-    { keys: ['bildgebung', 'röntgen', 'ct', 'scan', 'mri', 'pet'], response: 'imaging' },
+    { keys: ['muster', 'prognose', 'vorhersage', 'musteranalyse'], response: 'prediction' },
+    { keys: ['bildgebung', 'röntgen', ' ct', 'scan', 'mri', 'mrt', 'pet'], response: 'imaging' },
     { keys: ['chemo', 'chemotherapie'], response: 'chemo' },
     { keys: ['morgen', 'guten morgen', 'aufwachen'], response: 'morning' },
     { keys: ['abend', 'tagesende', 'gute nacht'], response: 'evening' },

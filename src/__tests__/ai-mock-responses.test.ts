@@ -22,6 +22,13 @@ describe('chat demo data — bilingual', () => {
       expect(msg).toMatch(/Hello/);
       expect(msg).not.toMatch(/Dzień dobry/);
     });
+
+    it('returns German welcome when lang=de', () => {
+      const msg = getWelcomeMessage('de');
+      expect(msg).toMatch(/Hallo/);
+      expect(msg).not.toMatch(/Dzień dobry/);
+      expect(msg).not.toMatch(/^Hello/);
+    });
   });
 
   describe('mock responses via sendMessage (no API key)', () => {
@@ -61,6 +68,42 @@ describe('chat demo data — bilingual', () => {
     it('EN imaging keyword maps to imaging response', async () => {
       const res = await sendMessage([userMsg('Can you analyze my MRI?')], { ...baseConfig, lang: 'en' });
       expect(res.content).toMatch(/Imaging analysis/);
+    });
+
+    it('DE keyword triggers DE response (Bericht)', async () => {
+      const res = await sendMessage([userMsg('Bericht für den Arzt bitte')], { ...baseConfig, lang: 'de' });
+      expect(res.content).toMatch(/Bericht für den Arzt/);
+    });
+
+    it('DE fallback when no keyword matches', async () => {
+      const res = await sendMessage([userMsg('Allgemeine Frage')], { ...baseConfig, lang: 'de' });
+      expect(res.content).toMatch(/Demo-Modus/);
+      expect(res.content).not.toMatch(/W trybie demo/);
+    });
+
+    it('DE chemo keyword maps to chemo response', async () => {
+      const res = await sendMessage([userMsg('Ich hatte heute Chemotherapie')], { ...baseConfig, lang: 'de' });
+      expect(res.content).toMatch(/Chemotherapie hattest/);
+    });
+
+    it('DE imaging keyword maps to imaging response', async () => {
+      const res = await sendMessage([userMsg('MRT bitte analysieren')], { ...baseConfig, lang: 'de' });
+      expect(res.content).toMatch(/Bildgebungsanalyse/);
+    });
+
+    it('DE morning keyword maps to morning report', async () => {
+      const res = await sendMessage([userMsg('Guten Morgen')], { ...baseConfig, lang: 'de' });
+      expect(res.content).toMatch(/Wie fühlst du dich nach dem Aufwachen/);
+    });
+
+    it('DE evening keyword maps to evening summary', async () => {
+      const res = await sendMessage([userMsg('Abend Zusammenfassung')], { ...baseConfig, lang: 'de' });
+      expect(res.content).toMatch(/Abendübersicht/);
+    });
+
+    it('DE pattern keyword maps to prediction', async () => {
+      const res = await sendMessage([userMsg('Zeige Muster')], { ...baseConfig, lang: 'de' });
+      expect(res.content).toMatch(/Musteranalyse/);
     });
   });
 });

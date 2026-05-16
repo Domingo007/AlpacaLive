@@ -6,13 +6,30 @@ import { Icon } from '@/components/shared/Icon';
 import { useI18n } from '@/lib/i18n';
 import type { AIAuditLogEntry } from '@/types/audit-log';
 
-const PII_FIELD_LABELS: Record<string, string> = {
+const PII_FIELD_LABELS_PL: Record<string, string> = {
   displayName: 'imię',
   treatmentFacility: 'szpital',
   exactAge: 'dokładny wiek',
   psychiatricMedDetails: 'leki psych.',
   treatmentCountry: 'kraj leczenia',
 };
+const PII_FIELD_LABELS_EN: Record<string, string> = {
+  displayName: 'name',
+  treatmentFacility: 'hospital',
+  exactAge: 'exact age',
+  psychiatricMedDetails: 'psych meds',
+  treatmentCountry: 'treatment country',
+};
+const PII_FIELD_LABELS_DE: Record<string, string> = {
+  displayName: 'Name',
+  treatmentFacility: 'Krankenhaus',
+  exactAge: 'genaues Alter',
+  psychiatricMedDetails: 'Psych. Medikamente',
+  treatmentCountry: 'Behandlungsland',
+};
+function getPiiFieldLabels(lang: 'pl' | 'en' | 'de'): Record<string, string> {
+  return lang === 'pl' ? PII_FIELD_LABELS_PL : lang === 'de' ? PII_FIELD_LABELS_DE : PII_FIELD_LABELS_EN;
+}
 
 export function AuditLogPanel() {
   const { lang } = useI18n();
@@ -161,7 +178,7 @@ export function AuditLogPanel() {
                     <div>
                       {labels.removed}{' '}
                       {entry.piiFieldsRemoved
-                        .map(f => PII_FIELD_LABELS[f] ?? f)
+                        .map(f => getPiiFieldLabels(lang)[f] ?? f)
                         .join(', ')}
                     </div>
                   )}

@@ -13,48 +13,48 @@
       "title": {
         "pl": "PILNE — dzwoń natychmiast lub jedź na SOR",
         "en": "EMERGENCY — call immediately or go to ER",
-        "de": "EMERGENCY — call immediately or go to ER"
+        "de": "NOTFALL — sofort anrufen oder in die Notaufnahme"
       },
       "symptoms": [
         {
           "pl": "Gorączka > 38°C (szczególnie w dniach 7-14 po chemii = podejrzenie neutropenii gorączkowej)",
           "en": "Fever > 38°C (especially days 7-14 post-chemo = suspected febrile neutropenia)",
-          "de": "Fever > 38°C (especially days 7-14 post-chemo = suspected febrile neutropenia)"
+          "de": "Fieber > 38°C (besonders Tage 7-14 nach Chemo = Verdacht auf febrile Neutropenie)"
         },
         {
           "pl": "Duszność, problemy z oddechem",
           "en": "Shortness of breath, breathing problems",
-          "de": "Shortness of breath, breathing problems"
+          "de": "Atemnot, Atembeschwerden"
         },
         {
           "pl": "Ból w klatce piersiowej",
           "en": "Chest pain",
-          "de": "Chest pain"
+          "de": "Brustschmerzen"
         },
         {
           "pl": "Krwawienie, którego nie możesz zatrzymać",
           "en": "Bleeding you cannot stop",
-          "de": "Bleeding you cannot stop"
+          "de": "Blutung, die Sie nicht stoppen können"
         },
         {
           "pl": "Silne bóle brzucha",
           "en": "Severe abdominal pain",
-          "de": "Severe abdominal pain"
+          "de": "Starke Bauchschmerzen"
         },
         {
           "pl": "Nagły obrzęk twarzy, języka lub gardła (reakcja alergiczna)",
           "en": "Sudden swelling of face, tongue, or throat (allergic reaction)",
-          "de": "Sudden swelling of face, tongue, or throat (allergic reaction)"
+          "de": "Plötzliche Schwellung von Gesicht, Zunge oder Hals (allergische Reaktion)"
         },
         {
           "pl": "SpO2 < 92% na pulsoksymetrze",
           "en": "SpO2 < 92% on pulse oximeter",
-          "de": "SpO2 < 92% on pulse oximeter"
+          "de": "SpO2 < 92% am Pulsoximeter"
         },
         {
           "pl": "Zaburzenia świadomości, splątanie",
           "en": "Altered consciousness, confusion",
-          "de": "Altered consciousness, confusion"
+          "de": "Bewusstseinsveränderungen, Verwirrtheit"
         }
       ]
     },
@@ -64,53 +64,53 @@
       "title": {
         "pl": "Pilne — skontaktuj się z onkologiem w ciągu 24h",
         "en": "Urgent — contact your oncologist within 24h",
-        "de": "Urgent — contact your oncologist within 24h"
+        "de": "Dringend — kontaktieren Sie Ihren Onkologen innerhalb von 24 h"
       },
       "symptoms": [
         {
           "pl": "Biegunka > 4 razy dziennie (szczególnie przy immunoterapii — podejrzenie irAE)",
           "en": "Diarrhea > 4 times/day (especially on immunotherapy — suspected irAE)",
-          "de": "Diarrhea > 4 times/day (especially on immunotherapy — suspected irAE)"
+          "de": "Durchfall > 4-mal täglich (besonders bei Immuntherapie — Verdacht auf irAE)"
         },
         {
           "pl": "Wymioty, przez które nie możesz pić/jeść przez 24h",
           "en": "Vomiting preventing drinking/eating for 24h",
-          "de": "Vomiting preventing drinking/eating for 24h"
+          "de": "Erbrechen, das 24 h lang Trinken/Essen verhindert"
         },
         {
           "pl": "Ból lub obrzęk łydki (podejrzenie zakrzepicy)",
           "en": "Calf pain or swelling (suspected thrombosis)",
-          "de": "Calf pain or swelling (suspected thrombosis)"
+          "de": "Wadenschmerz oder -schwellung (Thromboseverdacht)"
         },
         {
           "pl": "Nowa lub nasilająca się wysypka (szczególnie przy immunoterapii)",
           "en": "New or worsening rash (especially on immunotherapy)",
-          "de": "New or worsening rash (especially on immunotherapy)"
+          "de": "Neuer oder sich verschlimmernder Ausschlag (besonders bei Immuntherapie)"
         },
         {
           "pl": "Żółtaczka (żółte oczy/skóra)",
           "en": "Jaundice (yellow eyes/skin)",
-          "de": "Jaundice (yellow eyes/skin)"
+          "de": "Gelbsucht (gelbe Augen/Haut)"
         },
         {
           "pl": "Silne bóle głowy, zaburzenia widzenia",
           "en": "Severe headaches, vision changes",
-          "de": "Severe headaches, vision changes"
+          "de": "Starke Kopfschmerzen, Sehstörungen"
         },
         {
           "pl": "Krew w moczu, stolcu lub wymiocinach",
           "en": "Blood in urine, stool, or vomit",
-          "de": "Blood in urine, stool, or vomit"
+          "de": "Blut im Urin, Stuhl oder Erbrochenen"
         },
         {
           "pl": "Utrata wagi > 2kg w tygodniu bez diety",
           "en": "Weight loss > 2kg in a week without dieting",
-          "de": "Weight loss > 2kg in a week without dieting"
+          "de": "Gewichtsverlust > 2 kg pro Woche ohne Diät"
         },
         {
           "pl": "Narastający obrzęk ręki po stronie operacji (limfedema)",
           "en": "Increasing arm swelling on surgery side (lymphedema)",
-          "de": "Increasing arm swelling on surgery side (lymphedema)"
+          "de": "Zunehmende Armschwellung auf der Operationsseite (Lymphödem)"
         }
       ]
     },
@@ -120,43 +120,43 @@
       "title": {
         "pl": "Monitoruj — zgłoś przy następnej wizycie",
         "en": "Monitor — report at next visit",
-        "de": "Monitor — report at next visit"
+        "de": "Beobachten — beim nächsten Termin melden"
       },
       "symptoms": [
         {
           "pl": "Mrowienie/drętwienie dłoni lub stóp (neuropatia) — nasilające się",
           "en": "Tingling/numbness in hands or feet (neuropathy) — worsening",
-          "de": "Tingling/numbness in hands or feet (neuropathy) — worsening"
+          "de": "Kribbeln/Taubheit in Händen oder Füßen (Neuropathie) — sich verschlimmernd"
         },
         {
           "pl": "Zmęczenie utrzymujące się > 3 dni po fazie A",
           "en": "Fatigue lasting > 3 days after phase A",
-          "de": "Fatigue lasting > 3 days after phase A"
+          "de": "Müdigkeit, die > 3 Tage nach Phase A anhält"
         },
         {
           "pl": "Bóle stawów utrudniające codzienne czynności (przy hormonoterapii)",
           "en": "Joint pain affecting daily activities (on hormonal therapy)",
-          "de": "Joint pain affecting daily activities (on hormonal therapy)"
+          "de": "Gelenkschmerzen, die alltägliche Aktivitäten beeinträchtigen (bei Hormontherapie)"
         },
         {
           "pl": "Zmiany skórne w polu radioterapii (zaczerwienienie, pęcherze)",
           "en": "Skin changes in RT field (redness, blisters)",
-          "de": "Skin changes in RT field (redness, blisters)"
+          "de": "Hautveränderungen im RT-Feld (Rötung, Blasen)"
         },
         {
           "pl": "Problemy z pamięcią/koncentracją (chemobrain)",
           "en": "Memory/concentration problems (chemobrain)",
-          "de": "Memory/concentration problems (chemobrain)"
+          "de": "Gedächtnis-/Konzentrationsprobleme (Chemobrain)"
         },
         {
           "pl": "Obniżony nastrój utrzymujący się > 2 tygodnie",
           "en": "Low mood lasting > 2 weeks",
-          "de": "Low mood lasting > 2 weeks"
+          "de": "Niedergeschlagene Stimmung, die > 2 Wochen anhält"
         },
         {
           "pl": "Uderzenia gorąca utrudniające sen",
           "en": "Hot flashes disrupting sleep",
-          "de": "Hot flashes disrupting sleep"
+          "de": "Hitzewallungen, die den Schlaf stören"
         }
       ]
     }

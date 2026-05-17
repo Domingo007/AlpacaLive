@@ -7,33 +7,157 @@ import { db } from './db';
 import { CHEMO_PHASES, findPhaseForDay } from './treatment-cycle';
 import type { CalendarEvent, CalendarEventType } from '@/types';
 
-export const DEFAULT_EVENT_COLORS: Record<CalendarEventType, { color: string; icon: string; label: string }> = {
-  chemo:              { color: '#e74c3c', icon: 'vaccines', label: 'Chemioterapia' },
-  chemo_postponed:    { color: '#c0392b', icon: 'pause_circle', label: 'Chemia odroczona' },
-  blood_test:         { color: '#3498db', icon: 'water_drop', label: 'Wyniki krwi' },
-  imaging:            { color: '#9b59b6', icon: 'imagesmode', label: 'Badanie obrazowe' },
-  daily_log:          { color: '#27ae60', icon: 'edit_note', label: 'Dziennik' },
-  supplement:         { color: '#f39c12', icon: 'medication', label: 'Suplementy' },
-  doctor_visit:       { color: '#1abc9c', icon: 'stethoscope', label: 'Wizyta lekarska' },
-  side_effect:        { color: '#e67e22', icon: 'warning', label: 'Efekt uboczny' },
-  weight:             { color: '#7f8c8d', icon: 'scale', label: 'Waga' },
-  wearable_alert:     { color: '#c0392b', icon: 'watch', label: 'Alert opaski' },
-  prediction:         { color: '#2c3e50', icon: 'auto_graph', label: 'Wzorzec' },
-  medication_change:  { color: '#d35400', icon: 'sync', label: 'Zmiana leczenia' },
-  note:               { color: '#95a5a6', icon: 'push_pin', label: 'Notatka' },
-  radiotherapy_session:   { color: '#f59e0b', icon: 'radiology', label: 'Radioterapia' },
-  immunotherapy_infusion: { color: '#06b6d4', icon: 'shield', label: 'Immunoterapia' },
-  targeted_therapy:       { color: '#8b5cf6', icon: 'target', label: 'Terapia celowana' },
-  hormonal_therapy:       { color: '#ec4899', icon: 'medication', label: 'Hormonoterapia' },
-  surgery:                { color: '#7c3aed', icon: 'local_hospital', label: 'Operacja' },
-  surgery_followup:       { color: '#a78bfa', icon: 'healing', label: 'Kontrola pooperacyjna' },
-  recovery_period:        { color: '#ede9fe20', icon: '', label: 'Rekonwalescencja' },
-  phase_a:            { color: '#e74c3c20', icon: '', label: 'Faza A' },
-  phase_b:            { color: '#f39c1220', icon: '', label: 'Faza B' },
-  phase_c:            { color: '#27ae6020', icon: '', label: 'Faza C' },
+type CalendarLang = 'pl' | 'en' | 'de';
+
+const LABELS: Record<CalendarLang, Record<CalendarEventType, string>> = {
+  pl: {
+    chemo: 'Chemioterapia',
+    chemo_postponed: 'Chemia odroczona',
+    blood_test: 'Wyniki krwi',
+    imaging: 'Badanie obrazowe',
+    daily_log: 'Dziennik',
+    supplement: 'Suplementy',
+    doctor_visit: 'Wizyta lekarska',
+    side_effect: 'Efekt uboczny',
+    weight: 'Waga',
+    wearable_alert: 'Alert opaski',
+    prediction: 'Wzorzec',
+    medication_change: 'Zmiana leczenia',
+    note: 'Notatka',
+    radiotherapy_session: 'Radioterapia',
+    immunotherapy_infusion: 'Immunoterapia',
+    targeted_therapy: 'Terapia celowana',
+    hormonal_therapy: 'Hormonoterapia',
+    surgery: 'Operacja',
+    surgery_followup: 'Kontrola pooperacyjna',
+    recovery_period: 'Rekonwalescencja',
+    phase_a: 'Faza A',
+    phase_b: 'Faza B',
+    phase_c: 'Faza C',
+  },
+  en: {
+    chemo: 'Chemotherapy',
+    chemo_postponed: 'Chemo postponed',
+    blood_test: 'Blood results',
+    imaging: 'Imaging study',
+    daily_log: 'Journal',
+    supplement: 'Supplements',
+    doctor_visit: 'Doctor visit',
+    side_effect: 'Side effect',
+    weight: 'Weight',
+    wearable_alert: 'Wearable alert',
+    prediction: 'Pattern',
+    medication_change: 'Medication change',
+    note: 'Note',
+    radiotherapy_session: 'Radiotherapy',
+    immunotherapy_infusion: 'Immunotherapy',
+    targeted_therapy: 'Targeted therapy',
+    hormonal_therapy: 'Hormonal therapy',
+    surgery: 'Surgery',
+    surgery_followup: 'Post-op checkup',
+    recovery_period: 'Recovery',
+    phase_a: 'Phase A',
+    phase_b: 'Phase B',
+    phase_c: 'Phase C',
+  },
+  de: {
+    chemo: 'Chemotherapie',
+    chemo_postponed: 'Chemo verschoben',
+    blood_test: 'Blutwerte',
+    imaging: 'Bildgebung',
+    daily_log: 'Tagebuch',
+    supplement: 'Ergänzungen',
+    doctor_visit: 'Arztbesuch',
+    side_effect: 'Nebenwirkung',
+    weight: 'Gewicht',
+    wearable_alert: 'Wearable-Warnung',
+    prediction: 'Muster',
+    medication_change: 'Medikamentenwechsel',
+    note: 'Notiz',
+    radiotherapy_session: 'Strahlentherapie',
+    immunotherapy_infusion: 'Immuntherapie',
+    targeted_therapy: 'Zielgerichtete Therapie',
+    hormonal_therapy: 'Hormontherapie',
+    surgery: 'Operation',
+    surgery_followup: 'Postoperative Kontrolle',
+    recovery_period: 'Genesungsphase',
+    phase_a: 'Phase A',
+    phase_b: 'Phase B',
+    phase_c: 'Phase C',
+  },
 };
 
-export async function buildCalendarEvents(): Promise<CalendarEvent[]> {
+const COLORS: Record<CalendarEventType, { color: string; icon: string }> = {
+  chemo:              { color: '#e74c3c', icon: 'vaccines' },
+  chemo_postponed:    { color: '#c0392b', icon: 'pause_circle' },
+  blood_test:         { color: '#3498db', icon: 'water_drop' },
+  imaging:            { color: '#9b59b6', icon: 'imagesmode' },
+  daily_log:          { color: '#27ae60', icon: 'edit_note' },
+  supplement:         { color: '#f39c12', icon: 'medication' },
+  doctor_visit:       { color: '#1abc9c', icon: 'stethoscope' },
+  side_effect:        { color: '#e67e22', icon: 'warning' },
+  weight:             { color: '#7f8c8d', icon: 'scale' },
+  wearable_alert:     { color: '#c0392b', icon: 'watch' },
+  prediction:         { color: '#2c3e50', icon: 'auto_graph' },
+  medication_change:  { color: '#d35400', icon: 'sync' },
+  note:               { color: '#95a5a6', icon: 'push_pin' },
+  radiotherapy_session:   { color: '#f59e0b', icon: 'radiology' },
+  immunotherapy_infusion: { color: '#06b6d4', icon: 'shield' },
+  targeted_therapy:       { color: '#8b5cf6', icon: 'target' },
+  hormonal_therapy:       { color: '#ec4899', icon: 'medication' },
+  surgery:                { color: '#7c3aed', icon: 'local_hospital' },
+  surgery_followup:       { color: '#a78bfa', icon: 'healing' },
+  recovery_period:        { color: '#ede9fe20', icon: '' },
+  phase_a:            { color: '#e74c3c20', icon: '' },
+  phase_b:            { color: '#f39c1220', icon: '' },
+  phase_c:            { color: '#27ae6020', icon: '' },
+};
+
+export function getEventColors(lang: CalendarLang = 'pl'): Record<CalendarEventType, { color: string; icon: string; label: string }> {
+  const labels = LABELS[lang] || LABELS.pl;
+  const result = {} as Record<CalendarEventType, { color: string; icon: string; label: string }>;
+  for (const key of Object.keys(COLORS) as CalendarEventType[]) {
+    result[key] = { ...COLORS[key], label: labels[key] };
+  }
+  return result;
+}
+
+// Backwards-compat for non-React callers
+export const DEFAULT_EVENT_COLORS = getEventColors('pl');
+
+// Title pieces used inside event names (e.g. "Chemia #4", "Krew: WBC↓", "Energia: 6/10")
+const TITLES: Record<CalendarLang, {
+  chemo: (cycle: number) => string;
+  chemoPostponed: (to: string) => string;
+  blood: 'Krew' | 'Blood' | 'Blut';
+  energy: 'Energia' | 'Energy' | 'Energie';
+  pain: 'Ból' | 'Pain' | 'Schmerz';
+  nausea: 'Nudności' | 'Nausea' | 'Übelkeit';
+  supplements: (taken: number, total: number) => string;
+}> = {
+  pl: {
+    chemo: (cycle) => `Chemia #${cycle}`,
+    chemoPostponed: (to) => `Chemia odroczona → ${to}`,
+    blood: 'Krew', energy: 'Energia', pain: 'Ból', nausea: 'Nudności',
+    supplements: (t, n) => `Suplementy ${t}/${n}`,
+  },
+  en: {
+    chemo: (cycle) => `Chemo #${cycle}`,
+    chemoPostponed: (to) => `Chemo postponed → ${to}`,
+    blood: 'Blood', energy: 'Energy', pain: 'Pain', nausea: 'Nausea',
+    supplements: (t, n) => `Supplements ${t}/${n}`,
+  },
+  de: {
+    chemo: (cycle) => `Chemo #${cycle}`,
+    chemoPostponed: (to) => `Chemo verschoben → ${to}`,
+    blood: 'Blut', energy: 'Energie', pain: 'Schmerz', nausea: 'Übelkeit',
+    supplements: (t, n) => `Ergänzungen ${t}/${n}`,
+  },
+};
+
+export async function buildCalendarEvents(lang: CalendarLang = 'pl'): Promise<CalendarEvent[]> {
+  const COLORS_LOCALIZED = getEventColors(lang);
+  const T = TITLES[lang] || TITLES.pl;
   const events: CalendarEvent[] = [];
 
   const [chemos, bloods, dailies, imagings, wearables, supplements, notes] = await Promise.all([
@@ -52,9 +176,9 @@ export async function buildCalendarEvents(): Promise<CalendarEvent[]> {
       id: `chemo-${c.id}`,
       date: c.actualDate || c.date,
       type: c.status === 'postponed' ? 'chemo_postponed' : 'chemo',
-      title: c.status === 'postponed' ? `Chemia odroczona → ${c.postponedTo || '?'}` : `Chemia #${c.cycle}`,
+      title: c.status === 'postponed' ? T.chemoPostponed(c.postponedTo || '?') : T.chemo(c.cycle),
       subtitle: c.drugs?.join(' + '),
-      color: DEFAULT_EVENT_COLORS[c.status === 'postponed' ? 'chemo_postponed' : 'chemo'].color,
+      color: COLORS_LOCALIZED[c.status === 'postponed' ? 'chemo_postponed' : 'chemo'].color,
       icon: c.status === 'postponed' ? '⏸️' : '💉',
       sourceId: c.id, sourceType: 'chemo',
       editable: true, allDay: true,
@@ -79,7 +203,7 @@ export async function buildCalendarEvents(): Promise<CalendarEvent[]> {
         id: `phase-${dateStr}-${chemo.id}`,
         date: dateStr,
         type: `phase_${phaseKey}` as CalendarEventType,
-        title: '', color: DEFAULT_EVENT_COLORS[`phase_${phaseKey}` as CalendarEventType].color,
+        title: '', color: COLORS_LOCALIZED[`phase_${phaseKey}` as CalendarEventType].color,
         icon: '', editable: false, allDay: true,
         data: { phase: phaseKey.toUpperCase(), dayInCycle: d, treatmentType: 'chemotherapy' },
       });
@@ -89,7 +213,7 @@ export async function buildCalendarEvents(): Promise<CalendarEvent[]> {
   // TREATMENT SESSIONS (from generic table)
   const treatmentSessionsList = await db.treatmentSessions.toArray();
   for (const session of treatmentSessionsList) {
-    const typeConfig = DEFAULT_EVENT_COLORS[
+    const typeConfig = COLORS_LOCALIZED[
       session.treatmentType === 'radiotherapy' ? 'radiotherapy_session' :
       session.treatmentType === 'immunotherapy' ? 'immunotherapy_infusion' :
       session.treatmentType === 'targeted_therapy' ? 'targeted_therapy' :
@@ -124,9 +248,9 @@ export async function buildCalendarEvents(): Promise<CalendarEvent[]> {
     if (b.markers.plt !== undefined && b.markers.plt < 50) alerts.push('PLT↓');
     events.push({
       id: `blood-${b.id}`, date: b.date, type: 'blood_test',
-      title: `Krew${alerts.length ? ': ' + alerts.join(', ') : ''}`,
+      title: `${T.blood}${alerts.length ? ': ' + alerts.join(', ') : ''}`,
       subtitle: Object.entries(b.markers).slice(0, 4).map(([k, v]) => `${k}: ${v}`).join(', '),
-      color: alerts.length ? '#e74c3c' : DEFAULT_EVENT_COLORS.blood_test.color,
+      color: alerts.length ? '#e74c3c' : COLORS_LOCALIZED.blood_test.color,
       icon: alerts.length ? '🔴' : '🩸',
       sourceId: b.id, sourceType: 'blood', editable: true, allDay: true, data: b.markers as Record<string, unknown>,
     });
@@ -138,7 +262,7 @@ export async function buildCalendarEvents(): Promise<CalendarEvent[]> {
       id: `img-${img.id}`, date: img.date, type: 'imaging',
       title: `${img.type} ${img.bodyRegion || ''}`.trim(),
       subtitle: img.radiologistReport?.extractedData?.conclusion || img.notes || undefined,
-      color: DEFAULT_EVENT_COLORS.imaging.color, icon: '🏥',
+      color: COLORS_LOCALIZED.imaging.color, icon: '🏥',
       sourceId: img.id, sourceType: 'imaging', editable: true, allDay: true,
     });
   }
@@ -147,9 +271,9 @@ export async function buildCalendarEvents(): Promise<CalendarEvent[]> {
   for (const d of dailies) {
     events.push({
       id: `daily-${d.id}`, date: d.date, type: 'daily_log',
-      title: `Energia: ${d.energy}/10`,
-      subtitle: [d.pain > 3 ? `Ból: ${d.pain}` : null, d.nausea > 3 ? `Nudności: ${d.nausea}` : null, d.weight ? `${d.weight}kg` : null].filter(Boolean).join(', ') || undefined,
-      color: d.energy <= 3 ? '#e74c3c' : d.energy <= 6 ? '#f39c12' : DEFAULT_EVENT_COLORS.daily_log.color,
+      title: `${T.energy}: ${d.energy}/10`,
+      subtitle: [d.pain > 3 ? `${T.pain}: ${d.pain}` : null, d.nausea > 3 ? `${T.nausea}: ${d.nausea}` : null, d.weight ? `${d.weight}kg` : null].filter(Boolean).join(', ') || undefined,
+      color: d.energy <= 3 ? '#e74c3c' : d.energy <= 6 ? '#f39c12' : COLORS_LOCALIZED.daily_log.color,
       icon: d.energy <= 3 ? '😞' : d.energy <= 6 ? '😐' : '😊',
       sourceId: d.id, sourceType: 'daily', editable: true, allDay: true,
       data: { energy: d.energy, pain: d.pain, nausea: d.nausea, mood: d.mood, weight: d.weight },
@@ -162,7 +286,7 @@ export async function buildCalendarEvents(): Promise<CalendarEvent[]> {
       events.push({
         id: `wear-${w.id}`, date: w.date, type: 'wearable_alert',
         title: w.rhr > 85 ? `RHR ${w.rhr} bpm ⚠️` : `SpO2 ${w.spo2}% ⚠️`,
-        color: DEFAULT_EVENT_COLORS.wearable_alert.color, icon: '⌚',
+        color: COLORS_LOCALIZED.wearable_alert.color, icon: '⌚',
         sourceId: w.id, sourceType: 'wearable', editable: false, allDay: true,
         data: { rhr: w.rhr, spo2: w.spo2, hrv: w.hrv },
       });
@@ -176,8 +300,8 @@ export async function buildCalendarEvents(): Promise<CalendarEvent[]> {
     if (total > 0) {
       events.push({
         id: `supp-${s.id}`, date: s.date, type: 'supplement',
-        title: `Suplementy ${taken}/${total}`,
-        color: DEFAULT_EVENT_COLORS.supplement.color, icon: '💊',
+        title: T.supplements(taken, total),
+        color: COLORS_LOCALIZED.supplement.color, icon: '💊',
         sourceId: s.id, sourceType: 'supplements', editable: false, allDay: true,
       });
     }
@@ -188,8 +312,8 @@ export async function buildCalendarEvents(): Promise<CalendarEvent[]> {
     events.push({
       id: `note-${n.id}`, date: n.date, type: n.type,
       title: n.title, subtitle: n.description,
-      color: DEFAULT_EVENT_COLORS[n.type].color,
-      icon: DEFAULT_EVENT_COLORS[n.type].icon,
+      color: COLORS_LOCALIZED[n.type].color,
+      icon: COLORS_LOCALIZED[n.type].icon,
       editable: true, allDay: !n.time, time: n.time,
     });
   }

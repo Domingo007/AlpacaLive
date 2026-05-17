@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from 'react';
 import { v4 as uuidv4 } from 'uuid';
-import { buildCalendarEvents, getEventsForDate, getPhaseForDate, DEFAULT_EVENT_COLORS } from '@/lib/calendar-events';
+import { buildCalendarEvents, getEventsForDate, getPhaseForDate, getEventColors } from '@/lib/calendar-events';
 import { db } from '@/lib/db';
 import { getPhaseColor } from '@/lib/treatment-cycle';
 import { Icon } from '@/components/shared/Icon';
@@ -40,13 +40,14 @@ export function CalendarView({ onNavigate }: CalendarViewProps) {
   const { t, lang } = useI18n();
 
   const locale = lang === 'pl' ? 'pl-PL' : lang === 'de' ? 'de-DE' : 'en-US';
+  const DEFAULT_EVENT_COLORS = getEventColors(lang);
 
   const loadEvents = useCallback(async () => {
     setLoading(true);
-    const ev = await buildCalendarEvents();
+    const ev = await buildCalendarEvents(lang);
     setEvents(ev);
     setLoading(false);
-  }, []);
+  }, [lang]);
 
   useEffect(() => { loadEvents(); }, [loadEvents]);
 

@@ -18,11 +18,11 @@ export function DataView() {
   const { daily, blood, wearable, counts, loading } = useDashboardData();
   const [generating, setGenerating] = useState(false);
   const [upcoming, setUpcoming] = useState<CalendarEvent[]>([]);
-  const { t } = useI18n();
+  const { t, lang } = useI18n();
 
   useEffect(() => {
-    buildCalendarEvents().then(ev => setUpcoming(getUpcomingEvents(ev, 7)));
-  }, [loading]);
+    buildCalendarEvents(lang).then(ev => setUpcoming(getUpcomingEvents(ev, 7)));
+  }, [loading, lang]);
 
   async function handleGenerateReport() {
     setGenerating(true);

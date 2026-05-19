@@ -13,7 +13,18 @@ import { useI18n } from '@/lib/i18n';
 import { logAICall } from '@/lib/audit-logger';
 import type { AIAuditLogEntry } from '@/types/audit-log';
 
-const PATTERN_TRIGGERS = ['wzorzec', 'wzorce', 'wzorcow', 'jak zwykle', 'pokaż wzorzec', 'pokaz wzorzec', 'predykcja', 'prognoza', 'przewiduj', 'jak będę się czuć', 'jak bede sie czuc', 'jak będę', 'co mnie czeka', 'najbliższe dni', 'ten tydzień', 'ten tydzien'];
+const PATTERN_TRIGGERS = [
+  // PL
+  'wzorzec', 'wzorce', 'wzorcow', 'jak zwykle', 'pokaż wzorzec', 'pokaz wzorzec',
+  'predykcja', 'prognoza', 'przewiduj', 'jak będę się czuć', 'jak bede sie czuc',
+  'jak będę', 'co mnie czeka', 'najbliższe dni', 'ten tydzień', 'ten tydzien',
+  // EN
+  'pattern', 'patterns', 'usually', 'show pattern', 'prediction', 'forecast', 'predict',
+  'how will i feel', 'what awaits me', 'next days', 'this week',
+  // DE
+  'muster', 'analyse', 'normalerweise', 'muster zeigen', 'prognose', 'vorhersage',
+  'wie werde ich mich fühlen', 'was erwartet mich', 'nächste tage', 'diese woche',
+];
 
 function isPatternRequest(text: string): boolean {
   const lower = text.toLowerCase();
@@ -35,18 +46,19 @@ export function useChat() {
   }, []);
 
   // Refresh stale welcome message when language changes.
-  // Replaces the first message only if it is the auto-welcome in the OTHER language
-  // (matches PL or EN welcome verbatim). Does not touch user messages or real AI replies.
+  // Replaces the first message only if it is the auto-welcome in any supported language
+  // (matches PL, EN, or DE welcome verbatim). Does not touch user messages or real AI replies.
   useEffect(() => {
     const plWelcome = getWelcomeMessage('pl');
     const enWelcome = getWelcomeMessage('en');
+    const deWelcome = getWelcomeMessage('de');
     const currentWelcome = getWelcomeMessage(lang);
     if (messages.length === 0) return;
     const first = messages[0];
     if (first.role !== 'assistant') return;
     if (typeof first.content !== 'string') return;
     if (first.content === currentWelcome) return;
-    if (first.content !== plWelcome && first.content !== enWelcome) return;
+    if (first.content !== plWelcome && first.content !== enWelcome && first.content !== deWelcome) return;
     const refreshed = { ...first, content: currentWelcome };
     updateChatMessage(refreshed).then(() => {
       setMessages(prev => prev.length > 0 ? [refreshed, ...prev.slice(1)] : prev);
@@ -104,6 +116,8 @@ export function useChat() {
     let patient: PatientProfile | undefined;
     let systemPrompt = lang === 'en'
       ? 'You are the AlpacaLive medical agent. You help an oncology patient. Always reply in English.'
+      : lang === 'de'
+      ? 'Sie sind der medizinische Agent von AlpacaLive. Sie helfen einer Krebspatientin. Antworten Sie immer auf Deutsch.'
       : 'Jesteś agentem medycznym AlpacaLive. Pomagasz pacjentowi onkologicznemu. Mów po polsku.';
     let sanitizedProfile: ReturnType<typeof sanitizePatientForAI> | null = null;
     let chemoCount = 0;
@@ -123,10 +137,14 @@ export function useChat() {
         // Also check past pattern match accuracy
         const accuracyCheck = await checkPatternMatch();
 
-        let responseText = formatPatternForChat(predResult);
+        let responseText = formatPatternForChat(predResult, lang);
         if (accuracyCheck) {
-          // TODO: przenieś do translations/pl.ts zamiast hardcode
-          responseText += `\n\n🎯 **Trafność poprzednich analiz wzorców:** ${accuracyCheck.overallAccuracy}%`;
+          const accuracyLabel = lang === 'en'
+            ? 'Accuracy of previous pattern analyses'
+            : lang === 'de'
+            ? 'Genauigkeit früherer Musteranalysen'
+            : 'Trafność poprzednich analiz wzorców';
+          responseText += `\n\n🎯 **${accuracyLabel}:** ${accuracyCheck.overallAccuracy}%`;
         }
 
         const assistantMessage: ChatMessage = {
@@ -228,7 +246,9 @@ export function useChat() {
         });
       }
     } catch (err) {
-      const errorMsg = err instanceof Error ? err.message : 'Nieznany błąd';
+      const errorMsg = err instanceof Error ? err.message : (
+        lang === 'en' ? 'Unknown error' : lang === 'de' ? 'Unbekannter Fehler' : 'Nieznany błąd'
+      );
       setError(errorMsg);
 
       // Log failed AI call

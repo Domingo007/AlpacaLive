@@ -28,7 +28,7 @@ export function GlossaryView({ education }: GlossaryViewProps) {
       <input
         value={search}
         onChange={e => setSearch(e.target.value)}
-        placeholder={lang === 'pl' ? 'Szukaj terminu...' : 'Search term...'}
+        placeholder={lang === 'pl' ? 'Szukaj terminu...' : lang === 'de' ? 'Begriff suchen...' : 'Search term...'}
         className="w-full rounded-lg border border-border px-3 py-2 text-xs bg-bg-card"
       />
 
@@ -54,7 +54,7 @@ export function GlossaryView({ education }: GlossaryViewProps) {
 
       {terms.length === 0 && (
         <div className="text-center text-sm text-text-secondary py-8">
-          {lang === 'pl' ? 'Brak wyników' : 'No results'}
+          {lang === 'pl' ? 'Brak wyników' : lang === 'de' ? 'Keine Ergebnisse' : 'No results'}
         </div>
       )}
     </div>

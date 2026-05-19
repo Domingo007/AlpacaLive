@@ -10,88 +10,104 @@
     {
       "q": {
         "pl": "Czy stracę włosy?",
-        "en": "Will I lose my hair?"
+        "en": "Will I lose my hair?",
+        "de": "Werde ich meine Haare verlieren?"
       },
       "a": {
         "pl": "Przy schematach z antracyklinami (EC, AC) i taksanami — tak, w 90-95% przypadków. Włosy zaczynają wypadać 2-3 tyg. po 1. cyklu. Odrastają 3-6 mies. po zakończeniu chemii (mogą mieć inny kolor/kształt na początku). Przy TC ryzyko jest podobne. Przy samym tamoksyfenie włosy się nie tracą.",
-        "en": "With anthracycline (EC, AC) and taxane regimens — yes, in 90-95% of cases. Hair starts falling 2-3 weeks after 1st cycle. Regrows 3-6 months after chemo ends (may have different color/texture initially). With TC risk is similar. Tamoxifen alone doesn't cause hair loss."
+        "en": "With anthracycline (EC, AC) and taxane regimens — yes, in 90-95% of cases. Hair starts falling 2-3 weeks after 1st cycle. Regrows 3-6 months after chemo ends (may have different color/texture initially). With TC risk is similar. Tamoxifen alone doesn't cause hair loss.",
+        "de": "Bei Anthrazyklin- (EC, AC) und Taxan-Schemata — ja, in 90-95% der Fälle. Die Haare beginnen 2-3 Wochen nach dem 1. Zyklus auszufallen. Sie wachsen 3-6 Monate nach Ende der Chemo nach (anfangs möglicherweise andere Farbe/Struktur). Bei TC ist das Risiko ähnlich. Tamoxifen allein verursacht keinen Haarausfall."
       },
       "category": "side_effects"
     },
     {
       "q": {
         "pl": "Czy mogę pracować w trakcie chemii?",
-        "en": "Can I work during chemo?"
+        "en": "Can I work during chemo?",
+        "de": "Kann ich während der Chemo arbeiten?"
       },
       "a": {
         "pl": "Wiele pacjentek kontynuuje pracę, szczególnie w fazie C (odbudowy). Faza A (dni 0-3) zwykle wymaga odpoczynku. Omów z pracodawcą elastyczny grafik lub pracę zdalną w dniach po chemii. Zwolnienie lekarskie na czas leczenia to Twoje prawo.",
-        "en": "Many patients continue working, especially in phase C (rebuild). Phase A (days 0-3) usually requires rest. Discuss flexible schedule or remote work on chemo days with your employer. Sick leave during treatment is your right."
+        "en": "Many patients continue working, especially in phase C (rebuild). Phase A (days 0-3) usually requires rest. Discuss flexible schedule or remote work on chemo days with your employer. Sick leave during treatment is your right.",
+        "de": "Viele Patientinnen arbeiten weiter, besonders in Phase C (Wiederaufbau). Phase A (Tage 0-3) erfordert meist Ruhe. Besprechen Sie mit Ihrem Arbeitgeber flexible Arbeitszeiten oder Homeoffice an Chemo-Tagen. Krankschreibung während der Behandlung ist Ihr Recht."
       },
       "category": "daily_life"
     },
     {
       "q": {
         "pl": "Czy mogę ćwiczyć?",
-        "en": "Can I exercise?"
+        "en": "Can I exercise?",
+        "de": "Darf ich Sport treiben?"
       },
       "a": {
         "pl": "TAK! Umiarkowana aktywność (spacer, joga, basen) jest zalecana w literaturze jako korzystna — zmniejsza zmęczenie, poprawia nastrój, wspomaga odporność. Unikaj ćwiczeń w fazie A. W fazie B — delikatny ruch. W fazie C — pełna aktywność na miarę sił. Przy neutropenii (WBC<2.0) — unikaj basenu.",
-        "en": "YES! Moderate activity (walking, yoga, swimming) is recommended in literature as beneficial — reduces fatigue, improves mood, supports immunity. Avoid exercise in phase A. Phase B — gentle movement. Phase C — full activity within your limits. With neutropenia (WBC<2.0) — avoid swimming pools."
+        "en": "YES! Moderate activity (walking, yoga, swimming) is recommended in literature as beneficial — reduces fatigue, improves mood, supports immunity. Avoid exercise in phase A. Phase B — gentle movement. Phase C — full activity within your limits. With neutropenia (WBC<2.0) — avoid swimming pools.",
+        "de": "JA! Moderate Aktivität (Spaziergang, Yoga, Schwimmen) wird in der Literatur als vorteilhaft empfohlen — reduziert Müdigkeit, verbessert die Stimmung, unterstützt das Immunsystem. Vermeiden Sie Sport in Phase A. In Phase B — sanfte Bewegung. In Phase C — volle Aktivität nach Maßgabe Ihrer Kräfte. Bei Neutropenie (WBC<2,0) — meiden Sie Schwimmbäder."
       },
       "category": "daily_life"
     },
     {
       "q": {
         "pl": "Co jeść podczas chemii?",
-        "en": "What to eat during chemo?"
+        "en": "What to eat during chemo?",
+        "de": "Was sollte ich während der Chemo essen?"
       },
       "a": {
         "pl": "Priorytet: BIAŁKO (mięso, ryby, jajka, nabiał, rośliny strączkowe) — Twoje ciało potrzebuje go do regeneracji. W fazie A: lekkostrawne posiłki (rosół, ryż, banany, krakersy). W fazie C: pełnowartościowa dieta. Pij min. 2l dziennie. Unikaj: surowego mięsa/ryb, grejpfrutów (interakcja z lekami). Nie musisz głodować — jedz co tolerujesz.",
-        "en": "Priority: PROTEIN (meat, fish, eggs, dairy, legumes) — your body needs it for recovery. Phase A: easily digestible meals (broth, rice, bananas, crackers). Phase C: full balanced diet. Drink min. 2L daily. Avoid: raw meat/fish, grapefruit (drug interaction). Don't starve — eat what you can tolerate."
+        "en": "Priority: PROTEIN (meat, fish, eggs, dairy, legumes) — your body needs it for recovery. Phase A: easily digestible meals (broth, rice, bananas, crackers). Phase C: full balanced diet. Drink min. 2L daily. Avoid: raw meat/fish, grapefruit (drug interaction). Don't starve — eat what you can tolerate.",
+        "de": "Priorität: EIWEISS (Fleisch, Fisch, Eier, Milchprodukte, Hülsenfrüchte) — Ihr Körper braucht es zur Regeneration. Phase A: leicht verdauliche Mahlzeiten (Brühe, Reis, Bananen, Cracker). Phase C: vollwertige Ernährung. Trinken Sie mindestens 2 L täglich. Vermeiden Sie: rohes Fleisch/Fisch, Grapefruit (Wechselwirkung mit Medikamenten). Hungern Sie nicht — essen Sie, was Sie vertragen."
       },
       "category": "nutrition"
     },
     {
       "q": {
         "pl": "Czym jest gorączka neutropeniczna i dlaczego jest groźna?",
-        "en": "What is febrile neutropenia and why is it dangerous?"
+        "en": "What is febrile neutropenia and why is it dangerous?",
+        "de": "Was ist febrile Neutropenie und warum ist sie gefährlich?"
       },
       "a": {
         "pl": "Gdy masz niskie neutrofile (nadir, zwykle dzień 10-14) i pojawi się gorączka >38°C — to gorączka neutropeniczna. Twój organizm nie może walczyć z infekcją. To STAN ZAGROŻENIA ŻYCIA wymagający natychmiastowej hospitalizacji i antybiotyków dożylnych. ZAWSZE mierz temperaturę w dniach 7-14 po chemii. Gorączka = SOR, nie czekaj do rana.",
-        "en": "When you have low neutrophils (nadir, usually day 10-14) and develop fever >38°C — this is febrile neutropenia. Your body cannot fight infection. This is a LIFE-THREATENING EMERGENCY requiring immediate hospitalization and IV antibiotics. ALWAYS check temperature on days 7-14 post-chemo. Fever = ER, don't wait until morning."
+        "en": "When you have low neutrophils (nadir, usually day 10-14) and develop fever >38°C — this is febrile neutropenia. Your body cannot fight infection. This is a LIFE-THREATENING EMERGENCY requiring immediate hospitalization and IV antibiotics. ALWAYS check temperature on days 7-14 post-chemo. Fever = ER, don't wait until morning.",
+        "de": "Wenn Sie niedrige Neutrophile haben (Tiefpunkt, meist Tag 10-14) und Fieber >38°C entwickeln — das ist febrile Neutropenie. Ihr Körper kann eine Infektion nicht bekämpfen. Dies ist ein LEBENSBEDROHLICHER NOTFALL, der sofortige Hospitalisierung und intravenöse Antibiotika erfordert. Messen Sie IMMER die Temperatur an den Tagen 7-14 nach der Chemo. Fieber = Notaufnahme, warten Sie nicht bis zum Morgen."
       },
       "category": "emergency"
     },
     {
       "q": {
         "pl": "Jak długo trwa hormonoterapia?",
-        "en": "How long does hormonal therapy last?"
+        "en": "How long does hormonal therapy last?",
+        "de": "Wie lange dauert die Hormontherapie?"
       },
       "a": {
         "pl": "Standardowo 5-10 lat. Nowsze badania (ATLAS, aTTom) pokazują korzyść z 10 lat tamoksyfenu. Inhibitory aromatazy (anastrozol, letrozol) — zwykle 5-7 lat. NIE przerywaj samodzielnie — nawet jeśli masz efekty uboczne, porozmawiaj z onkologiem o zmianie leku zamiast odstawiania.",
-        "en": "Standard 5-10 years. Newer studies (ATLAS, aTTom) show benefit from 10 years of tamoxifen. Aromatase inhibitors (anastrozole, letrozole) — usually 5-7 years. Do NOT stop on your own — even with side effects, talk to your oncologist about switching drugs instead of stopping."
+        "en": "Standard 5-10 years. Newer studies (ATLAS, aTTom) show benefit from 10 years of tamoxifen. Aromatase inhibitors (anastrozole, letrozole) — usually 5-7 years. Do NOT stop on your own — even with side effects, talk to your oncologist about switching drugs instead of stopping.",
+        "de": "Standardmäßig 5-10 Jahre. Neuere Studien (ATLAS, aTTom) zeigen Nutzen von 10 Jahren Tamoxifen. Aromatasehemmer (Anastrozol, Letrozol) — meist 5-7 Jahre. Setzen Sie NICHT selbstständig ab — auch bei Nebenwirkungen sprechen Sie mit Ihrem Onkologen über einen Medikamentenwechsel statt eines Abbruchs."
       },
       "category": "treatment"
     },
     {
       "q": {
         "pl": "Czy CA 15-3 musi spaść do zera?",
-        "en": "Does CA 15-3 need to drop to zero?"
+        "en": "Does CA 15-3 need to drop to zero?",
+        "de": "Muss CA 15-3 auf null fallen?"
       },
       "a": {
         "pl": "Nie. Norma to <31.3 U/ml. Ważny jest TREND, nie pojedynczy wynik. Spadek w trakcie leczenia = dobra odpowiedź. Stabilna wartość w normie = dobrze. Wzrost po normalizacji = może wymagać dodatkowych badań. Marker może być fałszywie podwyższony (ciąża, choroby wątroby). ZAWSZE interpretuj z onkologiem.",
-        "en": "No. Normal is <31.3 U/ml. The TREND matters, not a single value. Decrease during treatment = good response. Stable within normal = good. Rise after normalization = may need further tests. Marker can be falsely elevated (pregnancy, liver disease). ALWAYS interpret with your oncologist."
+        "en": "No. Normal is <31.3 U/ml. The TREND matters, not a single value. Decrease during treatment = good response. Stable within normal = good. Rise after normalization = may need further tests. Marker can be falsely elevated (pregnancy, liver disease). ALWAYS interpret with your oncologist.",
+        "de": "Nein. Normal ist <31,3 U/ml. Der TREND zählt, nicht ein einzelner Wert. Abnahme während der Behandlung = gutes Ansprechen. Stabil im Normbereich = gut. Anstieg nach Normalisierung = möglicherweise weitere Tests nötig. Der Marker kann falsch erhöht sein (Schwangerschaft, Lebererkrankungen). Interpretieren Sie ihn IMMER mit Ihrem Onkologen."
       },
       "category": "blood"
     },
     {
       "q": {
         "pl": "Czy mogę brać suplementy podczas chemii?",
-        "en": "Can I take supplements during chemo?"
+        "en": "Can I take supplements during chemo?",
+        "de": "Darf ich während der Chemo Nahrungsergänzungsmittel einnehmen?"
       },
       "a": {
         "pl": "OSTROŻNIE. Niektóre suplementy mogą wchodzić w interakcje z chemioterapią (np. dziurawiec OBNIŻA skuteczność wielu leków przez CYP3A4). Witamina D3 i magnez — zazwyczaj bezpieczne. Antyoksydanty (wit. C, E w dużych dawkach) — KONTROWERSYJNE, mogą chronić komórki rakowe. ZAWSZE konsultuj z onkologiem przed rozpoczęciem suplementacji.",
-        "en": "CAREFULLY. Some supplements can interact with chemotherapy (e.g., St. John's wort REDUCES effectiveness of many drugs via CYP3A4). Vitamin D3 and magnesium — usually safe. Antioxidants (vitamin C, E in high doses) — CONTROVERSIAL, may protect cancer cells. ALWAYS consult your oncologist before starting supplements."
+        "en": "CAREFULLY. Some supplements can interact with chemotherapy (e.g., St. John's wort REDUCES effectiveness of many drugs via CYP3A4). Vitamin D3 and magnesium — usually safe. Antioxidants (vitamin C, E in high doses) — CONTROVERSIAL, may protect cancer cells. ALWAYS consult your oncologist before starting supplements.",
+        "de": "VORSICHTIG. Einige Ergänzungsmittel können mit der Chemotherapie wechselwirken (z. B. Johanniskraut REDUZIERT die Wirksamkeit vieler Medikamente über CYP3A4). Vitamin D3 und Magnesium — meist sicher. Antioxidantien (Vitamin C, E in hohen Dosen) — KONTROVERS, können Krebszellen schützen. Konsultieren Sie IMMER Ihren Onkologen, bevor Sie mit Ergänzungsmitteln beginnen."
       },
       "category": "supplements"
     }

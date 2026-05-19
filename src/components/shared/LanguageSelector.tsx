@@ -6,8 +6,8 @@ import { saveSettings } from '@/lib/db';
 const LANGUAGES: { code: Lang; label: string; flag: string }[] = [
   { code: 'en', label: 'English', flag: '🇬🇧' },
   { code: 'pl', label: 'Polski', flag: '🇵🇱' },
+  { code: 'de', label: 'Deutsch', flag: '🇩🇪' },
   // Ready to extend:
-  // { code: 'de', label: 'Deutsch', flag: '🇩🇪' },
   // { code: 'uk', label: 'Українська', flag: '🇺🇦' },
   // { code: 'fr', label: 'Français', flag: '🇫🇷' },
   // { code: 'es', label: 'Español', flag: '🇪🇸' },

@@ -25,7 +25,12 @@
       "Bash(curl -sS -X POST \"https://api.prod.whoop.com/oauth/oauth2/token\" -H \"Origin: http://localhost:5173\" -H \"Content-Type: application/x-www-form-urlencoded\" -d \"grant_type=authorization_code&client_id=spike&client_secret=spike&code=spike&redirect_uri=http://localhost:5173/whoop/callback\" -i)",
       "Bash(curl -sS -X POST \"https://www.strava.com/oauth/token\" -H \"Origin: http://localhost:5173\" -H \"Content-Type: application/x-www-form-urlencoded\" -d \"client_id=spike&client_secret=spike&code=spike&grant_type=authorization_code\" -i)",
       "Skill(verify)",
-      "Skill(verify:*)"
+      "Skill(verify:*)",
+      "Bash(grep -rn \"\\\\\"[A-Z][a-zA-Z ]\\\\{5,\\\\}\\\\\"\" \"/Users/dominikgawel/Documents/Podcast DoMore/Gravity Designe/AlpakLive/src/components/chat/ChatView.tsx\")",
+      "Bash(grep -c \"=> \\\\`\\\\|=>\" \"/Users/dominikgawel/Documents/Podcast DoMore/Gravity Designe/AlpakLive/src/lib/translations/pl.ts\")",
+      "Bash(grep -rn \"\\\\\"[A-Z][a-zA-Z ]\\\\{5,\\\\}\\\\\"\\\\|'[A-Z][a-zA-Z ]\\\\{5,\\\\}'\" \"/Users/dominikgawel/Documents/Podcast DoMore/Gravity Designe/AlpakLive/src/components/settings/SettingsView.tsx\")",
+      "Bash(grep -n \"=> \\\\`\\\\|: \\(.*\\) =>\" \"/Users/dominikgawel/Documents/Podcast DoMore/Gravity Designe/AlpakLive/src/lib/translations/pl.ts\")",
+      "Bash(grep -rn \"\\\\\"[A-Z][a-zA-Z ]\\\\{5,\\\\}\\\\\"\\\\|'[A-Z][a-zA-Z ]\\\\{5,\\\\}'\" \"/Users/dominikgawel/Documents/Podcast DoMore/Gravity Designe/AlpakLive/src/components/education/EducationView.tsx\")"
     ]
   }
 }

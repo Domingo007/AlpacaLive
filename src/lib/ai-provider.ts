@@ -164,33 +164,91 @@ export async function sendToAI(
   return { ...parsed, provider: config.provider, model };
 }
 
-export async function testConnection(config: AIProviderConfig): Promise<{ success: boolean; message: string }> {
+export async function testConnection(config: AIProviderConfig, lang: 'pl' | 'en' | 'de' = 'pl'): Promise<{ success: boolean; message: string }> {
+  const testPrompt = lang === 'en'
+    ? 'Answer in one word: OK'
+    : lang === 'de'
+    ? 'Antworten Sie mit einem Wort: OK'
+    : 'Odpowiedz jednym słowem: OK';
+  const connectedMsg = (model: string) => lang === 'en'
+    ? `Connected to ${PROVIDERS[config.provider].label}. Model: ${model}`
+    : lang === 'de'
+    ? `Verbunden mit ${PROVIDERS[config.provider].label}. Modell: ${model}`
+    : `Połączono z ${PROVIDERS[config.provider].label}. Model: ${model}`;
+  const unknownErr = lang === 'en' ? 'Unknown error' : lang === 'de' ? 'Unbekannter Fehler' : 'Nieznany błąd';
   try {
-    const result = await sendToAI(config, 'Odpowiedz jednym słowem: OK', [{ role: 'user', content: 'Test' }]);
-    return { success: true, message: `Połączono z ${PROVIDERS[config.provider].label}. Model: ${result.model}` };
+    const result = await sendToAI(config, testPrompt, [{ role: 'user', content: 'Test' }]);
+    return { success: true, message: connectedMsg(result.model) };
   } catch (e: unknown) {
-    const msg = e instanceof Error ? e.message : 'Nieznany błąd';
+    const msg = e instanceof Error ? e.message : unknownErr;
     return { success: false, message: msg };
   }
 }
 
-export const PROVIDER_INFO: Record<AIProvider, { label: string; description: string; cost: string; link: string }> = {
-  anthropic: {
-    label: 'Anthropic Claude',
-    description: 'Najlepsza dokładność medyczna po polsku. Ostrożny w poradach.',
-    cost: '~5-15 zł/mies.',
-    link: 'console.anthropic.com',
-  },
-  openai: {
-    label: 'OpenAI (GPT-4o / GPT-5)',
-    description: 'Dobra wiedza medyczna. Szeroko dostępny.',
-    cost: '~5-20 zł/mies.',
-    link: 'platform.openai.com',
-  },
-  gemini: {
-    label: 'Google Gemini',
-    description: 'Darmowy limit dostępny. Najdłuższy kontekst.',
-    cost: 'Darmowy / ~5 zł/mies.',
-    link: 'aistudio.google.com',
-  },
-};
+type ProviderInfoLang = 'pl' | 'en' | 'de';
+
+export function getProviderInfo(lang: ProviderInfoLang = 'pl'): Record<AIProvider, { label: string; description: string; cost: string; link: string }> {
+  if (lang === 'en') return {
+    anthropic: {
+      label: 'Anthropic Claude',
+      description: 'Best medical accuracy. Cautious with advice.',
+      cost: '~$2-5/month',
+      link: 'console.anthropic.com',
+    },
+    openai: {
+      label: 'OpenAI (GPT-4o / GPT-5)',
+      description: 'Strong medical knowledge. Widely available.',
+      cost: '~$2-6/month',
+      link: 'platform.openai.com',
+    },
+    gemini: {
+      label: 'Google Gemini',
+      description: 'Free tier available. Longest context.',
+      cost: 'Free / ~$1/month',
+      link: 'aistudio.google.com',
+    },
+  };
+  if (lang === 'de') return {
+    anthropic: {
+      label: 'Anthropic Claude',
+      description: 'Beste medizinische Genauigkeit. Vorsichtig bei Ratschlägen.',
+      cost: '~2-5 €/Monat',
+      link: 'console.anthropic.com',
+    },
+    openai: {
+      label: 'OpenAI (GPT-4o / GPT-5)',
+      description: 'Solides medizinisches Wissen. Weit verbreitet.',
+      cost: '~2-6 €/Monat',
+      link: 'platform.openai.com',
+    },
+    gemini: {
+      label: 'Google Gemini',
+      description: 'Kostenlose Stufe verfügbar. Längster Kontext.',
+      cost: 'Kostenlos / ~1 €/Monat',
+      link: 'aistudio.google.com',
+    },
+  };
+  return {
+    anthropic: {
+      label: 'Anthropic Claude',
+      description: 'Najlepsza dokładność medyczna po polsku. Ostrożny w poradach.',
+      cost: '~5-15 zł/mies.',
+      link: 'console.anthropic.com',
+    },
+    openai: {
+      label: 'OpenAI (GPT-4o / GPT-5)',
+      description: 'Dobra wiedza medyczna. Szeroko dostępny.',
+      cost: '~5-20 zł/mies.',
+      link: 'platform.openai.com',
+    },
+    gemini: {
+      label: 'Google Gemini',
+      description: 'Darmowy limit dostępny. Najdłuższy kontekst.',
+      cost: 'Darmowy / ~5 zł/mies.',
+      link: 'aistudio.google.com',
+    },
+  };
+}
+
+// Backwards-compat: default PL info used by non-React callers
+export const PROVIDER_INFO = getProviderInfo('pl');

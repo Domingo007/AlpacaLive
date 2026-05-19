@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from 'react';
 import { v4 as uuidv4 } from 'uuid';
-import { buildCalendarEvents, getEventsForDate, getPhaseForDate, DEFAULT_EVENT_COLORS } from '@/lib/calendar-events';
+import { buildCalendarEvents, getEventsForDate, getPhaseForDate, getEventColors } from '@/lib/calendar-events';
 import { db } from '@/lib/db';
 import { getPhaseColor } from '@/lib/treatment-cycle';
 import { Icon } from '@/components/shared/Icon';
@@ -39,14 +39,15 @@ export function CalendarView({ onNavigate }: CalendarViewProps) {
   const [noteType, setNoteType] = useState<CalendarEventType>('note');
   const { t, lang } = useI18n();
 
-  const locale = lang === 'pl' ? 'pl-PL' : 'en-US';
+  const locale = lang === 'pl' ? 'pl-PL' : lang === 'de' ? 'de-DE' : 'en-US';
+  const DEFAULT_EVENT_COLORS = getEventColors(lang);
 
   const loadEvents = useCallback(async () => {
     setLoading(true);
-    const ev = await buildCalendarEvents();
+    const ev = await buildCalendarEvents(lang);
     setEvents(ev);
     setLoading(false);
-  }, []);
+  }, [lang]);
 
   useEffect(() => { loadEvents(); }, [loadEvents]);
 
@@ -125,7 +126,7 @@ export function CalendarView({ onNavigate }: CalendarViewProps) {
             onClick={() => { setViewMonth(new Date()); setSelectedDate(today); }}
             className="text-[10px] font-medium text-accent-dark bg-accent-warm px-2 py-1 rounded-lg hover:bg-accent-dark hover:text-accent-warm transition-colors shrink-0"
           >
-            {lang === 'pl' ? 'Dziś' : 'Today'}
+            {lang === 'pl' ? 'Dziś' : lang === 'de' ? 'Heute' : 'Today'}
           </button>
         )}
       </div>
@@ -257,7 +258,7 @@ export function CalendarView({ onNavigate }: CalendarViewProps) {
               </div>
               {selectedPhase && (
                 <div className="text-[10px] font-medium" style={{ color: getPhaseColor(selectedPhase as 'A' | 'B' | 'C') }}>
-                  {lang === 'pl' ? 'Faza' : 'Phase'} {selectedPhase} — {selectedPhase === 'A' ? t.calendar.phaseCrisis : selectedPhase === 'B' ? t.calendar.phaseRecovery : t.calendar.phaseRebuild}
+                  {lang === 'pl' ? 'Faza' : lang === 'de' ? 'Phase' : 'Phase'} {selectedPhase} — {selectedPhase === 'A' ? t.calendar.phaseCrisis : selectedPhase === 'B' ? t.calendar.phaseRecovery : t.calendar.phaseRebuild}
                 </div>
               )}
             </div>

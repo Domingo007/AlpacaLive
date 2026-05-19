@@ -30,14 +30,31 @@ export type HER2Status = 'positive' | 'negative' | 'low' | 'unknown';
 export type GeneticTestStatus = 'positive' | 'negative' | 'not_tested' | 'unknown';
 
 export const EU_COUNTRIES = [
+  // PL
   'Polska', 'Niemcy', 'Francja', 'Włochy', 'Hiszpania', 'Holandia', 'Belgia',
   'Austria', 'Czechy', 'Szwecja', 'Dania', 'Finlandia', 'Norwegia', 'Irlandia',
   'Portugalia', 'Grecja', 'Rumunia', 'Węgry', 'Bułgaria', 'Chorwacja', 'Słowacja',
   'Słowenia', 'Litwa', 'Łotwa', 'Estonia', 'Cypr', 'Malta', 'Luksemburg',
   'Wielka Brytania', 'Szwajcaria', 'Islandia',
+  // EN
+  'Poland', 'Germany', 'France', 'Italy', 'Spain', 'Netherlands', 'Belgium',
+  'Czech Republic', 'Sweden', 'Denmark', 'Finland', 'Norway', 'Ireland',
+  'Portugal', 'Greece', 'Romania', 'Hungary', 'Bulgaria', 'Croatia', 'Slovakia',
+  'Slovenia', 'Lithuania', 'Latvia', 'Estonia', 'Cyprus', 'Malta', 'Luxembourg',
+  'United Kingdom', 'Switzerland', 'Iceland',
+  // DE
+  'Deutschland', 'Polen', 'Frankreich', 'Italien', 'Spanien', 'Niederlande',
+  'Belgien', 'Österreich', 'Tschechien', 'Schweden', 'Dänemark', 'Finnland',
+  'Norwegen', 'Irland', 'Portugal', 'Griechenland', 'Rumänien', 'Ungarn',
+  'Bulgarien', 'Kroatien', 'Slowakei', 'Slowenien', 'Litauen', 'Lettland',
+  'Estland', 'Zypern', 'Luxemburg', 'Vereinigtes Königreich', 'Schweiz', 'Island',
 ];
 
-export const USA_COUNTRIES = ['USA', 'Stany Zjednoczone', 'Kanada'];
+export const USA_COUNTRIES = [
+  'USA', 'Stany Zjednoczone', 'Kanada', // PL
+  'United States', 'United States of America', 'Canada', // EN
+  'Vereinigte Staaten', 'Kanada', // DE
+];
 
 export function detectGuidelineRegion(treatmentCountry: string): 'europe' | 'usa' | 'other' {
   if (EU_COUNTRIES.includes(treatmentCountry)) return 'europe';
@@ -668,7 +685,7 @@ export type AppMode = 'ai' | 'notebook';
 
 export type ThemeMode = 'light' | 'dark';
 
-export type AppLanguage = 'pl' | 'en';
+export type AppLanguage = 'pl' | 'en' | 'de';
 
 export interface AppSettings {
   apiKey: string;

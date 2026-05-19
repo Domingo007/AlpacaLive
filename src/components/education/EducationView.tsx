@@ -18,45 +18,13 @@ interface EducationViewProps {
 
 export function EducationView({ onClose }: EducationViewProps) {
   const [section, setSection] = useState<EducationSection>('overview');
-  const { lang } = useI18n();
+  const { t, lang } = useI18n();
   const { patient } = usePatient();
 
   const knowledge = patient?.diseaseProfileId ? getDiseaseKnowledge(patient.diseaseProfileId) : null;
   const diseaseName = knowledge ? localized(knowledge.profile.name, lang) : null;
 
-  const labels = lang === 'pl' ? {
-    title: 'Wiedza pacjenta',
-    back: 'Wróć',
-    close: 'Zamknij',
-    noDisease: 'Brak profilu choroby. Uzupełnij diagnozę w ustawieniach.',
-    glossary: 'Słownik terminów',
-    glossaryDesc: 'Wyjaśnienia medycznych pojęć',
-    phases: 'Poradnik faz leczenia',
-    phasesDesc: 'Co robić w każdej fazie',
-    whenToCall: 'Kiedy dzwonić do lekarza',
-    whenToCallDesc: 'Objawy wymagające kontaktu',
-    faq: 'Najczęstsze pytania',
-    faqDesc: 'Odpowiedzi na popularne pytania',
-    sideEffects: 'Radzenie z efektami ubocznymi',
-    sideEffectsDesc: 'Praktyczne porady na co dzień',
-    disclaimer: 'Materiały edukacyjne oparte na opublikowanych wytycznych. Nie zastępują porady lekarza.',
-  } : {
-    title: 'Patient Education',
-    back: 'Back',
-    close: 'Close',
-    noDisease: 'No disease profile. Complete your diagnosis in settings.',
-    glossary: 'Medical Glossary',
-    glossaryDesc: 'Explanations of medical terms',
-    phases: 'Treatment Phase Guide',
-    phasesDesc: 'What to do in each phase',
-    whenToCall: 'When to Call Your Doctor',
-    whenToCallDesc: 'Symptoms requiring attention',
-    faq: 'Frequently Asked Questions',
-    faqDesc: 'Answers to common questions',
-    sideEffects: 'Managing Side Effects',
-    sideEffectsDesc: 'Practical daily tips',
-    disclaimer: 'Educational materials based on published guidelines. Do not replace medical advice.',
-  };
+  const labels = t.education;
 
   const sections: { id: EducationSection; icon: string; label: string; desc: string }[] = [
     { id: 'glossary', icon: 'dictionary', label: labels.glossary, desc: labels.glossaryDesc },
@@ -100,7 +68,7 @@ export function EducationView({ onClose }: EducationViewProps) {
       <div className="flex-1 overflow-y-auto px-3 py-4 space-y-3">
         {diseaseName && (
           <div className="bg-accent-warm/30 rounded-xl px-4 py-3 text-center">
-            <div className="text-xs text-text-secondary">{lang === 'pl' ? 'Profil choroby' : 'Disease profile'}</div>
+            <div className="text-xs text-text-secondary">{t.education.diseaseProfile}</div>
             <div className="text-sm font-semibold text-accent-dark">{diseaseName}</div>
           </div>
         )}

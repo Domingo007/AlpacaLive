@@ -105,7 +105,7 @@ export function SettingsView() {
 
       {/* Patient Education */}
       {patient?.diseaseProfileId && (
-        <Card title={lang === 'pl' ? 'Wiedza pacjenta' : 'Patient Education'}>
+        <Card title={t.settingsIntegrations.education}>
           <button
             onClick={() => setShowEducation(true)}
             className="w-full flex items-center gap-3 p-2 rounded-xl bg-gradient-to-r from-accent-warm to-lavender-100 hover:from-lavender-100 hover:to-accent-warm transition-colors"
@@ -115,10 +115,10 @@ export function SettingsView() {
             </div>
             <div className="text-left flex-1">
               <div className="text-xs font-medium text-text-primary">
-                {lang === 'pl' ? 'Słownik, poradniki faz, FAQ' : 'Glossary, phase guides, FAQ'}
+                {t.settingsIntegrations.educationDesc}
               </div>
               <div className="text-[10px] text-text-secondary">
-                {lang === 'pl' ? 'Materiały edukacyjne dopasowane do Twojej choroby' : 'Educational materials tailored to your condition'}
+                {t.settingsIntegrations.educationFullDesc}
               </div>
             </div>
             <Icon name="chevron_right" size={18} className="text-text-tertiary shrink-0" />
@@ -287,10 +287,8 @@ export function SettingsView() {
 
       {/* Advanced — self-hosted Open Wearables for users who want full control */}
       <AdvancedSection
-        title={lang === 'pl' ? 'Zaawansowane — self-hosted' : 'Advanced — self-hosted'}
-        subtitle={lang === 'pl'
-          ? 'Open Wearables (własny serwer Docker). Większość użytkowników tego nie potrzebuje.'
-          : 'Open Wearables (own Docker server). Most users won\'t need this.'}
+        title={t.settingsIntegrations.advanced}
+        subtitle={t.settingsIntegrations.advancedSubtitle}
       >
         <OpenWearablesSettings />
       </AdvancedSection>
@@ -325,15 +323,13 @@ export function SettingsView() {
       )}
 
       {/* Data & Backup */}
-      <Card title={lang === 'pl' ? 'Twoje dane i kopia zapasowa' : 'Your data & backup'}>
+      <Card title={t.settingsIntegrations.dataAndBackup}>
         <div className="space-y-3">
           {/* Info about local storage */}
           <div className="flex items-start gap-2.5">
             <Icon name="smartphone" size={18} className="text-accent-green shrink-0 mt-0.5" />
             <div className="text-[11px] text-text-secondary leading-relaxed">
-              {lang === 'pl'
-                ? 'Dane zapisane w przeglądarce tego telefonu. Nie są wysyłane na serwer. Czyszczenie danych przeglądarki = utrata danych.'
-                : 'Data stored in this phone\'s browser. Not sent to any server. Clearing browser data = data loss.'}
+              {t.settingsIntegrations.dataLocalInfo}
             </div>
           </div>
 
@@ -343,7 +339,7 @@ export function SettingsView() {
               <div className="flex items-center gap-2">
                 <Icon name="folder_copy" size={18} className="text-accent-dark" />
                 <span className="text-xs font-semibold text-text-primary">
-                  {lang === 'pl' ? 'Auto-backup do folderu' : 'Auto-backup to folder'}
+                  {t.settingsBackup.autoBackup}
                 </span>
               </div>
 
@@ -353,11 +349,11 @@ export function SettingsView() {
                     <Icon name="check_circle" size={16} className="text-accent-green shrink-0" />
                     <div className="flex-1 min-w-0">
                       <div className="text-[11px] font-medium text-accent-green truncate">
-                        {lang === 'pl' ? 'Folder:' : 'Folder:'} {backupFolder}
+                        {t.settingsBackup.folder} {backupFolder}
                       </div>
                       {backupInfo && (
                         <div className="text-[10px] text-text-secondary">
-                          {lang === 'pl' ? 'Ostatni backup:' : 'Last backup:'} {backupInfo.date} ({backupInfo.size})
+                          {t.settingsBackup.lastBackup} {backupInfo.date} ({backupInfo.size})
                         </div>
                       )}
                     </div>
@@ -385,20 +381,18 @@ export function SettingsView() {
                       }`}
                     >
                       <Icon name={backupStatus === 'saved' ? 'check' : backupStatus === 'error' ? 'error' : 'backup'} size={16} />
-                      {backupStatus === 'saving' ? (lang === 'pl' ? 'Zapisuję...' : 'Saving...')
-                        : backupStatus === 'saved' ? (lang === 'pl' ? 'Zapisano!' : 'Saved!')
-                        : backupStatus === 'error' ? (lang === 'pl' ? 'Błąd' : 'Error')
-                        : (lang === 'pl' ? 'Zapisz teraz' : 'Save now')}
+                      {backupStatus === 'saving' ? t.settingsBackup.saving
+                        : backupStatus === 'saved' ? t.settingsBackup.saved
+                        : backupStatus === 'error' ? t.settingsBackup.error
+                        : t.settingsBackup.saveNow}
                     </button>
 
                     <button
                       onClick={async () => {
-                        if (!confirm(lang === 'pl'
-                          ? 'Przywrócić dane z ostatniego backupu? Obecne dane zostaną zastąpione.'
-                          : 'Restore from last backup? Current data will be replaced.')) return;
+                        if (!confirm(t.settingsIntegrations.confirmRestore)) return;
                         const ok = await restoreFromBackup();
                         if (ok) window.location.reload();
-                        else alert(lang === 'pl' ? 'Nie znaleziono backupu w folderze.' : 'No backup found in folder.');
+                        else alert(t.settingsBackup.noBackupFound);
                       }}
                       className="flex items-center justify-center gap-1.5 rounded-lg py-2 px-3 text-xs font-medium border border-accent-dark text-accent-dark"
                     >
@@ -414,15 +408,13 @@ export function SettingsView() {
                     }}
                     className="w-full text-[10px] text-text-tertiary hover:text-text-secondary text-center py-1"
                   >
-                    {lang === 'pl' ? 'Odłącz folder' : 'Disconnect folder'}
+                    {t.settingsBackup.disconnect}
                   </button>
                 </>
               ) : (
                 <>
                   <div className="text-[11px] text-text-secondary leading-relaxed">
-                    {lang === 'pl'
-                      ? 'Wybierz folder na telefonie (np. w Dokumentach), gdzie aplikacja będzie zapisywać kopie zapasowe. Pliki będą bezpieczne nawet po czyszczeniu przeglądarki.'
-                      : 'Choose a folder on your phone (e.g., in Documents) where the app will save backups. Files will be safe even after clearing browser data.'}
+                    {t.settingsIntegrations.chooseFolderDesc}
                   </div>
                   <button
                     onClick={async () => {
@@ -438,7 +430,7 @@ export function SettingsView() {
                     className="w-full flex items-center justify-center gap-2 bg-accent-dark text-white rounded-lg py-2.5 text-xs font-medium"
                   >
                     <Icon name="create_new_folder" size={18} />
-                    {lang === 'pl' ? 'Wybierz folder backupu' : 'Choose backup folder'}
+                    {t.settingsIntegrations.chooseFolder}
                   </button>
                 </>
               )}
@@ -451,20 +443,18 @@ export function SettingsView() {
               <div className="flex items-center gap-2">
                 <Icon name="ios_share" size={18} className="text-lavender-600" />
                 <span className="text-xs font-semibold text-text-primary">
-                  {lang === 'pl' ? 'Kopia zapasowa (iPhone/Safari)' : 'Backup (iPhone/Safari)'}
+                  {t.settingsBackup.iphoneBackup}
                 </span>
               </div>
               <div className="text-[11px] text-text-secondary leading-relaxed">
-                {lang === 'pl'
-                  ? 'Twoja przeglądarka nie obsługuje auto-backupu do folderu. Użyj przycisku poniżej, aby pobrać kopię danych. Plik zostanie zapisany w Plikach → Pobrane.'
-                  : 'Your browser doesn\'t support auto-backup to folder. Use the button below to download a data copy. The file will be saved to Files → Downloads.'}
+                {t.settingsIntegrations.iphoneBackupDesc}
               </div>
               <button
                 onClick={() => downloadBackup()}
                 className="w-full flex items-center justify-center gap-2 bg-accent-dark text-white rounded-lg py-2.5 text-xs font-medium"
               >
                 <Icon name="download" size={18} />
-                {lang === 'pl' ? 'Pobierz kopię zapasową' : 'Download backup'}
+                {t.settingsBackup.download}
               </button>
             </div>
           )}
@@ -472,7 +462,7 @@ export function SettingsView() {
           {/* Manual export/import/reset */}
           <div className="pt-1 space-y-2">
             <div className="text-[10px] text-text-tertiary font-medium uppercase tracking-wider px-1">
-              {lang === 'pl' ? 'Ręczne zarządzanie' : 'Manual management'}
+              {t.settingsBackup.manualManagement}
             </div>
             <div className="flex gap-2">
               <button
@@ -480,14 +470,14 @@ export function SettingsView() {
                 className="flex-1 border border-border text-text-secondary rounded-lg py-2 text-xs flex items-center justify-center gap-1"
               >
                 <Icon name="upload" size={14} />
-                {lang === 'pl' ? 'Eksport JSON' : 'Export JSON'}
+                {t.settingsBackup.exportJson}
               </button>
               <button
                 onClick={handleImport}
                 className="flex-1 border border-border text-text-secondary rounded-lg py-2 text-xs flex items-center justify-center gap-1"
               >
                 <Icon name="download" size={14} />
-                {lang === 'pl' ? 'Import JSON' : 'Import JSON'}
+                {t.settingsBackup.importJson}
               </button>
             </div>
             <button
@@ -547,51 +537,8 @@ function FeedbackSection() {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [sent, setSent] = useState(false);
-  const { lang } = useI18n();
-
-  const labels = lang === 'pl' ? {
-    cardTitle: 'Zgłoszenia i pomysły',
-    subtitle: 'Pomóż nam ulepszać aplikację. Zgłoś błąd, zaproponuj nową funkcję lub podziel się opinią.',
-    openForm: 'Napisz do nas',
-    bug: 'Błąd',
-    bugDesc: 'Coś nie działa poprawnie',
-    feature: 'Nowa funkcja',
-    featureDesc: 'Czego brakuje w aplikacji',
-    improvement: 'Ulepszenie',
-    improvementDesc: 'Co można poprawić',
-    medical: 'Dane medyczne',
-    medicalDesc: 'Brakujący lek, norma, choroba',
-    titleLabel: 'Krótki opis',
-    titlePlaceholder: 'np. Brak formularza dla terapii protonowej',
-    descLabel: 'Szczegóły (opcjonalne)',
-    descPlaceholder: 'Opisz problem lub pomysł szczegółowo...',
-    sendGithub: 'Wyślij przez GitHub',
-    sendEmail: 'Wyślij mailem',
-    sentMsg: 'Dziękujemy za zgłoszenie!',
-    githubNote: 'Otworzy się GitHub — możesz tam zobaczyć odpowiedzi na swoje zgłoszenie.',
-    viewIssues: 'Zobacz zgłoszenia community',
-  } : {
-    cardTitle: 'Feedback & Ideas',
-    subtitle: 'Help us improve the app. Report a bug, suggest a feature, or share your feedback.',
-    openForm: 'Write to us',
-    bug: 'Bug',
-    bugDesc: 'Something isn\'t working',
-    feature: 'New feature',
-    featureDesc: 'What\'s missing in the app',
-    improvement: 'Improvement',
-    improvementDesc: 'What could be better',
-    medical: 'Medical data',
-    medicalDesc: 'Missing drug, norm, disease',
-    titleLabel: 'Short description',
-    titlePlaceholder: 'e.g., Missing form for proton therapy',
-    descLabel: 'Details (optional)',
-    descPlaceholder: 'Describe the problem or idea in detail...',
-    sendGithub: 'Submit via GitHub',
-    sendEmail: 'Send by email',
-    sentMsg: 'Thank you for your feedback!',
-    githubNote: 'GitHub will open — you can see responses to your submission there.',
-    viewIssues: 'View community submissions',
-  };
+  const { t, lang } = useI18n();
+  const labels = t.settingsFeedback;
 
   const typeOptions: { id: FeedbackType; icon: string; label: string; desc: string; ghLabel: string; template: string }[] = [
     { id: 'bug', icon: 'bug_report', label: labels.bug, desc: labels.bugDesc, ghLabel: 'bug', template: 'bug_report.md' },
@@ -768,7 +715,7 @@ function FeedbackSection() {
               onClick={() => { setShowForm(false); setTitle(''); setDescription(''); }}
               className="w-full text-[11px] text-text-tertiary hover:text-text-secondary text-center py-1"
             >
-              {lang === 'pl' ? 'Anuluj' : 'Cancel'}
+              {labels.cancel}
             </button>
           </>
         )}

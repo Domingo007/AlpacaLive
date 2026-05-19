@@ -574,19 +574,48 @@ function identifyRisks(blood: BloodImpact, weight: WeightTrend, phase: ReturnTyp
 
 // ==================== FORMAT FOR CHAT ====================
 
-export function formatPatternForChat(result: PatternResult): string {
+export function formatPatternForChat(result: PatternResult, lang: 'pl' | 'en' | 'de' = 'pl'): string {
+  const L = lang === 'en' ? {
+    unavailable: 'Pattern analysis unavailable',
+    patternsTitle: 'Patterns from your last 5 days',
+    confidence: 'Confidence',
+    basedOn: 'based on',
+    cycleDay: (n: number) => `day ${n} of cycle`,
+    energy: 'Energy', pain: 'Pain', nausea: 'Nausea',
+    detected: 'Detected patterns',
+    risks: 'Risks',
+  } : lang === 'de' ? {
+    unavailable: 'Musteranalyse nicht verfügbar',
+    patternsTitle: 'Muster aus Ihren letzten 5 Tagen',
+    confidence: 'Vertrauen',
+    basedOn: 'basierend auf',
+    cycleDay: (n: number) => `Tag ${n} des Zyklus`,
+    energy: 'Energie', pain: 'Schmerz', nausea: 'Übelkeit',
+    detected: 'Erkannte Muster',
+    risks: 'Risiken',
+  } : {
+    unavailable: 'Analiza wzorców niedostępna',
+    patternsTitle: 'Wzorce z Twoich ostatnich 5 dni',
+    confidence: 'Pewność',
+    basedOn: 'na podstawie',
+    cycleDay: (n: number) => `dzień ${n} cyklu`,
+    energy: 'Energia', pain: 'Ból', nausea: 'Nudności',
+    detected: 'Wykryte wzorce',
+    risks: 'Ryzyka',
+  };
+
   if (result.insufficientData) {
-    return `📊 **Analiza wzorców niedostępna**\n\n${result.message}`;
+    return `📊 **${L.unavailable}**\n\n${result.message}`;
   }
 
-  let text = `📊 **Wzorce z Twoich ostatnich 5 dni**\n`;
-  text += `Pewność: ${Math.round(result.overallConfidence * 100)}% (na podstawie: ${result.basedOn.join(', ')})\n\n`;
+  let text = `📊 **${L.patternsTitle}**\n`;
+  text += `${L.confidence}: ${Math.round(result.overallConfidence * 100)}% (${L.basedOn}: ${result.basedOn.join(', ')})\n\n`;
 
   for (const day of result.days) {
     const phaseEmoji = day.phase === 'A' ? '🔴' : day.phase === 'B' ? '🟡' : '🟢';
-    text += `**${day.dayOfWeek} ${day.date.slice(5)}** — dzień ${day.dayInCycle} cyklu ${phaseEmoji} ${day.phaseLabel}\n`;
-    text += `  Energia: ~${day.energy.predicted}/10 (${day.energy.min}-${day.energy.max})\n`;
-    text += `  Ból: ~${day.pain.predicted}/10 | Nudności: ~${day.nausea.predicted}/10\n`;
+    text += `**${day.dayOfWeek} ${day.date.slice(5)}** — ${L.cycleDay(day.dayInCycle)} ${phaseEmoji} ${day.phaseLabel}\n`;
+    text += `  ${L.energy}: ~${day.energy.predicted}/10 (${day.energy.min}-${day.energy.max})\n`;
+    text += `  ${L.pain}: ~${day.pain.predicted}/10 | ${L.nausea}: ~${day.nausea.predicted}/10\n`;
     if (day.recommendations.length > 0) {
       text += `  💡 ${day.recommendations[0]}\n`;
     }
@@ -594,7 +623,7 @@ export function formatPatternForChat(result: PatternResult): string {
   }
 
   if (result.patterns.length > 0) {
-    text += '**Wykryte wzorce:**\n';
+    text += `**${L.detected}:**\n`;
     for (const p of result.patterns) {
       text += `• ${p.description}\n`;
     }
@@ -602,7 +631,7 @@ export function formatPatternForChat(result: PatternResult): string {
   }
 
   if (result.risks.length > 0) {
-    text += '**⚠️ Ryzyka:**\n';
+    text += `**⚠️ ${L.risks}:**\n`;
     for (const r of result.risks) {
       text += `• ${r}\n`;
     }

@@ -11,11 +11,13 @@
       "id": "neoadjuvant",
       "term": {
         "pl": "Neoadjuwant",
-        "en": "Neoadjuvant"
+        "en": "Neoadjuvant",
+        "de": "Neoadjuvant"
       },
       "definition": {
         "pl": "Leczenie podawane PRZED operacją w celu zmniejszenia guza, np. chemioterapia przed mastektomią.",
-        "en": "Treatment given BEFORE surgery to shrink the tumor, e.g., chemotherapy before mastectomy."
+        "en": "Treatment given BEFORE surgery to shrink the tumor, e.g., chemotherapy before mastectomy.",
+        "de": "Behandlung VOR der Operation zur Verkleinerung des Tumors, z. B. Chemotherapie vor der Mastektomie."
       },
       "category": "treatment"
     },
@@ -23,11 +25,13 @@
       "id": "adjuvant",
       "term": {
         "pl": "Adjuwant",
-        "en": "Adjuvant"
+        "en": "Adjuvant",
+        "de": "Adjuvant"
       },
       "definition": {
         "pl": "Leczenie podawane PO operacji w celu zniszczenia ewentualnych mikroprzerzutów.",
-        "en": "Treatment given AFTER surgery to destroy potential micrometastases."
+        "en": "Treatment given AFTER surgery to destroy potential micrometastases.",
+        "de": "Behandlung NACH der Operation zur Vernichtung möglicher Mikrometastasen."
       },
       "category": "treatment"
     },
@@ -35,11 +39,13 @@
       "id": "neutropenia",
       "term": {
         "pl": "Neutropenia",
-        "en": "Neutropenia"
+        "en": "Neutropenia",
+        "de": "Neutropenie"
       },
       "definition": {
         "pl": "Zbyt niska liczba neutrofili (białych krwinek). Zwiększa ryzyko infekcji. Norma: >1.5 tys/µl.",
-        "en": "Too low neutrophil count (white blood cells). Increases infection risk. Normal: >1.5 thou/µl."
+        "en": "Too low neutrophil count (white blood cells). Increases infection risk. Normal: >1.5 thou/µl.",
+        "de": "Zu niedrige Neutrophilenzahl (weiße Blutkörperchen). Erhöht das Infektionsrisiko. Normal: >1,5 Tsd./µl."
       },
       "category": "blood"
     },
@@ -47,11 +53,13 @@
       "id": "nadir",
       "term": {
         "pl": "Nadir",
-        "en": "Nadir"
+        "en": "Nadir",
+        "de": "Nadir"
       },
       "definition": {
         "pl": "Najniższy punkt wartości krwi po chemii. Zwykle dzień 10-14 cyklu. Wtedy jesteś najbardziej podatna na infekcje.",
-        "en": "Lowest blood values after chemo. Usually day 10-14 of cycle. You're most vulnerable to infections then."
+        "en": "Lowest blood values after chemo. Usually day 10-14 of cycle. You're most vulnerable to infections then.",
+        "de": "Niedrigster Punkt der Blutwerte nach der Chemo. Meist Tag 10-14 des Zyklus. Dann sind Sie am anfälligsten für Infektionen."
       },
       "category": "blood"
     },
@@ -59,11 +67,13 @@
       "id": "neuropathy",
       "term": {
         "pl": "Neuropatia obwodowa",
-        "en": "Peripheral neuropathy"
+        "en": "Peripheral neuropathy",
+        "de": "Periphere Neuropathie"
       },
       "definition": {
         "pl": "Mrowienie, drętwienie lub ból w dłoniach i stopach. Częsty efekt taksanów (paclitaxel, docetaxel).",
-        "en": "Tingling, numbness or pain in hands and feet. Common side effect of taxanes (paclitaxel, docetaxel)."
+        "en": "Tingling, numbness or pain in hands and feet. Common side effect of taxanes (paclitaxel, docetaxel).",
+        "de": "Kribbeln, Taubheit oder Schmerzen in Händen und Füßen. Häufige Nebenwirkung von Taxanen (Paclitaxel, Docetaxel)."
       },
       "category": "side_effect"
     },
@@ -71,11 +81,13 @@
       "id": "her2",
       "term": {
         "pl": "HER2",
-        "en": "HER2"
+        "en": "HER2",
+        "de": "HER2"
       },
       "definition": {
         "pl": "Receptor na powierzchni komórek raka. HER2+ oznacza, że rak ma nadmierną ilość tego receptora. Leczony trastuzumabem.",
-        "en": "Receptor on cancer cell surface. HER2+ means the cancer has excess of this receptor. Treated with trastuzumab."
+        "en": "Receptor on cancer cell surface. HER2+ means the cancer has excess of this receptor. Treated with trastuzumab.",
+        "de": "Rezeptor auf der Oberfläche von Krebszellen. HER2+ bedeutet, dass der Krebs einen Überschuss dieses Rezeptors hat. Behandelt mit Trastuzumab."
       },
       "category": "biomarker"
     },
@@ -83,11 +95,13 @@
       "id": "er_pr",
       "term": {
         "pl": "ER/PR (receptory hormonalne)",
-        "en": "ER/PR (hormone receptors)"
+        "en": "ER/PR (hormone receptors)",
+        "de": "ER/PR (Hormonrezeptoren)"
       },
       "definition": {
         "pl": "ER = receptor estrogenowy, PR = progesteronowy. Jeśli rak jest ER+/PR+, rośnie pod wpływem hormonów i reaguje na hormonoterapię.",
-        "en": "ER = estrogen receptor, PR = progesterone receptor. If cancer is ER+/PR+, it grows with hormones and responds to hormonal therapy."
+        "en": "ER = estrogen receptor, PR = progesterone receptor. If cancer is ER+/PR+, it grows with hormones and responds to hormonal therapy.",
+        "de": "ER = Östrogenrezeptor, PR = Progesteronrezeptor. Wenn der Krebs ER+/PR+ ist, wächst er unter Hormoneinfluss und spricht auf Hormontherapie an."
       },
       "category": "biomarker"
     },
@@ -95,11 +109,13 @@
       "id": "ki67",
       "term": {
         "pl": "Ki-67",
-        "en": "Ki-67"
+        "en": "Ki-67",
+        "de": "Ki-67"
       },
       "definition": {
         "pl": "Wskaźnik proliferacji (jak szybko komórki się dzielą). Niski <20% = wolno rosnący. Wysoki >20% = szybciej rosnący.",
-        "en": "Proliferation index (how fast cells divide). Low <20% = slow-growing. High >20% = faster-growing."
+        "en": "Proliferation index (how fast cells divide). Low <20% = slow-growing. High >20% = faster-growing.",
+        "de": "Proliferationsindex (wie schnell sich Zellen teilen). Niedrig <20% = langsam wachsend. Hoch >20% = schneller wachsend."
       },
       "category": "biomarker"
     },
@@ -107,11 +123,13 @@
       "id": "tnbc",
       "term": {
         "pl": "TNBC (potrójnie ujemny)",
-        "en": "TNBC (triple-negative)"
+        "en": "TNBC (triple-negative)",
+        "de": "TNBC (triple-negativ)"
       },
       "definition": {
         "pl": "Rak piersi bez receptorów ER, PR i HER2. Leczony głównie chemioterapią, czasem immunoterapią.",
-        "en": "Breast cancer without ER, PR, and HER2 receptors. Treated mainly with chemotherapy, sometimes immunotherapy."
+        "en": "Breast cancer without ER, PR, and HER2 receptors. Treated mainly with chemotherapy, sometimes immunotherapy.",
+        "de": "Brustkrebs ohne ER-, PR- und HER2-Rezeptoren. Wird hauptsächlich mit Chemotherapie behandelt, manchmal mit Immuntherapie."
       },
       "category": "subtype"
     },
@@ -119,11 +137,13 @@
       "id": "recist",
       "term": {
         "pl": "RECIST",
-        "en": "RECIST"
+        "en": "RECIST",
+        "de": "RECIST"
       },
       "definition": {
         "pl": "System oceny odpowiedzi guza na leczenie: CR (całkowita), PR (częściowa), SD (stabilna), PD (progresja).",
-        "en": "System for evaluating tumor response: CR (complete), PR (partial), SD (stable disease), PD (progression)."
+        "en": "System for evaluating tumor response: CR (complete), PR (partial), SD (stable disease), PD (progression).",
+        "de": "System zur Bewertung des Tumoransprechens: CR (vollständig), PR (teilweise), SD (stabile Erkrankung), PD (Progression)."
       },
       "category": "imaging"
     },
@@ -131,11 +151,13 @@
       "id": "lvef",
       "term": {
         "pl": "LVEF (frakcja wyrzutowa)",
-        "en": "LVEF (ejection fraction)"
+        "en": "LVEF (ejection fraction)",
+        "de": "LVEF (Auswurffraktion)"
       },
       "definition": {
         "pl": "Miara wydolności serca. Norma >55%. Monitorowana przy antracyklinach i trastuzumabie.",
-        "en": "Measure of heart function. Normal >55%. Monitored with anthracyclines and trastuzumab."
+        "en": "Measure of heart function. Normal >55%. Monitored with anthracyclines and trastuzumab.",
+        "de": "Maß der Herzfunktion. Normal >55%. Wird bei Anthrazyklinen und Trastuzumab überwacht."
       },
       "category": "monitoring"
     },
@@ -143,11 +165,13 @@
       "id": "irae",
       "term": {
         "pl": "irAE (immunologiczny efekt niepożądany)",
-        "en": "irAE (immune-related adverse event)"
+        "en": "irAE (immune-related adverse event)",
+        "de": "irAE (immunbedingtes unerwünschtes Ereignis)"
       },
       "definition": {
         "pl": "Efekt uboczny immunoterapii, gdzie układ odpornościowy atakuje zdrowe narządy (tarczyca, wątroba, jelita, skóra, płuca).",
-        "en": "Immunotherapy side effect where immune system attacks healthy organs (thyroid, liver, gut, skin, lungs)."
+        "en": "Immunotherapy side effect where immune system attacks healthy organs (thyroid, liver, gut, skin, lungs).",
+        "de": "Nebenwirkung der Immuntherapie, bei der das Immunsystem gesunde Organe angreift (Schilddrüse, Leber, Darm, Haut, Lunge)."
       },
       "category": "side_effect"
     },
@@ -155,11 +179,13 @@
       "id": "port",
       "term": {
         "pl": "Port naczyniowy",
-        "en": "Port-a-cath"
+        "en": "Port-a-cath",
+        "de": "Portkatheter"
       },
       "definition": {
         "pl": "Małe urządzenie wszyte pod skórę z cewnikiem do żyły. Ułatwia podawanie chemii bez kłucia żył.",
-        "en": "Small device implanted under skin with a catheter into a vein. Makes chemo delivery easier without vein punctures."
+        "en": "Small device implanted under skin with a catheter into a vein. Makes chemo delivery easier without vein punctures.",
+        "de": "Kleines, unter die Haut implantiertes Gerät mit Katheter zu einer Vene. Erleichtert die Chemo-Verabreichung ohne Venenpunktionen."
       },
       "category": "treatment"
     },
@@ -167,11 +193,13 @@
       "id": "sentinel_biopsy",
       "term": {
         "pl": "Biopsja węzła wartowniczego",
-        "en": "Sentinel node biopsy"
+        "en": "Sentinel node biopsy",
+        "de": "Sentinel-Lymphknoten-Biopsie"
       },
       "definition": {
         "pl": "Usunięcie pierwszego węzła chłonnego, do którego spływa limfa z guza. Sprawdza czy rak się rozprzestrzenił.",
-        "en": "Removal of the first lymph node that drains from the tumor. Checks if cancer has spread."
+        "en": "Removal of the first lymph node that drains from the tumor. Checks if cancer has spread.",
+        "de": "Entfernung des ersten Lymphknotens, in den die Lymphe vom Tumor abfließt. Prüft, ob sich der Krebs ausgebreitet hat."
       },
       "category": "surgery"
     },
@@ -179,11 +207,13 @@
       "id": "mastectomy",
       "term": {
         "pl": "Mastektomia",
-        "en": "Mastectomy"
+        "en": "Mastectomy",
+        "de": "Mastektomie"
       },
       "definition": {
         "pl": "Operacja usunięcia piersi. Może być całkowita, oszczędzająca skórę lub oszczędzająca brodawkę.",
-        "en": "Surgery to remove the breast. Can be total, skin-sparing, or nipple-sparing."
+        "en": "Surgery to remove the breast. Can be total, skin-sparing, or nipple-sparing.",
+        "de": "Operation zur Entfernung der Brust. Kann total, hautschonend oder brustwarzenschonend sein."
       },
       "category": "surgery"
     },
@@ -191,11 +221,13 @@
       "id": "lumpectomy",
       "term": {
         "pl": "Tumorektomia (lumpektomia)",
-        "en": "Lumpectomy"
+        "en": "Lumpectomy",
+        "de": "Lumpektomie (Tumorektomie)"
       },
       "definition": {
         "pl": "Operacja oszczędzająca pierś — usunięcie guza z marginesem zdrowej tkanki. Wymaga radioterapii po operacji.",
-        "en": "Breast-conserving surgery — removal of tumor with margin of healthy tissue. Requires radiotherapy afterwards."
+        "en": "Breast-conserving surgery — removal of tumor with margin of healthy tissue. Requires radiotherapy afterwards.",
+        "de": "Brusterhaltende Operation — Entfernung des Tumors mit einem Rand aus gesundem Gewebe. Erfordert anschließend Strahlentherapie."
       },
       "category": "surgery"
     }

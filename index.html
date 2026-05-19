@@ -47,7 +47,7 @@ nav.scrolled { background:rgba(255,255,255,.92);backdrop-filter:blur(20px);box-s
 .nav-cta { background:var(--lav-600);color:#fff;padding:9px 20px;border-radius:999px;font-size:13px;font-weight:600;text-decoration:none;transition:all .2s;display:flex;align-items:center;gap:6px; }
 .nav-cta:hover { background:var(--lav-700);transform:translateY(-1px);box-shadow:0 4px 16px rgba(124,92,201,.3); }
 .nav-cta .material-symbols-rounded { font-size:18px; }
-@media(max-width:768px) { .nav-links{display:none;} nav{padding:10px 16px;} .nav-cta .lang-en,.nav-cta .lang-pl{display:none;} .nav-cta{padding:9px 14px;border-radius:12px;} }
+@media(max-width:768px) { .nav-links{display:none;} nav{padding:10px 16px;} .nav-cta .lang-en,.nav-cta .lang-pl,.nav-cta .lang-de{display:none;} .nav-cta{padding:9px 14px;border-radius:12px;} }
 @media(max-width:400px) { .nav-left span{font-size:14px;} }
 
 /* HERO */
@@ -196,8 +196,12 @@ footer a { color:var(--lav-600);text-decoration:none; }
 .reveal-d1{transition-delay:.1s;}.reveal-d2{transition-delay:.2s;}.reveal-d3{transition-delay:.3s;}
 
 /* LANG SWITCH */
-[data-lang="pl"] .lang-en { display:none; }
-[data-lang="en"] .lang-pl { display:none; }
+[data-lang="pl"] .lang-en, [data-lang="pl"] .lang-de { display:none; }
+[data-lang="en"] .lang-pl, [data-lang="en"] .lang-de { display:none; }
+[data-lang="de"] .lang-pl { display:none; }
+/* DE: hide EN by default; JS will reveal EN where no DE sibling exists */
+[data-lang="de"] .lang-en { display:none; }
+[data-lang="de"] .lang-en.de-fallback { display: revert; }
 </style>
 </head>
 <body data-lang="en">
@@ -210,11 +214,11 @@ footer a { color:var(--lav-600);text-decoration:none; }
   </a>
   <div class="nav-right">
     <div class="nav-links">
-      <a href="#features"><span class="material-symbols-rounded">widgets</span> <span class="lang-en">Features</span><span class="lang-pl">Funkcje</span></a>
-      <a href="#how-it-works"><span class="material-symbols-rounded">route</span> <span class="lang-en">How it works</span><span class="lang-pl">Jak działa</span></a>
-      <a href="#faq"><span class="material-symbols-rounded">help</span> <span class="lang-en">FAQ</span><span class="lang-pl">FAQ</span></a>
-      <a href="#privacy"><span class="material-symbols-rounded">shield</span> <span class="lang-en">Privacy</span><span class="lang-pl">Prywatność</span></a>
-      <a href="#open-source"><span class="material-symbols-rounded">code</span> <span class="lang-en">Open source</span><span class="lang-pl">Open source</span></a>
+      <a href="#features"><span class="material-symbols-rounded">widgets</span> <span class="lang-en">Features</span><span class="lang-pl">Funkcje</span><span class="lang-de">Funktionen</span></a>
+      <a href="#how-it-works"><span class="material-symbols-rounded">route</span> <span class="lang-en">How it works</span><span class="lang-pl">Jak działa</span><span class="lang-de">So funktioniert's</span></a>
+      <a href="#faq"><span class="material-symbols-rounded">help</span> <span class="lang-en">FAQ</span><span class="lang-pl">FAQ</span><span class="lang-de">FAQ</span></a>
+      <a href="#privacy"><span class="material-symbols-rounded">shield</span> <span class="lang-en">Privacy</span><span class="lang-pl">Prywatność</span><span class="lang-de">Datenschutz</span></a>
+      <a href="#open-source"><span class="material-symbols-rounded">code</span> <span class="lang-en">Open source</span><span class="lang-pl">Open source</span><span class="lang-de">Open Source</span></a>
     </div>
     <div class="lang-selector" id="lang-selector">
       <button class="lang-trigger" onclick="toggleLangDropdown()">
@@ -225,115 +229,131 @@ footer a { color:var(--lav-600);text-decoration:none; }
       <div class="lang-dropdown" id="lang-dropdown">
         <button class="lang-option" onclick="setLang('en')">🇬🇧 English<span class="check material-symbols-rounded" id="check-en">check</span></button>
         <button class="lang-option" onclick="setLang('pl')">🇵🇱 Polski<span class="check material-symbols-rounded" id="check-pl" style="display:none">check</span></button>
+        <button class="lang-option" onclick="setLang('de')">🇩🇪 Deutsch<span class="check material-symbols-rounded" id="check-de" style="display:none">check</span></button>
       </div>
     </div>
-    <a href="/app" class="nav-cta"><span class="material-symbols-rounded">open_in_new</span> <span class="lang-en">Launch App</span><span class="lang-pl">Otwórz</span></a>
+    <a href="/app" class="nav-cta"><span class="material-symbols-rounded">open_in_new</span> <span class="lang-en">Launch App</span><span class="lang-pl">Otwórz</span><span class="lang-de">App öffnen</span></a>
   </div>
 </nav>
 
 <!-- HERO -->
 <section class="hero">
-  <div class="hero-badge"><span class="dot"></span> <span class="lang-en">Free &amp; Open Source</span><span class="lang-pl">Darmowa i Open Source</span></div>
+  <div class="hero-badge"><span class="dot"></span> <span class="lang-en">Free &amp; Open Source</span><span class="lang-pl">Darmowa i Open Source</span><span class="lang-de">Kostenlos &amp; Open Source</span></div>
   <img src="/logo.png" alt="AlpacaLive" class="hero-logo">
   <h1>
     <span class="lang-en">Open-source health tracking for<br><span class="accent">real-life treatment journeys</span></span>
     <span class="lang-pl">Twój towarzysz w drodze<br>przez <span class="accent">leczenie onkologiczne</span></span>
+    <span class="lang-de">Open-Source-Gesundheits-Tracking für<br><span class="accent">echte Behandlungswege</span></span>
   </h1>
   <p>
     <span class="lang-en">Understand how your body responds over time — based on your own data. Track symptoms, measurements, test results, and treatment cycles in one private diary that lives on your phone.</span>
     <span class="lang-pl">Zrozum jak Twoje ciało reaguje w czasie — na podstawie Twoich danych. Śledź objawy, pomiary, wyniki badań i cykle leczenia w jednym prywatnym dzienniku na Twoim telefonie.</span>
+    <span class="lang-de">Verstehen Sie, wie Ihr Körper im Laufe der Zeit reagiert — basierend auf Ihren eigenen Daten. Verfolgen Sie Symptome, Messungen, Testergebnisse und Behandlungszyklen in einem privaten Tagebuch auf Ihrem Telefon.</span>
   </p>
   <div class="hero-buttons">
-    <a href="/app" class="btn-primary"><span class="material-symbols-rounded">rocket_launch</span> <span class="lang-en">Take Control of Your Data</span><span class="lang-pl">Przejmij kontrolę nad danymi</span></a>
-    <a href="#features" class="btn-secondary"><span class="material-symbols-rounded">expand_more</span> <span class="lang-en">Learn more</span><span class="lang-pl">Dowiedz się więcej</span></a>
+    <a href="/app" class="btn-primary"><span class="material-symbols-rounded">rocket_launch</span> <span class="lang-en">Take Control of Your Data</span><span class="lang-pl">Przejmij kontrolę nad danymi</span><span class="lang-de">Übernehmen Sie die Kontrolle</span></a>
+    <a href="#features" class="btn-secondary"><span class="material-symbols-rounded">expand_more</span> <span class="lang-en">Learn more</span><span class="lang-pl">Dowiedz się więcej</span><span class="lang-de">Mehr erfahren</span></a>
   </div>
 </section>
 
 <!-- PROBLEM -->
 <div class="problem reveal">
-  <div class="section-label"><span class="material-symbols-rounded">priority_high</span> <span class="lang-en">The challenge</span><span class="lang-pl">Wyzwanie</span></div>
+  <div class="section-label"><span class="material-symbols-rounded">priority_high</span> <span class="lang-en">The challenge</span><span class="lang-pl">Wyzwanie</span><span class="lang-de">Die Herausforderung</span></div>
   <div class="section-title lang-en">Cancer patients deserve better monitoring</div>
   <div class="section-title lang-pl">Pacjenci onkologiczni zasługują na lepszy monitoring</div>
+  <div class="section-title lang-de">Krebspatienten verdienen besseres Monitoring</div>
   <div class="section-desc lang-en">Between clinic visits, patients are largely unmonitored. Paper results get lost. Symptoms are forgotten. Trends go unnoticed. No existing app connects your devices, blood work, imaging, and wellbeing into one intelligent picture.</div>
   <div class="section-desc lang-pl">Między wizytami w klinice pacjenci są praktycznie niemonitorowani. Papierowe wyniki się gubią. Objawy są zapominane. Trendy umykają. Żadna istniejąca aplikacja nie łączy urządzeń, wyników krwi, obrazowania i samopoczucia w jeden inteligentny obraz.</div>
+  <div class="section-desc lang-de">Zwischen Klinikbesuchen werden Patienten kaum überwacht. Papierergebnisse gehen verloren. Symptome werden vergessen. Trends bleiben unbemerkt. Keine bestehende App verbindet Ihre Geräte, Blutwerte, Bildgebung und Wohlbefinden zu einem intelligenten Gesamtbild.</div>
   <div class="problem-stats">
-    <div class="stat"><div class="stat-number">4M+</div><div class="stat-label lang-en">People on chemotherapy worldwide</div><div class="stat-label lang-pl">Osób na chemioterapii na świecie</div></div>
-    <div class="stat"><div class="stat-number">400K</div><div class="stat-label lang-en">New breast cancer cases in Europe yearly</div><div class="stat-label lang-pl">Nowych przypadków raka piersi rocznie w Europie</div></div>
-    <div class="stat"><div class="stat-number">0</div><div class="stat-label lang-en">AI open source oncology apps before AlpacaLive</div><div class="stat-label lang-pl">AI open source aplikacji onkologicznych przed AlpacaLive</div></div>
+    <div class="stat"><div class="stat-number">4M+</div><div class="stat-label lang-en">People on chemotherapy worldwide</div><div class="stat-label lang-pl">Osób na chemioterapii na świecie</div><div class="stat-label lang-de">Menschen weltweit in Chemotherapie</div></div>
+    <div class="stat"><div class="stat-number">400K</div><div class="stat-label lang-en">New breast cancer cases in Europe yearly</div><div class="stat-label lang-pl">Nowych przypadków raka piersi rocznie w Europie</div><div class="stat-label lang-de">Neue Brustkrebsfälle in Europa pro Jahr</div></div>
+    <div class="stat"><div class="stat-number">0</div><div class="stat-label lang-en">AI open source oncology apps before AlpacaLive</div><div class="stat-label lang-pl">AI open source aplikacji onkologicznych przed AlpacaLive</div><div class="stat-label lang-de">AI-Open-Source-Onkologie-Apps vor AlpacaLive</div></div>
   </div>
 </div>
 
 <!-- FEATURES -->
 <section id="features">
-  <div class="section-label reveal"><span class="material-symbols-rounded">auto_awesome</span> <span class="lang-en">Features</span><span class="lang-pl">Funkcje</span></div>
+  <div class="section-label reveal"><span class="material-symbols-rounded">auto_awesome</span> <span class="lang-en">Features</span><span class="lang-pl">Funkcje</span><span class="lang-de">Funktionen</span></div>
   <div class="section-title reveal lang-en">Everything you need, nothing you don't</div>
   <div class="section-title reveal lang-pl">Wszystko czego potrzebujesz</div>
+  <div class="section-title reveal lang-de">Alles was Sie brauchen, nichts was Sie nicht brauchen</div>
   <div class="section-desc reveal lang-en">Two modes: a free smart notebook for everyone, and an AI assistant that helps structure your data.</div>
   <div class="section-desc reveal lang-pl">Dwa tryby: darmowy inteligentny notatnik dla każdego oraz asystent AI, który pomaga porządkować dane.</div>
+  <div class="section-desc reveal lang-de">Zwei Modi: ein kostenloses intelligentes Notizbuch für alle und ein KI-Assistent, der hilft, Ihre Daten zu strukturieren.</div>
 
   <div class="features-grid">
     <div class="feature-card reveal">
-      <span class="feature-badge badge-free lang-en">Free — no AI needed</span><span class="feature-badge badge-free lang-pl">Darmowe — bez AI</span>
+      <span class="feature-badge badge-free lang-en">Free — no AI needed</span><span class="feature-badge badge-free lang-pl">Darmowe — bez AI</span><span class="feature-badge badge-free lang-de">Kostenlos — keine KI nötig</span>
       <div class="feature-icon"><span class="material-symbols-rounded">calendar_month</span></div>
-      <h3 class="lang-en">Chemo Calendar</h3><h3 class="lang-pl">Kalendarz chemii</h3>
+      <h3 class="lang-en">Chemo Calendar</h3><h3 class="lang-pl">Kalendarz chemii</h3><h3 class="lang-de">Chemo-Kalender</h3>
       <p class="lang-en">Track every infusion, postponement, and cycle phase. See your entire treatment timeline with automatic A/B/C phase mapping.</p>
       <p class="lang-pl">Śledź każde podanie, odroczenie i fazę cyklu. Zobacz całą oś czasu leczenia z automatycznym mapowaniem faz A/B/C.</p>
+      <p class="lang-de">Verfolgen Sie jede Infusion, Verschiebung und Zyklusphase. Sehen Sie Ihre gesamte Behandlungs-Timeline mit automatischer A/B/C-Phasenzuordnung.</p>
     </div>
     <div class="feature-card reveal reveal-d1">
-      <span class="feature-badge badge-free lang-en">Free — no AI needed</span><span class="feature-badge badge-free lang-pl">Darmowe — bez AI</span>
+      <span class="feature-badge badge-free lang-en">Free — no AI needed</span><span class="feature-badge badge-free lang-pl">Darmowe — bez AI</span><span class="feature-badge badge-free lang-de">Kostenlos — keine KI nötig</span>
       <div class="feature-icon"><span class="material-symbols-rounded">bloodtype</span></div>
-      <h3 class="lang-en">Blood Results Tracker</h3><h3 class="lang-pl">Tracker wyników krwi</h3>
+      <h3 class="lang-en">Blood Results Tracker</h3><h3 class="lang-pl">Tracker wyników krwi</h3><h3 class="lang-de">Blutwerte-Tracker</h3>
       <p class="lang-en">Enter lab values. Automatic comparison with reference ranges. Visual trends over time. Alerts when values fall outside norms.</p>
       <p class="lang-pl">Wpisuj wartości. Automatyczne porównanie z normami referencyjnymi. Wizualne trendy. Alerty gdy wartości poza normą.</p>
+      <p class="lang-de">Geben Sie Laborwerte ein. Automatischer Vergleich mit Referenzbereichen. Visuelle Trends. Warnungen bei Werten außerhalb der Norm.</p>
     </div>
     <div class="feature-card reveal reveal-d2">
-      <span class="feature-badge badge-free lang-en">Free — no AI needed</span><span class="feature-badge badge-free lang-pl">Darmowe — bez AI</span>
+      <span class="feature-badge badge-free lang-en">Free — no AI needed</span><span class="feature-badge badge-free lang-pl">Darmowe — bez AI</span><span class="feature-badge badge-free lang-de">Kostenlos — keine KI nötig</span>
       <div class="feature-icon"><span class="material-symbols-rounded">monitoring</span></div>
-      <h3 class="lang-en">Health Dashboard</h3><h3 class="lang-pl">Dashboard zdrowia</h3>
+      <h3 class="lang-en">Health Dashboard</h3><h3 class="lang-pl">Dashboard zdrowia</h3><h3 class="lang-de">Gesundheits-Dashboard</h3>
       <p class="lang-en">Charts for energy, weight, pain, sleep, heart rate — synced from your wearable via Apple Health or Health Connect.</p>
       <p class="lang-pl">Wykresy energii, wagi, bólu, snu, tętna — zsynchronizowane z opaski przez Apple Health lub Health Connect.</p>
+      <p class="lang-de">Diagramme für Energie, Gewicht, Schmerz, Schlaf, Herzfrequenz — synchronisiert von Ihrem Wearable über Apple Health oder Health Connect.</p>
     </div>
     <div class="feature-card reveal">
-      <span class="feature-badge badge-ai lang-en">AI-powered</span><span class="feature-badge badge-ai lang-pl">Wspomagane AI</span>
+      <span class="feature-badge badge-ai lang-en">AI-powered</span><span class="feature-badge badge-ai lang-pl">Wspomagane AI</span><span class="feature-badge badge-ai lang-de">KI-gestützt</span>
       <div class="feature-icon"><span class="material-symbols-rounded">chat</span></div>
-      <h3 class="lang-en">Conversational Diary</h3><h3 class="lang-pl">Dziennik konwersacyjny</h3>
+      <h3 class="lang-en">Conversational Diary</h3><h3 class="lang-pl">Dziennik konwersacyjny</h3><h3 class="lang-de">Gesprächs-Tagebuch</h3>
       <p class="lang-en">Talk naturally. AI turns conversations into structured notes and helps you keep everything organized over time.</p>
       <p class="lang-pl">Rozmawiaj naturalnie. AI zamienia rozmowę w uporządkowane notatki i pomaga utrzymać porządek w czasie.</p>
+      <p class="lang-de">Sprechen Sie natürlich. KI verwandelt Gespräche in strukturierte Notizen und hilft, alles im Laufe der Zeit organisiert zu halten.</p>
     </div>
     <div class="feature-card reveal reveal-d1">
-      <span class="feature-badge badge-ai lang-en">AI-powered</span><span class="feature-badge badge-ai lang-pl">Wspomagane AI</span>
+      <span class="feature-badge badge-ai lang-en">AI-powered</span><span class="feature-badge badge-ai lang-pl">Wspomagane AI</span><span class="feature-badge badge-ai lang-de">KI-gestützt</span>
       <div class="feature-icon"><span class="material-symbols-rounded">photo_camera</span></div>
-      <h3 class="lang-en">Photo Analysis</h3><h3 class="lang-pl">Analiza zdjęć</h3>
+      <h3 class="lang-en">Photo Analysis</h3><h3 class="lang-pl">Analiza zdjęć</h3><h3 class="lang-de">Foto-Analyse</h3>
       <p class="lang-en">Photograph blood tests or radiology reports — in any language. AI reads every value and compares with history.</p>
       <p class="lang-pl">Fotografuj wyniki krwi lub opisy radiologiczne — w dowolnym języku. AI odczyta każdą wartość i porówna z historią.</p>
+      <p class="lang-de">Fotografieren Sie Blutwerte oder Radiologie-Berichte — in jeder Sprache. KI liest jeden Wert und vergleicht mit dem Verlauf.</p>
     </div>
     <div class="feature-card reveal reveal-d2">
-      <span class="feature-badge badge-ai lang-en">AI-powered</span><span class="feature-badge badge-ai lang-pl">Wspomagane AI</span>
+      <span class="feature-badge badge-ai lang-en">AI-powered</span><span class="feature-badge badge-ai lang-pl">Wspomagane AI</span><span class="feature-badge badge-ai lang-de">KI-gestützt</span>
       <div class="feature-icon"><span class="material-symbols-rounded">query_stats</span></div>
-      <h3 class="lang-en">Pattern-based Summaries</h3><h3 class="lang-pl">Podsumowania oparte o wzorce</h3>
+      <h3 class="lang-en">Pattern-based Summaries</h3><h3 class="lang-pl">Podsumowania oparte o wzorce</h3><h3 class="lang-de">Musterbasierte Zusammenfassungen</h3>
       <p class="lang-en">See trends over time, differences from previous cycles, and notable changes in your data — without medical recommendations.</p>
       <p class="lang-pl">Zobacz trendy w czasie, różnice względem poprzednich cykli i istotne zmiany w danych — bez zaleceń medycznych.</p>
+      <p class="lang-de">Sehen Sie Trends im Laufe der Zeit, Unterschiede zu vorherigen Zyklen und bemerkenswerte Veränderungen in Ihren Daten — ohne medizinische Empfehlungen.</p>
     </div>
     <div class="feature-card reveal">
-      <span class="feature-badge badge-ai lang-en">AI-powered</span><span class="feature-badge badge-ai lang-pl">Wspomagane AI</span>
+      <span class="feature-badge badge-ai lang-en">AI-powered</span><span class="feature-badge badge-ai lang-pl">Wspomagane AI</span><span class="feature-badge badge-ai lang-de">KI-gestützt</span>
       <div class="feature-icon"><span class="material-symbols-rounded">radiology</span></div>
-      <h3 class="lang-en">Imaging Tracker</h3><h3 class="lang-pl">Śledzenie obrazowania</h3>
+      <h3 class="lang-en">Imaging Tracker</h3><h3 class="lang-pl">Śledzenie obrazowania</h3><h3 class="lang-de">Bildgebungs-Tracker</h3>
       <p class="lang-en">Upload CT, MRI, PET reports. AI extracts tumor sizes, compares across scans, visualizes treatment response.</p>
       <p class="lang-pl">Wgrywaj opisy CT, MRI, PET. AI wyciąga rozmiary guzów, porównuje badania, wizualizuje odpowiedź na leczenie.</p>
+      <p class="lang-de">Laden Sie CT-, MRT-, PET-Berichte hoch. KI extrahiert Tumorgrößen, vergleicht zwischen Scans, visualisiert das Behandlungsansprechen.</p>
     </div>
     <div class="feature-card reveal reveal-d1">
-      <span class="feature-badge badge-ai lang-en">AI-powered</span><span class="feature-badge badge-ai lang-pl">Wspomagane AI</span>
+      <span class="feature-badge badge-ai lang-en">AI-powered</span><span class="feature-badge badge-ai lang-pl">Wspomagane AI</span><span class="feature-badge badge-ai lang-de">KI-gestützt</span>
       <div class="feature-icon"><span class="material-symbols-rounded">medication</span></div>
-      <h3 class="lang-en">Interaction Checker</h3><h3 class="lang-pl">Sprawdzanie interakcji</h3>
+      <h3 class="lang-en">Interaction Checker</h3><h3 class="lang-pl">Sprawdzanie interakcji</h3><h3 class="lang-de">Interaktions-Checker</h3>
       <p class="lang-en">Dynamic CYP450 drug interaction database. Recalculates when your treatment changes.</p>
       <p class="lang-pl">Dynamiczna baza interakcji leków CYP450. Przelicza automatycznie gdy zmieni się leczenie.</p>
+      <p class="lang-de">Dynamische CYP450-Arzneimittelinteraktions-Datenbank. Berechnet neu, wenn sich Ihre Behandlung ändert.</p>
     </div>
     <div class="feature-card reveal reveal-d2">
-      <span class="feature-badge badge-free lang-en">Free — no AI needed</span><span class="feature-badge badge-free lang-pl">Darmowe — bez AI</span>
+      <span class="feature-badge badge-free lang-en">Free — no AI needed</span><span class="feature-badge badge-free lang-pl">Darmowe — bez AI</span><span class="feature-badge badge-free lang-de">Kostenlos — keine KI nötig</span>
       <div class="feature-icon"><span class="material-symbols-rounded">medication</span></div>
-      <h3 class="lang-en">Supplement Tracker</h3><h3 class="lang-pl">Tracker suplementów</h3>
+      <h3 class="lang-en">Supplement Tracker</h3><h3 class="lang-pl">Tracker suplementów</h3><h3 class="lang-de">Ergänzungs-Tracker</h3>
       <p class="lang-en">Track daily supplements with evidence levels from published research. See what studies say about each substance in oncology context.</p>
       <p class="lang-pl">Śledź codzienne suplementy z poziomem dowodów z opublikowanych badań. Zobacz co mówią badania o każdej substancji w kontekście onkologicznym.</p>
+      <p class="lang-de">Verfolgen Sie tägliche Ergänzungen mit Evidenzstufen aus veröffentlichter Forschung. Sehen Sie, was Studien zu jeder Substanz im Onkologie-Kontext sagen.</p>
     </div>
   </div>
 </section>
@@ -341,97 +361,115 @@ footer a { color:var(--lav-600);text-decoration:none; }
 <!-- HOW IT WORKS -->
 <section id="how-it-works">
   <div style="text-align:center">
-    <div class="section-label reveal"><span class="material-symbols-rounded">route</span> <span class="lang-en">How it works</span><span class="lang-pl">Jak działa</span></div>
+    <div class="section-label reveal"><span class="material-symbols-rounded">route</span> <span class="lang-en">How it works</span><span class="lang-pl">Jak działa</span><span class="lang-de">So funktioniert's</span></div>
     <div class="section-title reveal lang-en">How it works</div>
     <div class="section-title reveal lang-pl">Jak to działa</div>
+    <div class="section-title reveal lang-de">So funktioniert es</div>
   </div>
   <div class="steps">
-    <div class="step reveal"><div class="step-num">1</div><h3 class="lang-en">Track your data</h3><h3 class="lang-pl">Zapisuj dane</h3><p class="lang-en">Symptoms, measurements, lab results and reports — manual or from devices.</p><p class="lang-pl">Objawy, pomiary, wyniki badań i raporty — ręcznie lub z urządzeń.</p></div>
-    <div class="step reveal reveal-d1"><div class="step-num">2</div><h3 class="lang-en">Organize by timeline</h3><h3 class="lang-pl">Porządkuj po osi czasu</h3><p class="lang-en">Everything linked to treatment days or sessions, so nothing gets lost.</p><p class="lang-pl">Wszystko powiązane z dniami leczenia lub sesjami — nic nie ginie.</p></div>
-    <div class="step reveal reveal-d2"><div class="step-num">3</div><h3 class="lang-en">See summaries</h3><h3 class="lang-pl">Zobacz podsumowania</h3><p class="lang-en">Pattern-based summaries highlight trends and differences from your previous cycles.</p><p class="lang-pl">Podsumowania oparte o wzorce pokazują trendy i różnice względem poprzednich cykli.</p></div>
-    <div class="step reveal reveal-d3"><div class="step-num">4</div><h3 class="lang-en">Stay informed</h3><h3 class="lang-pl">Bądź na bieżąco</h3><p class="lang-en">Clear information you can review with your doctor — no recommendations.</p><p class="lang-pl">Jasne informacje do omówienia z lekarzem — bez zaleceń.</p></div>
+    <div class="step reveal"><div class="step-num">1</div><h3 class="lang-en">Track your data</h3><h3 class="lang-pl">Zapisuj dane</h3><h3 class="lang-de">Daten erfassen</h3><p class="lang-en">Symptoms, measurements, lab results and reports — manual or from devices.</p><p class="lang-pl">Objawy, pomiary, wyniki badań i raporty — ręcznie lub z urządzeń.</p><p class="lang-de">Symptome, Messungen, Laborergebnisse und Berichte — manuell oder von Geräten.</p></div>
+    <div class="step reveal reveal-d1"><div class="step-num">2</div><h3 class="lang-en">Organize by timeline</h3><h3 class="lang-pl">Porządkuj po osi czasu</h3><h3 class="lang-de">Nach Zeitleiste organisieren</h3><p class="lang-en">Everything linked to treatment days or sessions, so nothing gets lost.</p><p class="lang-pl">Wszystko powiązane z dniami leczenia lub sesjami — nic nie ginie.</p><p class="lang-de">Alles ist mit Behandlungstagen oder Sitzungen verknüpft, sodass nichts verloren geht.</p></div>
+    <div class="step reveal reveal-d2"><div class="step-num">3</div><h3 class="lang-en">See summaries</h3><h3 class="lang-pl">Zobacz podsumowania</h3><h3 class="lang-de">Zusammenfassungen sehen</h3><p class="lang-en">Pattern-based summaries highlight trends and differences from your previous cycles.</p><p class="lang-pl">Podsumowania oparte o wzorce pokazują trendy i różnice względem poprzednich cykli.</p><p class="lang-de">Musterbasierte Zusammenfassungen zeigen Trends und Unterschiede zu Ihren vorherigen Zyklen.</p></div>
+    <div class="step reveal reveal-d3"><div class="step-num">4</div><h3 class="lang-en">Stay informed</h3><h3 class="lang-pl">Bądź na bieżąco</h3><h3 class="lang-de">Bleiben Sie informiert</h3><p class="lang-en">Clear information you can review with your doctor — no recommendations.</p><p class="lang-pl">Jasne informacje do omówienia z lekarzem — bez zaleceń.</p><p class="lang-de">Klare Informationen, die Sie mit Ihrem Arzt besprechen können — keine Empfehlungen.</p></div>
   </div>
 </section>
 
 <!-- INSIGHTS / DISCLAIMER -->
 <section id="insights">
   <div style="text-align:center">
-    <div class="section-label reveal"><span class="material-symbols-rounded">insights</span> <span class="lang-en">Insights</span><span class="lang-pl">Wnioski</span></div>
+    <div class="section-label reveal"><span class="material-symbols-rounded">insights</span> <span class="lang-en">Insights</span><span class="lang-pl">Wnioski</span><span class="lang-de">Erkenntnisse</span></div>
     <div class="section-title reveal lang-en">Pattern-based summaries — not medical advice</div>
     <div class="section-title reveal lang-pl">Podsumowania oparte o wzorce — bez porad medycznych</div>
+    <div class="section-title reveal lang-de">Musterbasierte Zusammenfassungen — keine medizinische Beratung</div>
     <div class="section-desc reveal lang-en" style="margin:8px auto 0">AlpacaLive does not diagnose or suggest treatment. It highlights trends over time, differences from your previous cycles, and notable changes in your data — helping you understand what’s happening.</div>
     <div class="section-desc reveal lang-pl" style="margin:8px auto 0">AlpacaLive nie diagnozuje ani nie sugeruje leczenia. Zamiast tego pokazuje trendy w czasie, różnice względem poprzednich cykli oraz istotne zmiany w danych — pomagając Ci zrozumieć co się dzieje.</div>
+    <div class="section-desc reveal lang-de" style="margin:8px auto 0">AlpacaLive diagnostiziert nicht und schlägt keine Behandlung vor. Es hebt Trends im Laufe der Zeit, Unterschiede zu Ihren vorherigen Zyklen und bemerkenswerte Veränderungen in Ihren Daten hervor — und hilft Ihnen zu verstehen, was passiert.</div>
   </div>
 </section>
 
 <!-- DEVICES -->
 <div class="devices-section reveal" id="devices">
   <div style="text-align:center">
-    <div class="section-label"><span class="material-symbols-rounded">devices</span> <span class="lang-en">Compatible devices</span><span class="lang-pl">Kompatybilne urządzenia</span></div>
+    <div class="section-label"><span class="material-symbols-rounded">devices</span> <span class="lang-en">Compatible devices</span><span class="lang-pl">Kompatybilne urządzenia</span><span class="lang-de">Kompatible Geräte</span></div>
     <div class="section-title lang-en">Direct integrations — paste a token, done</div>
     <div class="section-title lang-pl">Bezpośrednie integracje — wklej token i gotowe</div>
+    <div class="section-title lang-de">Direkte Integrationen — Token einfügen, fertig</div>
     <p style="color:var(--text-2);max-width:600px;margin:8px auto 0;font-size:14px" class="lang-en">No Docker, no servers. AlpacaLive talks to each provider directly from your browser. Most users only need to paste a single token from their wearable's web dashboard.</p>
     <p style="color:var(--text-2);max-width:600px;margin:8px auto 0;font-size:14px" class="lang-pl">Bez Dockera, bez serwerów. AlpacaLive łączy się z każdym dostawcą bezpośrednio z Twojej przeglądarki. Najczęściej wystarczy wkleić jeden token z webowego panelu producenta.</p>
+    <p style="color:var(--text-2);max-width:600px;margin:8px auto 0;font-size:14px" class="lang-de">Kein Docker, keine Server. AlpacaLive spricht direkt mit jedem Anbieter aus Ihrem Browser. Die meisten Nutzer müssen nur einen einzigen Token aus dem Web-Dashboard ihres Wearables einfügen.</p>
   </div>
   <div class="device-categories">
     <div class="device-cat">
-      <div class="device-cat-head"><span class="material-symbols-rounded">bolt</span><h3 class="lang-en">Easiest — paste a token</h3><h3 class="lang-pl">Najprościej — wklej token</h3></div>
+      <div class="device-cat-head"><span class="material-symbols-rounded">bolt</span><h3 class="lang-en">Easiest — paste a token</h3><h3 class="lang-pl">Najprościej — wklej token</h3><h3 class="lang-de">Einfachst — Token einfügen</h3></div>
       <ul>
         <li class="lang-en"><strong>Oura Ring</strong> — Personal Access Token from cloud.ouraring.com. Sleep, readiness, HRV, SpO₂, activity.</li>
         <li class="lang-pl"><strong>Oura Ring</strong> — Personal Access Token z cloud.ouraring.com. Sen, gotowość, HRV, SpO₂, aktywność.</li>
+        <li class="lang-de"><strong>Oura Ring</strong> — Personal Access Token von cloud.ouraring.com. Schlaf, Bereitschaft, HRV, SpO₂, Aktivität.</li>
       </ul>
       <p class="cat-note lang-en">No app registration. ~30 seconds to set up.</p>
       <p class="cat-note lang-pl">Bez rejestracji aplikacji. ~30 sekund konfiguracji.</p>
+      <p class="cat-note lang-de">Keine App-Registrierung. ~30 Sekunden zum Einrichten.</p>
     </div>
     <div class="device-cat">
-      <div class="device-cat-head"><span class="material-symbols-rounded">login</span><h3 class="lang-en">One-click OAuth</h3><h3 class="lang-pl">OAuth jednym kliknięciem</h3></div>
+      <div class="device-cat-head"><span class="material-symbols-rounded">login</span><h3 class="lang-en">One-click OAuth</h3><h3 class="lang-pl">OAuth jednym kliknięciem</h3><h3 class="lang-de">Ein-Klick-OAuth</h3></div>
       <ul>
         <li class="lang-en"><strong>Withings</strong> — ScanWatch 2 (ECG), Body Comp (ESC*), BPM Connect, Sleep Analyzer, BeamO. Medical-grade signals.</li>
         <li class="lang-pl"><strong>Withings</strong> — ScanWatch 2 (EKG), Body Comp (ESC*), BPM Connect, Sleep Analyzer, BeamO. Sygnały medycznej klasy.</li>
+        <li class="lang-de"><strong>Withings</strong> — ScanWatch 2 (EKG), Body Comp (ESC*), BPM Connect, Sleep Analyzer, BeamO. Signale in medizinischer Qualität.</li>
         <li class="lang-en"><strong>Strava</strong> — workouts, distance, average heart rate.</li>
         <li class="lang-pl"><strong>Strava</strong> — treningi, dystans, średnie tętno.</li>
+        <li class="lang-de"><strong>Strava</strong> — Trainings, Distanz, durchschnittliche Herzfrequenz.</li>
       </ul>
       <p class="cat-note lang-en">One-time app registration at the provider's dev portal, then OAuth login. *ESC availability varies by region.</p>
       <p class="cat-note lang-pl">Jednorazowa rejestracja aplikacji w panelu dewelopera dostawcy, potem login OAuth. *Dostępność ESC zależy od regionu.</p>
+      <p class="cat-note lang-de">Einmalige App-Registrierung im Developer-Portal des Anbieters, dann OAuth-Login. *ESC-Verfügbarkeit variiert je nach Region.</p>
     </div>
     <div class="device-cat">
-      <div class="device-cat-head"><span class="material-symbols-rounded">upload_file</span><h3 class="lang-en">CSV / mobile shortcut</h3><h3 class="lang-pl">CSV / skrót mobilny</h3></div>
+      <div class="device-cat-head"><span class="material-symbols-rounded">upload_file</span><h3 class="lang-en">CSV / mobile shortcut</h3><h3 class="lang-pl">CSV / skrót mobilny</h3><h3 class="lang-de">CSV / mobiler Kurzbefehl</h3></div>
       <ul>
         <li class="lang-en"><strong>Apple Health</strong> — iOS Shortcut (one tap).</li>
         <li class="lang-pl"><strong>Apple Health</strong> — Skrót iOS (jedno tapnięcie).</li>
+        <li class="lang-de"><strong>Apple Health</strong> — iOS-Kurzbefehl (ein Tippen).</li>
         <li class="lang-en"><strong>Garmin Connect</strong>, <strong>Samsung Health</strong>, <strong>Google Health Connect</strong> — CSV export.</li>
         <li class="lang-pl"><strong>Garmin Connect</strong>, <strong>Samsung Health</strong>, <strong>Google Health Connect</strong> — eksport CSV.</li>
+        <li class="lang-de"><strong>Garmin Connect</strong>, <strong>Samsung Health</strong>, <strong>Google Health Connect</strong> — CSV-Export.</li>
         <li class="lang-en">Any spreadsheet — generic CSV import.</li>
         <li class="lang-pl">Dowolny arkusz — uniwersalny import CSV.</li>
+        <li class="lang-de">Jede Tabelle — universeller CSV-Import.</li>
       </ul>
       <p class="cat-note lang-en">For wearables without a public API or where direct integration isn't possible from a PWA.</p>
       <p class="cat-note lang-pl">Dla urządzeń bez publicznego API lub gdzie integracja bezpośrednia z PWA nie jest możliwa.</p>
+      <p class="cat-note lang-de">Für Wearables ohne öffentliche API oder wo direkte Integration aus einer PWA nicht möglich ist.</p>
     </div>
   </div>
   <p class="devices-footnote lang-en">All data flows directly from the provider to your browser and stays on your device — AlpacaLive has no servers. For users who want fuller control there's an <em>advanced self-hosted path</em> via <a href="https://openwearables.io" target="_blank" rel="noopener">Open Wearables</a> (Docker), hidden under "Advanced" in Settings.</p>
   <p class="devices-footnote lang-pl">Wszystkie dane idą bezpośrednio od dostawcy do Twojej przeglądarki i zostają na Twoim urządzeniu — AlpacaLive nie ma serwerów. Dla użytkowników, którzy chcą pełniejszej kontroli, dostępna jest <em>zaawansowana ścieżka self-hosted</em> przez <a href="https://openwearables.io" target="_blank" rel="noopener">Open Wearables</a> (Docker), schowana pod „Zaawansowane" w Ustawieniach.</p>
+  <p class="devices-footnote lang-de">Alle Daten fließen direkt vom Anbieter zu Ihrem Browser und bleiben auf Ihrem Gerät — AlpacaLive hat keine Server. Für Nutzer, die volle Kontrolle wollen, gibt es einen <em>fortgeschrittenen selbst gehosteten Pfad</em> über <a href="https://openwearables.io" target="_blank" rel="noopener">Open Wearables</a> (Docker), versteckt unter „Erweitert" in den Einstellungen.</p>
 </div>
 
 <!-- FAQ -->
 <section id="faq">
   <div style="text-align:center">
-    <div class="section-label reveal"><span class="material-symbols-rounded">help</span> <span class="lang-en">Setup guide</span><span class="lang-pl">Pierwsze kroki</span></div>
+    <div class="section-label reveal"><span class="material-symbols-rounded">help</span> <span class="lang-en">Setup guide</span><span class="lang-pl">Pierwsze kroki</span><span class="lang-de">Einrichtungsanleitung</span></div>
     <div class="section-title reveal lang-en">Frequently asked questions</div>
     <div class="section-title reveal lang-pl">Najczęstsze pytania</div>
+    <div class="section-title reveal lang-de">Häufig gestellte Fragen</div>
     <p class="faq-intro reveal lang-en">Setting up wearable integrations is optional. Here's everything you need to decide whether — and how — to connect them.</p>
     <p class="faq-intro reveal lang-pl">Konfiguracja urządzeń jest opcjonalna. Tu znajdziesz wszystko, czego potrzebujesz żeby zdecydować — i jak je podłączyć.</p>
+    <p class="faq-intro reveal lang-de">Die Einrichtung von Wearable-Integrationen ist optional. Hier ist alles, was Sie brauchen, um zu entscheiden — ob und wie — Sie sie verbinden.</p>
   </div>
 
   <div class="faq-banner reveal">
     <span class="material-symbols-rounded">check_circle</span>
     <div class="faq-banner-text lang-en"><strong>You don't need to connect anything.</strong> AlpacaLive runs fully in notebook mode with manual entries, CSV import (Garmin Connect, Withings export, Apple Health Shortcut) and pattern engines that work on whatever you log. Wearable integrations enrich the picture, but nothing is blocked without them.</div>
     <div class="faq-banner-text lang-pl"><strong>Nie musisz nic łączyć.</strong> AlpacaLive działa w pełni w trybie notatnika — wpisy ręczne, import CSV (Garmin Connect, eksport Withings, Skrót Apple Health) i analizy wzorców działają na tym, co sam(a) zapiszesz. Integracje z urządzeniami tylko wzbogacają obraz, ale nic nie jest zablokowane bez nich.</div>
+    <div class="faq-banner-text lang-de"><strong>Sie müssen nichts verbinden.</strong> AlpacaLive läuft vollständig im Notizbuch-Modus mit manuellen Einträgen, CSV-Import (Garmin Connect, Withings-Export, Apple Health Shortcut) und Mustermaschinen, die mit allem arbeiten, was Sie protokollieren. Wearable-Integrationen bereichern das Bild, aber nichts ist ohne sie blockiert.</div>
   </div>
 
   <div class="faq-list reveal">
 
     <details class="faq-item">
-      <summary><span class="lang-en">Do I have to connect any wearable to use AlpacaLive?</span><span class="lang-pl">Czy muszę podłączać jakiekolwiek urządzenie żeby korzystać z AlpacaLive?</span></summary>
+      <summary><span class="lang-en">Do I have to connect any wearable to use AlpacaLive?</span><span class="lang-pl">Czy muszę podłączać jakiekolwiek urządzenie żeby korzystać z AlpacaLive?</span><span class="lang-de">Muss ich ein Wearable verbinden, um AlpacaLive zu nutzen?</span></summary>
       <div class="faq-body lang-en">
         <p><strong>No.</strong> AlpacaLive works fully without any device. You can:</p>
         <ul>
@@ -452,10 +490,20 @@ footer a { color:var(--lav-600);text-decoration:none; }
         </ul>
         <p>Integracje z urządzeniami są <em>opcjonalnym rozszerzeniem</em> — eliminują część ręcznego wpisywania.</p>
       </div>
+      <div class="faq-body lang-de">
+        <p><strong>Nein.</strong> AlpacaLive funktioniert vollständig ohne jedes Gerät. Sie können:</p>
+        <ul>
+          <li>Symptome, Gewicht, Blutdruck und Laborergebnisse manuell im Tagebuch eintragen</li>
+          <li>CSV-Dateien aus Garmin Connect, Withings oder jeder Tabelle importieren</li>
+          <li>Apple Health über einen iOS-Kurzbefehl nutzen (kein Open Wearables nötig)</li>
+          <li>Musterbasierte Zusammenfassungen für alle Daten erhalten, die Sie protokollieren</li>
+        </ul>
+        <p>Wearable-Integrationen sind eine <em>optionale Erweiterung</em> — sie sparen manuelles Tippen.</p>
+      </div>
     </details>
 
     <details class="faq-item">
-      <summary><span class="lang-en">I have an Oura Ring — what's the fastest way to connect it?</span><span class="lang-pl">Mam Oura Ring — jak najszybciej go podłączyć?</span></summary>
+      <summary><span class="lang-en">I have an Oura Ring — what's the fastest way to connect it?</span><span class="lang-pl">Mam Oura Ring — jak najszybciej go podłączyć?</span><span class="lang-de">Ich habe einen Oura Ring — wie kann ich ihn am schnellsten verbinden?</span></summary>
       <div class="faq-body lang-en">
         <p>Oura is the easiest device to connect — about 30 seconds, no app registration, no OAuth dance.</p>
         <ol>
@@ -476,10 +524,20 @@ footer a { color:var(--lav-600);text-decoration:none; }
         </ol>
         <p>Personal Access Tokens to dokładnie ten sam mechanizm co klucz API Anthropic — wkleić raz, gotowe.</p>
       </div>
+      <div class="faq-body lang-de">
+        <p>Oura ist das am einfachsten zu verbindende Gerät — etwa 30 Sekunden, keine App-Registrierung, kein OAuth-Tanz.</p>
+        <ol>
+          <li>Öffnen Sie <a href="https://cloud.ouraring.com/personal-access-tokens" target="_blank" rel="noopener">cloud.ouraring.com/personal-access-tokens</a> in Ihrem Browser und melden Sie sich mit demselben Konto an, das Sie in der Oura-App verwenden.</li>
+          <li>Klicken Sie auf <strong>Create New Personal Access Token</strong>, geben Sie einen beliebigen Namen ein (z. B. AlpacaLive) und kopieren Sie den angezeigten Token.</li>
+          <li>In AlpacaLive gehen Sie zu <strong>Einstellungen → Oura Ring</strong>, fügen Sie den Token ein, klicken Sie auf <strong>Speichern und verbinden</strong>.</li>
+          <li>Klicken Sie auf <strong>7 Tage synchronisieren</strong> — die letzte Woche mit Schlaf, Bereitschaft, HRV, SpO₂ und Aktivität landet im Daten-Tab.</li>
+        </ol>
+        <p>Personal Access Tokens sind genau derselbe Ansatz wie der Anthropic-API-Schlüssel — einmal einfügen, fertig.</p>
+      </div>
     </details>
 
     <details class="faq-item">
-      <summary><span class="lang-en">What about Whoop, Garmin, Fitbit?</span><span class="lang-pl">A co z Whoop, Garmin, Fitbit?</span></summary>
+      <summary><span class="lang-en">What about Whoop, Garmin, Fitbit?</span><span class="lang-pl">A co z Whoop, Garmin, Fitbit?</span><span class="lang-de">Was ist mit Whoop, Garmin, Fitbit?</span></summary>
       <div class="faq-body lang-en">
         <p><strong>Whoop:</strong> the API exists, but Whoop's token endpoint blocks browser-based requests via CORS — connecting directly from a PWA is currently not possible without a backend proxy. We're tracking the constraint and will revisit if Whoop relaxes it.</p>
         <p><strong>Garmin:</strong> the Garmin Connect API is gated behind partner approval that they don't extend to indie projects. Workaround: export your data from Garmin Connect as CSV and use AlpacaLive's Connected Devices import.</p>
@@ -490,10 +548,15 @@ footer a { color:var(--lav-600);text-decoration:none; }
         <p><strong>Garmin:</strong> Garmin Connect API wymaga zatwierdzenia partnerskiego, którego nie udzielają indie projektom. Obejście: wyeksportuj dane z Garmin Connect jako CSV i użyj importu w sekcji „Połączone urządzenia" AlpacaLive.</p>
         <p><strong>Fitbit:</strong> nie wpięty jeszcze bezpośrednio. Dane Fitbit są też dostępne przez Open Wearables (zaawansowana ścieżka self-hosted), gdy ich wsparcie tam się pojawi. Eksport CSV z webowego panelu Fitbit działa dziś.</p>
       </div>
+      <div class="faq-body lang-de">
+        <p><strong>Whoop:</strong> Die API existiert, aber der Token-Endpunkt von Whoop blockiert Browser-basierte Anfragen über CORS — eine direkte Verbindung aus einer PWA ist derzeit ohne Backend-Proxy nicht möglich. Wir verfolgen die Einschränkung und werden zurückkommen, falls Whoop sie lockert.</p>
+        <p><strong>Garmin:</strong> Die Garmin Connect API ist hinter einer Partner-Freigabe versperrt, die nicht an Indie-Projekte vergeben wird. Workaround: Exportieren Sie Ihre Daten aus Garmin Connect als CSV und verwenden Sie den AlpacaLive-Import unter „Verbundene Geräte".</p>
+        <p><strong>Fitbit:</strong> Noch nicht direkt angebunden. Fitbit-Daten sind auch über Open Wearables verfügbar (erweiterter selbst gehosteter Pfad), sobald deren Unterstützung dort landet. CSV-Export aus dem Fitbit-Web-Dashboard funktioniert heute.</p>
+      </div>
     </details>
 
     <details class="faq-item">
-      <summary><span class="lang-en">What's "Advanced — self-hosted Open Wearables" in Settings?</span><span class="lang-pl">Co to „Zaawansowane — self-hosted Open Wearables" w ustawieniach?</span></summary>
+      <summary><span class="lang-en">What's "Advanced — self-hosted Open Wearables" in Settings?</span><span class="lang-pl">Co to „Zaawansowane — self-hosted Open Wearables" w ustawieniach?</span><span class="lang-de">Was ist „Erweitert — selbst gehostetes Open Wearables" in den Einstellungen?</span></summary>
       <div class="faq-body lang-en">
         <p><a href="https://openwearables.io" target="_blank" rel="noopener">Open Wearables</a> is an open-source unified API by <a href="https://www.themomentum.ai" target="_blank" rel="noopener">Momentum</a> (MIT) that connects 7+ wearables through one consistent interface. It runs as a Docker container on your own computer.</p>
         <p>You don't need this for normal use — Oura, Withings and Strava are wired up directly. Open Wearables makes sense if:</p>
@@ -514,10 +577,20 @@ footer a { color:var(--lav-600);text-decoration:none; }
         </ul>
         <p>Setup wymaga Docker Desktop, sklonowania repo, wygenerowania API key w panelu admin — to 15-minutowy proces dla kogoś, kto czuje się swobodnie z terminalem. Dokumentacja: <a href="https://openwearables.io/docs/quickstart" target="_blank" rel="noopener">openwearables.io/docs/quickstart</a>.</p>
       </div>
+      <div class="faq-body lang-de">
+        <p><a href="https://openwearables.io" target="_blank" rel="noopener">Open Wearables</a> ist eine Open-Source vereinheitlichte API von <a href="https://www.themomentum.ai" target="_blank" rel="noopener">Momentum</a> (MIT), die 7+ Wearables über eine einheitliche Schnittstelle verbindet. Sie läuft als Docker-Container auf Ihrem eigenen Computer.</p>
+        <p>Für die normale Nutzung ist dies nicht erforderlich — Oura, Withings und Strava sind direkt angebunden. Open Wearables ist sinnvoll, wenn:</p>
+        <ul>
+          <li>Sie möchten, dass alle Wearable-Daten durch eine Infrastruktur fließen, die Sie vollständig kontrollieren (Datenschutz-Maximalisten)</li>
+          <li>Sie einen einzigen Ort für künftige Integrationen wollen (Fitbit, Coros, Xiaomi wenn sie hinzukommen)</li>
+          <li>Sie als Kliniker oder Forscher AlpacaLive in einer kontrollierten Umgebung betreiben</li>
+        </ul>
+        <p>Die Einrichtung erfordert Docker Desktop, das Klonen des Repos und die Generierung eines API-Schlüssels aus dem Admin-Panel — ein 15-minütiger Prozess für jemanden, der mit einem Terminal vertraut ist. Dokumentation: <a href="https://openwearables.io/docs/quickstart" target="_blank" rel="noopener">openwearables.io/docs/quickstart</a>.</p>
+      </div>
     </details>
 
     <details class="faq-item">
-      <summary><span class="lang-en">How do I get a Withings Client ID and Secret?</span><span class="lang-pl">Jak uzyskać Client ID i Secret od Withings?</span></summary>
+      <summary><span class="lang-en">How do I get a Withings Client ID and Secret?</span><span class="lang-pl">Jak uzyskać Client ID i Secret od Withings?</span><span class="lang-de">Wie bekomme ich eine Withings Client ID und ein Secret?</span></summary>
       <div class="faq-body lang-en">
         <ol>
           <li>Go to <a href="https://developer.withings.com/dashboard/" target="_blank" rel="noopener">developer.withings.com/dashboard</a> and sign in with your Withings account (the same one used in Withings Health Mate).<span class="faq-screenshot">[screenshot: Withings developer login]</span></li>
@@ -538,10 +611,20 @@ footer a { color:var(--lav-600);text-decoration:none; }
           <li>Przekierujemy Cię do ekranu logowania Withings. Zatwierdź dostęp — wrócisz do AlpacaLive automatycznie.</li>
         </ol>
       </div>
+      <div class="faq-body lang-de">
+        <ol>
+          <li>Gehen Sie zu <a href="https://developer.withings.com/dashboard/" target="_blank" rel="noopener">developer.withings.com/dashboard</a> und melden Sie sich mit Ihrem Withings-Konto an (dem gleichen, das in Withings Health Mate verwendet wird).<span class="faq-screenshot">[Screenshot: Withings Developer Login]</span></li>
+          <li>Klicken Sie auf <strong>Create an application</strong> und wählen Sie <strong>Public API integration</strong>.<span class="faq-screenshot">[Screenshot: App-Typ-Auswahl]</span></li>
+          <li>Füllen Sie das Formular aus. Das wichtigste Feld ist <strong>Callback URI</strong> — es muss <em>genau</em> mit dem übereinstimmen, was Sie später in AlpacaLive eingeben. Für lokale Tests verwenden Sie <code>http://localhost:5173/withings/callback</code>; in Produktion verwenden Sie Ihre echte Domain.<span class="faq-screenshot">[Screenshot: Neues App-Formular]</span></li>
+          <li>Nach dem Absenden zeigt Withings Ihre <strong>Client ID</strong> und Ihr <strong>Client Secret</strong>. <em>Kopieren Sie beide sofort</em> — das Client Secret wird nur einmal angezeigt.<span class="faq-screenshot">[Screenshot: Anmeldedaten-Anzeige]</span></li>
+          <li>In AlpacaLive gehen Sie zu <strong>Einstellungen → Withings (direkte Integration)</strong>. Fügen Sie Client ID, Client Secret und dieselbe Callback-URL ein. Klicken Sie auf <strong>Anmeldedaten speichern</strong>, dann auf <strong>Withings verbinden</strong>.</li>
+          <li>Sie werden zum Withings-Login-Bildschirm umgeleitet. Genehmigen Sie den Zugriff — Sie kehren automatisch zu AlpacaLive zurück.</li>
+        </ol>
+      </div>
     </details>
 
     <details class="faq-item">
-      <summary><span class="lang-en">What if I don't own any wearable at all?</span><span class="lang-pl">Co jeśli nie mam żadnego wearable?</span></summary>
+      <summary><span class="lang-en">What if I don't own any wearable at all?</span><span class="lang-pl">Co jeśli nie mam żadnego wearable?</span><span class="lang-de">Was, wenn ich gar kein Wearable habe?</span></summary>
       <div class="faq-body lang-en">
         <p>You're set. Use the <strong>journal</strong> tab to log how you feel each day (energy, pain, nausea, mood, weight, sleep hours). The pattern engine compares your current values to your own history and to published reference ranges — that's where most of the clinical value comes from. Wearables just save typing.</p>
         <p>If you want to add basic numbers without a wearable, a digital scale and a finger pulse oximeter from a pharmacy already cover weight, SpO₂ and heart rate.</p>
@@ -550,10 +633,14 @@ footer a { color:var(--lav-600);text-decoration:none; }
         <p>Wszystko jest gotowe. Korzystaj z zakładki <strong>dziennika</strong> żeby codziennie zapisywać samopoczucie (energia, ból, nudności, nastrój, waga, długość snu). Silnik analizy wzorców porównuje Twoje obecne wartości z Twoją historią i z opublikowanymi zakresami referencyjnymi — stąd bierze się większość wartości klinicznej. Wearables po prostu oszczędzają pisania.</p>
         <p>Jeśli chcesz dodać podstawowe liczby bez wearable, cyfrowa waga i pulsoksymetr napalcowy z apteki już pokryją wagę, SpO₂ i tętno.</p>
       </div>
+      <div class="faq-body lang-de">
+        <p>Sie sind startklar. Verwenden Sie den <strong>Tagebuch</strong>-Tab, um täglich aufzuzeichnen, wie Sie sich fühlen (Energie, Schmerz, Übelkeit, Stimmung, Gewicht, Schlafstunden). Die Mustermaschine vergleicht Ihre aktuellen Werte mit Ihrer eigenen Historie und mit veröffentlichten Referenzbereichen — daher kommt der größte klinische Wert. Wearables sparen einfach nur Tipparbeit.</p>
+        <p>Wenn Sie grundlegende Zahlen ohne Wearable hinzufügen möchten, decken eine digitale Waage und ein Finger-Pulsoximeter aus der Apotheke bereits Gewicht, SpO₂ und Herzfrequenz ab.</p>
+      </div>
     </details>
 
     <details class="faq-item">
-      <summary><span class="lang-en">Where does my health data go? Is anything sent to AlpacaLive servers?</span><span class="lang-pl">Gdzie trafiają moje dane zdrowotne? Czy coś jest wysyłane na serwery AlpacaLive?</span></summary>
+      <summary><span class="lang-en">Where does my health data go? Is anything sent to AlpacaLive servers?</span><span class="lang-pl">Gdzie trafiają moje dane zdrowotne? Czy coś jest wysyłane na serwery AlpacaLive?</span><span class="lang-de">Wohin gehen meine Gesundheitsdaten? Wird etwas an AlpacaLive-Server gesendet?</span></summary>
       <div class="faq-body lang-en">
         <p><strong>AlpacaLive has no servers.</strong> The app runs entirely as a PWA in your browser. Health data lives in IndexedDB on your device.</p>
         <p>Data flow:</p>
@@ -574,10 +661,20 @@ footer a { color:var(--lav-600);text-decoration:none; }
           <li><strong>Tryb AI (opcjonalny):</strong> tylko gdy wpiszesz klucz Claude API. Dane osobowe są filtrowane przed wysłaniem — imiona, identyfikatory i adresy usuwa filtr PII.</li>
         </ul>
       </div>
+      <div class="faq-body lang-de">
+        <p><strong>AlpacaLive hat keine Server.</strong> Die App läuft vollständig als PWA in Ihrem Browser. Gesundheitsdaten leben in IndexedDB auf Ihrem Gerät.</p>
+        <p>Datenfluss:</p>
+        <ul>
+          <li><strong>Manuelle Einträge / CSV-Import:</strong> bleiben zu 100 % auf Ihrem Gerät und verlassen es nie.</li>
+          <li><strong>Open Wearables (selbst gehostet):</strong> Daten fließen von der Cloud des Wearable-Anbieters → Ihr lokaler Open-Wearables-Server (auf Ihrem Computer) → AlpacaLive PWA. Sie bleiben in Ihrem lokalen Netzwerk.</li>
+          <li><strong>Withings direkt:</strong> Daten fließen von der Withings-Cloud → AlpacaLive PWA direkt über OAuth. Stoppen auf Ihrem Gerät.</li>
+          <li><strong>KI-Modus (optional):</strong> nur wenn Sie einen Claude-API-Schlüssel eingeben. Persönliche Daten werden vor dem Senden bereinigt — Namen, Ausweisnummern und Adressen werden durch einen PII-Filter entfernt.</li>
+        </ul>
+      </div>
     </details>
 
     <details class="faq-item">
-      <summary><span class="lang-en">Will any of this work on my phone (iPhone / Android)?</span><span class="lang-pl">Czy to wszystko działa na telefonie (iPhone / Android)?</span></summary>
+      <summary><span class="lang-en">Will any of this work on my phone (iPhone / Android)?</span><span class="lang-pl">Czy to wszystko działa na telefonie (iPhone / Android)?</span><span class="lang-de">Funktioniert das alles auf meinem Telefon (iPhone / Android)?</span></summary>
       <div class="faq-body lang-en">
         <p>Yes — install AlpacaLive as a PWA (Add to Home Screen on iOS Safari, Install app on Android Chrome) and the journal, manual entries, CSV import and pattern engine all work natively.</p>
         <p>For wearable cloud integrations there's a nuance: <strong>Apple Health</strong>, <strong>Samsung Health</strong> and <strong>Google Health Connect</strong> require a native iOS/Android app to read directly — they aren't reachable from a web PWA. Workaround: use the iOS Shortcut for Apple Health (one-tap export), or import a CSV.</p>
@@ -588,6 +685,11 @@ footer a { color:var(--lav-600);text-decoration:none; }
         <p>Przy integracjach chmurowych jest jeden niuans: <strong>Apple Health</strong>, <strong>Samsung Health</strong> i <strong>Google Health Connect</strong> wymagają natywnej aplikacji iOS/Android, żeby je czytać — z PWA web nie da się tego osiągnąć. Obejście: Skrót iOS dla Apple Health (eksport jednym tapnięciem) albo import CSV.</p>
         <p>Open Wearables i Withings działają identycznie na telefonie i komputerze, bo korzystają z chmurowego flow OAuth.</p>
       </div>
+      <div class="faq-body lang-de">
+        <p>Ja — installieren Sie AlpacaLive als PWA (Zum Startbildschirm hinzufügen in iOS Safari, App installieren in Android Chrome), und das Tagebuch, manuelle Einträge, CSV-Import und die Mustermaschine funktionieren alle nativ.</p>
+        <p>Bei Cloud-Integrationen für Wearables gibt es eine Nuance: <strong>Apple Health</strong>, <strong>Samsung Health</strong> und <strong>Google Health Connect</strong> erfordern eine native iOS/Android-App, um direkt gelesen zu werden — sie sind aus einer Web-PWA nicht erreichbar. Workaround: Verwenden Sie den iOS-Kurzbefehl für Apple Health (Ein-Tipp-Export) oder importieren Sie eine CSV.</p>
+        <p>Open Wearables und Withings funktionieren auf Telefon und Desktop gleich, da sie den Cloud-OAuth-Flow verwenden.</p>
+      </div>
     </details>
 
   </div>
@@ -596,29 +698,30 @@ footer a { color:var(--lav-600);text-decoration:none; }
 <!-- PRIVACY -->
 <section id="privacy">
   <div style="text-align:center">
-    <div class="section-label reveal"><span class="material-symbols-rounded">shield</span> <span class="lang-en">Privacy first</span><span class="lang-pl">Prywatność przede wszystkim</span></div>
+    <div class="section-label reveal"><span class="material-symbols-rounded">shield</span> <span class="lang-en">Privacy first</span><span class="lang-pl">Prywatność przede wszystkim</span><span class="lang-de">Datenschutz zuerst</span></div>
     <div class="section-title reveal lang-en">Your data stays on your phone</div>
     <div class="section-title reveal lang-pl">Twoje dane zostają na Twoim telefonie</div>
+    <div class="section-title reveal lang-de">Ihre Daten bleiben auf Ihrem Telefon</div>
   </div>
   <div class="privacy-split">
     <div class="privacy-box privacy-local reveal">
-      <h3><span class="material-symbols-rounded">phone_android</span> <span class="lang-en">On your phone — never leaves</span><span class="lang-pl">Na telefonie — nigdy nie wychodzą</span></h3>
+      <h3><span class="material-symbols-rounded">phone_android</span> <span class="lang-en">On your phone — never leaves</span><span class="lang-pl">Na telefonie — nigdy nie wychodzą</span><span class="lang-de">Auf Ihrem Telefon — verlässt es nie</span></h3>
       <ul>
-        <li><span class="material-symbols-rounded">check_circle</span> <span class="lang-en">Name, date of birth, national ID</span><span class="lang-pl">Imię, nazwisko, PESEL</span></li>
-        <li><span class="material-symbols-rounded">check_circle</span> <span class="lang-en">Address, phone, email</span><span class="lang-pl">Adres, telefon, email</span></li>
-        <li><span class="material-symbols-rounded">check_circle</span> <span class="lang-en">Full health history &amp; conversations</span><span class="lang-pl">Pełna historia zdrowia i rozmów</span></li>
-        <li><span class="material-symbols-rounded">check_circle</span> <span class="lang-en">Document photos</span><span class="lang-pl">Zdjęcia dokumentów</span></li>
-        <li><span class="material-symbols-rounded">check_circle</span> <span class="lang-en">All identifiable information</span><span class="lang-pl">Wszystkie dane identyfikujące</span></li>
+        <li><span class="material-symbols-rounded">check_circle</span> <span class="lang-en">Name, date of birth, national ID</span><span class="lang-pl">Imię, nazwisko, PESEL</span><span class="lang-de">Name, Geburtsdatum, Ausweisnummer</span></li>
+        <li><span class="material-symbols-rounded">check_circle</span> <span class="lang-en">Address, phone, email</span><span class="lang-pl">Adres, telefon, email</span><span class="lang-de">Adresse, Telefon, E-Mail</span></li>
+        <li><span class="material-symbols-rounded">check_circle</span> <span class="lang-en">Full health history &amp; conversations</span><span class="lang-pl">Pełna historia zdrowia i rozmów</span><span class="lang-de">Vollständige Gesundheitshistorie &amp; Gespräche</span></li>
+        <li><span class="material-symbols-rounded">check_circle</span> <span class="lang-en">Document photos</span><span class="lang-pl">Zdjęcia dokumentów</span><span class="lang-de">Dokumentfotos</span></li>
+        <li><span class="material-symbols-rounded">check_circle</span> <span class="lang-en">All identifiable information</span><span class="lang-pl">Wszystkie dane identyfikujące</span><span class="lang-de">Alle identifizierbaren Informationen</span></li>
       </ul>
     </div>
     <div class="privacy-box privacy-cloud reveal reveal-d1">
-      <h3><span class="material-symbols-rounded">lock</span> <span class="lang-en">Sent to AI — anonymized</span><span class="lang-pl">Wysyłane do AI — zanonimizowane</span></h3>
+      <h3><span class="material-symbols-rounded">lock</span> <span class="lang-en">Sent to AI — anonymized</span><span class="lang-pl">Wysyłane do AI — zanonimizowane</span><span class="lang-de">An KI gesendet — anonymisiert</span></h3>
       <ul>
-        <li><span class="material-symbols-rounded">verified_user</span> <span class="lang-en">Messages (personal data stripped)</span><span class="lang-pl">Wiadomości (dane osobowe usunięte)</span></li>
-        <li><span class="material-symbols-rounded">verified_user</span> <span class="lang-en">Blood values (numbers only)</span><span class="lang-pl">Wartości krwi (tylko liczby)</span></li>
-        <li><span class="material-symbols-rounded">verified_user</span> <span class="lang-en">Symptoms and wellbeing scores</span><span class="lang-pl">Objawy i oceny samopoczucia</span></li>
-        <li><span class="material-symbols-rounded">verified_user</span> <span class="lang-en">Device data (HR, sleep, weight)</span><span class="lang-pl">Dane z urządzeń (HR, sen, waga)</span></li>
-        <li><span class="material-symbols-rounded">verified_user</span> <span class="lang-en">Agent sees "[PATIENT]", not your name</span><span class="lang-pl">Agent widzi "[PACJENT]", nie Twoje imię</span></li>
+        <li><span class="material-symbols-rounded">verified_user</span> <span class="lang-en">Messages (personal data stripped)</span><span class="lang-pl">Wiadomości (dane osobowe usunięte)</span><span class="lang-de">Nachrichten (persönliche Daten entfernt)</span></li>
+        <li><span class="material-symbols-rounded">verified_user</span> <span class="lang-en">Blood values (numbers only)</span><span class="lang-pl">Wartości krwi (tylko liczby)</span><span class="lang-de">Blutwerte (nur Zahlen)</span></li>
+        <li><span class="material-symbols-rounded">verified_user</span> <span class="lang-en">Symptoms and wellbeing scores</span><span class="lang-pl">Objawy i oceny samopoczucia</span><span class="lang-de">Symptome und Wohlbefinden-Werte</span></li>
+        <li><span class="material-symbols-rounded">verified_user</span> <span class="lang-en">Device data (HR, sleep, weight)</span><span class="lang-pl">Dane z urządzeń (HR, sen, waga)</span><span class="lang-de">Gerätedaten (HF, Schlaf, Gewicht)</span></li>
+        <li><span class="material-symbols-rounded">verified_user</span> <span class="lang-en">Agent sees "[PATIENT]", not your name</span><span class="lang-pl">Agent widzi "[PACJENT]", nie Twoje imię</span><span class="lang-de">Agent sieht "[PATIENT]", nicht Ihren Namen</span></li>
       </ul>
     </div>
   </div>
@@ -629,13 +732,15 @@ footer a { color:var(--lav-600);text-decoration:none; }
   <div class="section-label reveal"><span class="material-symbols-rounded">code</span> Open source</div>
   <div class="section-title reveal lang-en">Built by patients, for patients</div>
   <div class="section-title reveal lang-pl">Tworzone przez pacjentów, dla pacjentów</div>
+  <div class="section-title reveal lang-de">Von Patienten, für Patienten</div>
   <div class="section-desc reveal lang-en" style="margin:8px auto 0">AlpacaLive is free forever. The code is open (AGPL-3.0). Anyone can inspect, improve, or adapt it.</div>
   <div class="section-desc reveal lang-pl" style="margin:8px auto 0">AlpacaLive jest darmowe na zawsze. Kod jest otwarty (AGPL-3.0). Każdy może go sprawdzić, ulepszyć lub dostosować.</div>
+  <div class="section-desc reveal lang-de" style="margin:8px auto 0">AlpacaLive ist für immer kostenlos. Der Code ist offen (AGPL-3.0). Jeder kann ihn überprüfen, verbessern oder anpassen.</div>
   <div class="os-cards">
-    <div class="os-card reveal"><span class="material-symbols-rounded">terminal</span><h4 class="lang-en">Developers</h4><h4 class="lang-pl">Programiści</h4><p class="lang-en">Add features, fix bugs, build device integrations</p><p class="lang-pl">Dodawaj funkcje, naprawiaj błędy, buduj integracje</p></div>
-    <div class="os-card reveal reveal-d1"><span class="material-symbols-rounded">diversity_1</span><h4 class="lang-en">Patients &amp; Caregivers</h4><h4 class="lang-pl">Pacjenci i opiekunowie</h4><p class="lang-en">Share what helped during treatment</p><p class="lang-pl">Dziel się tym co pomogło w leczeniu</p></div>
-    <div class="os-card reveal reveal-d2"><span class="material-symbols-rounded">stethoscope</span><h4 class="lang-en">Doctors &amp; Pharmacists</h4><h4 class="lang-pl">Lekarze i farmaceuci</h4><p class="lang-en">Review interactions, validate knowledge</p><p class="lang-pl">Recenzuj interakcje, weryfikuj wiedzę</p></div>
-    <div class="os-card reveal reveal-d3"><span class="material-symbols-rounded">translate</span><h4 class="lang-en">Translators</h4><h4 class="lang-pl">Tłumacze</h4><p class="lang-en">Cancer has no borders — help us go global</p><p class="lang-pl">Rak nie zna granic — pomóż nam dotrzeć wszędzie</p></div>
+    <div class="os-card reveal"><span class="material-symbols-rounded">terminal</span><h4 class="lang-en">Developers</h4><h4 class="lang-pl">Programiści</h4><h4 class="lang-de">Entwickler</h4><p class="lang-en">Add features, fix bugs, build device integrations</p><p class="lang-pl">Dodawaj funkcje, naprawiaj błędy, buduj integracje</p><p class="lang-de">Funktionen hinzufügen, Fehler beheben, Geräteintegrationen erstellen</p></div>
+    <div class="os-card reveal reveal-d1"><span class="material-symbols-rounded">diversity_1</span><h4 class="lang-en">Patients &amp; Caregivers</h4><h4 class="lang-pl">Pacjenci i opiekunowie</h4><h4 class="lang-de">Patienten &amp; Pflegekräfte</h4><p class="lang-en">Share what helped during treatment</p><p class="lang-pl">Dziel się tym co pomogło w leczeniu</p><p class="lang-de">Teilen Sie, was während der Behandlung geholfen hat</p></div>
+    <div class="os-card reveal reveal-d2"><span class="material-symbols-rounded">stethoscope</span><h4 class="lang-en">Doctors &amp; Pharmacists</h4><h4 class="lang-pl">Lekarze i farmaceuci</h4><h4 class="lang-de">Ärzte &amp; Apotheker</h4><p class="lang-en">Review interactions, validate knowledge</p><p class="lang-pl">Recenzuj interakcje, weryfikuj wiedzę</p><p class="lang-de">Interaktionen prüfen, Wissen validieren</p></div>
+    <div class="os-card reveal reveal-d3"><span class="material-symbols-rounded">translate</span><h4 class="lang-en">Translators</h4><h4 class="lang-pl">Tłumacze</h4><h4 class="lang-de">Übersetzer</h4><p class="lang-en">Cancer has no borders — help us go global</p><p class="lang-pl">Rak nie zna granic — pomóż nam dotrzeć wszędzie</p><p class="lang-de">Krebs kennt keine Grenzen — helfen Sie uns, global zu werden</p></div>
   </div>
 </section>
 
@@ -644,9 +749,11 @@ footer a { color:var(--lav-600);text-decoration:none; }
   <div class="cta-box reveal">
     <h2 class="lang-en">Take control of your health data</h2>
     <h2 class="lang-pl">Przejmij kontrolę nad swoimi danymi zdrowotnymi</h2>
+    <h2 class="lang-de">Übernehmen Sie die Kontrolle über Ihre Gesundheitsdaten</h2>
     <p class="lang-en">Free. Private. No account needed. Install on your phone in 30 seconds.</p>
     <p class="lang-pl">Darmowe. Prywatne. Bez rejestracji. Zainstaluj na telefonie w 30 sekund.</p>
-    <a href="/app" class="btn-primary"><span class="material-symbols-rounded">rocket_launch</span> <span class="lang-en">Launch AlpacaLive</span><span class="lang-pl">Uruchom AlpacaLive</span></a>
+    <p class="lang-de">Kostenlos. Privat. Kein Konto erforderlich. Installation auf Ihrem Telefon in 30 Sekunden.</p>
+    <a href="/app" class="btn-primary"><span class="material-symbols-rounded">rocket_launch</span> <span class="lang-en">Launch AlpacaLive</span><span class="lang-pl">Uruchom AlpacaLive</span><span class="lang-de">AlpacaLive starten</span></a>
   </div>
 </div>
 
@@ -659,6 +766,7 @@ footer a { color:var(--lav-600);text-decoration:none; }
     <span>
       <span class="lang-en">AlpacaLive is not a medical device. It does not provide medical advice, diagnoses, or treatment recommendations. All information is based on user-provided data and published scientific literature. Always consult your healthcare team. The creators assume no liability for health decisions made based on this application.</span>
       <span class="lang-pl">AlpacaLive nie jest wyrobem medycznym. Nie udziela porad medycznych, nie stawia diagnoz ani nie zaleca leczenia. Wszystkie informacje opierają się na danych użytkownika i opublikowanej literaturze naukowej. Zawsze konsultuj się z lekarzem. Twórcy nie ponoszą odpowiedzialności za decyzje zdrowotne podjęte na podstawie tej aplikacji.</span>
+      <span class="lang-de">AlpacaLive ist kein Medizinprodukt. Es bietet keine medizinische Beratung, Diagnosen oder Behandlungsempfehlungen. Alle Informationen basieren auf vom Benutzer bereitgestellten Daten und veröffentlichter wissenschaftlicher Literatur. Konsultieren Sie immer Ihr medizinisches Team. Die Ersteller übernehmen keine Haftung für Gesundheitsentscheidungen, die auf der Grundlage dieser Anwendung getroffen werden.</span>
     </span>
   </div>
 </footer>
@@ -681,11 +789,27 @@ function setLang(lang){
   document.getElementById('lang-current').textContent=lang.toUpperCase();
   document.getElementById('check-en').style.display=lang==='en'?'':'none';
   document.getElementById('check-pl').style.display=lang==='pl'?'':'none';
+  document.getElementById('check-de').style.display=lang==='de'?'':'none';
   document.querySelectorAll('.lang-option').forEach(function(el){el.classList.remove('active')});
   document.querySelector('.lang-option[onclick*="\''+lang+'\'"]').classList.add('active');
   document.getElementById('lang-dropdown').classList.remove('open');
   document.documentElement.lang=lang;
   localStorage.setItem('alpacalive-lang',lang);
+  // For DE: mark lang-en elements without a lang-de sibling for fallback rendering
+  if (lang === 'de') {
+    document.querySelectorAll('.lang-en').forEach(function(el){
+      var parent = el.parentElement;
+      if (!parent) return;
+      var hasDeSibling = parent.querySelector(':scope > .lang-de') !== null;
+      if (!hasDeSibling) {
+        el.classList.add('de-fallback');
+      } else {
+        el.classList.remove('de-fallback');
+      }
+    });
+  } else {
+    document.querySelectorAll('.de-fallback').forEach(function(el){ el.classList.remove('de-fallback'); });
+  }
 }
 // Close dropdown on click outside
 document.addEventListener('mousedown',function(e){
